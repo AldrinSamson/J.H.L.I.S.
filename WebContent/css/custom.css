@@ -1,0 +1,55 @@
+@charset "ISO-8859-1";
+
+.input-modal {
+    line-height: 30px;
+    border: 1px solid #e5e5e5;
+    font-size: 14px;
+    color: #666;
+  	display:block;
+  	font-family:"Arial";
+
+  	
+}
+label::after{
+	content : ": ";
+	
+}
+
+.label-modal{
+
+	display:block;
+	font-family:"Arial";
+	font-size: 17px;
+
+}
+
+.select-modal{
+    border: 1px solid #e5e5e5;
+    font-size: 17px;
+    color: #666;
+    border-radius: 3px;
+  	display:block;
+  	font-family:"Arial";
+    -webkit-appearance: menulist-button;
+    height: 50px;
+
+}
+
+.input-modal--lock {
+    line-height: 30px;
+    border: 1px solid #e5e5e5;
+    font-size: 14px;
+    color: #666;
+    background-color: #d3d9df;
+    padding: 0 17px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    display:block;
+    font-family:"Arial";
+
+}
