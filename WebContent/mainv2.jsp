@@ -101,7 +101,7 @@ Class.forName(MYclass);
                                  <i class="fas fa-chart-bar"></i>Reports</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="inventoryR.jsp">Inventory Manifest</a>
+                                    <a href="inventory.jsp">Inventory Manifest</a>
                                 </li>
                                 <li>
                                     <a href="borrowR.jsp">Borrowing Transactions</a>
@@ -181,7 +181,7 @@ Class.forName(MYclass);
                                  <i class="fas fa-chart-bar"></i>Reports</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="inventoryR.jsp">Inventory Manifest</a>
+                                    <a href="inventory.jsp">Inventory Manifest</a>
                                 </li>
                                 <li>
                                     <a href="borrowR.jsp">Borrowing Transactions</a>
