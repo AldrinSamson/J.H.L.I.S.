@@ -10,6 +10,19 @@
 
   	
 }
+
+.input-modal--date {
+    line-height: 30px;
+    border: 1px solid #e5e5e5;
+    font-size: 14px;
+    color: #666;
+    display:block;
+    font-family:"Arial";
+
+
+}
+
+
 label::after{
 	content : ": ";
 	
@@ -31,7 +44,7 @@ label::after{
   	display:block;
   	font-family:"Arial";
     -webkit-appearance: menulist-button;
-    height: 50px;
+    height: 30px;
 
 }
 
