@@ -1,7 +1,7 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.ProgressBar = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /* shifty - v1.5.3 - 2016-11-29 - http://jeremyckahn.github.io/shifty */
-;(function () {
-  var root = this || Function('return this')();
+        (function () {
+            var root = this || Function('return this')();
 
 /**
  * Shifty Core
@@ -630,9 +630,8 @@ var Tweenable = (function () {
  *  Easing Equations (c) 2003 Robert Penner, all rights reserved.
  */
 
-;(function () {
-
-  Tweenable.shallowCopy(Tweenable.prototype.formula, {
+(function () {
+                Tweenable.shallowCopy(Tweenable.prototype.formula, {
     easeInQuad: function (pos) {
       return Math.pow(pos, 2);
     },
@@ -826,37 +825,9 @@ var Tweenable = (function () {
  * Special thanks to Apple and Thomas Fuchs for much of this code.
  */
 
-/**
- *  Copyright (c) 2006 Apple Computer, Inc. All rights reserved.
- *
- *  Redistribution and use in source and binary forms, with or without
- *  modification, are permitted provided that the following conditions are met:
- *
- *  1. Redistributions of source code must retain the above copyright notice,
- *  this list of conditions and the following disclaimer.
- *
- *  2. Redistributions in binary form must reproduce the above copyright notice,
- *  this list of conditions and the following disclaimer in the documentation
- *  and/or other materials provided with the distribution.
- *
- *  3. Neither the name of the copyright holder(s) nor the names of any
- *  contributors may be used to endorse or promote products derived from
- *  this software without specific prior written permission.
- *
- *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- *  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- *  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- *  ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
- *  LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- *  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- *  SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- *  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- *  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- *  POSSIBILITY OF SUCH DAMAGE.
- */
-;(function () {
-  // port of webkit cubic bezier handling by http://www.netzgesta.de/dev/
+
+(function () {
+    // port of webkit cubic bezier handling by http://www.netzgesta.de/dev/
   function cubicBezierAtTime(t,p1x,p1y,p2x,p2y,duration) {
     var ax = 0,bx = 0,cx = 0,ay = 0,by = 0,cy = 0;
     function sampleCurveX(t) {
@@ -994,9 +965,8 @@ var Tweenable = (function () {
 
 })();
 
-;(function () {
-
-  function getInterpolatedValues (
+(function () {
+                function getInterpolatedValues (
     from, current, targetState, position, easing, delay) {
     return Tweenable.tweenProps(
       position, current, from, targetState, 1, delay, easing);
@@ -1213,9 +1183,8 @@ var Tweenable = (function () {
 // documentation and renders it.  It is never used, and is optimized away at
 // build time.
 
-;(function (Tweenable) {
-
-  /**
+(function (Tweenable) {
+                /**
    * @typedef {{
    *   formatString: string
    *   chunkNames: Array.<string>

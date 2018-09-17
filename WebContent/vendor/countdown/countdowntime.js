@@ -12,7 +12,7 @@
           endtimeHours: 0,
           endtimeMinutes: 0,
           endtimeSeconds: 0,
-        }
+        };
 
         var options =  $.extend(defaults, options);
 

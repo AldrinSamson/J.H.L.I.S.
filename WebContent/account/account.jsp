@@ -12,29 +12,28 @@
    
 
     <!-- Title Page-->
-    <title>Non-Borrowable</title>
+    <title>Account</title>
 
     <!-- Fontfaces CSS-->
-    <link href="css/font-face.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
-    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="../css/font-face.css" rel="stylesheet" media="all">
+    <link href="../vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
     <!-- Bootstrap CSS-->
-    <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
 
     <!-- Vendor CSS-->
-    <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
-    <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
-    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-    <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
-    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <link href="../vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="../vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="../vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
-    <link href ="css/custom.css" rel = "stylesheet" media = "all">
-    <link href="css/theme.css" rel="stylesheet" media="all">
+    <link href="../css/theme.css" rel="stylesheet" media="all">
 </head>
 <body class="animsition">
 <!-- declarations -->
@@ -43,14 +42,12 @@ Connection con;
 Statement stmt;
 ResultSet rs , get;
 PreparedStatement lps;
-String getQ , getUser , query;
+String getQ , getUser, query;
 String MYdburl = getBean.getMyUrl();
 String MSdburl = getBean.getMsUrl();
 String MYclass = getBean.getMyClass();
 String MSclass = getBean.getMsClass();
 Class.forName(MYclass);
-con = DriverManager.getConnection(MYdburl);
-stmt = con.createStatement();
 %>
     <div class="page-wrapper">
                         <!-- HEADER MOBILE-->
@@ -74,11 +71,11 @@ stmt = con.createStatement();
                     <ul class="navbar-mobile__list list-unstyled">
                        
                        <li >
-                            <a href="mainv2.jsp">
+                            <a href="../dashboard.jsp">
                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
                          <li>
-                            <a href="borrow.jsp">
+                            <a href="../borrow/borrow.jsp">
                                 <i class="fas fa-flask"></i>Item Borrow/Return</a>
                         </li>
                           <li class="has-sub">
@@ -86,16 +83,16 @@ stmt = con.createStatement();
                                  <i class="fas fa-table"></i>Laboratory Item Management</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="physics.jsp">Physics Laboratory</a>
+                                    <a href="../inventory/physics.jsp">Physics Laboratory</a>
                                 </li>
                                 <li>
-                                    <a href="chemistry.jsp">Chemistry Laboratory</a>
+                                    <a href="../inventory/chemistry.jsp">Chemistry Laboratory</a>
                                 </li>
                                 <li>
-                                    <a href="itemSets.jsp">Item Sets</a>
+                                    <a href="../inventory/itemSets.jsp">Item Sets</a>
                                 </li>
                                  <li>
-                                    <a href="nonBorrowable.jsp">Non-Borrowable</a>
+                                    <a href="../inventory/nonBorrowable.jsp">Non-Borrowable</a>
                                 </li>
                             </ul>
                         </li>
@@ -145,7 +142,7 @@ stmt = con.createStatement();
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="mainv2.jsp">
+                <a href="../dashboard.jsp">
                 <h1>JHLIS</h1>
                 </a>
             </div>
@@ -154,11 +151,11 @@ stmt = con.createStatement();
                     <ul class="list-unstyled navbar__list">
                       
                        <li >
-                            <a href="mainv2.jsp">
+                            <a href="../dashboard.jsp">
                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
                          <li>
-                            <a href="borrow.jsp">
+                            <a href="../borrow/borrow.jsp">
                                 <i class="fas fa-flask"></i>Item Borrow/Return</a>
                         </li>
                           <li class="has-sub">
@@ -166,16 +163,16 @@ stmt = con.createStatement();
                                  <i class="fas fa-table"></i>Laboratory Item Management</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="physics.jsp">Physics Laboratory</a>
+                                    <a href="../inventory/physics.jsp">Physics Laboratory</a>
                                 </li>
                                 <li>
-                                    <a href="chemistry.jsp">Chemistry Laboratory</a>
+                                    <a href="../inventory/chemistry.jsp">Chemistry Laboratory</a>
                                 </li>
                                 <li>
-                                    <a href="itemSets.jsp">Item Sets</a>
+                                    <a href="../inventory/itemSets.jsp">Item Sets</a>
                                 </li>
                                  <li>
-                                    <a href="nonBorrowable.jsp">Non-Borrowable</a>
+                                    <a href="../inventory/nonBorrowable.jsp">Non-Borrowable</a>
                                 </li>
                             </ul>
                         </li>
@@ -234,7 +231,10 @@ stmt = con.createStatement();
                             <div class="header-button">
                         <% 
                         	try{
-              
+                    		Class.forName(MYclass);
+                    		con = DriverManager.getConnection(MYdburl);
+                    		stmt = con.createStatement();
+                    		
                     		getUser = (String)session.getAttribute("user");
                     		
                     		getQ = "select * from account where username = '"+getUser+"'";
@@ -255,7 +255,7 @@ stmt = con.createStatement();
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                                        <img src="../images/icon/avatar-01.jpg"/>
                                                     </a>
                                                 </div>
                                                 <div class="content">
@@ -295,42 +295,44 @@ stmt = con.createStatement();
            	<div class="col-md-12">
            		<div class = "card text-left" id = "ptab-marg">
 				<div class = "card-header" >
-					<h3 class = "card-title"> Non-borrowables </h3>
+					<h3 class = "card-title">Account Management </h3>
 					
 				</div>
            		<div class = "card-body">
 					
 			
 						<div class="col-lg-12">
-                        <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mEAdd" data-toggle="modal"style = "color:black;">new equipment</a></button>
-						<button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mEEdit" data-toggle="modal"style = "color:black;">edit equipment</a></button>
+                        <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mEAdd" data-toggle="modal"style = "color:black;">new account</a></button>
+						<button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mEEdit" data-toggle="modal"style = "color:black;">edit account</a></button>
                         <div class="table-responsive table--no-card m-b-40">
+                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
                         <table class="table table-borderless table-striped table-earning" id = "Elist">
                         <thead>
 							<tr>
-							<th>ID</th>
+							<th>code</th>
+							<th>username</th>
 							<th>name</th>
-							<th>desc</th>
-							<th>lab</th>
-							<th>condi</th>
+							<th>class</th>
+							<th>id</th>
 							</tr>
                         </thead>
                         <tbody>
                             <%
                             try {
-								
+								con = DriverManager.getConnection(MYdburl);
+                                stmt = con.createStatement();
                                         
-                                query = "SELECT * FROM nonborrowable";
+                                query = "SELECT * FROM account";
                                 rs = stmt.executeQuery(query);
                                              
                                 while(rs.next()){
                             %>
 							<tr>
-							<td><%=rs.getString("nKey")%></td>
-							<td><%=rs.getString("nName")%></td>
-							<td><%=rs.getString("nDesc") %></td>
-							<td><%=rs.getString("nLab")%></td>
-							<td><%=rs.getString("nCondition")%></td>
+							<td><%=rs.getString("aKey")%></td>
+							<td><%=rs.getString("username")%></td>
+							<td><%=rs.getString("aName") %></td>
+							<td><%=rs.getString("aClass")%></td>
+							<td><%=rs.getString("aID")%></td>
 							</tr>
 							<%    
                                 }
@@ -355,59 +357,62 @@ stmt = con.createStatement();
 </div>
      <!-- Main Body End-->           
 <!-- Modal -->            
-        <!-- Equip add modal -->
-		<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id = "mEAdd" data-keyboard="false">
-  		<div class="modal-dialog ">
+        <!-- account add modal -->
+		<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id = "mEAdd" data-backdrop="static" data-keyboard="false">
+  		<div class="modal-dialog">
     	<div class="modal-content">
-    	<div class="modal-header"><h4 class = "modal-title">New Equipment</h4></div>
-    	<form action="checkNB" method="post">
+    	<div class="modal-header"><h4>New account<i class="fa fa-lock"></i></h4></div>
+    	<form action="addAccount"  method = "post">
+        
 		<div class="modal-body">
+		
 		<pre class = "tab">  
-       	<div class = "form-group" style = "text-align:center">
-<label for="nName" class = "label-modal">Name</label><input type ="text" name = "nName" class ="input-modal" >
-<label for="nDesc" class = "label-modal">Description</label><input type ="text" name = "nDesc" class ="input-modal">
-<label for ="nLab" class = "label-modal">Laboratory</label><select id="nLab" name ="nLab" class ="select-modal">
-<option >Physics</option>
-<option >Chemistry</option>
-</select>
-
-      	</div>
-      	</pre>
+       
+    	name     <input type ="text" name = "name"> 
+    	username <input type ="text" name = "un">  
+    	class    <input type ="text" name = "cls">  
+    	id    	 <input type ="text" name = "id">  
+    	SQ1      <input type ="text" name = "rq1">  
+    	SQA1     <input type ="text" name = "ra1">  
+    	SQ2      <input type ="text" name = "rq2">  
+    	SQA2     <input type ="text" name = "ra2">  
+    	password <input type ="text" name = "pass">   
+	
+      
+      
+		</pre>
 		</div>
+      	   
       	<div class="modal-footer">
-        <input type ="submit" id ="addE" class="btn btn-default btn-md" value = "Add">
+        <input type ="submit" id ="addE" class="btn btn-default btn-md" value = "Add Account">
       	<button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
       	</div>
-		
 		</form>
         </div>
         </div>
     	</div>
 
 		<!-- Edit Equipment Modal -->
-		<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id = "mEEdit"  data-keyboard="false">
+		<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id = "mEEdit" data-backdrop="static" data-keyboard="false">
   		<div class="modal-dialog">
     	<div class="modal-content">
-    	<div class="modal-header"><h4>Edit Equipment</h4></div>
-    	        
+    	<div class="modal-header"><h4>Edit Account<i class="fa fa-lock"></i></h4></div>
+    	<form action="editAccount"  method = "post">       
 		<div class="modal-body">
 		<pre class = "tab">
-      	<form action="editNB"  method = "post">
-             <div class = "form-group" style = "text-align:center">
-                 <label  class = "label-modal">Code</label> <input type ="text" name = "nKey" class="input-modal">
-                 <label  class = "label-modal">Description</label> <input type ="text" name = "nDesc" class="input-modal">
-                 <label  class = "label-modal">Laboratory</label><select id="nLab2" name ="nLab" class ="select-modal">
-                    <option >Physics</option>
-                    <option >Chemistry</option>
-                    </select>
-                 <label  class = "label-modal">Condition</label> <select id="nCondition" name ="nCondition" class ="select-modal">
-                    <option >OK</option>
-                    <option >Broken</option>
-                    <option >Under Repair</option>
-                    <option >For Replacement</option>
-                    </select>
-             </div>
-        </pre>
+		
+     	Code     <input type ="text" name = "aKey">
+     	Username <input type ="text" name = "un">
+     	Name	 <input type ="text" name = "name">
+     	SQ1		 <input type ="text" name = "rq1">
+     	SQA1	 <input type ="text" name = "ra1">
+     	SQ2 	 <input type ="text" name = "rq2">
+     	SQA2 	 <input type ="text" name = "ra2">
+     	old pass <input type ="text" name = "oP">
+     	new pass <input type ="text" name = "nP">
+     	
+     	
+		</pre>
 		</div>
       	<div class="modal-footer">
         <input type ="submit" name="edit" class="btn btn-default btn-md" value = "Edit">
@@ -418,86 +423,62 @@ stmt = con.createStatement();
         </div>
         </div>
     	</div>
-    	
-    	<!-- new Code NB modal -->
-		<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id = "mNCode" data-backdrop="static" data-keyboard="false">
-  		<div class="modal-dialog">
-    	<div class="modal-content">
-    	<div class="modal-header"><h4>New Equipment Type</h4></div>
-    	<form action="addNB"  method = "post">
-        <% 
-        try{
-        	String nName , nDesc , nLab;
-        	String abbvN1 , abbvN2 , abbvN3;
-        	
-        	nName = getBean.getnName();
-        	nDesc = getBean.getnDesc();
-        	nLab = getBean.getnLab();
-        	
-        	abbvN1 = getBean.getAbbvN1();
-        	abbvN2 = getBean.getAbbvN2();
-        	abbvN3 = getBean.getAbbvN3();
-        	
-         %>
-		<div class="modal-body">
-		<pre class = "tab">
-            <div class = "form-group" style = "text-align:center">
-                <label  class = "label-modal">Code</label> <select name = "nAbbv" class="select-modal">
-      		<option > <%= abbvN1 %></option>
-      		<option ><%=abbvN2 %></option>
-      		<option ><%= abbvN3 %></option>
-      		</select>    	
-                <label  class = "label-modal">Name</label><input type ="text" name = "nName"  class ="input-modal--lock" value = <%=nName %> readonly >
-                <label  class = "label-modal">Description</label><input type ="text" name = "nDesc" class ="input-modal" value = <%=nDesc %>>
-                <label  class = "label-modal">Laboratory</label>    <input type ="text" name = "nDesc" class ="input-modal--lock" value = <%=nLab%> readonly >
-            </div>
-        </pre>
-		</div>
-      	   <% }catch (Exception e){
-      		   e.printStackTrace();
-      	   }
-        
-        %>
-      	<div class="modal-footer">
-        <input type ="submit" id ="addET" class="btn btn-default btn-md" value = "Add">
-      	<button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
-      	</div>
-		</form>
-        </div>
-        </div>
-    	</div>
-    	
 </div>    
             
  <!-- Jquery JS-->
-    <script src="vendor/jquery-3.2.1.min.js"></script>
+    <script src="../vendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->
-    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
-    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <script src="../vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="../vendor/bootstrap-4.1/bootstrap.min.js"></script>
     <!-- Vendor JS       -->
-    <script src="vendor/slick/slick.min.js">
+    <script src="../vendor/slick/slick.min.js">
     </script>
-    <script src="vendor/wow/wow.min.js"></script>
-    <script src="vendor/animsition/animsition.min.js"></script>
-    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    <script src="../vendor/wow/wow.min.js"></script>
+    <script src="../vendor/animsition/animsition.min.js"></script>
+    <script src="../vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
     </script>
-    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
-    <script src="vendor/counter-up/jquery.counterup.min.js">
+    <script src="../vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="../vendor/counter-up/jquery.counterup.min.js">
     </script>
-    <script src="vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="vendor/select2/select2.min.js">
+    <script src="../vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="../vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="../vendor/select2/select2.min.js">
     </script>
-<script type = "text/javascript">
-$(document).ready(function(){
-	
-	if (window.location.href.indexOf('#mNCode') != -1) {
-		$('#mNCode').modal('show');
-	}
+	<script type = "text/javascript">
+$(document).on("keyup", "#search", function(){     
+    var val = '^(?=.*\\b' + $.trim($(this).val()).split(/\s+/).join('\\b)(?=.*\\b') + ').*$',
+    reg = RegExp(val, 'i'),
+    text;
+    
+    $rows.show().filter(function() {
+    text = $(this).text().replace(/\s+/g, ' ');
+    return !reg.test(text);
+    }).hide();
 });
+function myFunction() {
+	  // Declare variables 
+	  var input, filter, table, tr, td, i;
+	  input = document.getElementById("myInput");
+	  filter = input.value.toUpperCase();
+	  table = document.getElementById("EList");
+	  tr = table.getElementsByTagName("tr");
+
+	  // Loop through all table rows, and hide those who don't match the search query
+	  for (i = 0; i < tr.length; i++) {
+	    td = tr[i].getElementsByTagName("td")[0];
+	    if (td) {
+	      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+	        tr[i].style.display = "";
+	      } else {
+	        tr[i].style.display = "none";
+	      }
+	    } 
+	  }
+	}
+
 </script>
     <!-- Main JS-->
-    <script src="js/main.js"></script>
+    <script src="../js/main.js"></script>
 </body>
 </html>

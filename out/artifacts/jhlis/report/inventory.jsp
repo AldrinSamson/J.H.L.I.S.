@@ -12,31 +12,30 @@
 
 
     <!-- Title Page-->
-    <title>Borrow Prototype</title>
+    <title>Inventory Reports</title>
 
     <!-- Fontfaces CSS-->
-    <link href="css/font-face.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
-    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="../css/font-face.css" rel="stylesheet" media="all">
+    <link href="../vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
     <!-- Bootstrap CSS-->
-    <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
 
     <!-- Vendor CSS-->
-    <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
-    <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
-    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-    <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
-    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-    <link href="vendor/datatables/datatables.min.css" rel="stylesheet" media="all">
-
+    <link href="../vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="../vendor/css-hamburgers/ham   burgers.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="../vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <link href="../vendor/datatables/datatables.min.css" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
-    <link href ="css/custom.css" rel = "stylesheet" media = "all">
-    <link href="css/theme.css" rel="stylesheet" media="all">
+    <link href ="../css/custom.css" rel = "stylesheet" media = "all">
+    <link href="../css/theme.css" rel="stylesheet" media="all">
 </head>
 <body class="animsition">
 <!-- declarations -->
@@ -76,11 +75,11 @@
                 <ul class="navbar-mobile__list list-unstyled">
 
                     <li >
-                        <a href="mainv2.jsp">
+                        <a href="../dashboard.jsp">
                             <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                     </li>
                     <li>
-                        <a href="borrow.jsp">
+                        <a href="../borrow/borrow.jsp">
                             <i class="fas fa-flask"></i>Item Borrow/Return</a>
                     </li>
                     <li class="has-sub">
@@ -88,16 +87,16 @@
                             <i class="fas fa-table"></i>Laboratory Item Management</a>
                         <ul class="list-unstyled navbar__sub-list js-sub-list">
                             <li>
-                                <a href="physics.jsp">Physics Laboratory</a>
+                                <a href="../inventory/physics.jsp">Physics Laboratory</a>
                             </li>
                             <li>
-                                <a href="chemistry.jsp">Chemistry Laboratory</a>
+                                <a href="../inventory/chemistry.jsp">Chemistry Laboratory</a>
                             </li>
                             <li>
-                                <a href="itemSets.jsp">Item Sets</a>
+                                <a href="../inventory/itemSets.jsp">Item Sets</a>
                             </li>
                             <li>
-                                <a href="nonBorrowable.jsp">Non-Borrowable</a>
+                                <a href="../inventory/nonBorrowable.jsp">Non-Borrowable</a>
                             </li>
                         </ul>
                     </li>
@@ -135,7 +134,7 @@
 
 
                     <li>
-                        <a href="account.jsp">
+                        <a href="../account/account.jsp">
                             <i class="fas fa-users"></i>Account Management</a>
                     </li>
                 </ul>
@@ -147,7 +146,7 @@
     <!-- MENU SIDEBAR-->
     <aside class="menu-sidebar d-none d-lg-block">
         <div class="logo">
-            <a href="mainv2.jsp">
+            <a href="../dashboard.jsp">
                 <h1>JHLIS</h1>
             </a>
         </div>
@@ -156,11 +155,11 @@
                 <ul class="list-unstyled navbar__list">
 
                     <li >
-                        <a href="mainv2.jsp">
+                        <a href="../dashboard.jsp">
                             <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                     </li>
                     <li>
-                        <a href="borrow.jsp">
+                        <a href="../borrow/borrow.jsp">
                             <i class="fas fa-flask"></i>Item Borrow/Return</a>
                     </li>
                     <li class="has-sub">
@@ -168,16 +167,16 @@
                             <i class="fas fa-table"></i>Laboratory Item Management</a>
                         <ul class="list-unstyled navbar__sub-list js-sub-list">
                             <li>
-                                <a href="physics.jsp">Physics Laboratory</a>
+                                <a href="../inventory/physics.jsp">Physics Laboratory</a>
                             </li>
                             <li>
-                                <a href="chemistry.jsp">Chemistry Laboratory</a>
+                                <a href="../inventory/chemistry.jsp">Chemistry Laboratory</a>
                             </li>
                             <li>
-                                <a href="itemSets.jsp">Item Sets</a>
+                                <a href="../inventory/itemSets.jsp">Item Sets</a>
                             </li>
                             <li>
-                                <a href="nonBorrowable.jsp">Non-Borrowable</a>
+                                <a href="../inventory/nonBorrowable.jsp">Non-Borrowable</a>
                             </li>
                         </ul>
                     </li>
@@ -215,7 +214,7 @@
 
 
                     <li>
-                        <a href="account.jsp">
+                        <a href="../account/account.jsp">
                             <i class="fas fa-users"></i>Account Management</a>
                     </li>
 
@@ -257,7 +256,7 @@
                                         <div class="info clearfix">
                                             <div class="image">
                                                 <a href="#">
-                                                    <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                                    <img src="../images/icon/avatar-01.jpg" alt="John Doe" />
                                                 </a>
                                             </div>
                                             <div class="content">
@@ -297,30 +296,27 @@
                         <div class="col-md-12">
                             <div class = "card text-left" id = "ptab-marg">
                                 <div class = "card-header" >
-                                    <h3 class = "card-title"> Borrowables(Singles Only)(v1)</h3>
-                                    <ul class="nav nav-tabs ">
-                                        <li class = "nav-item"><a  style = "color : grey;" href="#tab-blist" data-toggle="tab" class = "nav-link active">Borrow</a></li>
-                                        <li class = "nav-item"><a  style = "color : grey;" href="#tab-rlist" data-toggle="tab" class = "nav-link" >Return</a></li>
-                                    </ul>
+                                    <h3 class = "card-title">Inventory Manifest</h3>
+
                                 </div>
                                 <div class = "card-body">
 
-                                    <div class ="tab-content">
-                                    <div class="tab-pane fade-in active" id="tab-blist">
+
                                     <div class="col-lg-12">
+                                        <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mEAdd" data-toggle="modal"style = "color:black;">Export .csv</a></button>
+                                        <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mEEdit" data-toggle="modal"style = "color:black;">Export .pdf</a></button>
                                         <div class="table-responsive table--no-card m-b-40">
-                                            <table class="table table-borderless table-striped table-earning" id = "borrowETable">
+                                            <table class="table table-borderless table-striped table-earning" id = "IElist">
                                                 <thead>
-                                                <tr data-toggle = "modal" data-target = "mEBorrow">
-                                                    <th>ID</th>
+                                                <tr>
+                                                    <th>itemKey</th>
                                                     <th>name</th>
-                                                    <th>description</th>
-                                                    <th>item CQ</th>
-                                                    <th>item TQ</th>
-                                                    <th>item unit</th>
-                                                    <th>item Date</th>
-                                                    <th>item condition</th>
-                                                    <th>item type</th>
+                                                    <th>desc</th>
+                                                    <th>currentQuantity</th>
+                                                    <th>totalQuantity</th>
+                                                    <th>calibration date</th>
+                                                    <th>lab</th>
+                                                    <th>condition</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -328,21 +324,47 @@
                                                     try {
 
 
-                                                        query = "SELECT e.* , i.*   from equipmentdetails e join inventory i on e.eKey = i.itemKey where i.itemCondition ='Available'";
+                                                        query = "SELECT i.* , e.eName , e.eDesc FROM inventory i join equipmentdetails e on e.eKey = i.itemKey";
                                                         rs = stmt.executeQuery(query);
 
                                                         while(rs.next()){
                                                 %>
                                                 <tr>
-                                                    <td><%=rs.getString("e.eKey")%></td>
+                                                    <td><%=rs.getString("i.itemKey")%></td>
                                                     <td><%=rs.getString("e.eName")%></td>
                                                     <td><%=rs.getString("e.eDesc")%></td>
                                                     <td><%=rs.getString("i.itemCurrentQuantity")%></td>
                                                     <td><%=rs.getString("i.itemTotalQuantity")%></td>
-                                                    <td><%=rs.getString("i.itemUnit")%></td>
                                                     <td><%=rs.getString("i.itemDate")%></td>
+                                                    <td><%=rs.getString("i.itemLab")%></td>
                                                     <td><%=rs.getString("i.itemCondition")%></td>
-                                                    <td><%=rs.getString("i.itemType")%></td>
+
+                                                </tr>
+                                                <%
+                                                        }
+                                                    }catch (Exception e){
+                                                        e.printStackTrace();
+                                                    }
+                                                %>
+                                                <%
+                                                    try {
+
+
+                                                        query = "SELECT i.* , c.cName , c.cDesc FROM inventory i join consumabledetails c on c.cKey = i.itemKey";
+                                                        rs = stmt.executeQuery(query);
+
+                                                        while(rs.next()){
+                                                %>
+                                                <tr>
+                                                    <td><%=rs.getString("i.itemKey")%></td>
+                                                    <td><%=rs.getString("c.cName")%></td>
+                                                    <td><%=rs.getString("c.cDesc")%></td>
+                                                    <td><%=rs.getString("i.itemCurrentQuantity")%></td>
+                                                    <td><%=rs.getString("i.itemTotalQuantity")%></td>
+                                                    <td><%=rs.getString("i.itemDate")%></td>
+                                                    <td><%=rs.getString("i.itemLab")%></td>
+                                                    <td><%=rs.getString("i.itemCondition")%></td>
+
                                                 </tr>
                                                 <%
                                                         }
@@ -356,60 +378,8 @@
                                     </div>
 
                                 </div>
-                                        <div class="tab-pane fade-in active" id="tab-rlist">
-                                            <div class="col-lg-12">
-                                                <div class="table-responsive table--no-card m-b-40">
-                                                    <table class="table table-borderless table-striped table-earning" id = "ReturnETable">
-                                                        <thead>
-                                                        <tr data-toggle = "modal" data-target = "mEReturn">
-                                                            <th>ID</th>
-                                                            <th>name</th>
-                                                            <th>description</th>
-                                                            <th>item CQ</th>
-                                                            <th>item TQ</th>
-                                                            <th>item unit</th>
-                                                            <th>item Date</th>
-                                                            <th>item condition</th>
-                                                            <th>item type</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <%
-                                                            try {
-
-
-                                                                query = "SELECT e.* , i.*   from equipmentdetails e join inventory i on e.eKey = i.itemKey where i.itemCondition ='Borrowed'";
-                                                                rs = stmt.executeQuery(query);
-
-                                                                while(rs.next()){
-                                                        %>
-                                                        <tr>
-                                                            <td><%=rs.getString("e.eKey")%></td>
-                                                            <td><%=rs.getString("e.eName")%></td>
-                                                            <td><%=rs.getString("e.eDesc")%></td>
-                                                            <td><%=rs.getString("i.itemCurrentQuantity")%></td>
-                                                            <td><%=rs.getString("i.itemTotalQuantity")%></td>
-                                                            <td><%=rs.getString("i.itemUnit")%></td>
-                                                            <td><%=rs.getString("i.itemDate")%></td>
-                                                            <td><%=rs.getString("i.itemCondition")%></td>
-                                                            <td><%=rs.getString("i.itemType")%></td>
-                                                        </tr>
-                                                        <%
-                                                                }
-                                                            }catch (Exception e){
-                                                                e.printStackTrace();
-                                                            }
-                                                        %>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-
-                                        </div>
                             </div>
-                                </div>
-                                </div>
-                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -419,110 +389,140 @@
     </div>
     <!-- Main Body End-->
     <!-- Modal -->
-    <!-- borrow -->
-    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id = "mEBorrow"  data-keyboard="false">
-        <div class="modal-dialog">
+    <!-- Equip add modal -->
+    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id = "mEAdd" data-keyboard="false">
+        <div class="modal-dialog ">
             <div class="modal-content">
-                <div class="modal-header"><h4>Borrow Equipement</h4></div>
-                <form action="borrowSingle"  method = "post">
-
+                <div class="modal-header"><h4 class = "modal-title">New Equipment</h4></div>
+                <form action="checkNB" method="post">
                     <div class="modal-body">
-
 		<pre class = "tab">
-        <div  style = "display:table">
-            <div style = "display:table-cell">
-                <label  class = "label-modal">Item Code</label>
-                <label  class = "label-modal">Name</label>
-                <label  class = "label-modal">Type</label>
-                <label  class = "label-modal">Quantity</label>
-                <label  class = "label-modal">ID</label>
-                <label  class = "label-modal">Name</label>
-                <label  class = "label-modal">Class</label>
-                <label  class = "label-modal">Supervisor</label>
-            </div>
-            <div  style = "display:table-cell; position:absolute; top:40px;">
-                <input type ="text" name = "iKey" class="input-modal" id = "EID" disabled>
-                <input type ="text" name = "iName" class="input-modal" id = "EName"disabled>
-                <input type ="text" name = "iType" class="input-modal" id = "EType"disabled>
-                <input type ="text" name = "bQuantity" class="input-modal">
-                <input type ="text" name = "bID" class="input-modal">
-                <input type ="text" name = "bName" class="input-modal">
-                <input type ="text" name = "bClass" class="input-modal">
-                <input type ="text" name = "bSupervisor" class="input-modal">
-            </div>
-        </div>
-		</pre>
+       	<div class = "form-group" style = "text-align:center">
+<label for="nName" class = "label-modal">Name</label><input type ="text" name = "nName" class ="input-modal" >
+<label for="nDesc" class = "label-modal">Description</label><input type ="text" name = "nDesc" class ="input-modal">
+<label for ="nLab" class = "label-modal">Laboratory</label><select id="nLab" name ="nLab" class ="select-modal">
+<option >Physics</option>
+<option >Chemistry</option>
+</select>
+
+      	</div>
+      	</pre>
+                    </div>
+                    <div class="modal-footer">
+                        <input type ="submit" id ="addE" class="btn btn-default btn-md" value = "Add">
+                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
                     </div>
 
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Equipment Modal -->
+    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id = "mEEdit"  data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><h4>Edit Equipment</h4></div>
+
+                <div class="modal-body">
+		<pre class = "tab">
+      	<form action="editNB"  method = "post">
+             <div class = "form-group" style = "text-align:center">
+                 <label  class = "label-modal">Code</label> <input type ="text" name = "nKey" class="input-modal">
+                 <label  class = "label-modal">Description</label> <input type ="text" name = "nDesc" class="input-modal">
+                 <label  class = "label-modal">Laboratory</label><select id="nLab2" name ="nLab" class ="select-modal">
+                    <option >Physics</option>
+                    <option >Chemistry</option>
+                    </select>
+                 <label  class = "label-modal">Condition</label> <select id="nCondition" name ="nCondition" class ="select-modal">
+                    <option >OK</option>
+                    <option >Broken</option>
+                    <option >Under Repair</option>
+                    <option >For Replacement</option>
+                    </select>
+             </div>
+        </pre>
+                </div>
+                <div class="modal-footer">
+                    <input type ="submit" name="edit" class="btn btn-default btn-md" value = "Edit">
+                    <input type ="submit" name ="del" class="btn btn-default btn-md" value = "Delete">
+                    <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- new Code NB modal -->
+    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id = "mNCode" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><h4>New Equipment Type</h4></div>
+                <form action="addNB"  method = "post">
+                    <%
+                        try{
+                            String nName , nDesc , nLab;
+                            String abbvN1 , abbvN2 , abbvN3;
+
+                            nName = getBean.getnName();
+                            nDesc = getBean.getnDesc();
+                            nLab = getBean.getnLab();
+
+                            abbvN1 = getBean.getAbbvN1();
+                            abbvN2 = getBean.getAbbvN2();
+                            abbvN3 = getBean.getAbbvN3();
+
+                    %>
+                    <div class="modal-body">
+		<pre class = "tab">
+            <div class = "form-group" style = "text-align:center">
+                <label  class = "label-modal">Code</label> <select name = "nAbbv" class="select-modal">
+      		<option > <%= abbvN1 %></option>
+      		<option ><%=abbvN2 %></option>
+      		<option ><%= abbvN3 %></option>
+      		</select>
+                <label  class = "label-modal">Name</label><input type ="text" name = "nName"  class ="input-modal--lock" value = <%=nName %> readonly >
+                <label  class = "label-modal">Description</label><input type ="text" name = "nDesc" class ="input-modal" value = <%=nDesc %>>
+                <label  class = "label-modal">Laboratory</label>    <input type ="text" name = "nDesc" class ="input-modal--lock" value = <%=nLab%> readonly >
+            </div>
+        </pre>
+                    </div>
+                    <% }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
+                    %>
                     <div class="modal-footer">
-                        <input type ="submit" class="btn btn-default btn-md" value = "Lend">
+                        <input type ="submit" id ="addET" class="btn btn-default btn-md" value = "Add">
                         <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
-    <!-- return -->
-    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id = "mEReturn"  data-keyboard="false">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header"><h4>Return Equipment</h4></div>
-                <form action="returnSingle"  method = "post">
-
-                    <div class="modal-body">
-
-		<pre class = "tab">
-        <div  style = "display:table">
-            <div style = "display:table-cell">
-                <label  class = "label-modal">Item Code</label>
-                <label  class = "label-modal">Name</label>
-                <label  class = "label-modal">Type</label>
-            </div>
-            <div  style = "display:table-cell; position:absolute; top:40px;">
-                <input type ="text" name = "iKey" class="input-modal" id = "EID" disabled>
-                <input type ="text" name = "iName" class="input-modal" id = "EName" disabled>
-                <input type ="text" name = "iType" class="input-modal" id = "EType" disabled>
-            </div>
-        </div>
-		</pre>
-                    </div>
-                    <div class="modal-footer">
-                        Report:
-                        <input type ="submit" name = "bMissing" class="btn btn-default btn-md" value = "Missing">
-                        <input type ="submit" name = "bBroken" class="btn btn-default btn-md" value = "Broken">
-                        <input type ="submit" name = "bReturn" class="btn btn-default btn-md" value = "Return">
-                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
 
 </div>
 
 <!-- Jquery JS-->
-<script src="vendor/jquery-3.2.1.min.js"></script>
+<script src="../vendor/jquery-3.2.1.min.js"></script>
 <!-- Bootstrap JS-->
-<script src="vendor/bootstrap-4.1/popper.min.js"></script>
-<script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+<script src="../vendor/bootstrap-4.1/popper.min.js"></script>
+<script src="../vendor/bootstrap-4.1/bootstrap.min.js"></script>
 <!-- Vendor JS       -->
-<script src="vendor/slick/slick.min.js">
+<script src="../vendor/slick/slick.min.js">
 </script>
-<script src="vendor/wow/wow.min.js"></script>
-<script src="vendor/animsition/animsition.min.js"></script>
-<script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+<script src="../vendor/wow/wow.min.js"></script>
+<script src="../vendor/animsition/animsition.min.js"></script>
+<script src="../vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
 </script>
-<script src="vendor/counter-up/jquery.waypoints.min.js"></script>
-<script src="vendor/datatables/datatables.min.js"></script>
-<script src="vendor/counter-up/jquery.counterup.min.js">
+<script src="../vendor/counter-up/jquery.waypoints.min.js"></script>
+<script src="../vendor/counter-up/jquery.counterup.min.js">
 </script>
-<script src="vendor/circle-progress/circle-progress.min.js"></script>
-<script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-<script src="vendor/chartjs/Chart.bundle.min.js"></script>
-<script src="vendor/select2/select2.min.js">
+<script src="../vendor/circle-progress/circle-progress.min.js"></script>
+<script src="../vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="../vendor/datatables/datatables.min.js"></script>
+<script src="../vendor/chartjs/Chart.bundle.min.js"></script>
+<script src="../vendor/select2/select2.min.js">
 </script>
 <script type = "text/javascript">
     $(document).ready(function(){
@@ -531,30 +531,12 @@
             $('#mNCode').modal('show');
         }
     });
-
     $(document).ready(function(){
-        var borrowETableX = $("#borrowETable").DataTable()
-        $('#borrowETable tbody').on('click', 'tr', function(){
-            var borrowEdata = borrowETableX.row(this).data();
-            $('#mEBorrow').modal('show');
-            $(".modal-body #EID").val( borrowEdata[0] );
-            $(".modal-body #EName").val( borrowEdata[1] );
-            $(".modal-body #EType").val( borrowEdata[8] );
-        });
-    });
+        var ReturnETableX = $("#IElist").DataTable()
 
-    $(document).ready(function(){
-        var ReturnETableX = $("#ReturnETable").DataTable()
-        $('#ReturnETable tbody').on('click', 'tr', function(){
-            var ReturnEdata = ReturnETableX.row(this).data();
-            $('#mEReturn').modal('show');
-            $(".modal-body #EID").val( ReturnEdata[0] );
-            $(".modal-body #EName").val( ReturnEdata[1] );
-            $(".modal-body #EType").val( ReturnEdata[8] );
-        });
     });
 </script>
 <!-- Main JS-->
-<script src="js/main.js"></script>
+<script src="../js/main.js"></script>
 </body>
 </html>

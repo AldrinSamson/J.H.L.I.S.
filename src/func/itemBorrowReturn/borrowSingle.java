@@ -2,14 +2,16 @@ package func.itemBorrowReturn;
 
 import bean.getBean;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,14 +25,14 @@ public class borrowSingle extends HttpServlet {
     String MYclass = getBean.getMyClass();
     Statement stmt;
     ResultSet chk;
-    String nowCondition, nowDate,nowKey;
-    int nowNum ,newNum;
+    String nowCondition, nowDate, nowKey;
+    int nowNum, newNum;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws  IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         response.setContentType("text/html;charset=UTF-8");
 
-        try(PrintWriter out =response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
 
             String iKey = request.getParameter("iKey");
             String iType = request.getParameter("iType");
@@ -44,7 +46,7 @@ public class borrowSingle extends HttpServlet {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
             String bDate = sdf.format(new Date());
             String bSTime = df.format(new Date());
-            String updateItem = "update inventory set itemCondition = 'Borrowed' where itemKey = '"+iKey+"'";
+            String updateItem = "update inventory set itemCondition = 'Borrowed' where itemKey = '" + iKey + "'";
             String b = "Borrowed";
             String m = "Missing";
             String k = "Broken";
@@ -55,37 +57,37 @@ public class borrowSingle extends HttpServlet {
                 con = DriverManager.getConnection(MYdburl);
                 stmt = con.createStatement();
 
-                String chkIfAvailable = "select itemCondition from inventory where itemKey ='"+iKey+"'";
+                String chkIfAvailable = "select itemCondition from inventory where itemKey ='" + iKey + "'";
                 chk = stmt.executeQuery(chkIfAvailable);
 
                 while (chk.next()) {
                     nowCondition = chk.getString("itemCondition");
                 }
 
-                    String chkKey = "select bNum , bDate from borrowtransactions where bDate = '"+bDate+"' order by bNum desc limit 1";
-                    chk = stmt.executeQuery(chkKey);
+                String chkKey = "select bNum , bDate from borrowtransactions where bDate = '" + bDate + "' order by bNum desc limit 1";
+                chk = stmt.executeQuery(chkKey);
 
-                    if(chk.next() == true){
+                if (chk.next() == true) {
 
-                        while(chk.next()){
-                            nowDate = chk.getString("bDate");
-                            nowNum = chk.getInt("bNum");
-                            newNum = ++nowNum;
-                            nowKey = nowDate+"-"+newNum;
-                        }
-
-                        String newTransaq1 = "insert into borrowTransactions values ('"+nowKey+"','"+newNum+"','"+iKey+"','"+iType+"','"+bQuantity+"',"+
-                                "'"+bID+"','"+bName+"','"+bClass+"','"+bSupervisor+"','"+bDate+"','"+bSTime+"',NULL ,'Borrowed')";
-                        stmt.execute(newTransaq1);
-                        stmt.execute(updateItem);
-                    } else {
-
-                        String newKey = bDate+"-1";
-                        String newTransaq2 = "insert into borrowTransactions values ('"+newKey+"','1','"+iKey+"','"+iType+"','"+bQuantity+"',"+
-                                "'"+bID+"','"+bName+"','"+bClass+"','"+bSupervisor+"','"+bDate+"','"+bSTime+"',NULL,'Borrowed')";
-                        stmt.execute(newTransaq2);
-                        stmt.execute(updateItem);
+                    while (chk.next()) {
+                        nowDate = chk.getString("bDate");
+                        nowNum = chk.getInt("bNum");
+                        newNum = ++nowNum;
+                        nowKey = nowDate + "-" + newNum;
                     }
+
+                    String newTransaq1 = "insert into borrowTransactions values ('" + nowKey + "','" + newNum + "','" + iKey + "','" + iType + "','" + bQuantity + "'," +
+                            "'" + bID + "','" + bName + "','" + bClass + "','" + bSupervisor + "','" + bDate + "','" + bSTime + "',NULL ,'Borrowed')";
+                    stmt.execute(newTransaq1);
+                    stmt.execute(updateItem);
+                } else {
+
+                    String newKey = bDate + "-1";
+                    String newTransaq2 = "insert into borrowTransactions values ('" + newKey + "','1','" + iKey + "','" + iType + "','" + bQuantity + "'," +
+                            "'" + bID + "','" + bName + "','" + bClass + "','" + bSupervisor + "','" + bDate + "','" + bSTime + "',NULL,'Borrowed')";
+                    stmt.execute(newTransaq2);
+                    stmt.execute(updateItem);
+                }
 
 
                 out.println("<html><body><script type='text/javascript'>location='borrow.jsp';</script></body></html>");
@@ -94,7 +96,7 @@ public class borrowSingle extends HttpServlet {
                     con.close();
                 }
 
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
