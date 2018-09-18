@@ -17,10 +17,8 @@ import java.sql.Statement;
 public class checkNew extends HttpServlet {
 
     Connection con;
-    Statement stmt, stmtE;
+    Statement stmt;
     ResultSet chk, get;
-    String getAbbv, codeE;
-    int getNum, newNum;
     String MYdburl = getBean.getMyUrl();
     String MYclass = getBean.getMyClass();
     String itemNAbbv, itemFAbbv, newKey;
@@ -43,25 +41,21 @@ public class checkNew extends HttpServlet {
             String lab = request.getParameter("lab");
             String type = request.getParameter("type");
 
-            if (desc.isEmpty()) {
+            // Value validation
+            if (desc == null){
+                desc = "N/A";
+            }else if (desc.isEmpty()){
                 desc = "N/A";
             }
-
-            if (date.isEmpty()) {
+            if (date == null){
+                sqlDate = "NULL";
+            }else if (date.isEmpty()){
                 sqlDate = "NULL";
             }else {
                 sqlDate = "'"+date+"'";
             }
-
-            if (unit == null){
-                unit = "N/A";
-            }
-
-            if (quantityA == null){
-                quantity = 1;
-            }else {
-                quantity = Integer.parseInt(quantityA);
-            }
+            unit = unit == null  ? "N/A" : unit;
+            quantity = quantityA == null ? 1 : Integer.parseInt(quantityA);
 
             if (type.equals("Equipment")) {
                 dateType = "Calibration";
@@ -81,7 +75,7 @@ public class checkNew extends HttpServlet {
                 con = DriverManager.getConnection(MYdburl);
                 stmt = con.createStatement();
 
-                String chkIfNew = "select itemNAbbv , itemFAbbv , itemNum from itemdetails where itemName = '" + name + "' and itemForm = '" + form + "' or itemName = '" + name + "' order by itemNum desc limit 1";
+                String chkIfNew = "select itemNAbbv , itemFAbbv , itemNum from itemdetails where itemName = '" + name + "' and itemForm = '" + form + "' and itemType = '"+type+"' or itemName = '" + name + "' and itemType = '"+type+"' order by itemNum desc limit 1";
                 chk = stmt.executeQuery(chkIfNew);
 
                 if (chk.next()) {
@@ -128,9 +122,6 @@ public class checkNew extends HttpServlet {
 
                 } else {
 
-                    if (date.equalsIgnoreCase("NULL")){
-                        date = "";
-                    }
 
                     getBean.setiName(name);
                     getBean.setiForm(form);
