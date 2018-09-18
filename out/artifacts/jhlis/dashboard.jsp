@@ -102,7 +102,7 @@ Class.forName(MYclass);
                                     <a href="report/inventory.jsp">Inventory Manifest</a>
                                 </li>
                                 <li>
-                                    <a href="borrowR.jsp">Borrowing Transactions</a>
+                                    <a href="report/borrowTransaction.jsp">Borrowing Transactions</a>
                                 </li>
                                 <li>
                                     <a href="requestR.jsp">Request Reports</a>
@@ -182,7 +182,7 @@ Class.forName(MYclass);
                                     <a href="report/inventory.jsp">Inventory Manifest</a>
                                 </li>
                                 <li>
-                                    <a href="borrowR.jsp">Borrowing Transactions</a>
+                                    <a href="report/borrowTransaction.jsp">Borrowing Transactions</a>
                                 </li>
                                 <li>
                                     <a href="requestR.jsp">Request Reports</a>

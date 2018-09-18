@@ -31,10 +31,11 @@
     <link href="../vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="../vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="../vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="../vendor/datatables/datatables.min.css" rel="stylesheet" media="all">
     <!-- Main CSS-->
-    <link href ="../css/custom.css" rel = "stylesheet" media = "all">
     <link href="../css/theme.css" rel="stylesheet" media="all">
+    <link href="../css/custom.css" rel="stylesheet" media="all">
 </head>
 <body class="animsition">
 <!-- declarations -->
@@ -42,12 +43,9 @@
 Connection con;
 Statement stmt;
 ResultSet rs , get;
-PreparedStatement lps;
 String getQ , getUser , query;
 String MYdburl = getBean.getMyUrl();
-String MSdburl = getBean.getMsUrl();
 String MYclass = getBean.getMyClass();
-String MSclass = getBean.getMsClass();
 Class.forName(MYclass);
 con = DriverManager.getConnection(MYdburl);
 stmt = con.createStatement();
@@ -184,10 +182,10 @@ stmt = con.createStatement();
                                  <i class="fas fa-chart-bar"></i>Reports</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="inventoryR.jsp">Inventory Manifest</a>
+                                    <a href="../report/inventory.jsp">Inventory Manifest</a>
                                 </li>
                                 <li>
-                                    <a href="borrowR.jsp">Borrowing Transactions</a>
+                                    <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
                                 </li>
                                 <li>
                                     <a href="requestR.jsp">Request Reports</a>
@@ -302,10 +300,11 @@ stmt = con.createStatement();
 					
 			
 						<div class="col-lg-12">
-                        <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mEAdd" data-toggle="modal"style = "color:black;">new equipment</a></button>
-						<button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mEEdit" data-toggle="modal"style = "color:black;">edit equipment</a></button>
+                            <button type="button" class="btn btn-outline-secondary"  href="#mEAdd" data-toggle="modal"><i
+                                    class="fa fa-plus-square"
+                                    style="color:black;"></i>NEW</button>
                         <div class="table-responsive table--no-card m-b-40">
-                        <table class="table table-borderless table-striped table-earning" id = "Elist">
+                        <table class="table table-borderless table-striped table-earning" id = "nTable">
                         <thead>
 							<tr>
 							<th>ID</th>
@@ -354,141 +353,65 @@ stmt = con.createStatement();
      
 </div>
      <!-- Main Body End-->           
-<!-- Modal -->            
-        <!-- Equip add modal -->
-		<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id = "mEAdd" data-keyboard="false">
-  		<div class="modal-dialog ">
-    	<div class="modal-content">
-    	<div class="modal-header"><h4 class = "modal-title">New Equipment</h4></div>
-    	<form action="checkNB" method="post">
-		<div class="modal-body">
-		<pre class = "tab">  
-       	<div class = "form-group" style = "text-align:center">
-<label for="nName" class = "label-modal">Name</label><input type ="text" name = "nName" class ="input-modal" >
-<label for="nDesc" class = "label-modal">Description</label><input type ="text" name = "nDesc" class ="input-modal">
-<label for ="nLab" class = "label-modal">Laboratory</label><select id="nLab" name ="nLab" class ="select-modal">
-<option >Physics</option>
-<option >Chemistry</option>
-</select>
+<!-- Modal -->
 
-      	</div>
-      	</pre>
-		</div>
-      	<div class="modal-footer">
-        <input type ="submit" id ="addE" class="btn btn-default btn-md" value = "Add">
-      	<button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
-      	</div>
-		
-		</form>
-        </div>
-        </div>
-    	</div>
+        <!-- Add Equipment Modal -->
+        <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="mEAdd" data-keyboard="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header"><h4>New Equipment</h4></div>
+                    <form action="../checkNew" method="post">
 
-		<!-- Edit Equipment Modal -->
-		<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id = "mEEdit"  data-keyboard="false">
-  		<div class="modal-dialog">
-    	<div class="modal-content">
-    	<div class="modal-header"><h4>Edit Equipment</h4></div>
-    	        
-		<div class="modal-body">
-		<pre class = "tab">
-      	<form action="editNB"  method = "post">
-             <div class = "form-group" style = "text-align:center">
-                 <label  class = "label-modal">Code</label> <input type ="text" name = "nKey" class="input-modal">
-                 <label  class = "label-modal">Description</label> <input type ="text" name = "nDesc" class="input-modal">
-                 <label  class = "label-modal">Laboratory</label><select id="nLab2" name ="nLab" class ="select-modal">
-                    <option >Physics</option>
-                    <option >Chemistry</option>
-                    </select>
-                 <label  class = "label-modal">Condition</label> <select id="nCondition" name ="nCondition" class ="select-modal">
-                    <option >OK</option>
-                    <option >Broken</option>
-                    <option >Under Repair</option>
-                    <option >For Replacement</option>
-                    </select>
-             </div>
-        </pre>
-		</div>
-      	<div class="modal-footer">
-        <input type ="submit" name="edit" class="btn btn-default btn-md" value = "Edit">
-	  	<input type ="submit" name ="del" class="btn btn-default btn-md" value = "Delete">            
-      	<button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
-      	</div>
-		</form>
-        </div>
-        </div>
-    	</div>
-    	
-    	<!-- new Code NB modal -->
-		<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id = "mNCode" data-backdrop="static" data-keyboard="false">
-  		<div class="modal-dialog">
-    	<div class="modal-content">
-    	<div class="modal-header"><h4>New Equipment Type</h4></div>
-    	<form action="addNB"  method = "post">
-        <% 
-        try{
-        	String nName , nDesc , nLab;
-        	String abbvN1 , abbvN2 , abbvN3;
-        	
-        	nName = getBean.getnName();
-        	nDesc = getBean.getnDesc();
-        	nLab = getBean.getnLab();
-        	
-        	abbvN1 = getBean.getAbbvN1();
-        	abbvN2 = getBean.getAbbvN2();
-        	abbvN3 = getBean.getAbbvN3();
-        	
-         %>
-		<div class="modal-body">
-		<pre class = "tab">
-            <div class = "form-group" style = "text-align:center">
-                <label  class = "label-modal">Code</label> <select name = "nAbbv" class="select-modal">
-      		<option > <%= abbvN1 %></option>
-      		<option ><%=abbvN2 %></option>
-      		<option ><%= abbvN3 %></option>
-      		</select>    	
-                <label  class = "label-modal">Name</label><input type ="text" name = "nName"  class ="input-modal--lock" value = <%=nName %> readonly >
-                <label  class = "label-modal">Description</label><input type ="text" name = "nDesc" class ="input-modal" value = <%=nDesc %>>
-                <label  class = "label-modal">Laboratory</label>    <input type ="text" name = "nDesc" class ="input-modal--lock" value = <%=nLab%> readonly >
+                        <div class="modal-body">
+
+		<pre class="tab">
+        <table class="table table-borderless table-earning" style="border-spacing:20px">
+            <tr>
+                <td><label class="label-modal">Name</label></td>
+                <td><input type="text" name="nName" class="input-modal" ></td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">Description</label></td>
+                <td><input type="text" name="nDesc" class="input-modal"></td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">Laboratory</label></td>
+                <td><input type="text" name="nLab" class="input-modal"></td>
+            </tr>
+        </table>
+		</pre>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" class="btn btn-default btn-md" value="Add">
+                            <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </pre>
-		</div>
-      	   <% }catch (Exception e){
-      		   e.printStackTrace();
-      	   }
-        
-        %>
-      	<div class="modal-footer">
-        <input type ="submit" id ="addET" class="btn btn-default btn-md" value = "Add">
-      	<button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
-      	</div>
-		</form>
         </div>
-        </div>
-    	</div>
     	
-</div>    
-            
- <!-- Jquery JS-->
-    <script src="../vendor/jquery-3.2.1.min.js"></script>
-    <!-- Bootstrap JS-->
-    <script src="../vendor/bootstrap-4.1/popper.min.js"></script>
-    <script src="../vendor/bootstrap-4.1/bootstrap.min.js"></script>
-    <!-- Vendor JS       -->
-    <script src="../vendor/slick/slick.min.js">
-    </script>
-    <script src="../vendor/wow/wow.min.js"></script>
-    <script src="../vendor/animsition/animsition.min.js"></script>
-    <script src="../vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-    </script>
-    <script src="../vendor/counter-up/jquery.waypoints.min.js"></script>
-    <script src="../vendor/counter-up/jquery.counterup.min.js">
-    </script>
-    <script src="../vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="../vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="../vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="../vendor/select2/select2.min.js">
-    </script>
+</div>
+
+<!-- Jquery JS-->
+<script src="../vendor/jquery-3.2.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- Bootstrap JS-->
+<script src="../vendor/bootstrap-4.1/popper.min.js"></script>
+<script src="../vendor/bootstrap-4.1/bootstrap.min.js"></script>
+<!-- Vendor JS -->
+<script src="../vendor/slick/slick.min.js"></script>
+<script src="../vendor/wow/wow.min.js"></script>
+<script src="../vendor/animsition/animsition.min.js"></script>
+<script src="../vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<script src="../vendor/counter-up/jquery.waypoints.min.js"></script>
+<script src="../vendor/datatables/datatables.min.js"></script>
+<script src="../vendor/counter-up/jquery.counterup.min.js"></script>
+<script src="../vendor/circle-progress/circle-progress.min.js"></script>
+<script src="../vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="../vendor/chartjs/Chart.bundle.min.js"></script>
+<script src="../vendor/select2/select2.min.js"></script>
+<!-- Main JS-->
+<script src="../js/main.js"></script>
 <script type = "text/javascript">
 $(document).ready(function(){
 	
@@ -496,8 +419,19 @@ $(document).ready(function(){
 		$('#mNCode').modal('show');
 	}
 });
+
+$(document).ready(function () {
+    var eTable = $("#nTable").DataTable();
+    $('#nTable tbody').on('click', 'tr', function () {
+        var eTableData = eTable.row(this).data();
+        $('#mEEdit').modal('show');
+        $(".modal-body #nID").val(eTableData[0]);
+        $(".modal-body #nName").val(eTableData[1]);
+        $(".modal-body #nDesc").val(eTableData[2]);
+        $(".modal-body #nLab").val(eTableData[3]);
+        $(".modal-body #nCondi").val(eTableData[4]);
+    });
+});
 </script>
-    <!-- Main JS-->
-    <script src="../js/main.js"></script>
 </body>
 </html>

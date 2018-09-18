@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Title Page-->
-    <title>Physics</title>
+    <title>Chemistry</title>
 
     <!-- Fontfaces CSS-->
     <link href="../css/font-face.css" rel="stylesheet" media="all">
@@ -309,7 +309,7 @@
                             <div class="card text-left" id="ptab-marg">
                                 <!-- Nav Tabs -->
                                 <div class="card-header">
-                                    <h3 class="card-title"> Physics Laboratory </h3>
+                                    <h3 class="card-title"> Chemistry Laboratory </h3>
                                     <ul class="nav nav-tabs ">
                                         <li class="nav-item"><a style="color : grey;" href="#tab-elist"
                                                                 data-toggle="tab" class="nav-link active">Equipment</a>
@@ -333,7 +333,7 @@
                                                     <tr>
                                                         <% try {
 
-                                                            String queryX = "select itemName, sum(itemTotalQuantity) from inventory i join itemdetails d on d.itemKey=i.itemKey where itemType ='Equipment'and itemLab ='Physics' group by itemName";
+                                                            String queryX = "select itemName, sum(itemTotalQuantity) from inventory i join itemdetails d on d.itemKey=i.itemKey where itemType ='Equipment'and itemLab ='Chemistry' group by itemName";
                                                             counter = stmt.executeQuery(queryX);
 
                                                             while (counter.next()) {
@@ -365,7 +365,7 @@
                                                         <tbody>
                                                         <%
                                                             try {
-                                                                query = "select * from itemdetails d join inventory i on d.itemKey = i.itemKey where itemLab = 'Physics' and itemType ='Equipment'";
+                                                                query = "select * from itemdetails d join inventory i on d.itemKey = i.itemKey where itemLab = 'Chemistry' and itemType ='Equipment'";
                                                                 rs = stmt.executeQuery(query);
 
                                                                 while (rs.next()) {
@@ -409,7 +409,7 @@
                                                             <%
 					  			try {
 					  			      String queryX = "select itemName ,sum(itemCurrentQuantity), itemUnit from itemdetails d join inventory i " +
-					  			       "on d.itemKey=i.itemKey where itemLab = 'Physics' and itemType ='Apparatus'" +
+					  			       "on d.itemKey=i.itemKey where itemLab = 'Chemistry' and itemType ='Apparatus'" +
 					  			        " group by itemName ";
                                      counter = stmt.executeQuery(queryX);
                                      while(counter.next()){
@@ -448,7 +448,7 @@
                                                             try {
 
 
-                                                                query = "select * from itemdetails d join inventory i on d.itemKey = i.itemKey where itemLab = 'Physics' and itemType ='Apparatus'";
+                                                                query = "select * from itemdetails d join inventory i on d.itemKey = i.itemKey where itemLab = 'Chemistry' and itemType ='Apparatus'";
                                                                 rs = stmt.executeQuery(query);
 
                                                                 while (rs.next()) {
@@ -502,7 +502,7 @@
                                                             <%
 					  			try {
 					  			      String queryX = "select itemName , itemForm ,sum(itemTotalQuantity), itemUnit from itemdetails d join inventory i " +
-					  			       "on d.itemKey=i.itemKey where itemCondition 	= 'OK' and itemLab = 'Physics' and itemType ='Consumable'" +
+					  			       "on d.itemKey=i.itemKey where itemCondition 	= 'OK' and itemLab = 'Chemistry' and itemType ='Consumable'" +
 					  			        " group by itemName , itemForm";
                                      counter = stmt.executeQuery(queryX);
                                      while(counter.next()){
@@ -542,7 +542,7 @@
                                                             try {
 
 
-                                                                query = "select * from itemdetails d join inventory i on d.itemKey = i.itemKey where itemLab = 'Physics' and itemType ='Consumable'";
+                                                                query = "select * from itemdetails d join inventory i on d.itemKey = i.itemKey where itemLab = 'Chemistry' and itemType ='Consumable'";
                                                                 rs = stmt.executeQuery(query);
 
                                                                 while (rs.next()) {
@@ -629,7 +629,7 @@
                     </div>
                     <div class="modal-footer">
                         <input type="text" name="type" class="input-modal" value="Equipment" hidden>
-                        <input type="text" name="lab" class="input-modal" value="Physics" hidden>
+                        <input type="text" name="lab" class="input-modal" value="Chemistry" hidden>
                         <input type="submit" class="btn btn-default btn-md" value="Add">
                         <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
                     </div>
@@ -673,7 +673,7 @@
                     </div>
                     <div class="modal-footer">
                         <input type="text" name="type" class="input-modal" value="Apparatus" hidden>
-                        <input type="text" name="lab" class="input-modal" value="Physics" hidden>
+                        <input type="text" name="lab" class="input-modal" value="Chemistry" hidden>
                         <datalist id="name">
 
                         </datalist>
@@ -725,7 +725,7 @@
                     </div>
                     <div class="modal-footer">
                         <input type="text" name="type" class="input-modal" value="Consumable" hidden>
-                        <input type="text" name="lab" class="input-modal" value="Physics" hidden>
+                        <input type="text" name="lab" class="input-modal" value="Chemistry" hidden>
                         <datalist id="name">
 
                         </datalist>
@@ -778,7 +778,7 @@
                     </div>
                     <div class="modal-footer">
                         <input type="text" name="type" class="input-modal" value="Apparatus" hidden>
-                        <input type="text" name="lab" class="input-modal" value="Physics" hidden>
+                        <input type="text" name="lab" class="input-modal" value="Chemistry" hidden>
                         <input type="submit" class="btn btn-default btn-md" value="Add">
                         <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
                     </div>
@@ -824,7 +824,7 @@
                     </div>
                     <div class="modal-footer">
                         <input type="text" name="type" class="input-modal" value="Equipment" hidden>
-                        <input type="text" name="lab" class="input-modal" value="Physics" hidden>
+                        <input type="text" name="lab" class="input-modal" value="Chemistry" hidden>
                         <input type="submit" class="btn btn-default btn-md" value="Add">
                         <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
                     </div>
@@ -890,8 +890,8 @@
 		</pre>
                     </div>
                     <div class="modal-footer">
-                        <input type="text" name="type" class="input-modal" value="Apparatus" hidden>
-                        <input type="text" name="lab" class="input-modal" value="Physics" hidden>
+                        <input type="text" name="type" class="input-modal" value="Consumable" hidden>
+                        <input type="text" name="lab" class="input-modal" value="Chemistry" hidden>
                         <input type="submit" class="btn btn-default btn-md" value="Add">
                         <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
                     </div>
@@ -943,7 +943,7 @@
         </div>
     </div>
 
-    <!-- Edit Apparatus Modal -->
+    <!-- Edit Consumable Modal -->
     <div class = "modal fade" id = "mAEdit" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class = "modal-content">
@@ -1022,6 +1022,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- Edit Consumable Modal -->
     <div class = "modal fade" id = "mCEdit" tabindex="-1" role="dialog" aria-hidden="true">
@@ -1167,7 +1168,7 @@
             var y = aTableData[4];
             var tq = x.split(" ");
             var cq = y.split(" ");
-            $('#mAEDit').modal('show');
+            $('#mAEdit').modal('show');
             $(".modal-body #AID").val(aTableData[0]);
             $(".modal-body #AName").val(aTableData[1]);
             $(".modal-body #ADesc").val(aTableData[2]);

@@ -75,7 +75,14 @@ public class checkNew extends HttpServlet {
                 con = DriverManager.getConnection(MYdburl);
                 stmt = con.createStatement();
 
-                String chkIfNew = "select itemNAbbv , itemFAbbv , itemNum from itemdetails where itemName = '" + name + "' and itemForm = '" + form + "' and itemType = '"+type+"' or itemName = '" + name + "' and itemType = '"+type+"' order by itemNum desc limit 1";
+                String z;
+                if (type.equals("Consumable")& form == null){
+                     z = "and itemType = 'Consumable'";
+                }else {
+                    z = "";
+                }
+
+                String chkIfNew = "select itemNAbbv , itemFAbbv , itemNum from itemdetails where itemName = '" + name + "' and itemForm = '" + form + "' and itemType = '"+type+"' or itemName = '" + name + "' "+z+" order by itemNum desc limit 1";
                 chk = stmt.executeQuery(chkIfNew);
 
                 if (chk.next()) {

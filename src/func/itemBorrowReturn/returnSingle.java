@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -21,6 +22,8 @@ public class returnSingle extends HttpServlet {
     String MYdburl = getBean.getMyUrl();
     String MYclass = getBean.getMyClass();
     Statement stmt;
+    ResultSet get;
+    int nowQ , newQ;
     String itemCondition = "";
     String transaqCondition = "";
 
@@ -29,12 +32,14 @@ public class returnSingle extends HttpServlet {
 
         try (PrintWriter out = response.getWriter()) {
             String iKey = request.getParameter("iKey");
-            String bReturn = request.getParameter("bReturn");
-            String bMissing = request.getParameter("bMissing");
-            String bBroken = request.getParameter("bBroken");
+            String rResponse = request.getParameter("response");
+            String bID = request.getParameter("bID");
+            int bQ = Integer.parseInt(request.getParameter("bQ"));
 
             DateFormat df = new SimpleDateFormat("HH:mm:ss");
             String bETime = df.format(new Date());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+            String bEDate = sdf.format(new Date());
 
             try {
 
@@ -42,20 +47,33 @@ public class returnSingle extends HttpServlet {
                 con = DriverManager.getConnection(MYdburl);
                 stmt = con.createStatement();
 
-                if (bReturn.equals("Return")) {
+                if (rResponse.equals("Return")) {
                     itemCondition = "Available";
                     transaqCondition = "Returned";
+
+                    String getQ = "select itemCurrentQuantity from inventory where itemKey = '"+iKey+"'";
+                    get = stmt.executeQuery(getQ);
+
+                    while (get.next()){
+                        nowQ = get.getInt("itemCurrentQuantity");
+                        newQ = nowQ + bQ;
+                    }
+
+                    String updateCQ = "update inventory set itemCurrentQuantity = '"+newQ+"' where itemKey = '"+iKey+"'";
+                    stmt.execute(updateCQ);
                 }
-                if (bMissing.equals("Missing")) {
+                if (rResponse.equals("Missing")) {
                     itemCondition = "Missing";
                     transaqCondition = "Lost";
                 }
-                if (bBroken.equals("Broken")) {
+                if (rResponse.equals("Broken")) {
                     itemCondition = "Broken";
                     transaqCondition = "Broken";
                 }
 
-                String updateTransaq = "update borrowTransactions set bCondition ='" + transaqCondition + "', bETime ='" + bETime + "' where itemKey = '" + iKey + "' ";
+
+
+                String updateTransaq = "update borrowtransaction set bCondition ='" + transaqCondition + "', bETime ='" + bETime + "' , bEDate = '"+bEDate+"'where bID = '"+bID+"' ";
                 String updateInventory = "update inventory set itemCondition = '" + itemCondition + "' where itemKey = '" + iKey + "'";
                 stmt.execute(updateInventory);
                 stmt.execute(updateTransaq);

@@ -327,8 +327,8 @@
                                         <div class="tab-pane fade-in active" id="tab-elist">
                                             <div class="col-lg-12">
                                                 <h2 class="title-1 m-b-25">Equipment List  &emsp;<button type="button" class="btn btn-outline-secondary"  href="#mEAdd" data-toggle="modal"><i
-                                                    class="fa fa-plus-square"
-                                                    style="color:black;"></i>NEW</button></h2>
+                                                        class="fa fa-plus-square"
+                                                        style="color:black;"></i>NEW</button></h2>
                                                 <table class="table table-borderless table-striped table-earning">
                                                     <tr>
                                                         <% try {
@@ -609,7 +609,7 @@
                 <form action="../checkNew" method="post">
 
                     <div class="modal-body">
-		
+
 		<pre class="tab">
         <table class="table table-borderless table-earning" style="border-spacing:20px">
             <tr>
@@ -890,7 +890,7 @@
 		</pre>
                     </div>
                     <div class="modal-footer">
-                        <input type="text" name="type" class="input-modal" value="Apparatus" hidden>
+                        <input type="text" name="type" class="input-modal" value="Consumable" hidden>
                         <input type="text" name="lab" class="input-modal" value="Physics" hidden>
                         <input type="submit" class="btn btn-default btn-md" value="Add">
                         <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
@@ -1044,57 +1044,57 @@
                             <div  class="tab-pane" id="CAQ">
                                 <form action="../editItem" method="post">
                                     <h2 ><input type="text" name="code" id = "CID" readonly></h2>
-                                <table class="table table-borderless table-earning" style="border-spacing:20px">
-                                    <tr>
-                                        <td><label class="label-modal">Quantity</label></td>
-                                        <td><input type="text" name="quantityT" class="input-modal" ></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td><input type="submit" name = "response" class="btn btn-default btn-md" value="Add" ></td>
-                                    </tr>
-                                </table>
+                                    <table class="table table-borderless table-earning" style="border-spacing:20px">
+                                        <tr>
+                                            <td><label class="label-modal">Quantity</label></td>
+                                            <td><input type="text" name="quantityT" class="input-modal" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td><input type="submit" name = "response" class="btn btn-default btn-md" value="Add" ></td>
+                                        </tr>
+                                    </table>
 
                                 </form>
                             </div>
                             <!-- Edit -->
                             <div class="tab-pane active" id="CE">
                                 <form action ="../editItem" method="post">
-                                <h2><input type="text" name="code" id = "CID" readonly></h2>
-                                <table class="table table-borderless table-earning" style="border-spacing:20px">
-                                    <tr>
-                                        <td><label class="label-modal">Name</label>
-                                        <td><input type="text" name="name" class="input-modal" id = "CName" readonly></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label class="label-modal">Form</label></td>
-                                        <td><input type="text" name="form" class="input-modal" id = "CForm"readonly></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label class="label-modal">Description</label></td>
-                                        <td><input type="text" name="desc" class="input-modal" id = "CDesc"></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label class="label-modal">Quantity</label></td>
-                                        <td><input type="text" name="quantityT" class="input-modal" id = "CQuantity"></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label class="label-modal">Unit</label></td>
-                                        <td><input type="text" name="unit" class="input-modal" id = "CUnit"></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label class="label-modal">Expiration Date</label></td>
-                                        <td><input type="text" name="date" class="input-modal--date" id = "CDAte"></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label class="label-modal">Condition</label></td>
-                                        <td><input type="text" name="condi" class="input-modal" id = "CCondition"></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td><input type="submit" name = "response" class="btn btn-default btn-md" value="Edit" >&emsp;<input type="submit" name = "response" class="btn btn-default btn-md" value="Delete" ></td>
-                                    </tr>
-                                </table>
+                                    <h2><input type="text" name="code" id = "CID" readonly></h2>
+                                    <table class="table table-borderless table-earning" style="border-spacing:20px">
+                                        <tr>
+                                            <td><label class="label-modal">Name</label>
+                                            <td><input type="text" name="name" class="input-modal" id = "CName" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="label-modal">Form</label></td>
+                                            <td><input type="text" name="form" class="input-modal" id = "CForm"readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="label-modal">Description</label></td>
+                                            <td><input type="text" name="desc" class="input-modal" id = "CDesc"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="label-modal">Quantity</label></td>
+                                            <td><input type="text" name="quantityT" class="input-modal" id = "CQuantity"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="label-modal">Unit</label></td>
+                                            <td><input type="text" name="unit" class="input-modal" id = "CUnit"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="label-modal">Expiration Date</label></td>
+                                            <td><input type="text" name="date" class="input-modal--date" id = "CDAte"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="label-modal">Condition</label></td>
+                                            <td><input type="text" name="condi" class="input-modal" id = "CCondition"></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td><input type="submit" name = "response" class="btn btn-default btn-md" value="Edit" >&emsp;<input type="submit" name = "response" class="btn btn-default btn-md" value="Delete" ></td>
+                                        </tr>
+                                    </table>
                                 </form>
                             </div>
                         </div>
@@ -1167,7 +1167,7 @@
             var y = aTableData[4];
             var tq = x.split(" ");
             var cq = y.split(" ");
-            $('#mAEDit').modal('show');
+            $('#mAEdit').modal('show');
             $(".modal-body #AID").val(aTableData[0]);
             $(".modal-body #AName").val(aTableData[1]);
             $(".modal-body #ADesc").val(aTableData[2]);

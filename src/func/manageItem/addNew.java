@@ -82,7 +82,14 @@ public class addNew extends HttpServlet {
                 stmtCHK = con.createStatement();
                 stmtE = con.createStatement();
 
-                String chkIfNew = "select itemNAbbv , itemFAbbv from itemdetails where itemName = '" + name + "' and itemForm = '" + form + "' or itemName = '" + name + "'";
+                String z;
+                if (type.equals("Consumable")& form == null){
+                    z = "and itemType = 'Consumable'";
+                }else {
+                    z = "";
+                }
+
+                String chkIfNew = "select itemNAbbv , itemFAbbv from itemdetails where itemName = '" + name + "' and itemForm = '" + form + "' and itemType = '"+type+"' or itemName = '" + name + "' "+z+" ";
                 chk = stmtCHK.executeQuery(chkIfNew);
 
                 if (chk.next()){
