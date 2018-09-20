@@ -46,9 +46,7 @@
     PreparedStatement lps;
     String getQ , getUser , query;
     String MYdburl = getBean.getMyUrl();
-    String MSdburl = getBean.getMsUrl();
     String MYclass = getBean.getMyClass();
-    String MSclass = getBean.getMsClass();
     Class.forName(MYclass);
     con = DriverManager.getConnection(MYdburl);
     stmt = con.createStatement();
