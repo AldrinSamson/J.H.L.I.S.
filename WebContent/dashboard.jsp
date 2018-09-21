@@ -531,14 +531,10 @@
 <!-- Main JS-->
 <script src="js/main.js"></script>
 <script name = "pageScripts">
-    $(document).ready(function () {
-        var Table = $("#rTable").DataTable();
-        $('#rTable tbody').on('click', 'tr', function () {
-            var TableData = Table.row(this).data();
-            $('#mRView').modal('show');
-            $(".modal-body #rID").val(TableData[5]);
+    $(document).ready(function (){
 
-        });
+        $('#rTable').DataTable();
+
     });
 
 
