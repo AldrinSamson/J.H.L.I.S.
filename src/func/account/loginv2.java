@@ -20,7 +20,7 @@ public class loginv2 extends HttpServlet {
 
     String MYdburl = getBean.getMyUrl();
     String MYclass = getBean.getMyClass();
-    String user, name, idNum;
+    String user, name, idNum , type;
     boolean chk = false;
 
     @Override
@@ -45,15 +45,26 @@ public class loginv2 extends HttpServlet {
                 chk = rs.next();
 
 
-                if (chk == true) {
+                if (chk) {
 
+                    ResultSet getz;
                     String get = "select * from account where username = '" + user + "'";
-                    stmt.executeQuery(get);
+                    getz = stmt.executeQuery(get);
+                    while (getz.next()){
+
+                        type = getz.getString("aClass");
+
+                    }
+
 
                     HttpSession log = request.getSession();
                     log.setAttribute("user", user);
 
+                    if (type.equals("Administrator")){
                     response.sendRedirect("dashboard.jsp");
+                    }else {
+                        response.sendRedirect("request.jsp");
+                    }
 
                 } else {
                     out.println("<html><body><script type='text/javascript'>alert('Invalid username or password!');location='index.html';</script></body></html>");

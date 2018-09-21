@@ -396,8 +396,8 @@
                     <div class="modal-body">
 		<pre class = "tab">
        	<div class = "form-group" style = "text-align:center">
-<label for="nName" class = "label-modal">Name</label><input type ="text" name = "nName" class ="input-modal" >
-<label for="nDesc" class = "label-modal">Description</label><input type ="text" name = "nDesc" class ="input-modal">
+<label class = "label-modal">Name</label><input type ="text" name = "nName" class ="input-modal" >
+<label class = "label-modal">Description</label><input type ="text" name = "nDesc" class ="input-modal">
 <label for ="nLab" class = "label-modal">Laboratory</label><select id="nLab" name ="nLab" class ="select-modal">
 <option >Physics</option>
 <option >Chemistry</option>

@@ -8,9 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.*;
 
 
 @WebServlet("/addSet")
@@ -22,24 +21,39 @@ public class addSet extends HttpServlet {
     ResultSet chkID;
     String MYdburl = getBean.getMyUrl();
     String MYclass = getBean.getMyClass();
+    String namesplit;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try (PrintWriter out = response.getWriter()) {
 
-            String lab = request.getParameter("isLab");
-            String i1 = request.getParameter("is1");
-            String i2 = request.getParameter("is2");
-            String i3 = request.getParameter("is3");
-            String i4 = request.getParameter("is4");
-            String i5 = request.getParameter("is5");
-            String i6 = request.getParameter("is6");
-            String i7 = request.getParameter("is7");
-            String i8 = request.getParameter("is8");
-            String i9 = request.getParameter("is9");
-            String i10 = request.getParameter("is10");
+            String lab = request.getParameter("lab");
+            String[] name = request.getParameterValues("name[]");
+            String[] quantity = request.getParameterValues("quantity[]");
 
-            if (lab.isEmpty() && i1.isEmpty() && i2.isEmpty()) {
-                out.println("<html><body><script type='text/javascript'>alert('Empty Parameter / JS error');location='itemSets.jsp';</script></body></html>");
+            List<String> list = new ArrayList<String>();
+            list.addAll(Arrays.asList(name));
+
+
+            /*for (int i = 0; i < name.length; i++) {
+                namesplit = list.get(0);
+                out.println("<html><body><script type='text/javascript'>alert('"+namesplit+"');location='inventory/itemSets.jsp';</script></body></html>");
+                list.remove(0);
+            }*/
+
+            try {
+
+                Class.forName(MYclass);
+                con = DriverManager.getConnection(MYdburl);
+                String sql = "insert into itemsetgroup(itemKey ,isKey) values (?,?) ";
+                //PreparedStatement pstmt = con.createStatement(sql);
+                for (String tmp : name) {
+
+
+                }
+
+
+            } catch (Exception e){
+                e.printStackTrace();
             }
 
 

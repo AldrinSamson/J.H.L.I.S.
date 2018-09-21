@@ -40,7 +40,7 @@ public class iForgot extends HttpServlet {
 
                     HttpSession iForgot = request.getSession();
                     iForgot.setAttribute("forgotUser", user);
-                    response.sendRedirect("forgot-qa.jsp");
+                    response.sendRedirect("account/forgot-qa.jsp");
 
                 } else {
 

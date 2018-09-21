@@ -3,6 +3,7 @@
         <%@page import = "java.sql.*"%>
 <%@page import = "java.io.*"%>
 <%@ page import = "bean.getBean"%>
+<%@ page import="javax.swing.plaf.nimbus.State" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -31,6 +32,8 @@
     <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <link href="vendor/datatables/datatables.min.css" rel="stylesheet" media="all">
+    <link href="vendor/datatables/datatables.css" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
@@ -38,14 +41,15 @@
 <body class="animsition">
 <!-- declarations -->
 <%
-Connection con;
-Statement stmt;
-ResultSet rs , get;
-PreparedStatement lps;
-String getQ , getUser;
-String MYdburl = getBean.getMyUrl();
-String MYclass = getBean.getMyClass();
-Class.forName(MYclass);
+    Connection con;
+    Statement stmt;
+    ResultSet rs, get, counter;
+    String getQ, getUser, query;
+    String MYdburl = getBean.getMyUrl();
+    String MYclass = getBean.getMyClass();
+    Class.forName(MYclass);
+    con = DriverManager.getConnection(MYdburl);
+    stmt = con.createStatement();
 %>
     <div class="page-wrapper">
                         <!-- HEADER MOBILE-->
@@ -334,31 +338,48 @@ Class.forName(MYclass);
                             <div class="col-lg-12">
                                 <h2 class="title-1 m-b-25">Request List</h2>
                                 <div class="table-responsive table--no-card m-b-40">
-                                    <table class="table table-borderless table-striped table-earning">
+                                    <table class="table table-borderless table-striped table-earning" id="rTable">
                                         <thead>
-                                            <tr>
-                                              			<th>code</th>
-	 													<th>professor</th>
-	 													<th>date</th>
-	 													<th>time</th>
-	 													<th>lab</th>
-	 													<th>condi</th>
-	 													<th>itemlist</th>
-                                            </tr>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Date</th>
+                                            <th>Time</th>
+                                            <th>Condition</th>
+                                            <th>Status</th>
+                                        </tr>
                                         </thead>
                                         <tbody>
-                                      
-                                         <tr>
-                                    <td>demo-1</td>
-                                    <td>Joshua Bobo</td>
-                                    <td>2018/06/28</td>
-                                    <td>6:00 pm</td>
-                                    <td>Physics</td>
-                                    <td>Unresovled</td>
-                                    <td>itemlist.select</td>
-                                  
-                                		</tr>
-                                		 
+                                        <%
+                                            try {
+
+
+                                                query = "select * from request g join account a on g.aKey = a.aKey ";
+                                                rs = stmt.executeQuery(query);
+
+                                                while (rs.next()) {
+
+
+                                        %>
+                                        <tr data-toggle="modal" id="mRView">
+                                            <td><%=rs.getString("aClass")%> <%=rs.getString("aName")%>
+                                            </td>
+                                            <td><%=rs.getString("rDate")%>
+                                            </td>
+                                            <td><%=rs.getString("rTime")%>
+                                            </td>
+                                            <td><%=rs.getString("rCondition") %>
+                                            </td>
+                                            <td><%=rs.getString("rStatus")%>
+                                            </td>
+                                            <td><%=rs.getString("rID")%>
+                                            </td>
+                                        </tr>
+                                        <%
+                                                }
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                        %>
                                         </tbody>
                                     </table>
                                 </div>
@@ -448,33 +469,80 @@ Class.forName(MYclass);
             </div>
             <!-- END MAIN CONTENT-->
             <!-- END PAGE CONTAINER-->
+
+<!-- Add Equipment Modal -->
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="mRView" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"><h4>New Equipment</h4></div>
+            <form action="../checkNew" method="post">
+
+                <div class="modal-body">
+
+		<pre class="tab">
+        <table class="table table-borderless table-earning" style="border-spacing:20px">
+            <tr>
+                <td><label class="label-modal">Name</label></td>
+                <td><input type="text" name="name" class="input-modal" list="nameR"></td>
+            </tr><br>
+            <tr>
+                <td><label class="label-modal">Description</label></td>
+                <td><input type="text" name="desc" class="input-modal"></td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">Calibration date</label></td>
+                <td><input type="text" name="date" class="input-modal--date" placeholder="yy/mm/dd"></td>
+            </tr>
+        </table>
+		</pre>
+                </div>
+                <div class="modal-footer">
+                    <input type="text" name="type" class="input-modal" value="Equipment" hidden>
+                    <input type="text" name="lab" class="input-modal" value="Physics" hidden>
+                    <input type="submit" class="btn btn-default btn-md" value="Add">
+                    <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
         </div>
 
     </div>
 
-    <!-- Jquery JS-->
-    <script src="vendor/jquery-3.2.1.min.js"></script>
-    <!-- Bootstrap JS-->
-    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
-    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
-    <!-- Vendor JS       -->
-    <script src="vendor/slick/slick.min.js">
-    </script>
-    <script src="vendor/wow/wow.min.js"></script>
-    <script src="vendor/animsition/animsition.min.js"></script>
-    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-    </script>
-    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
-    <script src="vendor/counter-up/jquery.counterup.min.js">
-    </script>
-    <script src="vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="vendor/select2/select2.min.js">
-    </script>
+<!-- Jquery JS-->
+<script src="vendor/jquery-3.2.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- Bootstrap JS-->
+<script src="vendor/bootstrap-4.1/popper.min.js"></script>
+<script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+<!-- Vendor JS -->
+<script src="vendor/slick/slick.min.js"></script>
+<script src="vendor/wow/wow.min.js"></script>
+<script src="vendor/animsition/animsition.min.js"></script>
+<script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<script src="vendor/counter-up/jquery.waypoints.min.js"></script>
+<script src="vendor/datatables/datatables.min.js"></script>
+<script src="vendor/counter-up/jquery.counterup.min.js"></script>
+<script src="vendor/circle-progress/circle-progress.min.js"></script>
+<script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="vendor/chartjs/Chart.bundle.min.js"></script>
+<script src="vendor/select2/select2.min.js"></script>
+<!-- Main JS-->
+<script src="js/main.js"></script>
+<script name = "pageScripts">
+    $(document).ready(function () {
+        var Table = $("#rTable").DataTable();
+        $('#rTable tbody').on('click', 'tr', function () {
+            var TableData = Table.row(this).data();
+            $('#mRView').modal('show');
+            $(".modal-body #rID").val(TableData[5]);
 
-    <!-- Main JS-->
-    <script src="js/main.js"></script>
+        });
+    });
+
+
+</script>
 
 </body>
 </html>
