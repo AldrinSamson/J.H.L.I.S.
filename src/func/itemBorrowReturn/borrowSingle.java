@@ -48,9 +48,9 @@ public class borrowSingle extends HttpServlet {
 
             try {
 
-                Class.forName(MYclass);
-                con = DriverManager.getConnection(MYdburl);
-                stmt = con.createStatement();
+                    Class.forName(MYclass);
+                    con = DriverManager.getConnection(MYdburl);
+                    stmt = con.createStatement();
 
                 String chkIfAvailable = "select itemCondition from inventory where itemKey ='" + iKey + "'";
                 chk = stmt.executeQuery(chkIfAvailable);

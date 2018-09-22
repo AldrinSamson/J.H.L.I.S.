@@ -50,6 +50,8 @@
     Class.forName(MYclass);
     con = DriverManager.getConnection(MYdburl);
     stmt = con.createStatement();
+
+    String message = getBean.getrMessage();
 %>
     <div class="page-wrapper">
                         <!-- HEADER MOBILE-->
@@ -57,7 +59,7 @@
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="mainv2.html">
+                        <a class="logo" href="dashboard.jsp">
                            <h1>JHLIS</h1>
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
@@ -109,24 +111,21 @@
                                     <a href="report/borrowTransaction.jsp">Borrowing Transactions</a>
                                 </li>
                                 <li>
-                                    <a href="requestR.jsp">Request Reports</a>
+                                    <a href="report/request.jsp">Request Reports</a>
                                 </li>
                                 <li>
-                                    <a href="damageR.jsp">Damage Reports</a>
+                                    <a href="report/damages.jsp">Damage Reports</a>
                                 </li>
                                  <li>
-                                    <a href="missingR.jsp">Missing Item Reports</a>
+                                    <a href="report/missing.jsp">Missing Item Reports</a>
                                 </li>
                                  <li>
-                                    <a href="criticalR.jsp">Critical Reports</a>
-                                </li>
-                                 <li>
-                                    <a href="analyticsR.jsp">Analytics</a>
+                                    <a href="report/insights.jsp">Insights</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="request.jsp">
+                            <a href="requestAdmin.jsp">
                                 <i class="far fa-check-square"></i>Requests</a>
                         </li>
                        
@@ -189,24 +188,21 @@
                                     <a href="report/borrowTransaction.jsp">Borrowing Transactions</a>
                                 </li>
                                 <li>
-                                    <a href="requestR.jsp">Request Reports</a>
+                                    <a href="report/request.jsp">Request Reports</a>
                                 </li>
                                 <li>
-                                    <a href="damageR.jsp">Damage Reports</a>
+                                    <a href="report/damages.jsp">Damage Reports</a>
                                 </li>
                                  <li>
-                                    <a href="missingR.jsp">Missing Item Reports</a>
+                                    <a href="report/missingR.jsp">Missing Item Reports</a>
                                 </li>
                                  <li>
-                                    <a href="criticalR.jsp">Critical Reports</a>
-                                </li>
-                                 <li>
-                                    <a href="analyticsR.jsp">Analytics</a>
+                                    <a href="report/insights.jsp">Analytics</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="request.jsp">
+                            <a href="requestAdmin.jsp">
                                 <i class="far fa-check-square"></i>Requests</a>
                         </li>
                        
@@ -297,7 +293,20 @@
                         <div class="row">
                             <div class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
-                                    <h2 class="number">666</h2>
+                                    <%
+                                        try{
+                                            String queryx= "select count(itemCurrentQuantity) as count from inventory where itemCurrentQuantity <> itemTotalQuantity and itemCondition <> 'Broken' and itemCondition <> 'Missing'";
+                                            rs = stmt.executeQuery(queryx);
+
+                                            while (rs.next()){
+
+                                    %>
+                                    <h2 class="number"><%=rs.getString("count")%></h2>
+                                    <%}
+                                        }catch(Exception e){
+                                            e.printStackTrace();
+                                        }
+                                    %>
                                     <span class="desc">Equipment Lent</span>
                                     <div class="icon">
                                         <i class="zmdi zmdi-account-o"></i>
@@ -306,7 +315,7 @@
                             </div>
                             <div class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
-                                    <h2 class="number">99999999</h2>
+                                    <h2 class="number">Next Time</h2>
                                     <span class="desc">Critical</span>
                                     <div class="icon">
                                         <i class="zmdi zmdi-shopping-cart"></i>
@@ -315,8 +324,21 @@
                             </div>
                             <div class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
-                                    <h2 class="number">69</h2>
-                                    <span class="desc">Requests</span>
+                                    <%
+                                        try{
+                                            String queryx= "select count(rID) as count from request where rCondition = 'Pending'";
+                                            rs = stmt.executeQuery(queryx);
+
+                                            while (rs.next()){
+
+                                    %>
+                                    <h2 class="number"><%=rs.getString("count")%></h2>
+                                    <%}
+                                    }catch(Exception e){
+                                        e.printStackTrace();
+                                    }
+                                    %>
+                                    <span class="desc">Requests Pending</span>
                                     <div class="icon">
                                         <i class="zmdi zmdi-calendar-note"></i>
                                     </div>
@@ -324,7 +346,20 @@
                             </div>
                             <div class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
-                                    <h2 class="number">nani</h2>
+                                    <%
+                                        try{
+                                            String queryx= "select count(itemCurrentQuantity) as count from inventory where itemCurrentQuantity <> itemTotalQuantity and itemCondition = 'Broken' or itemCondition = 'Missing'";
+                                            rs = stmt.executeQuery(queryx);
+
+                                            while (rs.next()){
+
+                                    %>
+                                    <h2 class="number"><%=rs.getString("count")%></h2>
+                                    <%}
+                                    }catch(Exception e){
+                                        e.printStackTrace();
+                                    }
+                                    %>
                                     <span class="desc">Damaged/Missing</span>
                                     <div class="icon">
                                         <i class="zmdi zmdi-money"></i>
@@ -341,6 +376,7 @@
                                     <table class="table table-borderless table-striped table-earning" id="rTable">
                                         <thead>
                                         <tr>
+                                            <th>ID</th>
                                             <th>Name</th>
                                             <th>Date</th>
                                             <th>Time</th>
@@ -361,6 +397,8 @@
 
                                         %>
                                         <tr data-toggle="modal" id="mRView">
+                                            <td><%=rs.getString("rID")%>
+                                            </td>
                                             <td><%=rs.getString("aClass")%> <%=rs.getString("aName")%>
                                             </td>
                                             <td><%=rs.getString("rDate")%>
@@ -371,8 +409,7 @@
                                             </td>
                                             <td><%=rs.getString("rStatus")%>
                                             </td>
-                                            <td><%=rs.getString("rID")%>
-                                            </td>
+
                                         </tr>
                                         <%
                                                 }
@@ -506,6 +543,54 @@
         </div>
     </div>
 </div>
+
+<!-- View Request Modal -->
+<div class="modal fade" id="message" tabindex="-1" role="dialog" aria-hidden="true"  >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"><h4>Message</h4></div>
+            <form action="../showMessage" method="post">
+
+                <div class="modal-body">
+
+		<pre class="tab">
+
+            <%=message%>
+
+		</pre>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-md" data-dismiss="modal">OH BOI GO BACK</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- View Request Modal -->
+<div class="modal fade" id="mEgdit" tabindex="-1" role="dialog" aria-hidden="true"  >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"><h4>Message</h4></div>
+            <form action="../showMessage" method="post" id = "getMessage">
+
+                <div class="modal-body">
+
+		<pre class="tab">
+            <input type="text" name="rID" id = "rID">
+             <input type="text" name="location" value = "admin" hidden>
+
+
+		</pre>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-md" data-dismiss="modal">OH BOI GO BACK</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
         </div>
 
     </div>
@@ -531,16 +616,34 @@
 <!-- Main JS-->
 <script src="js/main.js"></script>
 <script name = "pageScripts">
-    $(document).ready(function () {
-        var Table = $("#rTable").DataTable();
-        $('#rTable tbody').on('click', 'tr', function () {
-            var TableData = Table.row(this).data();
-            $('#mRView').modal('show');
-            $(".modal-body #rID").val(TableData[5]);
 
+    $(document).ready(function(){
+
+        if (window.location.href.indexOf('#message') != -1) {
+            $('#message').modal('show');
+        }
+    });
+
+    $(document).ready(function (){
+        var RTable= $('#rTable').DataTable();
+        $('#rTable tbody').on('click', 'tr', function () {
+            var RTableData = RTable.row(this).data();
+            $('#mEgdit').modal('show');
+            $(".modal-body #rID").val(RTableData[0]);
+            $('#getMessage').submit();
         });
     });
 
+    /*$(document).ready(function () {
+        var eTable = $("#nTable").DataTable();
+        $('#nTable tbody').on('click', 'tr', function () {
+            var eTableData = eTable.row(this).data();
+            $('#mEgdit').modal('show');
+            $(".modal-body #rID").val(eTableData[0]);
+            $('#getMessage').submit();
+
+        });
+    });*/
 
 </script>
 
