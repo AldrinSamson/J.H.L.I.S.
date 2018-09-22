@@ -369,60 +369,67 @@
                                 </div>
                             </div>
                         </div>
-                         <div class="row">
+
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
                             <div class="col-lg-12">
-                                <h2 class="title-1 m-b-25">Request List</h2>
-                                <div class="table-responsive table--no-card m-b-40">
-                                    <table class="table table-borderless table-striped table-earning" id="rTable">
-                                        <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Date</th>
-                                            <th>Time</th>
-                                            <th>Condition</th>
-                                            <th>Status</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <%
-                                            try {
+                                <div class="card text-left" id="ptab-marg">
+                                    <div class="card-header">
+                                        <h3 class="card-title"> Requests </h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table table-borderless table-striped table-earning" id = "rTable">
+                                            <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Date</th>
+                                                <th>Time</th>
+                                                <th>Condition</th>
+                                                <th>Status</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <%
+                                                try {
 
 
-                                                query = "select * from request g join account a on g.aKey = a.aKey ";
-                                                rs = stmt.executeQuery(query);
+                                                    query = "SELECT r.*, a.* from request r join account a on r.aKey = a.aKey ";
+                                                    rs = stmt.executeQuery(query);
 
-                                                while (rs.next()) {
+                                                    while(rs.next()){
+                                            %>
+                                            <tr data-toggle="modal" id="mRView">
+                                                <td><%=rs.getString("rID")%>
+                                                </td>
+                                                <td><%=rs.getString("aClass")%> <%=rs.getString("aName")%>
+                                                </td>
+                                                <td><%=rs.getString("rDate")%>
+                                                </td>
+                                                <td><%=rs.getString("rTime")%>
+                                                </td>
+                                                <td><%=rs.getString("rCondition") %>
+                                                </td>
+                                                <td><%=rs.getString("rStatus")%>
+                                                </td>
 
-
-                                        %>
-                                        <tr data-toggle="modal" id="mRView">
-                                            <td><%=rs.getString("rID")%>
-                                            </td>
-                                            <td><%=rs.getString("aClass")%> <%=rs.getString("aName")%>
-                                            </td>
-                                            <td><%=rs.getString("rDate")%>
-                                            </td>
-                                            <td><%=rs.getString("rTime")%>
-                                            </td>
-                                            <td><%=rs.getString("rCondition") %>
-                                            </td>
-                                            <td><%=rs.getString("rStatus")%>
-                                            </td>
-
-                                        </tr>
-                                        <%
+                                            </tr>
+                                            <%
+                                                    }
+                                                }catch (Exception e){
+                                                    e.printStackTrace();
                                                 }
-                                            } catch (Exception e) {
-                                                e.printStackTrace();
-                                            }
-                                        %>
-                                        </tbody>
-                                    </table>
+                                            %>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                       
+
                         </div>
+                    </div>
+                </div>
                                   
                       <section>
                 <div class="section__content section__content--p30">
@@ -566,8 +573,6 @@
         </div>
     </div>
 </div>
-
-<!-- View Request Modal -->
 <div class="modal fade" id="mEgdit" tabindex="-1" role="dialog" aria-hidden="true"  >
     <div class="modal-dialog">
         <div class="modal-content">
@@ -591,9 +596,8 @@
     </div>
 </div>
 
-        </div>
 
-    </div>
+
 
 <!-- Jquery JS-->
 <script src="vendor/jquery-3.2.1.min.js"></script>
@@ -628,22 +632,12 @@
         var RTable= $('#rTable').DataTable();
         $('#rTable tbody').on('click', 'tr', function () {
             var RTableData = RTable.row(this).data();
-            $('#mEgdit').modal('show');
+            //$('#mEgdit').modal('show');
             $(".modal-body #rID").val(RTableData[0]);
             $('#getMessage').submit();
         });
     });
 
-    /*$(document).ready(function () {
-        var eTable = $("#nTable").DataTable();
-        $('#nTable tbody').on('click', 'tr', function () {
-            var eTableData = eTable.row(this).data();
-            $('#mEgdit').modal('show');
-            $(".modal-body #rID").val(eTableData[0]);
-            $('#getMessage').submit();
-
-        });
-    });*/
 
 </script>
 

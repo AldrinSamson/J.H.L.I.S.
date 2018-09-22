@@ -235,12 +235,12 @@
 
 		<pre class="tab">
 
-            <%=message%>
+            <div class = "m-1"><%=message%></div>
 
 		</pre>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">OH BOI GO BACK</button>
+                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>
@@ -264,7 +264,7 @@
 		</pre>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">OH BOI GO BACK</button>
+                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>

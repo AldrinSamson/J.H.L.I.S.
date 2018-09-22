@@ -27,6 +27,7 @@ public class getBean {
 	private static int iQuantity;
 
 	private static  String rMessage;
+	private static  int rID;
 	
 	private static String nName , nDesc , nLab;
 	
@@ -231,5 +232,13 @@ public class getBean {
 
 	public static void setrMessage(String rMessage) {
 		getBean.rMessage = rMessage;
+	}
+
+	public static int getrID() {
+		return rID;
+	}
+
+	public static void setrID(int rID) {
+		getBean.rID = rID;
 	}
 }

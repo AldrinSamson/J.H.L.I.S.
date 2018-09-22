@@ -27,7 +27,7 @@ public class showMessage extends HttpServlet {
 
         try (PrintWriter out = response.getWriter()) {
 
-            String rID = request.getParameter("rID");
+            int rID = Integer.parseInt(request.getParameter("rID"));
             String location = request.getParameter("location");
 
             try {
@@ -36,7 +36,7 @@ public class showMessage extends HttpServlet {
                 stmtCHK = con.createStatement();
                 stmtE = con.createStatement();
 
-                String getMessage = "Select rMessage from request where rID = '"+rID+"'";
+                String getMessage = "Select rMessage , rID from request where rID = '"+rID+"'";
                 chk = stmtE.executeQuery(getMessage);
 
                 while (chk.next()){
@@ -44,11 +44,22 @@ public class showMessage extends HttpServlet {
                 }
 
                 getBean.setrMessage(rMessage);
+                getBean.setrID(rID);
 
                 if (location.equals("prof")) {
                     out.println("<html><body><script type='text/javascript'>;location='request.jsp#message';</script></body></html>");
-                }else{
+                }else if (location.equals("admin")){
                     out.println("<html><body><script type='text/javascript'>;location='dashboard.jsp#message';</script></body></html>");
+                }else if (location.equals("pending")){
+                    out.println("<html><body><script type='text/javascript'>;location='requestAdmin.jsp#pMessage';</script></body></html>");
+                }else if (location.equals("unfulfilled")) {
+                    out.println("<html><body><script type='text/javascript'>;location='requestAdmin.jsp#fMessage';</script></body></html>");
+                }else{
+                    out.println("<html><body><script type='text/javascript'>;location='requestAdmin.jsp#message';</script></body></html>");
+                }
+
+                if (con != null) {
+                    con.close();
                 }
             }catch (Exception e){
                 e.printStackTrace();
