@@ -25,6 +25,8 @@ public class getBean {
 	private static String iCondition;
 	private static String iKey;
 	private static int iQuantity;
+
+	private static  String rMessage;
 	
 	private static String nName , nDesc , nLab;
 	
@@ -221,5 +223,13 @@ public class getBean {
 
 	public static void setiQuantity(int iQuantity) {
 		getBean.iQuantity = iQuantity;
+	}
+
+	public static String getrMessage() {
+		return rMessage;
+	}
+
+	public static void setrMessage(String rMessage) {
+		getBean.rMessage = rMessage;
 	}
 }

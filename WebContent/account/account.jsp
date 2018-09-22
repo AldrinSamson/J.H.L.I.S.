@@ -44,9 +44,7 @@ ResultSet rs , get;
 PreparedStatement lps;
 String getQ , getUser, query;
 String MYdburl = getBean.getMyUrl();
-String MSdburl = getBean.getMsUrl();
 String MYclass = getBean.getMyClass();
-String MSclass = getBean.getMsClass();
 Class.forName(MYclass);
 %>
     <div class="page-wrapper">
@@ -370,13 +368,16 @@ Class.forName(MYclass);
        
     	name     <input type ="text" name = "name"> 
     	username <input type ="text" name = "un">  
-    	class    <input type ="text" name = "cls">  
+            class    <select name = "cls">
+            <option>Administrator</option>
+            <option>Professor</option>
+        </select>
     	id    	 <input type ="text" name = "id">  
     	SQ1      <input type ="text" name = "rq1">  
     	SQA1     <input type ="text" name = "ra1">  
     	SQ2      <input type ="text" name = "rq2">  
     	SQA2     <input type ="text" name = "ra2">  
-    	password <input type ="text" name = "pass">   
+    	password <input type ="password" name = "pass">
 	
       
       
@@ -397,7 +398,7 @@ Class.forName(MYclass);
   		<div class="modal-dialog">
     	<div class="modal-content">
     	<div class="modal-header"><h4>Edit Account<i class="fa fa-lock"></i></h4></div>
-    	<form action="editAccount"  method = "post">       
+    	<form action="../editAccount"  method = "post">
 		<div class="modal-body">
 		<pre class = "tab">
 		
@@ -408,8 +409,8 @@ Class.forName(MYclass);
      	SQA1	 <input type ="text" name = "ra1">
      	SQ2 	 <input type ="text" name = "rq2">
      	SQA2 	 <input type ="text" name = "ra2">
-     	old pass <input type ="text" name = "oP">
-     	new pass <input type ="text" name = "nP">
+     	old pass <input type ="password" name = "oP">
+     	new pass <input type ="password" name = "nP">
      	
      	
 		</pre>

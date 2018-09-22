@@ -44,11 +44,14 @@
     Statement stmt;
     ResultSet rs , get;
     String getQ , getUser , query;
+    String aKey = "";
     String MYdburl = getBean.getMyUrl();
     String MYclass = getBean.getMyClass();
     Class.forName(MYclass);
     con = DriverManager.getConnection(MYdburl);
     stmt = con.createStatement();
+
+    String message = getBean.getrMessage();
 %>
 <div class="page-wrapper">
 
@@ -71,7 +74,7 @@
                                     get = stmt.executeQuery(getQ);
 
                                     while (get.next()){
-
+                                    aKey = get.getString("aKey");
 
 
                             %>
@@ -141,10 +144,10 @@
                                                 <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>name</th>
-                                                    <th>desc</th>
-                                                    <th>lab</th>
-                                                    <th>condi</th>
+                                                    <th>Date</th>
+                                                    <th>Time</th>
+                                                    <th>Condition</th>
+                                                    <th>Status</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -152,17 +155,23 @@
                                                     try {
 
 
-                                                        query = "SELECT * FROM nonborrowable";
+                                                        query = "SELECT * from request where aKey = '"+aKey+"'";
                                                         rs = stmt.executeQuery(query);
 
                                                         while(rs.next()){
                                                 %>
-                                                <tr>
-                                                    <td><%=rs.getString("nKey")%></td>
-                                                    <td><%=rs.getString("nName")%></td>
-                                                    <td><%=rs.getString("nDesc") %></td>
-                                                    <td><%=rs.getString("nLab")%></td>
-                                                    <td><%=rs.getString("nCondition")%></td>
+                                                <tr data-toggle="modal" id="mRView">
+                                                    <td><%=rs.getString("rID")%>
+                                                    </td>
+                                                    <td><%=rs.getString("rDate")%>
+                                                    </td>
+                                                    <td><%=rs.getString("rTime")%>
+                                                    </td>
+                                                    <td><%=rs.getString("rCondition") %>
+                                                    </td>
+                                                    <td><%=rs.getString("rStatus")%>
+                                                    </td>
+
                                                 </tr>
                                                 <%
                                                         }
@@ -188,28 +197,20 @@
     <!-- Main Body End-->
     <!-- Modal -->
 
-    <!-- Add Equipment Modal -->
+    <!-- Add Request Modal -->
     <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="mEAdd" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header"><h4>New Equipment</h4></div>
-                <form action="addRequest" method="post">
+                <div class="modal-header"><h4>New Request</h4></div>
+                <form action="addRequest" method="post" name ="addRequest">
 
                     <div class="modal-body">
 
 		<pre class="tab">
-        <table class="table table-borderless table-earning" style="border-spacing:20px">
+        <table class="table table-borderless table-earning" style=  "border-spacing:20px">
             <tr>
-                <td><label class="label-modal">Name</label></td>
-                <td><input type="text" name="nName" class="input-modal" ></td>
-            </tr>
-            <tr>
-                <td><label class="label-modal">Description</label></td>
-                <td><input type="text" name="nDesc" class="input-modal"></td>
-            </tr>
-            <tr>
-                <td><label class="label-modal">Laboratory</label></td>
-                <td><input type="text" name="nLab" class="input-modal"></td>
+                <td><label class="label-modal">Message</label></td>
+                <td><input type="text" name="message" class ="input-modal" ></td>
             </tr>
         </table>
 		</pre>
@@ -217,6 +218,52 @@
                     <div class="modal-footer">
                         <input type="submit" class="btn btn-default btn-md" value="Add">
                         <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Request Modal -->
+    <div class="modal fade" id="message" tabindex="-1" role="dialog" aria-hidden="true"  >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><h4>Message</h4></div>
+                <form action="../showMessage" method="post">
+
+                    <div class="modal-body">
+
+		<pre class="tab">
+
+            <%=message%>
+
+		</pre>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">OH BOI GO BACK</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Request Modal -->
+    <div class="modal fade" id="mEgdit" tabindex="-1" role="dialog" aria-hidden="true"  >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><h4>Message</h4></div>
+                <form action="../showMessage" method="post" id = "getMessage">
+
+                    <div class="modal-body">
+
+		<pre class="tab">
+            <input type="text" name="rID" id = "rID">
+
+
+		</pre>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">OH BOI GO BACK</button>
                     </div>
                 </form>
             </div>
@@ -248,8 +295,8 @@
 <script type = "text/javascript">
     $(document).ready(function(){
 
-        if (window.location.href.indexOf('#mNCode') != -1) {
-            $('#mNCode').modal('show');
+        if (window.location.href.indexOf('#message') != -1) {
+            $('#message').modal('show');
         }
     });
 
@@ -257,12 +304,10 @@
         var eTable = $("#nTable").DataTable();
         $('#nTable tbody').on('click', 'tr', function () {
             var eTableData = eTable.row(this).data();
-            $('#mEEdit').modal('show');
-            $(".modal-body #nID").val(eTableData[0]);
-            $(".modal-body #nName").val(eTableData[1]);
-            $(".modal-body #nDesc").val(eTableData[2]);
-            $(".modal-body #nLab").val(eTableData[3]);
-            $(".modal-body #nCondi").val(eTableData[4]);
+            $('#mEgdit').modal('show');
+            $(".modal-body #rID").val(eTableData[0]);
+            $('#getMessage').submit();
+
         });
     });
 </script>
