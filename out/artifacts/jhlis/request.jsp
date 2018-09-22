@@ -257,7 +257,8 @@
                     <div class="modal-body">
 
 		<pre class="tab">
-            <input type="text" name="rID" id = "rID">
+            <input type="text" name="rID" id = "rID" hidden>
+            <input type="text" name="location" value = "prof" hidden>
 
 
 		</pre>

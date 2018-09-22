@@ -28,6 +28,7 @@ public class showMessage extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
 
             String rID = request.getParameter("rID");
+            String location = request.getParameter("location");
 
             try {
                 Class.forName(MYclass);
@@ -44,8 +45,11 @@ public class showMessage extends HttpServlet {
 
                 getBean.setrMessage(rMessage);
 
-                out.println("<html><body><script type='text/javascript'>;location='request.jsp#message';</script></body></html>");
-
+                if (location.equals("prof")) {
+                    out.println("<html><body><script type='text/javascript'>;location='request.jsp#message';</script></body></html>");
+                }else{
+                    out.println("<html><body><script type='text/javascript'>;location='dashboard.jsp#message';</script></body></html>");
+                }
             }catch (Exception e){
                 e.printStackTrace();
             }
