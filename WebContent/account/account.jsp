@@ -354,7 +354,7 @@ Class.forName(MYclass);
   		<div class="modal-dialog">
     	<div class="modal-content">
     	<div class="modal-header"><h4>New account<i class="fa fa-lock"></i></h4></div>
-    	<form action="addAccount"  method = "post">
+    	<form action="addAccount" id = "addAccount" method = "post">
         
 		<div class="modal-body">
 		
@@ -371,7 +371,7 @@ Class.forName(MYclass);
     	SQA1     <input type ="text" name = "ra1">  
     	SQ2      <input type ="text" name = "rq2">  
     	SQA2     <input type ="text" name = "ra2">  
-    	password <input type ="password" name = "pass">
+    	password <input type ="password" id = "newAccountPass" name = "pass">
 	
       
       
@@ -471,6 +471,23 @@ function myFunction() {
 	    } 
 	  }
 	}
+
+	$("#addAccount").submit(function(event){
+        var passwordRegex = /^(?=.*?[0-9])(?=.*?[A-Z])(?=.*?[a-z])/;
+        var restriction = passwordRegex.test(document.getElementById('newAccountPass').value);
+        //can be changed to dynamic alert later on bitch
+        console.log(restriction);
+        console.log(document.getElementById('newAccountPass').value);
+        if(!restriction) {
+            alert("Password should contain..\n" +
+                "1. At least 1 uppercase letter\n" +
+                "2. At least one digit");
+            //use this if you want to clear textbox
+            // document.getElementById('newAccountPass').value = "";
+            event.preventDefault();
+        }
+
+    });
 
 </script>
     <!-- Main JS-->

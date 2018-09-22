@@ -3,7 +3,7 @@ package bean;
 public class getBean {
 	private static String msUrl = "jdbc:sqlserver://ALDRINSAMSON:1433;database=JHLIS;user=sa;password=123";
 
-	private static String myUrl = "jdbc:mysql://localhost/jhlis?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&user=root&password=8888";
+	private static String myUrl = "jdbc:mysql://localhost/jhlis?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&user=root&password=selwyn2699";
 	
 	private static String msClass = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 	
