@@ -52,12 +52,54 @@
     stmt = con.createStatement();
 
     String message = getBean.getrMessage();
+    String rID = getBean.getrID();
 %>
 <div class="page-wrapper">
 
 
     <!-- PAGE CONTAINER-->
     <div class="page-container">
+        <aside class="menu-sidebar d-none d-lg-block">
+            <div class="logo">
+                <a href="">
+                    <h1>JHLIS</h1>
+                </a>
+            </div>
+            <div class="menu-sidebar__content js-scrollbar1">
+                <div class="table-responsive-sm table--no-card ">
+                    <table class="table table-borderless table-striped " id = "iTable">
+                        <thead>
+                        <tr >
+                            <th class = "col-md-6">Item List</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <%
+                            try {
+
+
+                                query = "SELECT distinct itemName from itemdetails  ";
+                                rs = stmt.executeQuery(query);
+
+                                while(rs.next()){
+                        %>
+                        <tr data-toggle="modal" >
+                            <td ><%=rs.getString("itemName")%>
+                            </td>
+
+                        </tr>
+                        <%
+                                }
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+                        %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </aside>
+        <!-- END MENU SIDEBAR-->
         <!-- HEADER DESKTOP-->
         <header class="header-desktop">
             <div class="section__content section__content--p30">
@@ -229,7 +271,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header"><h4>Message</h4></div>
-                <form action="../showMessage" method="post">
+                <form action="" method="post">
 
                     <div class="modal-body">
 
@@ -271,6 +313,82 @@
         </div>
     </div>
 
+    <!-- View Item Modal -->
+    <div class="modal fade" id="m3" tabindex="-1" role="dialog" aria-hidden="true"  >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><h4>Message</h4></div>
+                <form action="../showMessage" method="post" id = "getItem">
+
+                    <div class="modal-body">
+
+		<pre class="tab">
+            <input type="text" name="rID" id = "iID" >
+            <input type="text" name="location" value = "item" hidden>
+
+
+		</pre>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Item Modal -->
+    <div class="modal fade" id="item" tabindex="-1" role="dialog" aria-hidden="true"  >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><h4></h4></div>
+                <form action="" method="post">
+                    <div class="modal-body">
+		<pre class="tab">
+            <div class="table-responsive-sm table--no-card ">
+                    <table class="table table-borderless table-striped  " id = "i2Table">
+                        <thead>
+                            <th class = "col-md-6"><%=rID%></th>
+                            <th class = "col-md-6">Condition</th>
+                        </thead>
+                        <tbody>
+                        <%
+                            try {
+
+
+                                query = "SELECT i.itemKey , i.itemCondition from itemdetails d join inventory i on d.itemKey = i.itemKey where d.itemName = '"+rID+"'  ";
+                                rs = stmt.executeQuery(query);
+
+                                while(rs.next()){
+                        %>
+                        <tr data-toggle="modal" >
+                            <td ><%=rs.getString("itemKey")%>
+                            </td>
+                            <td ><%=rs.getString("itemCondition")%>
+                            </td>
+
+                        </tr>
+                        <%
+                                }
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+                        %>
+                        </tbody>
+                    </table>
+                </div>
+
+		</pre>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
 </div>
 
 <!-- Jquery JS-->
@@ -301,6 +419,13 @@
         }
     });
 
+    $(document).ready(function(){
+
+        if (window.location.href.indexOf('#item') != -1) {
+            $('#item').modal('show');
+        }
+    });
+
     $(document).ready(function () {
         var eTable = $("#nTable").DataTable();
         $('#nTable tbody').on('click', 'tr', function () {
@@ -311,6 +436,26 @@
 
         });
     });
+
+    $(document).ready(function () {
+        var iTable = $("#iTable").DataTable();
+        $('#iTable tbody').on('click', 'tr', function () {
+            var iTableData = iTable.row(this).data();
+            $('#m3').modal('show');
+            $(".modal-body #iID").val(iTableData[0]);
+            $('#getItem').submit();
+
+        });
+    });
+
+    $(document).ready(function () {
+        $("#i2Table").DataTable();
+
+    });
+
+
+
+
 </script>
 </body>
 </html>

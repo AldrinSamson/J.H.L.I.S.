@@ -354,7 +354,7 @@ Class.forName(MYclass);
   		<div class="modal-dialog">
     	<div class="modal-content">
     	<div class="modal-header"><h4>New account<i class="fa fa-lock"></i></h4></div>
-    	<form action="addAccount" id = "addAccount" method = "post">
+    	<form action="../addAccount" id = "addAccount" method = "post">
         
 		<div class="modal-body">
 		

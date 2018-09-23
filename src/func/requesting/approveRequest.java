@@ -27,7 +27,7 @@ public class approveRequest extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
 
             String mResponse = request.getParameter("response");
-            int rID = getBean.getrID();
+            String rID = getBean.getrID();
 
 
             try {

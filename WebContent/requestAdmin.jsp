@@ -55,6 +55,7 @@
 %>
 
 <div class="page-wrapper">
+
     <!-- HEADER MOBILE-->
     <header class="header-mobile d-block d-lg-none">
         <div class="header-mobile__bar">
@@ -324,7 +325,7 @@
                                                             try {
 
 
-                                                                    query = "SELECT LEFT(rMessage, 20) as message, r.*, a.* from request r join account a on r.aKey = a.aKey where rCondition = 'Pending' and rStatus ='Unfulfilled'";
+                                                                    query = "SELECT LEFT(rMessage, 20) as message, r.*, a.aName,a.aClass from request r join account a on r.aKey = a.aKey where rCondition = 'Pending' and rStatus ='Unfulfilled'";
                                                                 rs = stmt.executeQuery(query);
 
                                                                 while(rs.next()){
@@ -372,7 +373,7 @@
                                                             try {
 
 
-                                                                query = "SELECT LEFT(rMessage, 20) as message, r.*, a.* from request r join account a on r.aKey = a.aKey where rCondition = 'Approved' and rStatus ='Unfulfilled'";
+                                                                query = "SELECT LEFT(rMessage, 20) as message, r.*, a.aName,a.aClass from request r join account a on r.aKey = a.aKey where rCondition = 'Approved' and rStatus ='Unfulfilled'";
                                                                 rs = stmt.executeQuery(query);
 
                                                                 while(rs.next()){
@@ -421,7 +422,7 @@
                                                             try {
 
 
-                                                                query = "SELECT LEFT(rMessage, 20) as message, r.*, a.* from request r join account a on r.aKey = a.aKey where rStatus = 'FulFilled' ";
+                                                                query = "SELECT LEFT(rMessage, 20) as message, r.*, a.aName,a.aClass from request r join account a on r.aKey = a.aKey where rStatus = 'Fulfilled' ";
                                                                 rs = stmt.executeQuery(query);
 
                                                                 while(rs.next()){

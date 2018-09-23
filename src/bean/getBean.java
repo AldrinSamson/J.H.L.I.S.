@@ -3,7 +3,7 @@ package bean;
 public class getBean {
 	private static String msUrl = "jdbc:sqlserver://ALDRINSAMSON:1433;database=JHLIS;user=sa;password=123";
 
-	private static String myUrl = "jdbc:mysql://localhost/jhlis?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&user=root&password=selwyn2699";
+	private static String myUrl = "jdbc:mysql://localhost/jhlis?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&user=root&password=8888";
 	
 	private static String msClass = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 	
@@ -26,8 +26,9 @@ public class getBean {
 	private static String iKey;
 	private static int iQuantity;
 
+	private static  String item;
 	private static  String rMessage;
-	private static  int rID;
+	private static  String rID;
 	
 	private static String nName , nDesc , nLab;
 	
@@ -234,11 +235,19 @@ public class getBean {
 		getBean.rMessage = rMessage;
 	}
 
-	public static int getrID() {
+	public static String getrID() {
 		return rID;
 	}
 
-	public static void setrID(int rID) {
+	public static void setrID(String rID) {
 		getBean.rID = rID;
+	}
+
+	public static String getItem() {
+		return item;
+	}
+
+	public static void setItem(String item) {
+		getBean.item = item;
 	}
 }

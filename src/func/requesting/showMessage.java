@@ -27,7 +27,7 @@ public class showMessage extends HttpServlet {
 
         try (PrintWriter out = response.getWriter()) {
 
-            int rID = Integer.parseInt(request.getParameter("rID"));
+            String rID = request.getParameter("rID");
             String location = request.getParameter("location");
 
             try {
@@ -54,6 +54,8 @@ public class showMessage extends HttpServlet {
                     out.println("<html><body><script type='text/javascript'>;location='requestAdmin.jsp#pMessage';</script></body></html>");
                 }else if (location.equals("unfulfilled")) {
                     out.println("<html><body><script type='text/javascript'>;location='requestAdmin.jsp#fMessage';</script></body></html>");
+                }else if (location.equals("item")) {
+                        out.println("<html><body><script type='text/javascript'>;location='request.jsp#item';</script></body></html>");
                 }else{
                     out.println("<html><body><script type='text/javascript'>;location='requestAdmin.jsp#message';</script></body></html>");
                 }
