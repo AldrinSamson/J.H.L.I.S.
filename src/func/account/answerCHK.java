@@ -55,7 +55,7 @@ public class answerCHK extends HttpServlet {
                         HttpSession okCHK = request.getSession();
                         okCHK.setAttribute("userCHK", getUN);
                         okCHK.setAttribute("good", true);
-                        response.sendRedirect("recoverAccount.jsp");
+                        response.sendRedirect("account/recoverAccount.jsp");
 
                     } else {
                         out.println("<html><body><script type='text/javascript'>alert('Wrong answer on #2');location='forgot-qa.jsp';</script></body></html>");

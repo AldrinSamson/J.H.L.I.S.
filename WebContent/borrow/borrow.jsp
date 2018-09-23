@@ -47,9 +47,7 @@
     PreparedStatement lps;
     String getQ , getUser , query;
     String MYdburl = getBean.getMyUrl();
-    String MSdburl = getBean.getMsUrl();
     String MYclass = getBean.getMyClass();
-    String MSclass = getBean.getMsClass();
     Class.forName(MYclass);
     con = DriverManager.getConnection(MYdburl);
     stmt = con.createStatement();
@@ -60,7 +58,7 @@
         <div class="header-mobile__bar">
             <div class="container-fluid">
                 <div class="header-mobile-inner">
-                    <a class="logo" href="mainv2.html">
+                    <a class="logo" href="../dashboard.jsp">
                         <h1>JHLIS</h1>
                     </a>
                     <button class="hamburger hamburger--slider" type="button">
@@ -75,12 +73,12 @@
             <div class="container-fluid">
                 <ul class="navbar-mobile__list list-unstyled">
 
-                    <li >
+                    <li>
                         <a href="../dashboard.jsp">
                             <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                     </li>
                     <li>
-                        <a href="borrow.jsp">
+                        <a href="../borrow/borrow.jsp">
                             <i class="fas fa-flask"></i>Item Borrow/Return</a>
                     </li>
                     <li class="has-sub">
@@ -106,30 +104,27 @@
                             <i class="fas fa-chart-bar"></i>Reports</a>
                         <ul class="list-unstyled navbar__sub-list js-sub-list">
                             <li>
-                                <a href="inventoryR.jsp">Inventory Manifest</a>
+                                <a href="../report/inventory.jsp">Inventory Manifest</a>
                             </li>
                             <li>
-                                <a href="borrowR.jsp">Borrowing Transactions</a>
+                                <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
                             </li>
                             <li>
-                                <a href="requestR.jsp">Request Reports</a>
+                                <a href="../report/request.jsp">Request Reports</a>
                             </li>
                             <li>
-                                <a href="damageR.jsp">Damage Reports</a>
+                                <a href="../report/damages.jsp">Damage Reports</a>
                             </li>
                             <li>
-                                <a href="missingR.jsp">Missing Item Reports</a>
+                                <a href="../report/missing.jsp">Missing Reports</a>
                             </li>
                             <li>
-                                <a href="criticalR.jsp">Critical Reports</a>
-                            </li>
-                            <li>
-                                <a href="analyticsR.jsp">Analytics</a>
+                                <a href=../report/insights.jsp">Insights</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="request.jsp">
+                        <a href="../requestAdmin.jsp">
                             <i class="far fa-check-square"></i>Requests</a>
                     </li>
 
@@ -155,12 +150,12 @@
             <nav class="navbar-sidebar">
                 <ul class="list-unstyled navbar__list">
 
-                    <li >
+                    <li>
                         <a href="../dashboard.jsp">
                             <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                     </li>
                     <li>
-                        <a href="borrow.jsp">
+                        <a href="../borrow/borrow.jsp">
                             <i class="fas fa-flask"></i>Item Borrow/Return</a>
                     </li>
                     <li class="has-sub">
@@ -186,30 +181,27 @@
                             <i class="fas fa-chart-bar"></i>Reports</a>
                         <ul class="list-unstyled navbar__sub-list js-sub-list">
                             <li>
-                                <a href="inventoryR.jsp">Inventory Manifest</a>
+                                <a href="../report/inventory.jsp">Inventory Manifest</a>
                             </li>
                             <li>
-                                <a href="borrowR.jsp">Borrowing Transactions</a>
+                                <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
                             </li>
                             <li>
-                                <a href="requestR.jsp">Request Reports</a>
+                                <a href="../report/request.jsp" >Request Reports</a>
                             </li>
                             <li>
-                                <a href="damageR.jsp">Damage Reports</a>
+                                <a href="../report/damages.jsp">Damage Reports</a>
                             </li>
                             <li>
-                                <a href="missingR.jsp">Missing Item Reports</a>
+                                <a href="../report/missing.jsp">Missing Reports</a>
                             </li>
                             <li>
-                                <a href="criticalR.jsp">Critical Reports</a>
-                            </li>
-                            <li>
-                                <a href="analyticsR.jsp">Analytics</a>
+                                <a href="../report/insights.jsp">Insights</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="request.jsp">
+                        <a href="../requestAdmin.jsp">
                             <i class="far fa-check-square"></i>Requests</a>
                     </li>
 
@@ -320,7 +312,6 @@
                                                     <th>item unit</th>
                                                     <th>item Date</th>
                                                     <th>item condition</th>
-                                                    <th>item type</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -328,21 +319,20 @@
                                                     try {
 
 
-                                                        query = "SELECT e.* , i.*   from equipmentdetails e join inventory i on e.eKey = i.itemKey where i.itemCondition ='Available'";
+                                                        query = "select * from inventory i join itemdetails d on i.itemKey = d.itemKey ";
                                                         rs = stmt.executeQuery(query);
 
                                                         while(rs.next()){
                                                 %>
                                                 <tr>
-                                                    <td><%=rs.getString("e.eKey")%></td>
-                                                    <td><%=rs.getString("e.eName")%></td>
-                                                    <td><%=rs.getString("e.eDesc")%></td>
-                                                    <td><%=rs.getString("i.itemCurrentQuantity")%></td>
-                                                    <td><%=rs.getString("i.itemTotalQuantity")%></td>
-                                                    <td><%=rs.getString("i.itemUnit")%></td>
-                                                    <td><%=rs.getString("i.itemDate")%></td>
-                                                    <td><%=rs.getString("i.itemCondition")%></td>
-                                                    <td><%=rs.getString("i.itemType")%></td>
+                                                    <td><%=rs.getString("itemKey")%></td>
+                                                    <td><%=rs.getString("itemName")%></td>
+                                                    <td><%=rs.getString("itemDesc")%></td>
+                                                    <td><%=rs.getString("itemCurrentQuantity")%></td>
+                                                    <td><%=rs.getString("itemTotalQuantity")%></td>
+                                                    <td><%=rs.getString("itemUnit")%></td>
+                                                    <td><%=rs.getString("itemDate")%></td>
+                                                    <td><%=rs.getString("itemCondition")%></td>
                                                 </tr>
                                                 <%
                                                         }
@@ -356,21 +346,23 @@
                                     </div>
 
                                 </div>
-                                        <div class="tab-pane fade-in active" id="tab-rlist">
+                                        <div class="tab-pane fade-in" id="tab-rlist">
                                             <div class="col-lg-12">
                                                 <div class="table-responsive table--no-card m-b-40">
                                                     <table class="table table-borderless table-striped table-earning" id = "ReturnETable">
                                                         <thead>
                                                         <tr data-toggle = "modal" data-target = "mEReturn">
                                                             <th>ID</th>
-                                                            <th>name</th>
-                                                            <th>description</th>
-                                                            <th>item CQ</th>
-                                                            <th>item TQ</th>
-                                                            <th>item unit</th>
-                                                            <th>item Date</th>
-                                                            <th>item condition</th>
-                                                            <th>item type</th>
+                                                            <th>Item</th>
+                                                            <th>Name</th>
+                                                            <th>Quantity</th>
+                                                            <th>SID</th>
+                                                            <th>Student</th>
+                                                            <th>Section</th>
+                                                            <th>Supervisor</th>
+                                                            <th>Start Date</th>
+                                                            <th>Start Time</th>
+                                                            <th>Condition</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -378,21 +370,23 @@
                                                             try {
 
 
-                                                                query = "SELECT e.* , i.*   from equipmentdetails e join inventory i on e.eKey = i.itemKey where i.itemCondition ='Borrowed'";
+                                                                query = "select * from borrowtransaction b join itemdetails d on b.bItemKey = d.itemKey where bCondition = 'Not Returned'   ";
                                                                 rs = stmt.executeQuery(query);
 
                                                                 while(rs.next()){
                                                         %>
                                                         <tr>
-                                                            <td><%=rs.getString("e.eKey")%></td>
-                                                            <td><%=rs.getString("e.eName")%></td>
-                                                            <td><%=rs.getString("e.eDesc")%></td>
-                                                            <td><%=rs.getString("i.itemCurrentQuantity")%></td>
-                                                            <td><%=rs.getString("i.itemTotalQuantity")%></td>
-                                                            <td><%=rs.getString("i.itemUnit")%></td>
-                                                            <td><%=rs.getString("i.itemDate")%></td>
-                                                            <td><%=rs.getString("i.itemCondition")%></td>
-                                                            <td><%=rs.getString("i.itemType")%></td>
+                                                            <td><%=rs.getString("bID")%></td>
+                                                            <td><%=rs.getString("bItemKey")%></td>
+                                                            <td><%=rs.getString("itemName")%></td>
+                                                            <td><%=rs.getString("bQuantity")%></td>
+                                                            <td><%=rs.getString("sID")%></td>
+                                                            <td><%=rs.getString("sName")%></td>
+                                                            <td><%=rs.getString("sSection")%></td>
+                                                            <td><%=rs.getString("sSupervisor")%></td>
+                                                            <td><%=rs.getString("bSDate")%></td>
+                                                            <td><%=rs.getString("bSTime")%></td>
+                                                            <td><%=rs.getString("bCondition")%></td>
                                                         </tr>
                                                         <%
                                                                 }
@@ -424,7 +418,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header"><h4>Borrow Equipement</h4></div>
-                <form action="borrowSingle"  method = "post">
+                <form action="../borrowSingle"  method = "post">
 
                     <div class="modal-body">
 
@@ -433,7 +427,6 @@
             <div style = "display:table-cell">
                 <label  class = "label-modal">Item Code</label>
                 <label  class = "label-modal">Name</label>
-                <label  class = "label-modal">Type</label>
                 <label  class = "label-modal">Quantity</label>
                 <label  class = "label-modal">ID</label>
                 <label  class = "label-modal">Name</label>
@@ -441,9 +434,8 @@
                 <label  class = "label-modal">Supervisor</label>
             </div>
             <div  style = "display:table-cell; position:absolute; top:40px;">
-                <input type ="text" name = "iKey" class="input-modal" id = "EID" disabled>
-                <input type ="text" name = "iName" class="input-modal" id = "EName"disabled>
-                <input type ="text" name = "iType" class="input-modal" id = "EType"disabled>
+                <input type ="text" name = "iKey" class="input-modal" id = "EID" readonly>
+                <input type ="text" name = "iName" class="input-modal" id = "EName" readonly>
                 <input type ="text" name = "bQuantity" class="input-modal">
                 <input type ="text" name = "bID" class="input-modal">
                 <input type ="text" name = "bName" class="input-modal">
@@ -468,33 +460,35 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header"><h4>Return Equipment</h4></div>
-                <form action="../returnSingle"  method = "post">
 
                     <div class="modal-body">
 
 		<pre class = "tab">
         <div  style = "display:table">
             <div style = "display:table-cell">
+                <form action="../returnSingle"  method = "post">
                 <label  class = "label-modal">Item Code</label>
                 <label  class = "label-modal">Name</label>
-                <label  class = "label-modal">Type</label>
             </div>
             <div  style = "display:table-cell; position:absolute; top:40px;">
-                <input type ="text" name = "iKey" class="input-modal" id = "EID" disabled>
-                <input type ="text" name = "iName" class="input-modal" id = "EName" disabled>
-                <input type ="text" name = "iType" class="input-modal" id = "EType" disabled>
+                <input type ="text" name = "iKey" class="input-modal" id = "EID" readonly>
+                <input type ="text" name = "iName" class="input-modal" id = "EName" readonly>
+                 <input type ="text" name = "bID" class="input-modal" id = "BID" hidden>
+                <input type ="text" name = "bQ" class="input-modal" id = "BQ" >
+                Report:
+                        <input type ="submit" name = "response" class="btn btn-default btn-md" value = "Missing">
+                        <input type ="submit" name = "response" class="btn btn-default btn-md" value = "Broken">
+                        <input type ="submit" name = "response" class="btn btn-default btn-md" value = "Return">
+                </form>
+
             </div>
         </div>
 		</pre>
                     </div>
                     <div class="modal-footer">
-                        Report:
-                        <input type ="submit" name = "bMissing" class="btn btn-default btn-md" value = "Missing">
-                        <input type ="submit" name = "bBroken" class="btn btn-default btn-md" value = "Broken">
-                        <input type ="submit" name = "bReturn" class="btn btn-default btn-md" value = "Return">
+
                         <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
                     </div>
-                </form>
             </div>
         </div>
     </div>
@@ -548,9 +542,10 @@
         $('#ReturnETable tbody').on('click', 'tr', function(){
             var ReturnEdata = ReturnETableX.row(this).data();
             $('#mEReturn').modal('show');
-            $(".modal-body #EID").val( ReturnEdata[0] );
-            $(".modal-body #EName").val( ReturnEdata[1] );
-            $(".modal-body #EType").val( ReturnEdata[8] );
+            $(".modal-body #EID").val( ReturnEdata[1] );
+            $(".modal-body #EName").val( ReturnEdata[2] );
+            $(".modal-body #BID").val( ReturnEdata[0] );
+            $(".modal-body #BQ").val( ReturnEdata[3] );
         });
     });
 </script>

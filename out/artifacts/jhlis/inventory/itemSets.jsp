@@ -34,6 +34,7 @@
 
     <!-- Main CSS-->
     <link href="../css/theme.css" rel="stylesheet" media="all">
+    <link href="../css/custom.css" rel="stylesheet" media="all">
    
     
 </head>
@@ -48,21 +49,19 @@ ResultSet rs , get , counter , getName ;
 PreparedStatement lps;
 String getQ , getUser ,query;
 String MYdburl = getBean.getMyUrl();
-String MSdburl = getBean.getMsUrl();
 String MYclass = getBean.getMyClass();
-String MSclass = getBean.getMsClass();
 Class.forName(MYclass);
 con = DriverManager.getConnection(MYdburl);
 stmt = con.createStatement();
 %>
     <div class="page-wrapper">
-                        <!-- HEADER MOBILE-->
+        <!-- HEADER MOBILE-->
         <header class="header-mobile d-block d-lg-none">
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="mainv2.html">
-                           <h1>JHLIS</h1>
+                        <a class="logo" href="../dashboard.jsp">
+                            <h1>JHLIS</h1>
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -75,66 +74,63 @@ stmt = con.createStatement();
             <nav class="navbar-mobile">
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
-                       
-                       <li >
+
+                        <li>
                             <a href="../dashboard.jsp">
-                               <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
-                         <li>
+                        <li>
                             <a href="../borrow/borrow.jsp">
                                 <i class="fas fa-flask"></i>Item Borrow/Return</a>
                         </li>
-                          <li class="has-sub">
+                        <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                 <i class="fas fa-table"></i>Laboratory Item Management</a>
+                                <i class="fas fa-table"></i>Laboratory Item Management</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="physics.jsp">Physics Laboratory</a>
+                                    <a href="../inventory/physics.jsp">Physics Laboratory</a>
                                 </li>
                                 <li>
-                                    <a href="chemistry.jsp">Chemistry Laboratory</a>
+                                    <a href="../inventory/chemistry.jsp">Chemistry Laboratory</a>
                                 </li>
                                 <li>
-                                    <a href="itemSets.jsp">Item Sets</a>
+                                    <a href="../inventory/itemSets.jsp">Item Sets</a>
                                 </li>
-                                 <li>
-                                    <a href="nonBorrowable.jsp">Non-Borrowable</a>
+                                <li>
+                                    <a href="../inventory/nonBorrowable.jsp">Non-Borrowable</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                 <i class="fas fa-chart-bar"></i>Reports</a>
+                                <i class="fas fa-chart-bar"></i>Reports</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="inventoryR.jsp">Inventory Manifest</a>
+                                    <a href="../report/inventory.jsp">Inventory Manifest</a>
                                 </li>
                                 <li>
-                                    <a href="borrowR.jsp">Borrowing Transactions</a>
+                                    <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
                                 </li>
                                 <li>
-                                    <a href="requestR.jsp">Request Reports</a>
+                                    <a href="../report/request.jsp">Request Reports</a>
                                 </li>
                                 <li>
-                                    <a href="damageR.jsp">Damage Reports</a>
+                                    <a href="../report/damages.jsp">Damage Reports</a>
                                 </li>
-                                 <li>
-                                    <a href="missingR.jsp">Missing Item Reports</a>
+                                <li>
+                                    <a href="../report/missing.jsp">Missing Reports</a>
                                 </li>
-                                 <li>
-                                    <a href="criticalR.jsp">Critical Reports</a>
-                                </li>
-                                 <li>
-                                    <a href="analyticsR.jsp">Analytics</a>
+                                <li>
+                                    <a href=../report/insights.jsp">Insights</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="request.jsp">
+                            <a href="../requestAdmin.jsp">
                                 <i class="far fa-check-square"></i>Requests</a>
                         </li>
-                       
-                        
+
+
                         <li>
                             <a href="../account/account.jsp">
                                 <i class="fas fa-users"></i>Account Management</a>
@@ -149,77 +145,74 @@ stmt = con.createStatement();
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="../dashboard.jsp">
-                <h1>JHLIS</h1>
+                    <h1>JHLIS</h1>
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                      
-                       <li >
+
+                        <li>
                             <a href="../dashboard.jsp">
-                               <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
-                         <li>
+                        <li>
                             <a href="../borrow/borrow.jsp">
                                 <i class="fas fa-flask"></i>Item Borrow/Return</a>
                         </li>
-                          <li class="has-sub">
+                        <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                 <i class="fas fa-table"></i>Laboratory Item Management</a>
+                                <i class="fas fa-table"></i>Laboratory Item Management</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="physics.jsp">Physics Laboratory</a>
+                                    <a href="../inventory/physics.jsp">Physics Laboratory</a>
                                 </li>
                                 <li>
-                                    <a href="chemistry.jsp">Chemistry Laboratory</a>
+                                    <a href="../inventory/chemistry.jsp">Chemistry Laboratory</a>
                                 </li>
                                 <li>
-                                    <a href="itemSets.jsp">Item Sets</a>
+                                    <a href="../inventory/itemSets.jsp">Item Sets</a>
                                 </li>
-                                 <li>
-                                    <a href="nonBorrowable.jsp">Non-Borrowable</a>
+                                <li>
+                                    <a href="../inventory/nonBorrowable.jsp">Non-Borrowable</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                 <i class="fas fa-chart-bar"></i>Reports</a>
+                                <i class="fas fa-chart-bar"></i>Reports</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="inventoryR.jsp">Inventory Manifest</a>
+                                    <a href="../report/inventory.jsp">Inventory Manifest</a>
                                 </li>
                                 <li>
-                                    <a href="borrowR.jsp">Borrowing Transactions</a>
+                                    <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
                                 </li>
                                 <li>
-                                    <a href="requestR.jsp">Request Reports</a>
+                                    <a href="../report/request.jsp" >Request Reports</a>
                                 </li>
                                 <li>
-                                    <a href="damageR.jsp">Damage Reports</a>
+                                    <a href="../report/damages.jsp">Damage Reports</a>
                                 </li>
-                                 <li>
-                                    <a href="missingR.jsp">Missing Item Reports</a>
+                                <li>
+                                    <a href="../report/missing.jsp">Missing Reports</a>
                                 </li>
-                                 <li>
-                                    <a href="criticalR.jsp">Critical Reports</a>
-                                </li>
-                                 <li>
-                                    <a href="analyticsR.jsp">Analytics</a>
+                                <li>
+                                    <a href="../report/insights.jsp">Insights</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="request.jsp">
+                            <a href="../requestAdmin.jsp">
                                 <i class="far fa-check-square"></i>Requests</a>
                         </li>
-                       
-                        
+
+
                         <li>
                             <a href="../account/account.jsp">
                                 <i class="fas fa-users"></i>Account Management</a>
                         </li>
-                       
+
                     </ul>
                 </nav>
             </div>
@@ -309,8 +302,7 @@ stmt = con.createStatement();
 						<div class="col-lg-12">
                         <h2 class="title-1 m-b-25">Physics Item Sets</h2>
                         <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mPAdd" data-toggle="modal"style = "color:black;">new set</a></button>
-						<button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mPEdit" data-toggle="modal"style = "color:black;">edit set</a></button>
-						<table class="table table-borderless table-striped table-earning" id = "Elist">
+						<table class="table table-borderless table-striped table-earning" id = "pTable">
 					<tr>
 					  <%   
 					  			try {
@@ -367,7 +359,7 @@ stmt = con.createStatement();
                 		<div class="tab-pane fade-in " id="tab-clist">
 						<div class="col-lg-12">
 						 <h2 class="title-1 m-b-25">Chemistry Item Sets</h2>
-						 <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mCAdd" data-toggle="modal"style = "color:black;">new set</a></button>
+						 <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mISAdd" data-toggle="modal"style = "color:black;">new set</a></button>
 						<button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mCEdit" data-toggle="modal"style = "color:black;">edit set</a></button>
 						 <table class="table table-borderless table-striped table-earning" id = "Elist">
 					<tr>
@@ -436,143 +428,44 @@ stmt = con.createStatement();
      
 </div>
      <!-- Main Body End-->           
-<!-- Modal -->            
-        <!-- Equip add modal -->
-		<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id = "mPAdd" data-backdrop="static" data-keyboard="false">
-  		<div class="modal-dialog">
-    	<div class="modal-content">
-    	<div class="modal-header"><h4>New Set<i class="fa fa-lock"></i></h4></div>
-    	<form action="addSet" method = "post">
-       
-		<div class="modal-body">
-		
-		<pre class = "tab">  
-       
-    	laboratory   <input  type = "text" name = "isLab" >  <!-- hide -->
-		
-		Equipment
-		
-		1:      <input name = "is1" list = "is1R">
-    			<datalist id = "is1R">
-    			<%
-                try {
-         	
-         	
-         	    String geteName = "select eKey from equipmentlist where eLab = 'Physics'";
-         	    getName = stmt.executeQuery(geteName);
-        		
-         	    while (getName.next()){
-        
-                %>
-    				<option ><%=getName.getString("eKey") %> </option>
-    	       <%
-    	       }
-        	   }catch (Exception e){
-        		e.printStackTrace();
-        	   }
-      		   %>
-    		   </datalist>
-    	
-    	2:      <input name = "is2" list = "is2R">
-    			<datalist id = "is2R">
-    			<%
-                try {
-         	
-         	
-         	    String geteName = "select eKey from equipmentlist where eLab = 'Physics'";
-         	    getName = stmt.executeQuery(geteName);
-        		
-         	    while (getName.next()){
-        
-                %>
-    				<option ><%=getName.getString("eKey") %> </option>
-    	       <%
-    	       }
-        	   }catch (Exception e){
-        		e.printStackTrace();
-        	   }
-      		   %>
-    		   </datalist>
-    		  
-   		3:      <input name = "is3" list = "is3R">
-    			<datalist id = "is3R">
-    			<%
-                try {
-         	
-         	
-         	    String geteName = "select eKey from equipmentlist where eLab = 'Physics'";
-         	    getName = stmt.executeQuery(geteName);
-        		
-         	    while (getName.next()){
-        
-                %>
-    				<option ><%=getName.getString("eKey") %> </option>
-    	       <%
-    	       }
-        	   }catch (Exception e){
-        		e.printStackTrace();
-        	   }
-      		   %>
-    		   </datalist>
-    		   
-    	4:      <input name = "is4" list = "is4R">
-    			<datalist id = "is4R">
-    			<%
-                try {
-         	
-         	
-         	    String geteName = "select eKey from equipmentlist where eLab = 'Physics'";
-         	    getName = stmt.executeQuery(geteName);
-        		
-         	    while (getName.next()){
-        
-                %>
-    				<option ><%=getName.getString("eKey") %> </option>
-    	       <%
-    	       }
-        	   }catch (Exception e){
-        		e.printStackTrace();
-        	   }
-      		   %>
-    		   </datalist>
-    		   
-    	5:      <input name = "is5" list = "is5R">
-    			<datalist id = "is5R">
-    			<%
-                try {
-         	
-         	
-         	    String geteName = "select eKey from equipmentlist where eLab = 'Physics'";
-         	    getName = stmt.executeQuery(geteName);
-        		
-         	    while (getName.next()){
-        
-                %>
-    				<option ><%=getName.getString("eKey") %> </option>
-    	       <%
-    	       }
-        	   }catch (Exception e){
-        		e.printStackTrace();
-        	   }
-      		   %>
-    		   </datalist>
-		
-		
-      	
-      
+<!-- Modal -->
+
+        <!-- Add ItemSet Physics Modal -->
+        <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="mPAdd" data-keyboard="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header"><h4>New Item Set</h4></div>
+                    <form action="../addSet" method="post">
+
+                        <div class="modal-body">
+
+		<div class="tab input_fields_wrap">
+            <%--<div class = "input_fields_wrap">--%>
+            <table class="table table-borderless table-earning" style="border-spacing:20px">
+
+            <tr>
+            <td>Key</td>
+            <td>Quantity</td>
+            </tr>
+            <tr>
+                <td><input type="text" name="name[]" class="input-modal"></td>
+                <td><input type="text" name="quantity[]" class="input-modal"></td>
+            </tr>
+
+            </table>
+            </div>
 		</pre>
-		</div>
-      	   
-      	<div class="modal-footer">
-        <input type ="submit" id ="addE" class="btn btn-default btn-md" value = "Add Equip">
-      	<button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
-      	</div>
-		</form>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="text" name="lab" class="input-modal" value="Physics" hidden>
+                            <button class="add_field_button">Add</button>
+                            <input type="submit" class="btn btn-default btn-md" value="Add">
+                            <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        </div>
-    	</div>
-    
-    	
 
 </div>    
             
@@ -609,6 +502,28 @@ stmt = con.createStatement();
     	if (window.location.href.indexOf('#mCode') != 1) {
     		$('#mCode').modal('show');
     	}
+    });
+
+    $(document).ready(function() {
+        var max_fields      = 10; //maximum input boxes allowed
+        var wrapper         = $(".input_fields_wrap"); //Fields wrapper
+        var add_button      = $(".add_field_button"); //Add button ID
+
+        var x = 1; //initlal text box count
+        $(add_button).on("click",function(e){ //on add input button click
+            e.preventDefault();
+            if(x < max_fields){ //max input box allowed
+                x++; //text box increment
+                $(wrapper).append('<div><tr>\n' +
+                    '                <td><input type="text" name="name[]" class="input-modal"></td>\n' +
+                    '                <td><input type="text" name="quantity[]" class="input-modal"><a href="#" class="remove_field">Remove</a></td>\n' +
+                    '            </tr><div>'); //add input box
+            }
+        });
+
+        $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+            e.preventDefault(); $(this).parent('div').remove(); x--;
+        })
     });
     </script>
 	

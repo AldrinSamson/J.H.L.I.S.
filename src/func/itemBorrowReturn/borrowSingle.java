@@ -24,9 +24,9 @@ public class borrowSingle extends HttpServlet {
     String MYdburl = getBean.getMyUrl();
     String MYclass = getBean.getMyClass();
     Statement stmt;
-    ResultSet chk;
+    ResultSet chk , get;
     String nowCondition, nowDate, nowKey;
-    int nowNum, newNum;
+    int nowNum, newNum , nowQ , newQ;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
@@ -35,8 +35,7 @@ public class borrowSingle extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
 
             String iKey = request.getParameter("iKey");
-            String iType = request.getParameter("iType");
-            String bQuantity = request.getParameter("bQuantity");
+            int bQuantity = Integer.parseInt(request.getParameter("bQuantity"));
             String bID = request.getParameter("bID");
             String bName = request.getParameter("bName");
             String bClass = request.getParameter("bClass");
@@ -46,16 +45,12 @@ public class borrowSingle extends HttpServlet {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
             String bDate = sdf.format(new Date());
             String bSTime = df.format(new Date());
-            String updateItem = "update inventory set itemCondition = 'Borrowed' where itemKey = '" + iKey + "'";
-            String b = "Borrowed";
-            String m = "Missing";
-            String k = "Broken";
 
             try {
 
-                Class.forName(MYclass);
-                con = DriverManager.getConnection(MYdburl);
-                stmt = con.createStatement();
+                    Class.forName(MYclass);
+                    con = DriverManager.getConnection(MYdburl);
+                    stmt = con.createStatement();
 
                 String chkIfAvailable = "select itemCondition from inventory where itemKey ='" + iKey + "'";
                 chk = stmt.executeQuery(chkIfAvailable);
@@ -64,34 +59,34 @@ public class borrowSingle extends HttpServlet {
                     nowCondition = chk.getString("itemCondition");
                 }
 
-                String chkKey = "select bNum , bDate from borrowtransactions where bDate = '" + bDate + "' order by bNum desc limit 1";
-                chk = stmt.executeQuery(chkKey);
+                if (nowCondition.equals("Not Available")){
 
-                if (chk.next() == true) {
+                    out.println("<html><body><script type='text/javascript'>alert('item not available');location='borrow/borrow.jsp';</script></body></html>");
+                }else {
+
+                    String getID = "select bID from borrowtransaction order by bID desc limit 1";
+                    chk = stmt.executeQuery(getID);
 
                     while (chk.next()) {
-                        nowDate = chk.getString("bDate");
-                        nowNum = chk.getInt("bNum");
-                        newNum = ++nowNum;
-                        nowKey = nowDate + "-" + newNum;
+                            nowNum = chk.getInt("bID");
+                            newNum = nowNum + 1;
                     }
 
-                    String newTransaq1 = "insert into borrowTransactions values ('" + nowKey + "','" + newNum + "','" + iKey + "','" + iType + "','" + bQuantity + "'," +
-                            "'" + bID + "','" + bName + "','" + bClass + "','" + bSupervisor + "','" + bDate + "','" + bSTime + "',NULL ,'Borrowed')";
-                    stmt.execute(newTransaq1);
-                    stmt.execute(updateItem);
-                } else {
+                    String getQ = "select itemCurrentQuantity from inventory where itemKey = '"+iKey+"'";
+                    get = stmt.executeQuery(getQ);
 
-                    String newKey = bDate + "-1";
-                    String newTransaq2 = "insert into borrowTransactions values ('" + newKey + "','1','" + iKey + "','" + iType + "','" + bQuantity + "'," +
-                            "'" + bID + "','" + bName + "','" + bClass + "','" + bSupervisor + "','" + bDate + "','" + bSTime + "',NULL,'Borrowed')";
-                    stmt.execute(newTransaq2);
-                    stmt.execute(updateItem);
+                    while (get.next()){
+                        nowQ = get.getInt("itemCurrentQuantity");
+                        newQ = nowQ - bQuantity;
+                    }
+
+                        String newTransaq = "insert into borrowTransaction values ('" + newNum + "','" + iKey + "','" + bQuantity + "','Not Returned','" + bID + "','" + bName + "','" + bClass + "','" + bSupervisor + "','" + bDate + "',NULL,'" + bSTime + "',NULL )";
+                        stmt.execute(newTransaq);
+                        String updateItem = "update inventory set itemCondition = 'Not Available' , itemCurrentQuantity = '"+newQ+"' where itemKey = '"+iKey+"'";
+                        stmt.execute(updateItem);
+
+                    out.println("<html><body><script type='text/javascript'>location='borrow/borrow.jsp';</script></body></html>");
                 }
-
-
-                out.println("<html><body><script type='text/javascript'>location='borrow.jsp';</script></body></html>");
-
                 if (con != null) {
                     con.close();
                 }

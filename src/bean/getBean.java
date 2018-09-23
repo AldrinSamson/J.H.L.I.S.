@@ -25,6 +25,10 @@ public class getBean {
 	private static String iCondition;
 	private static String iKey;
 	private static int iQuantity;
+
+	private static  String item;
+	private static  String rMessage;
+	private static  String rID;
 	
 	private static String nName , nDesc , nLab;
 	
@@ -221,5 +225,29 @@ public class getBean {
 
 	public static void setiQuantity(int iQuantity) {
 		getBean.iQuantity = iQuantity;
+	}
+
+	public static String getrMessage() {
+		return rMessage;
+	}
+
+	public static void setrMessage(String rMessage) {
+		getBean.rMessage = rMessage;
+	}
+
+	public static String getrID() {
+		return rID;
+	}
+
+	public static void setrID(String rID) {
+		getBean.rID = rID;
+	}
+
+	public static String getItem() {
+		return item;
+	}
+
+	public static void setItem(String item) {
+		getBean.item = item;
 	}
 }

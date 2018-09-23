@@ -48,7 +48,7 @@ public class changePass extends HttpServlet {
                         stmt.execute(changePass);
                         out.println("<html><body><script type='text/javascript'>alert('Password Recovered for " + getUN + " ');location='index.html';</script></body></html>");
                     } else {
-                        out.println("<html><body><script type='text/javascript'>alert('Password dont match ');location='index.jsp';</script></body></html>");
+                        out.println("<html><body><script type='text/javascript'>alert('Password dont match ');location='index.html';</script></body></html>");
                     }
                     if (con != null) {
                         con.close();

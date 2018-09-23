@@ -44,31 +44,24 @@ public class addNew extends HttpServlet {
             String dateType = "";
             String condition = "";
 
-            if (type.equalsIgnoreCase("Consumable")){
-                newKey = abbv+"-"+fAbbv+"-1";
-            }else{
-                newKey = abbv+"-1";
-            }
-
-            if (quantityA == null){
-                quantity = 1;
-            }else {
-                quantity = Integer.parseInt(quantityA);
-            }
-
-            if (desc.isEmpty()) {
+            // Value validation
+            newKey = type.equalsIgnoreCase("Consumable") ? abbv+"-"+fAbbv+"-1" : abbv+"-1";
+            if (desc == null){
+                desc = "N/A";
+            }else if (desc.isEmpty()){
                 desc = "N/A";
             }
-
-            if (date.isEmpty()) {
+            if (date == null){
+                date = "NULL";
+            }else if (date.isEmpty()){
+               date = "NULL";
+            }else if (date.equalsIgnoreCase("N/A")){
                 date = "NULL";
             }else {
                 date = "'"+date+"'";
             }
-
-            if (unit == null){
-                unit = "N/A";
-            }
+            unit = unit == null  ? "N/A" : unit;
+            quantity = quantityA == null ? 1 : Integer.parseInt(quantityA);
 
             if (type.equals("Equipment")) {
                 dateType = "Calibration";
@@ -89,7 +82,14 @@ public class addNew extends HttpServlet {
                 stmtCHK = con.createStatement();
                 stmtE = con.createStatement();
 
-                String chkIfNew = "select itemNAbbv , itemFAbbv from itemdetails where itemName = '" + name + "' and itemForm = '" + form + "' or itemName = '" + name + "'";
+                String z;
+                if (type.equals("Consumable")& form == null){
+                    z = "and itemType = 'Consumable'";
+                }else {
+                    z = "";
+                }
+
+                String chkIfNew = "select itemNAbbv , itemFAbbv from itemdetails where itemName = '" + name + "' and itemForm = '" + form + "' and itemType = '"+type+"' or itemName = '" + name + "' "+z+" ";
                 chk = stmtCHK.executeQuery(chkIfNew);
 
                 if (chk.next()){

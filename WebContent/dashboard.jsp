@@ -3,6 +3,7 @@
         <%@page import = "java.sql.*"%>
 <%@page import = "java.io.*"%>
 <%@ page import = "bean.getBean"%>
+<%@ page import="javax.swing.plaf.nimbus.State" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,10 +28,12 @@
     <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
     <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
     <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
-    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">i
     <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <link href="vendor/datatables/datatables.min.css" rel="stylesheet" media="all">
+    <link href="vendor/datatables/datatables.css" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
@@ -38,14 +41,17 @@
 <body class="animsition">
 <!-- declarations -->
 <%
-Connection con;
-Statement stmt;
-ResultSet rs , get;
-PreparedStatement lps;
-String getQ , getUser;
-String MYdburl = getBean.getMyUrl();
-String MYclass = getBean.getMyClass();
-Class.forName(MYclass);
+    Connection con;
+    Statement stmt;
+    ResultSet rs, get, counter;
+    String getQ, getUser, query;
+    String MYdburl = getBean.getMyUrl();
+    String MYclass = getBean.getMyClass();
+    Class.forName(MYclass);
+    con = DriverManager.getConnection(MYdburl);
+    stmt = con.createStatement();
+
+    String message = getBean.getrMessage();
 %>
     <div class="page-wrapper">
                         <!-- HEADER MOBILE-->
@@ -53,7 +59,7 @@ Class.forName(MYclass);
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="mainv2.html">
+                        <a class="logo" href="dashboard.jsp">
                            <h1>JHLIS</h1>
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
@@ -102,27 +108,24 @@ Class.forName(MYclass);
                                     <a href="report/inventory.jsp">Inventory Manifest</a>
                                 </li>
                                 <li>
-                                    <a href="borrowR.jsp">Borrowing Transactions</a>
+                                    <a href="report/borrowTransaction.jsp">Borrowing Transactions</a>
                                 </li>
                                 <li>
-                                    <a href="requestR.jsp">Request Reports</a>
+                                    <a href="report/request.jsp">Request Reports</a>
                                 </li>
                                 <li>
-                                    <a href="damageR.jsp">Damage Reports</a>
+                                    <a href="report/damages.jsp">Damage Reports</a>
                                 </li>
                                  <li>
-                                    <a href="missingR.jsp">Missing Item Reports</a>
+                                    <a href="report/missing.jsp">Missing Item Reports</a>
                                 </li>
                                  <li>
-                                    <a href="criticalR.jsp">Critical Reports</a>
-                                </li>
-                                 <li>
-                                    <a href="analyticsR.jsp">Analytics</a>
+                                    <a href="report/insights.jsp">Insights</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="request.jsp">
+                            <a href="requestAdmin.jsp">
                                 <i class="far fa-check-square"></i>Requests</a>
                         </li>
                        
@@ -182,27 +185,24 @@ Class.forName(MYclass);
                                     <a href="report/inventory.jsp">Inventory Manifest</a>
                                 </li>
                                 <li>
-                                    <a href="borrowR.jsp">Borrowing Transactions</a>
+                                    <a href="report/borrowTransaction.jsp">Borrowing Transactions</a>
                                 </li>
                                 <li>
-                                    <a href="requestR.jsp">Request Reports</a>
+                                    <a href="report/request.jsp">Request Reports</a>
                                 </li>
                                 <li>
-                                    <a href="damageR.jsp">Damage Reports</a>
+                                    <a href="report/damages.jsp">Damage Reports</a>
                                 </li>
                                  <li>
-                                    <a href="missingR.jsp">Missing Item Reports</a>
+                                    <a href="report/missingR.jsp">Missing Item Reports</a>
                                 </li>
                                  <li>
-                                    <a href="criticalR.jsp">Critical Reports</a>
-                                </li>
-                                 <li>
-                                    <a href="analyticsR.jsp">Analytics</a>
+                                    <a href="report/insights.jsp">Analytics</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="request.jsp">
+                            <a href="requestAdmin.jsp">
                                 <i class="far fa-check-square"></i>Requests</a>
                         </li>
                        
@@ -293,7 +293,20 @@ Class.forName(MYclass);
                         <div class="row">
                             <div class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
-                                    <h2 class="number">666</h2>
+                                    <%
+                                        try{
+                                            String queryx= "select count(itemCurrentQuantity) as count from inventory where itemCurrentQuantity <> itemTotalQuantity and itemCondition <> 'Broken' and itemCondition <> 'Missing'";
+                                            rs = stmt.executeQuery(queryx);
+
+                                            while (rs.next()){
+
+                                    %>
+                                    <h2 class="number"><%=rs.getString("count")%></h2>
+                                    <%}
+                                        }catch(Exception e){
+                                            e.printStackTrace();
+                                        }
+                                    %>
                                     <span class="desc">Equipment Lent</span>
                                     <div class="icon">
                                         <i class="zmdi zmdi-account-o"></i>
@@ -302,7 +315,7 @@ Class.forName(MYclass);
                             </div>
                             <div class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
-                                    <h2 class="number">99999999</h2>
+                                    <h2 class="number">Next Time</h2>
                                     <span class="desc">Critical</span>
                                     <div class="icon">
                                         <i class="zmdi zmdi-shopping-cart"></i>
@@ -311,8 +324,21 @@ Class.forName(MYclass);
                             </div>
                             <div class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
-                                    <h2 class="number">69</h2>
-                                    <span class="desc">Requests</span>
+                                    <%
+                                        try{
+                                            String queryx= "select count(rID) as count from request where rCondition = 'Pending'";
+                                            rs = stmt.executeQuery(queryx);
+
+                                            while (rs.next()){
+
+                                    %>
+                                    <h2 class="number"><%=rs.getString("count")%></h2>
+                                    <%}
+                                    }catch(Exception e){
+                                        e.printStackTrace();
+                                    }
+                                    %>
+                                    <span class="desc">Requests Pending</span>
                                     <div class="icon">
                                         <i class="zmdi zmdi-calendar-note"></i>
                                     </div>
@@ -320,7 +346,20 @@ Class.forName(MYclass);
                             </div>
                             <div class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
-                                    <h2 class="number">nani</h2>
+                                    <%
+                                        try{
+                                            String queryx= "select count(itemCurrentQuantity) as count from inventory where itemCurrentQuantity <> itemTotalQuantity and itemCondition = 'Broken' or itemCondition = 'Missing'";
+                                            rs = stmt.executeQuery(queryx);
+
+                                            while (rs.next()){
+
+                                    %>
+                                    <h2 class="number"><%=rs.getString("count")%></h2>
+                                    <%}
+                                    }catch(Exception e){
+                                        e.printStackTrace();
+                                    }
+                                    %>
                                     <span class="desc">Damaged/Missing</span>
                                     <div class="icon">
                                         <i class="zmdi zmdi-money"></i>
@@ -330,41 +369,67 @@ Class.forName(MYclass);
                                 </div>
                             </div>
                         </div>
-                         <div class="row">
+
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
                             <div class="col-lg-12">
-                                <h2 class="title-1 m-b-25">Request List</h2>
-                                <div class="table-responsive table--no-card m-b-40">
-                                    <table class="table table-borderless table-striped table-earning">
-                                        <thead>
+                                <div class="card text-left" id="ptab-marg">
+                                    <div class="card-header">
+                                        <h3 class="card-title"> Requests </h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table table-borderless table-striped table-earning" id = "rTable">
+                                            <thead>
                                             <tr>
-                                              			<th>code</th>
-	 													<th>professor</th>
-	 													<th>date</th>
-	 													<th>time</th>
-	 													<th>lab</th>
-	 													<th>condi</th>
-	 													<th>itemlist</th>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Date</th>
+                                                <th>Time</th>
+                                                <th>Condition</th>
+                                                <th>Status</th>
                                             </tr>
-                                        </thead>
-                                        <tbody>
-                                      
-                                         <tr>
-                                    <td>demo-1</td>
-                                    <td>Joshua Bobo</td>
-                                    <td>2018/06/28</td>
-                                    <td>6:00 pm</td>
-                                    <td>Physics</td>
-                                    <td>Unresovled</td>
-                                    <td>itemlist.select</td>
-                                  
-                                		</tr>
-                                		 
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                            <%
+                                                try {
+
+
+                                                    query = "SELECT r.*, a.* from request r join account a on r.aKey = a.aKey ";
+                                                    rs = stmt.executeQuery(query);
+
+                                                    while(rs.next()){
+                                            %>
+                                            <tr data-toggle="modal" id="mRView">
+                                                <td><%=rs.getString("rID")%>
+                                                </td>
+                                                <td><%=rs.getString("aClass")%> <%=rs.getString("aName")%>
+                                                </td>
+                                                <td><%=rs.getString("rDate")%>
+                                                </td>
+                                                <td><%=rs.getString("rTime")%>
+                                                </td>
+                                                <td><%=rs.getString("rCondition") %>
+                                                </td>
+                                                <td><%=rs.getString("rStatus")%>
+                                                </td>
+
+                                            </tr>
+                                            <%
+                                                    }
+                                                }catch (Exception e){
+                                                    e.printStackTrace();
+                                                }
+                                            %>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                       
+
                         </div>
+                    </div>
+                </div>
                                   
                       <section>
                 <div class="section__content section__content--p30">
@@ -448,33 +513,133 @@ Class.forName(MYclass);
             </div>
             <!-- END MAIN CONTENT-->
             <!-- END PAGE CONTAINER-->
+
+<!-- Add Equipment Modal -->
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="mRView" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"><h4>New Equipment</h4></div>
+            <form action="../checkNew" method="post">
+
+                <div class="modal-body">
+
+		<pre class="tab">
+        <table class="table table-borderless table-earning" style="border-spacing:20px">
+            <tr>
+                <td><label class="label-modal">Name</label></td>
+                <td><input type="text" name="name" class="input-modal" list="nameR"></td>
+            </tr><br>
+            <tr>
+                <td><label class="label-modal">Description</label></td>
+                <td><input type="text" name="desc" class="input-modal"></td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">Calibration date</label></td>
+                <td><input type="text" name="date" class="input-modal--date" placeholder="yy/mm/dd"></td>
+            </tr>
+        </table>
+		</pre>
+                </div>
+                <div class="modal-footer">
+                    <input type="text" name="type" class="input-modal" value="Equipment" hidden>
+                    <input type="text" name="lab" class="input-modal" value="Physics" hidden>
+                    <input type="submit" class="btn btn-default btn-md" value="Add">
+                    <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
         </div>
-
     </div>
+</div>
 
-    <!-- Jquery JS-->
-    <script src="vendor/jquery-3.2.1.min.js"></script>
-    <!-- Bootstrap JS-->
-    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
-    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
-    <!-- Vendor JS       -->
-    <script src="vendor/slick/slick.min.js">
-    </script>
-    <script src="vendor/wow/wow.min.js"></script>
-    <script src="vendor/animsition/animsition.min.js"></script>
-    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-    </script>
-    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
-    <script src="vendor/counter-up/jquery.counterup.min.js">
-    </script>
-    <script src="vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="vendor/select2/select2.min.js">
-    </script>
+<!-- View Request Modal -->
+<div class="modal fade" id="message" tabindex="-1" role="dialog" aria-hidden="true"  >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"><h4>Message</h4></div>
+            <form action="../showMessage" method="post">
 
-    <!-- Main JS-->
-    <script src="js/main.js"></script>
+                <div class="modal-body">
+
+		<pre class="tab">
+
+            <%=message%>
+
+		</pre>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-md" data-dismiss="modal">OH BOI GO BACK</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="mEgdit" tabindex="-1" role="dialog" aria-hidden="true"  >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"><h4>Message</h4></div>
+            <form action="../showMessage" method="post" id = "getMessage">
+
+                <div class="modal-body">
+
+		<pre class="tab">
+            <input type="text" name="rID" id = "rID">
+             <input type="text" name="location" value = "admin" hidden>
+
+
+		</pre>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-md" data-dismiss="modal">OH BOI GO BACK</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Jquery JS-->
+<script src="vendor/jquery-3.2.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- Bootstrap JS-->
+<script src="vendor/bootstrap-4.1/popper.min.js"></script>
+<script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+<!-- Vendor JS -->
+<script src="vendor/slick/slick.min.js"></script>
+<script src="vendor/wow/wow.min.js"></script>
+<script src="vendor/animsition/animsition.min.js"></script>
+<script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<script src="vendor/counter-up/jquery.waypoints.min.js"></script>
+<script src="vendor/datatables/datatables.min.js"></script>
+<script src="vendor/counter-up/jquery.counterup.min.js"></script>
+<script src="vendor/circle-progress/circle-progress.min.js"></script>
+<script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="vendor/chartjs/Chart.bundle.min.js"></script>
+<script src="vendor/select2/select2.min.js"></script>
+<!-- Main JS-->
+<script src="js/main.js"></script>
+<script name = "pageScripts">
+
+    $(document).ready(function(){
+
+        if (window.location.href.indexOf('#message') != -1) {
+            $('#message').modal('show');
+        }
+    });
+
+    $(document).ready(function (){
+        var RTable= $('#rTable').DataTable();
+        $('#rTable tbody').on('click', 'tr', function () {
+            var RTableData = RTable.row(this).data();
+            //$('#mEgdit').modal('show');
+            $(".modal-body #rID").val(RTableData[0]);
+            $('#getMessage').submit();
+        });
+    });
+
+
+</script>
 
 </body>
 </html>
