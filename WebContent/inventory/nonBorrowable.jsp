@@ -281,22 +281,17 @@ stmt = con.createStatement();
             <!-- HEADER DESKTOP-->
      <!-- Main Body -->
      	<div class="main-content">
+        <div class = "pb-3 pl-5 page-title"> Non-Borrowable</div>
         <div class="section__content section__content--p30">
             <div class="container-fluid">
            	<div class="row">
            	<div class="col-md-12">
            		<div class = "card text-left" id = "ptab-marg">
-				<div class = "card-header" >
-					<h3 class = "card-title"> Non-borrowables </h3>
-					
-				</div>
-           		<div class = "card-body">
+           		<div class = "p-1 card-body">
 					
 			
 						<div class="col-lg-12">
-                            <button type="button" class="btn btn-outline-secondary"  href="#mEAdd" data-toggle="modal"><i
-                                    class="fa fa-plus-square"
-                                    style="color:black;"></i>NEW</button>
+                            <button type="button" class="btn new-item-btn-nb"  href="#mEAdd" data-toggle="modal">NEW ITEM</button>
                         <div class="table-responsive table--no-card m-b-40">
                         <table class="table table-borderless table-striped table-earning" id = "nTable">
                         <thead>

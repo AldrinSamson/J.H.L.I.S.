@@ -1,0 +1,23 @@
+.page-title {
+  font-size: 25px;
+  font-weight: 500;
+  color: #0c0c0c;
+}
+
+
+//.nav-pills {
+//  color: #212529;
+//}
+
+.nav-pills {
+  .nav-link {
+    color: #212529;
+  }
+
+  .nav-link.active {
+    background-color: #212529;
+    color: white;
+  }
+
+}
+

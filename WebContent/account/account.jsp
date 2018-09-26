@@ -34,6 +34,7 @@
 
     <!-- Main CSS-->
     <link href="../css/theme.css" rel="stylesheet" media="all">
+    <link href="../css/custom.css" rel="stylesheet" media="all">
 </head>
 <body class="animsition">
 <!-- declarations -->
@@ -281,22 +282,19 @@ Class.forName(MYclass);
             <!-- HEADER DESKTOP-->
      <!-- Main Body -->
      	<div class="main-content">
+        <div class = "pl-5 pb-3 page-title">Account Management</div>
         <div class="section__content section__content--p30">
             <div class="container-fluid">
            	<div class="row">
            	<div class="col-md-12">
            		<div class = "card text-left" id = "ptab-marg">
-				<div class = "card-header" >
-					<h3 class = "card-title">Account Management </h3>
-					
-				</div>
            		<div class = "card-body">
 					
 			
 						<div class="col-lg-12">
                         <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mEAdd" data-toggle="modal"style = "color:black;">new account</a></button>
 						<button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mEEdit" data-toggle="modal"style = "color:black;">edit account</a></button>
-                        <div class="table-responsive table--no-card m-b-40">
+                        <div class="pt-2 table-responsive table--no-card m-b-40">
                         <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
                         <table class="table table-borderless table-striped table-earning" id = "Elist">
                         <thead>

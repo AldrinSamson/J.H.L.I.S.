@@ -283,22 +283,17 @@
         <!-- HEADER DESKTOP-->
         <!-- Main Body -->
         <div class="main-content">
+            <div class = "pl-5 pb-3 page-title">Inventory Manifest</div>
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
                             <div class = "card text-left" id = "ptab-marg">
-                                <div class = "card-header" >
-                                    <h3 class = "card-title">Inventory Manifest</h3>
-
-                                </div>
                                 <div class = "card-body">
-
-
                                     <div class="col-lg-12">
                                         <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mEAdd" data-toggle="modal"style = "color:black;">Export .csv</a></button>
                                         <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mEEdit" data-toggle="modal"style = "color:black;">Export .pdf</a></button>
-                                        <div class="table-responsive table--no-card m-b-40">
+                                        <div class="pt-2 table-responsive table--no-card m-b-40">
                                             <table class="table table-borderless table-striped table-earning" id = "IElist">
                                                 <thead>
                                                 <tr>

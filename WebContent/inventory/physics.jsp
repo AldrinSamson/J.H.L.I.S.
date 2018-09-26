@@ -296,6 +296,7 @@
         <!-- HEADER DESKTOP-->
         <!-- Main Body -->
         <div class="main-content">
+            <div class = "pb-3 pl-5 page-title">Physics Laboratory</div>
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
                     <div class="row">
@@ -303,26 +304,23 @@
                             <div class="card text-left" id="ptab-marg">
                                 <!-- Nav Tabs -->
                                 <div class="card-header">
-                                    <h3 class="card-title"> Physics Laboratory </h3>
-                                    <ul class="nav nav-tabs ">
-                                        <li class="nav-item"><a style="color : grey;" href="#tab-elist"
+                                    <ul class="nav nav-pills">
+                                        <li class="nav-item"><a href="#tab-elist"
                                                                 data-toggle="tab" class="nav-link active">Equipment</a>
                                         </li>
-                                        <li class="nav-item"><a style="color : grey;" href="#tab-alist"
+                                        <li class="nav-item"><a href="#tab-alist"
                                                                 data-toggle="tab" class="nav-link">Apparatus</a></li>
-                                        <li class="nav-item"><a style="color : grey;" href="#tab-clist"
+                                        <li class="nav-item"><a href="#tab-clist"
                                                                 data-toggle="tab" class="nav-link">Consumable</a></li>
                                     </ul>
                                 </div>
-                                <div class="card-body">
+                                <div class="p-1 card-body">
                                     <div class="tab-content">
 
                                         <!--Equipment Table-->
                                         <div class="tab-pane fade-in active" id="tab-elist">
                                             <div class="col-lg-12">
-                                                <h2 class="title-1 m-b-25">Equipment List  &emsp;<button type="button" class="btn btn-outline-secondary"  href="#mEAdd" data-toggle="modal"><i
-                                                        class="fa fa-plus-square"
-                                                        style="color:black;"></i>NEW</button></h2>
+                                                <button type="button" class="btn new-item-btn"  href="#mEAdd" data-toggle="modal">NEW ITEM</button>
                                                 <table class="table table-borderless table-striped table-earning">
                                                     <tr>
                                                         <% try {
@@ -395,9 +393,7 @@
                                         <!--Apparatus Table-->
                                         <div class="tab-pane fade-in" id="tab-alist">
                                             <div class="col-lg-12">
-                                                <h2 class="title-1 m-b-25">Apparatus List&emsp;<button type="button" class="btn btn-outline-secondary"  href="#mAAdd" data-toggle="modal"><i
-                                                        class="fa fa-plus-square"
-                                                        style="color:black;"></i>NEW</button></h2>
+                                                <button type="button" class="btn new-item-btn"  href="#mAAdd" data-toggle="modal">NEW ITEM</button>
                                                 <table class="table table-borderless table-striped table-earning">
                                                     <tr>
                                                             <%
@@ -488,9 +484,7 @@
                                         <!--Consumable Table-->
                                         <div class="tab-pane fade-in" id="tab-clist">
                                             <div class="col-lg-12">
-                                                <h2 class="title-1 m-b-25">Consumable List&emsp;<button type="button" class="btn btn-outline-secondary"  href="#mCAdd" data-toggle="modal"><i
-                                                        class="fa fa-plus-square"
-                                                        style="color:black;"></i>NEW</button></h2>
+                                                <button type="button" class="btn new-item-btn" href="#mCAdd" data-toggle="modal">NEW ITEM</button>
                                                 <table class="table table-borderless table-striped table-earning">
                                                     <tr>
                                                             <%

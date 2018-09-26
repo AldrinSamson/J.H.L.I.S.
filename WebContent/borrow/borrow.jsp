@@ -283,16 +283,16 @@
         <!-- HEADER DESKTOP-->
         <!-- Main Body -->
         <div class="main-content">
+            <div class = "mt-0 pb-3 pl-5 page-title"> Borrowables(Singles Only)(v1)</div>
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
                             <div class = "card text-left" id = "ptab-marg">
                                 <div class = "card-header" >
-                                    <h3 class = "card-title"> Borrowables(Singles Only)(v1)</h3>
-                                    <ul class="nav nav-tabs ">
-                                        <li class = "nav-item"><a  style = "color : grey;" href="#tab-blist" data-toggle="tab" class = "nav-link active">Borrow</a></li>
-                                        <li class = "nav-item"><a  style = "color : grey;" href="#tab-rlist" data-toggle="tab" class = "nav-link" >Return</a></li>
+                                    <ul class="nav nav-pills">
+                                        <li class = "nav-item"><a href="#tab-blist" data-toggle="tab" class = "nav-link active">Borrow</a></li>
+                                        <li class = "nav-item"><a href="#tab-rlist" data-toggle="tab" class = "nav-link" >Return</a></li>
                                     </ul>
                                 </div>
                                 <div class = "card-body">
@@ -301,7 +301,7 @@
                                     <div class="tab-pane fade-in active" id="tab-blist">
                                     <div class="col-lg-12">
                                         <div class="table-responsive table--no-card m-b-40">
-                                            <table class="table table-borderless table-striped table-earning" id = "borrowETable">
+                                            <table class="pt-2 table table-borderless table-striped table-earning" id = "borrowETable">
                                                 <thead>
                                                 <tr data-toggle = "modal" data-target = "mEBorrow">
                                                     <th>ID</th>
