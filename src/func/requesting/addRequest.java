@@ -66,7 +66,7 @@ public class addRequest extends HttpServlet {
                     String newRequest = "insert into request values ('"+newKey+"','"+aKey+"','"+message+"','"+bDate+"','"+bSTime+"','Pending','Unfulfilled')";
                     stmtE.execute(newRequest);
 
-                out.println("<html><body><script type='text/javascript'>location='request.jsp';</script></body></html>");
+                out.println("<html><body><script type='text/javascript'>location='request/request.jsp';</script></body></html>");
 
             if (conn != null) {
                 conn.close();

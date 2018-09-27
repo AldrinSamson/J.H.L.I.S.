@@ -52,7 +52,7 @@ public class approveRequest extends HttpServlet {
                     stmtE.execute(fulfill);
                 }
 
-                out.println("<html><body><script type='text/javascript'>location='requestAdmin.jsp';</script></body></html>");
+                out.println("<html><body><script type='text/javascript'>location='request/requestAdmin.jsp';</script></body></html>");
 
                 if (con != null) {
                     con.close();

@@ -47,17 +47,17 @@ public class showMessage extends HttpServlet {
                 getBean.setrID(rID);
 
                 if (location.equals("prof")) {
-                    out.println("<html><body><script type='text/javascript'>;location='request.jsp#message';</script></body></html>");
+                    out.println("<html><body><script type='text/javascript'>;location='request/request.jsp#message';</script></body></html>");
                 }else if (location.equals("admin")){
                     out.println("<html><body><script type='text/javascript'>;location='dashboard.jsp#message';</script></body></html>");
                 }else if (location.equals("pending")){
-                    out.println("<html><body><script type='text/javascript'>;location='requestAdmin.jsp#pMessage';</script></body></html>");
+                    out.println("<html><body><script type='text/javascript'>;location='request/requestAdmin.jsp#pMessage';</script></body></html>");
                 }else if (location.equals("unfulfilled")) {
-                    out.println("<html><body><script type='text/javascript'>;location='requestAdmin.jsp#fMessage';</script></body></html>");
+                    out.println("<html><body><script type='text/javascript'>;location='request/requestAdmin.jsp#fMessage';</script></body></html>");
                 }else if (location.equals("item")) {
-                        out.println("<html><body><script type='text/javascript'>;location='request.jsp#item';</script></body></html>");
+                        out.println("<html><body><script type='text/javascript'>;location='request/request.jsp#item';</script></body></html>");
                 }else{
-                    out.println("<html><body><script type='text/javascript'>;location='requestAdmin.jsp#message';</script></body></html>");
+                    out.println("<html><body><script type='text/javascript'>;location='request/requestAdmin.jsp#message';</script></body></html>");
                 }
 
                 if (con != null) {

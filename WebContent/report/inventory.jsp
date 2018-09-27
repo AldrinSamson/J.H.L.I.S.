@@ -76,9 +76,17 @@
                         <a href="../dashboard.jsp">
                             <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                     </li>
-                    <li>
-                        <a href="../borrow/borrow.jsp">
-                            <i class="fas fa-flask"></i>Item Borrow/Return</a>
+                    <li class="has-sub">
+                        <a class="js-arrow" href="#">
+                            <i class="fas fa-table"></i>Item Borrow/Return</a>
+                        <ul class="list-unstyled navbar__sub-list js-sub-list">
+                            <li>
+                                <a href="../borrow/borrow.jsp">Single</a>
+                            </li>
+                            <li>
+                                <a href="../borrow/borrowSet.jsp">Set</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="has-sub">
                         <a class="js-arrow" href="#">
@@ -123,7 +131,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="../requestAdmin.jsp">
+                        <a href="../request/requestAdmin.jsp">
                             <i class="far fa-check-square"></i>Requests</a>
                     </li>
 
@@ -153,9 +161,17 @@
                         <a href="../dashboard.jsp">
                             <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                     </li>
-                    <li>
-                        <a href="../borrow/borrow.jsp">
-                            <i class="fas fa-flask"></i>Item Borrow/Return</a>
+                    <li class="has-sub">
+                        <a class="js-arrow" href="#">
+                            <i class="fas fa-table"></i>Item Borrow/Return</a>
+                        <ul class="list-unstyled navbar__sub-list js-sub-list">
+                            <li>
+                                <a href="../borrow/borrow.jsp">Single</a>
+                            </li>
+                            <li>
+                                <a href="../borrow/borrowSet.jsp">Set</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="has-sub">
                         <a class="js-arrow" href="#">
@@ -200,7 +216,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="../requestAdmin.jsp">
+                        <a href="../request/requestAdmin.jsp">
                             <i class="far fa-check-square"></i>Requests</a>
                     </li>
 
