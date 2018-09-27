@@ -285,6 +285,7 @@ stmt = con.createStatement();
             <!-- HEADER DESKTOP-->
      <!-- Main Body -->
      	<div class="main-content">
+        <div class="pb-3 pl-5 page-title">Item Sets</div>
         <div class="section__content section__content--p30">
             <div class="container-fluid">
            	<div class="row">
@@ -292,20 +293,19 @@ stmt = con.createStatement();
 			<div class="col-md-12">
            		<div class = "card text-left" id = "ptab-marg">
 				<div class = "card-header" >
-					<h3 class = "card-title"> Item Sets</h3>
-					<ul class="nav nav-tabs ">
-					<li class = "nav-item"><a  style = "color : grey;" href="#tab-elist" data-toggle="tab" class = "nav-link active">Physics Lab</a></li>	
-					<li class = "nav-item"><a  style = "color : grey;" href="#tab-clist" data-toggle="tab" class = "nav-link" >Chemistry Lab</a></li>
+					<ul class="nav nav-pills">
+					<li class = "nav-item"><a href="#tab-elist" data-toggle="tab" class = "nav-link active">Physics Lab</a></li>
+					<li class = "nav-item"><a href="#tab-clist" data-toggle="tab" class = "nav-link" >Chemistry Lab</a></li>
 					</ul>
 				</div>
-           		<div class = "card-body">
+           		<div class = "p-1 card-body">
 					
 				<div class= "tab-content">
 				
 						<div class="tab-pane fade-in active" id="tab-elist">
-						<div class="col-lg-12">
-                        <h2 class="title-1 m-b-25">Physics Item Sets</h2>
-                        <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mPAdd" data-toggle="modal"style = "color:black;">new set</a></button>
+						<div class="pt-2 col-lg-12">
+
+                        <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mPAdd" data-toggle="modal"style = "color:black;">New Set</a></button>
 						<table class="table table-borderless table-striped table-earning" id = "pTable">
 					<tr>
 					  <%   
@@ -361,9 +361,8 @@ stmt = con.createStatement();
                         </div>
                 
                 		<div class="tab-pane fade-in " id="tab-clist">
-						<div class="col-lg-12">
-						 <h2 class="title-1 m-b-25">Chemistry Item Sets</h2>
-						 <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mISAdd" data-toggle="modal"style = "color:black;">new set</a></button>
+						<div class="pt-2 col-lg-12">
+                        <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mISAdd" data-toggle="modal"style = "color:black;">new set</a></button>
 						<button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mCEdit" data-toggle="modal"style = "color:black;">edit set</a></button>
 						 <table class="table table-borderless table-striped table-earning" id = "Elist">
 					<tr>

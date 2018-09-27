@@ -37,6 +37,7 @@
 
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
+    <link href = "css/customSCSS.scss" rel = "stylesheet">
 </head>
 <body class="animsition">
 <!-- declarations -->
@@ -373,7 +374,7 @@
                             <div class="col-lg-12">
                                 <div class="card text-left" id="ptab-marg">
                                     <div class="card-header">
-                                        <h3 class="card-title"> Requests </h3>
+                                        <h3 class="pt-2 card-title"> Requests </h3>
                                     </div>
                                     <div class="card-body">
                                         <table class="table table-borderless table-striped table-earning" id = "rTable">

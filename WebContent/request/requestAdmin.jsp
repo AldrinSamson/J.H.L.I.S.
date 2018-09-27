@@ -286,6 +286,7 @@
         <!-- HEADER DESKTOP-->
         <!-- Main Body -->
         <div class="main-content">
+            <div class="pb-3 pl-5 page-title"> Item Request Module </div>
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
                     <div class="row">
@@ -293,14 +294,14 @@
                             <div class="card text-left" id="ptab-marg">
                                 <!-- Nav Tabs -->
                                 <div class="card-header">
-                                    <h3 class="card-title"> Item Request Module </h3>
-                                    <ul class="nav nav-tabs ">
-                                        <li class="nav-item"><a style="color : grey;" href="#tab-elist"
+
+                                    <ul class="nav nav-pills ">
+                                        <li class="nav-item"><a href="#tab-elist"
                                                                 data-toggle="tab" class="nav-link active">Pending</a>
                                         </li>
-                                        <li class="nav-item"><a style="color : grey;" href="#tab-alist"
+                                        <li class="nav-item"><a href="#tab-alist"
                                                                 data-toggle="tab" class="nav-link">Unfulfilled</a></li>
-                                        <li class="nav-item"><a style="color : grey;" href="#tab-clist"
+                                        <li class="nav-item"><a href="#tab-clist"
                                                                 data-toggle="tab" class="nav-link">History</a></li>
                                     </ul>
                                 </div>

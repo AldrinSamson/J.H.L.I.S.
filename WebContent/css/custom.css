@@ -78,3 +78,76 @@ label::after{
     line-height: 0.90em;
     font-weight: normal;
 }
+
+/*sel*/
+
+.page-title {
+    font-size: 25px;
+    font-weight: 600;
+    color: #0c0c0c;
+}
+
+.nav-pills {
+    position: relative;
+    top: 13px;
+}
+.nav-pills .nav-link {
+    background-color: none;
+    color: #212529;
+}
+
+.nav-pills .nav-link.active {
+    transition: none;
+    border-bottom: solid 5px #212529;
+    background-color: transparent;
+    border-radius: 1px;
+    color: #212529;
+}
+
+.new-item-btn {
+    position: absolute;
+    left: 520px;
+    top: 59px;
+    border: solid 1px #212529;
+    background-color: #212529;
+    color: white;
+    z-index: 1;
+}
+
+.new-item-btn-nb {
+    position: absolute;
+    left: 520px;
+    top: 8px;
+    border: solid 1px #212529;
+    background-color: #212529;
+    color: white;
+    z-index: 1;
+}
+
+.dataTables_wrapper .dataTables_length, .dataTables_filter {
+    padding-top: 13px;
+}
+
+.table {
+    margin-bottom: 2px;
+    border-bottom: solid 1px #212529;
+}
+
+.card-header {
+    padding-top: 0;
+}
+
+table.dataTable, table.dataTable th, table.dataTable td {
+    padding-top: 8px;
+}
+
+.menu-sidebar .logo {
+    background-color: #212529;
+    color: #feff3b;
+}
+
+
+
+
+
+

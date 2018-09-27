@@ -281,15 +281,12 @@
         <!-- HEADER DESKTOP-->
         <!-- Main Body -->
         <div class="main-content">
+            <div class = "pl-5 pb-3 page-title"> !Prototype Borrow Report!</div>
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
                             <div class = "card text-left" id = "ptab-marg">
-                                <div class = "card-header" >
-                                    <h3 class = "card-title"> !Prototype Borrow Report!</h3>
-
-                                </div>
                                 <div class = "card-body">
 
 
@@ -297,7 +294,7 @@
                                         <button type="button" class="btn btn-outline-secondary"  href="#mEAdds" data-toggle="modal">Export PDF</button>
                                         <button type="button" class="btn btn-outline-secondary"  href="#mEAdds" data-toggle="modal">Export CSV</button>
                                         <button type="button" class="btn btn-outline-secondary"  href="#mEAdds" data-toggle="modal">Clear</button>
-                                        <div class="table-responsive table--no-card m-b-40">
+                                        <div class="pt-2 table-responsive table--no-card m-b-40">
                                             <table class="table table-borderless table-striped table-earning" id = "nTable">
                                                 <thead>
                                                 <tr>
