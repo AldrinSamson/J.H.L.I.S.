@@ -6,35 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a8f9b66-ebec-4db9-bcd2-8796a87d45f7" name="Default Changelist" comment="Default Changelist">
+    <list default="true" id="3a8f9b66-ebec-4db9-bcd2-8796a87d45f7" name="Default Changelist" comment="added logout">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/account/account.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/account/account.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/borrow/borrow.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/borrow/borrow.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/dashboard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/images/bg-title-01.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/images/bg-title-02.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/images/icon/Untitled-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/images/icon/avatar-02.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/images/icon/avatar-03.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/images/icon/avatar-04.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/images/icon/avatar-05.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/images/icon/avatar-06.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/images/icon/avatar-big-01.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/images/icon/logo-blue.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/images/icon/logo-mini.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/images/icon/logo-white.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/images/icon/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/inventory/chemistry.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/inventory/chemistry.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/inventory/itemSets.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/inventory/itemSets.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/inventory/nonBorrowable.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/inventory/nonBorrowable.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/inventory/physics.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/inventory/physics.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/report/borrowTransaction.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/report/borrowTransaction.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/report/inventory.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/report/inventory.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/request.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/request.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/requestAdmin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/requestAdmin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/func/account/loginv2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/func/account/loginv2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/func/account/logout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/func/account/logout.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/build/classes/" />
@@ -113,11 +87,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inventory.jsp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="inventory.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WebContent/report/inventory.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="269" column="30" lean-forward="true" selection-start-line="268" selection-start-column="34" selection-end-line="269" selection-end-column="30" />
+            <state relative-caret-position="157">
+              <caret line="428" column="29" lean-forward="true" selection-start-line="428" selection-start-column="29" selection-end-line="428" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -158,20 +132,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="physics.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebContent/inventory/physics.jsp">
+      <file leaf-file-name="dashboard.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebContent/dashboard.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="276" column="79" lean-forward="true" selection-start-line="276" selection-start-column="79" selection-end-line="276" selection-end-column="79" />
+            <state relative-caret-position="153">
+              <caret line="231" column="88" lean-forward="true" selection-start-line="231" selection-start-column="88" selection-end-line="231" selection-end-column="88" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dashboard.jsp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/WebContent/dashboard.jsp">
+      <file leaf-file-name="borrow.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebContent/borrow/borrow.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="273" lean-forward="true" selection-start-line="273" selection-end-line="273" />
+            <state relative-caret-position="272">
+              <caret line="471" column="12" selection-start-line="471" selection-start-column="12" selection-end-line="471" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -448,7 +422,7 @@
       <updated>1537548305330</updated>
       <workItem from="1537548332465" duration="2607000" />
       <workItem from="1537625590763" duration="2687000" />
-      <workItem from="1537916568499" duration="6318000" />
+      <workItem from="1537916568499" duration="6570000" />
     </task>
     <task id="LOCAL-00001" summary="Default Changelist">
       <created>1537696657774</created>
@@ -457,11 +431,18 @@
       <option name="project" value="LOCAL" />
       <updated>1537696657774</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added logout">
+      <created>1538041618522</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1538041618522</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22641000" />
+    <option name="totallyTimeSpent" value="22893000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1476" height="878" extended-state="6" />
@@ -478,9 +459,9 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.3372549" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3372549" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.498632" weight="0.18562092" />
+      <window_info active="true" anchor="bottom" id="Messages" order="10" sideWeight="0.498632" visible="true" weight="0.18562092" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info id="Image Layers" order="3" />
       <window_info anchor="bottom" id="Java Enterprise" order="11" />
@@ -488,7 +469,7 @@
       <window_info anchor="bottom" id="Version Control" order="13" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.09344263" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3786885" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14021888" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14021888" />
       <window_info id="Web" order="7" side_tool="true" />
       <window_info id="Learn" order="8" />
       <window_info anchor="right" id="Theme Preview" order="8" />
@@ -509,7 +490,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Default Changelist" />
-    <option name="LAST_COMMIT_MESSAGE" value="Default Changelist" />
+    <MESSAGE value="added logout" />
+    <option name="LAST_COMMIT_MESSAGE" value="added logout" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -802,17 +784,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/borrow/borrow.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="253" column="65" lean-forward="true" selection-start-line="253" selection-start-column="65" selection-end-line="253" selection-end-column="65" />
-          <folding>
-            <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#aside#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/account/account.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -855,13 +826,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/report/inventory.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="269" column="30" lean-forward="true" selection-start-line="268" selection-start-column="34" selection-end-line="269" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -885,8 +849,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/dashboard.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="273" lean-forward="true" selection-start-line="273" selection-end-line="273" />
+        <state relative-caret-position="153">
+          <caret line="231" column="88" lean-forward="true" selection-start-line="231" selection-start-column="88" selection-end-line="231" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/borrow/borrow.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="471" column="12" selection-start-line="471" selection-start-column="12" selection-end-line="471" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/report/inventory.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="428" column="29" lean-forward="true" selection-start-line="428" selection-start-column="29" selection-end-line="428" selection-end-column="29" />
         </state>
       </provider>
     </entry>
