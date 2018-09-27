@@ -108,49 +108,49 @@
 
                         <div class="header-button">
                             <%
-                                try{
+                                try {
+                                    getUser = (String) session.getAttribute("user");
 
-                                    getUser = (String)session.getAttribute("user");
-
-                                    getQ = "select * from account where username = '"+getUser+"'";
+                                    getQ = "select * from account    where username = '" + getUser + "'";
                                     get = stmt.executeQuery(getQ);
 
-                                    while (get.next()){
-                                    aKey = get.getString("aKey");
-
-
+                                    while (get.next()) {
                             %>
                             <div class="account-wrap">
                                 <div class="account-item clearfix js-item-menu">
 
                                     <div class="content">
-                                        <a class="js-acc-btn" href="#">Hello, <%= get.getString("aClass") %> <%= get.getString("aName") %> </a>
+                                        <a class="js-acc-btn"
+                                           href="#">Hello, <%= get.getString("aClass") %> <%= get.getString("aName") %>
+                                        </a>
                                     </div>
                                     <div class="account-dropdown js-dropdown">
                                         <div class="info clearfix">
                                             <div class="image">
                                                 <a href="#">
-                                                    <img src="../images/icon/avatar-01.jpg" alt="John Doe" />
+                                                    <img src="../images/icon/avatar-02.png"/>
                                                 </a>
                                             </div>
                                             <div class="content">
                                                 <h5 class="name">
-                                                    <a href="#"><%= get.getString("username") %> </a>
+                                                    <a href="#"><%= get.getString("username") %>
+                                                    </a>
                                                 </h5>
                                                 <span class="email"><%= get.getString("aID") %> </span>
                                             </div>
                                         </div>
 
                                         <div class="account-dropdown__footer">
-                                            <a href="#">
-                                                <i class="zmdi zmdi-power"></i>Logout</a>
+                                            <form method = "post" action = "/logout">
+                                                <button class="btn btn-default btn-md">Logout<i class="zmdi zmdi-power"></i><input type="submit" value=""></button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <%
                                     }
-                                }catch (Exception e){
+                                } catch (Exception e) {
 
                                 }
 

@@ -44,6 +44,7 @@ public class loginv2 extends HttpServlet {
                 ResultSet rs = ps.executeQuery();
                 chk = rs.next();
 
+                //add audit log
 
                 if (chk) {
 
