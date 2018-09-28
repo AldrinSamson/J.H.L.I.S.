@@ -314,54 +314,54 @@
                                 <div class = "card-body">
 
                                     <div class ="tab-content">
-                                    <div class="tab-pane fade-in active" id="tab-blist">
-                                    <div class="col-lg-12">
-                                        <div class="table-responsive table--no-card m-b-40">
-                                            <table class="pt-2 table table-borderless table-striped table-earning" id = "borrowETable">
-                                                <thead>
-                                                <tr data-toggle = "modal" data-target = "mEBorrow">
-                                                    <th>ID</th>
-                                                    <th>name</th>
-                                                    <th>description</th>
-                                                    <th>item CQ</th>
-                                                    <th>item TQ</th>
-                                                    <th>item unit</th>
-                                                    <th>item Date</th>
-                                                    <th>item condition</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <%
-                                                    try {
+                                        <div class="tab-pane fade-in active" id="tab-blist">
+                                            <div class="col-lg-12">
+                                                <div class="table-responsive table--no-card m-b-40">
+                                                    <table class="pt-2 table table-borderless table-striped table-earning" id = "borrowETable">
+                                                        <thead>
+                                                        <tr data-toggle = "modal" data-target = "mEBorrow">
+                                                            <th>ID</th>
+                                                            <th>name</th>
+                                                            <th>description</th>
+                                                            <th>item CQ</th>
+                                                            <th>item TQ</th>
+                                                            <th>item unit</th>
+                                                            <th>item Date</th>
+                                                            <th>item condition</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <%
+                                                            try {
 
 
-                                                        query = "select * from inventory i join itemdetails d on i.itemKey = d.itemKey ";
-                                                        rs = stmt.executeQuery(query);
+                                                                query = "select * from inventory i join itemdetails d on i.itemKey = d.itemKey ";
+                                                                rs = stmt.executeQuery(query);
 
-                                                        while(rs.next()){
-                                                %>
-                                                <tr>
-                                                    <td><%=rs.getString("itemKey")%></td>
-                                                    <td><%=rs.getString("itemName")%></td>
-                                                    <td><%=rs.getString("itemDesc")%></td>
-                                                    <td><%=rs.getString("itemCurrentQuantity")%></td>
-                                                    <td><%=rs.getString("itemTotalQuantity")%></td>
-                                                    <td><%=rs.getString("itemUnit")%></td>
-                                                    <td><%=rs.getString("itemDate")%></td>
-                                                    <td><%=rs.getString("itemCondition")%></td>
-                                                </tr>
-                                                <%
-                                                        }
-                                                    }catch (Exception e){
-                                                        e.printStackTrace();
-                                                    }
-                                                %>
-                                                </tbody>
-                                            </table>
+                                                                while(rs.next()){
+                                                        %>
+                                                        <tr>
+                                                            <td><%=rs.getString("itemKey")%></td>
+                                                            <td><%=rs.getString("itemName")%></td>
+                                                            <td><%=rs.getString("itemDesc")%></td>
+                                                            <td><%=rs.getString("itemCurrentQuantity")%></td>
+                                                            <td><%=rs.getString("itemTotalQuantity")%></td>
+                                                            <td><%=rs.getString("itemUnit")%></td>
+                                                            <td><%=rs.getString("itemDate")%></td>
+                                                            <td><%=rs.getString("itemCondition")%></td>
+                                                        </tr>
+                                                        <%
+                                                                }
+                                                            }catch (Exception e){
+                                                                e.printStackTrace();
+                                                            }
+                                                        %>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
                                         </div>
-                                    </div>
-
-                                </div>
                                         <div class="tab-pane fade-in" id="tab-rlist">
                                             <div class="col-lg-12">
                                                 <div class="table-responsive table--no-card m-b-40">
@@ -416,10 +416,10 @@
                                             </div>
 
                                         </div>
-                            </div>
+                                    </div>
                                 </div>
-                                </div>
                             </div>
+                        </div>
 
                     </div>
                 </div>
@@ -477,7 +477,7 @@
             <div class="modal-content">
                 <div class="modal-header"><h4>Return Equipment</h4></div>
 
-                    <div class="modal-body">
+                <div class="modal-body">
 
 		<pre class = "tab">
         <div  style = "display:table">
@@ -500,11 +500,11 @@
             </div>
         </div>
 		</pre>
-                    </div>
-                    <div class="modal-footer">
+                </div>
+                <div class="modal-footer">
 
-                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
-                    </div>
+                    <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
+                </div>
             </div>
         </div>
     </div>

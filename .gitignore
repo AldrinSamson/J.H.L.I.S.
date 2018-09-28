@@ -122,3 +122,5 @@ local.properties
 .idea/workspace.xml
 out/artifacts/jhlis/account/recovery/
 src/lib/
+/.idea/
+!/.idea/

@@ -91,9 +91,17 @@
                         <a href="../dashboard.jsp">
                             <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                     </li>
-                    <li>
-                        <a href="../borrow/borrow.jsp">
-                            <i class="fas fa-flask"></i>Item Borrow/Return</a>
+                    <li class="has-sub">
+                        <a class="js-arrow" href="#">
+                            <i class="fas fa-table"></i>Item Borrow/Return</a>
+                        <ul class="list-unstyled navbar__sub-list js-sub-list">
+                            <li>
+                                <a href="../borrow/borrow.jsp">Single</a>
+                            </li>
+                            <li>
+                                <a href="../borrow/borrowSet.jsp">Set</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="has-sub">
                         <a class="js-arrow" href="#">
@@ -138,7 +146,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="../requestAdmin.jsp">
+                        <a href="../request/requestAdmin.jsp">
                             <i class="far fa-check-square"></i>Requests</a>
                     </li>
 
@@ -168,9 +176,17 @@
                         <a href="../dashboard.jsp">
                             <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                     </li>
-                    <li>
-                        <a href="../borrow/borrow.jsp">
-                            <i class="fas fa-flask"></i>Item Borrow/Return</a>
+                    <li class="has-sub">
+                        <a class="js-arrow" href="#">
+                            <i class="fas fa-table"></i>Item Borrow/Return</a>
+                        <ul class="list-unstyled navbar__sub-list js-sub-list">
+                            <li>
+                                <a href="../borrow/borrow.jsp">Single</a>
+                            </li>
+                            <li>
+                                <a href="../borrow/borrowSet.jsp">Set</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="has-sub">
                         <a class="js-arrow" href="#">
@@ -215,7 +231,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="../requestAdmin.jsp">
+                        <a href="../request/requestAdmin.jsp">
                             <i class="far fa-check-square"></i>Requests</a>
                     </li>
 
@@ -244,7 +260,7 @@
                                 try {
                                     getUser = (String) session.getAttribute("user");
 
-                                    getQ = "select * from account where username = '" + getUser + "'";
+                                    getQ = "select * from account    where username = '" + getUser + "'";
                                     get = stmt.executeQuery(getQ);
 
                                     while (get.next()) {
@@ -261,7 +277,7 @@
                                         <div class="info clearfix">
                                             <div class="image">
                                                 <a href="#">
-                                                    <img src="../images/icon/avatar-01.jpg"/>
+                                                    <img src="../images/icon/avatar-02.png"/>
                                                 </a>
                                             </div>
                                             <div class="content">
@@ -274,8 +290,9 @@
                                         </div>
 
                                         <div class="account-dropdown__footer">
-                                            <a href="#">
-                                                <i class="zmdi zmdi-power"></i>Logout</a>
+                                            <form method = "post" action = "../logout">
+                                                <button class="btn btn-default btn-md">Logout<i class="zmdi zmdi-power"></i><input type="submit" value=""></button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

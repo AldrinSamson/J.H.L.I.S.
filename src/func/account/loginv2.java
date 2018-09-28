@@ -20,7 +20,7 @@ public class loginv2 extends HttpServlet {
 
     String MYdburl = getBean.getMyUrl();
     String MYclass = getBean.getMyClass();
-    String user, name, idNum , type;
+    String user, name, idNum , type ,aKey;
     boolean chk = false;
 
     @Override
@@ -44,6 +44,7 @@ public class loginv2 extends HttpServlet {
                 ResultSet rs = ps.executeQuery();
                 chk = rs.next();
 
+                //add audit log
 
                 if (chk) {
 
@@ -51,7 +52,7 @@ public class loginv2 extends HttpServlet {
                     String get = "select * from account where username = '" + user + "'";
                     getz = stmt.executeQuery(get);
                     while (getz.next()){
-
+                        aKey = getz.getString("aKey");
                         type = getz.getString("aClass");
 
                     }
@@ -59,11 +60,12 @@ public class loginv2 extends HttpServlet {
 
                     HttpSession log = request.getSession();
                     log.setAttribute("user", user);
+                    log.setAttribute("aKey", aKey);
 
                     if (type.equals("Administrator")){
                     response.sendRedirect("dashboard.jsp");
                     }else {
-                        response.sendRedirect("request.jsp");
+                        response.sendRedirect("request/request.jsp");
                     }
 
                 } else {

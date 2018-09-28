@@ -147,16 +147,35 @@ table.dataTable, table.dataTable th, table.dataTable td {
     color: #feff3b;
 }
 
+.login-wrap .login-content .logo {
+    background-color: #171c20;
+    color: #feff3b;
+}
+
+.login-wrap .login-content .logo .h1-yellow {
+    color: #feff3b;
+}
+
+.login-content {
+    background-color: #171c20;
+}
+
 pre > .table {
     border-bottom: none;
 }
 
+<<<<<<< HEAD
 /*.modal-header, .modal-footer {*/
     /*background-color: #212529;*/
     /*border: solid 1px #212529;*/
     /*color: #ffffff;*/
 /*}*/
 
+=======
+.animsition {
+    background-image: url("../images/ustjh.jpg");
+}
+>>>>>>> e37bb20d78ae486489847168fbd7dcab8275d849
 
 
 

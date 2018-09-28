@@ -79,9 +79,17 @@ stmt = con.createStatement();
                             <a href="../dashboard.jsp">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
-                        <li>
-                            <a href="../borrow/borrow.jsp">
-                                <i class="fas fa-flask"></i>Item Borrow/Return</a>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-table"></i>Item Borrow/Return</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="../borrow/borrow.jsp">Single</a>
+                                </li>
+                                <li>
+                                    <a href="../borrow/borrowSet.jsp">Set</a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
@@ -126,7 +134,7 @@ stmt = con.createStatement();
                             </ul>
                         </li>
                         <li>
-                            <a href="../requestAdmin.jsp">
+                            <a href="../request/requestAdmin.jsp">
                                 <i class="far fa-check-square"></i>Requests</a>
                         </li>
 
@@ -156,9 +164,17 @@ stmt = con.createStatement();
                             <a href="../dashboard.jsp">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
-                        <li>
-                            <a href="../borrow/borrow.jsp">
-                                <i class="fas fa-flask"></i>Item Borrow/Return</a>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-table"></i>Item Borrow/Return</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="../borrow/borrow.jsp">Single</a>
+                                </li>
+                                <li>
+                                    <a href="../borrow/borrowSet.jsp">Set</a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
@@ -203,7 +219,7 @@ stmt = con.createStatement();
                             </ul>
                         </li>
                         <li>
-                            <a href="../requestAdmin.jsp">
+                            <a href="../request/requestAdmin.jsp">
                                 <i class="far fa-check-square"></i>Requests</a>
                         </li>
 
@@ -226,53 +242,57 @@ stmt = con.createStatement();
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="header-wrap">
-                            
+
                             <div class="header-button">
-                        <% 
-                        try{
-                    		getUser = (String)session.getAttribute("user");
-                    		
-                    		getQ = "select * from account where username = '"+getUser+"'";
-                    		get = stmt.executeQuery(getQ);
-                    		
-                    	while (get.next()){
-                        %>
+                                <%
+                                    try {
+                                        getUser = (String) session.getAttribute("user");
+
+                                        getQ = "select * from account    where username = '" + getUser + "'";
+                                        get = stmt.executeQuery(getQ);
+
+                                        while (get.next()) {
+                                %>
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
-                  
+
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#">Hello, <%= get.getString("aClass") %> <%= get.getString("aName") %> </a>
+                                            <a class="js-acc-btn"
+                                               href="#">Hello, <%= get.getString("aClass") %> <%= get.getString("aName") %>
+                                            </a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="../images/icon/avatar-01.jpg" alt="John Doe" />
+                                                        <img src="../images/icon/avatar-02.png"/>
                                                     </a>
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#"><%= get.getString("username") %> </a>
+                                                        <a href="#"><%= get.getString("username") %>
+                                                        </a>
                                                     </h5>
                                                     <span class="email"><%= get.getString("aID") %> </span>
                                                 </div>
                                             </div>
-                                          
+
                                             <div class="account-dropdown__footer">
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-power"></i>Logout</a>
+                                                <form method = "post" action = "../logout">
+                                                    <button class="btn btn-default btn-md">Logout<i class="zmdi zmdi-power"></i><input type="submit" value=""></button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                        <%
-                    		}
-                    	}catch (Exception e){
-                        	
-                        }
-                    	
-                    	
-                        %>
+                                <%
+                                        }
+                                    } catch (Exception e) {
+
+                                    }
+
+
+                                %>
                             </div>
                         </div>
                     </div>
@@ -449,6 +469,7 @@ stmt = con.createStatement();
             <tr>
                 <td><input type="text" name="name[]" class="input-modal"></td>
                 <td><input type="text" name="quantity[]" class="input-modal"></td>
+                <td><input type="text" name="lab" class="input-modal" value ="Physics" hidden></td>
             </tr>
 
             </table>

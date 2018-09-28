@@ -17,11 +17,12 @@ public class addSet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     Connection con;
-    Statement stmt;
-    ResultSet chkID;
+    Statement stmt , stmtE;
+    ResultSet get;
     String MYdburl = getBean.getMyUrl();
     String MYclass = getBean.getMyClass();
-    String namesplit;
+    String newKey ;
+    int newNum ;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try (PrintWriter out = response.getWriter()) {
@@ -29,34 +30,48 @@ public class addSet extends HttpServlet {
             String lab = request.getParameter("lab");
             String[] name = request.getParameterValues("name[]");
             String[] quantity = request.getParameterValues("quantity[]");
+            String abbv ;
+            List<String> nameList = new ArrayList<>();
+            nameList.addAll(Arrays.asList(name));
+            List<String> quantityList = new ArrayList<>();
+            quantityList.addAll(Arrays.asList(quantity));
 
-            List<String> list = new ArrayList<String>();
-            list.addAll(Arrays.asList(name));
-
-
-            /*for (int i = 0; i < name.length; i++) {
-                namesplit = list.get(0);
-                out.println("<html><body><script type='text/javascript'>alert('"+namesplit+"');location='inventory/itemSets.jsp';</script></body></html>");
-                list.remove(0);
-            }*/
+            if (lab.equals("Physics")){
+                 abbv = "PHYS";
+            }else
+                 abbv = "CHEM";
 
             try {
 
                 Class.forName(MYclass);
                 con = DriverManager.getConnection(MYdburl);
-                String sql = "insert into itemsetgroup(itemKey ,isKey) values (?,?) ";
-                //PreparedStatement pstmt = con.createStatement(sql);
-                for (String tmp : name) {
+                stmt = con.createStatement();
+                stmtE = con.createStatement();
 
+                String genKey = "select isNum from itemsetlist where isLab = '"+lab+"' order by isNum desc limit 1 ";
+                get = stmt.executeQuery(genKey);
 
+                while (get.next()){
+                    int num = get.getInt("isNum");
+                    newNum = ++num;
+                    newKey = abbv+"-"+newNum;
                 }
 
+                int i = 0;
+                while(i< nameList.size()){
 
+                    String addGroup = "insert into itemsetgroup values ('"+nameList.get(i)+"', '"+newKey+"' , '"+quantityList.get(i)+"')";
+                    stmtE.execute(addGroup);
+                    i++;
+                }
+
+                String addList = "insert into itemsetlist values ('"+newKey+"','"+lab+"','"+newNum+"','Available')";
+                stmtE.execute(addList);
             } catch (Exception e){
                 e.printStackTrace();
             }
 
-
+            out.println("<html><body><script type='text/javascript'>location='inventory/itemSets.jsp';</script></body></html>");
         }
 
     }

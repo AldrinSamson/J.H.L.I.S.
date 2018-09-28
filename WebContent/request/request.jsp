@@ -108,49 +108,49 @@
 
                         <div class="header-button">
                             <%
-                                try{
+                                try {
+                                    getUser = (String) session.getAttribute("user");
 
-                                    getUser = (String)session.getAttribute("user");
-
-                                    getQ = "select * from account where username = '"+getUser+"'";
+                                    getQ = "select * from account    where username = '" + getUser + "'";
                                     get = stmt.executeQuery(getQ);
 
-                                    while (get.next()){
-                                    aKey = get.getString("aKey");
-
-
+                                    while (get.next()) {
                             %>
                             <div class="account-wrap">
                                 <div class="account-item clearfix js-item-menu">
 
                                     <div class="content">
-                                        <a class="js-acc-btn" href="#">Hello, <%= get.getString("aClass") %> <%= get.getString("aName") %> </a>
+                                        <a class="js-acc-btn"
+                                           href="#">Hello, <%= get.getString("aClass") %> <%= get.getString("aName") %>
+                                        </a>
                                     </div>
                                     <div class="account-dropdown js-dropdown">
                                         <div class="info clearfix">
                                             <div class="image">
                                                 <a href="#">
-                                                    <img src="../images/icon/avatar-01.jpg" alt="John Doe" />
+                                                    <img src="../images/icon/avatar-02.png"/>
                                                 </a>
                                             </div>
                                             <div class="content">
                                                 <h5 class="name">
-                                                    <a href="#"><%= get.getString("username") %> </a>
+                                                    <a href="#"><%= get.getString("username") %>
+                                                    </a>
                                                 </h5>
                                                 <span class="email"><%= get.getString("aID") %> </span>
                                             </div>
                                         </div>
 
                                         <div class="account-dropdown__footer">
-                                            <a href="#">
-                                                <i class="zmdi zmdi-power"></i>Logout</a>
+                                            <form method = "post" action = "/logout">
+                                                <button class="btn btn-default btn-md">Logout<i class="zmdi zmdi-power"></i><input type="submit" value=""></button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <%
                                     }
-                                }catch (Exception e){
+                                } catch (Exception e) {
 
                                 }
 
@@ -196,7 +196,7 @@
                                                 <%
                                                     try {
 
-
+                                                        aKey = (String) session.getAttribute("aKey");
                                                         query = "SELECT * from request where aKey = '"+aKey+"'";
                                                         rs = stmt.executeQuery(query);
 
@@ -244,7 +244,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header"><h4>New Request</h4></div>
-                <form action="addRequest" method="post" name ="addRequest">
+                <form action="../addRequest" method="post" name ="addRequest">
 
                     <div class="modal-body">
 
@@ -392,25 +392,25 @@
 </div>
 
 <!-- Jquery JS-->
-<script src="vendor/jquery-3.2.1.min.js"></script>
+<script src="../vendor/jquery-3.2.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- Bootstrap JS-->
-<script src="vendor/bootstrap-4.1/popper.min.js"></script>
-<script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+<script src="../vendor/bootstrap-4.1/popper.min.js"></script>
+<script src="../vendor/bootstrap-4.1/bootstrap.min.js"></script>
 <!-- Vendor JS -->
-<script src="vendor/slick/slick.min.js"></script>
-<script src="vendor/wow/wow.min.js"></script>
-<script src="vendor/animsition/animsition.min.js"></script>
-<script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-<script src="vendor/counter-up/jquery.waypoints.min.js"></script>
-<script src="vendor/datatables/datatables.min.js"></script>
-<script src="vendor/counter-up/jquery.counterup.min.js"></script>
-<script src="vendor/circle-progress/circle-progress.min.js"></script>
-<script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-<script src="vendor/chartjs/Chart.bundle.min.js"></script>
-<script src="vendor/select2/select2.min.js"></script>
+<script src="../vendor/slick/slick.min.js"></script>
+<script src="../vendor/wow/wow.min.js"></script>
+<script src="../vendor/animsition/animsition.min.js"></script>
+<script src="../vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<script src="../vendor/counter-up/jquery.waypoints.min.js"></script>
+<script src="../vendor/datatables/datatables.min.js"></script>
+<script src="../vendor/counter-up/jquery.counterup.min.js"></script>
+<script src="../vendor/circle-progress/circle-progress.min.js"></script>
+<script src="../vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="../vendor/chartjs/Chart.bundle.min.js"></script>
+<script src="../vendor/select2/select2.min.js"></script>
 <!-- Main JS-->
-<script src="js/main.js"></script>
+<script src="../js/main.js"></script>
 <script type = "text/javascript">
     $(document).ready(function(){
 
