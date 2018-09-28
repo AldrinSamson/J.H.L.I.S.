@@ -577,7 +577,7 @@ String set = getBean.getSet();
         var RTable= $('#pTable').DataTable();
         $('#pTable tbody').on('click', 'tr', function () {
             var RTableData = RTable.row(this).data();
-            //$('').modal('show');
+            $('#getViewSet').modal('show');
             $(".modal-body #pID").val(RTableData[0]);
             //$('#getSet').submit();
         });
