@@ -29,6 +29,8 @@ public class getBean {
 	private static  String item;
 	private static  String rMessage;
 	private static  String rID;
+
+	private static  String set;
 	
 	private static String nName , nDesc , nLab;
 	
@@ -249,5 +251,13 @@ public class getBean {
 
 	public static void setItem(String item) {
 		getBean.item = item;
+	}
+
+	public static String getSet() {
+		return set;
+	}
+
+	public static void setSet(String set) {
+		getBean.set = set;
 	}
 }

@@ -509,7 +509,50 @@
         </div>
     </div>
 
+    <!-- View Set Modal -->
+    <div class="modal fade" id="set" tabindex="-1" role="dialog" aria-hidden="true"  >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><h4>Message</h4></div>
+                <form action="../showMessage" method="post">
 
+                    <div class="modal-body">
+
+		<pre class="tab">
+
+            <div class = "m-1"></div>
+
+		</pre>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="mEgdit" tabindex="-1" role="dialog" aria-hidden="true"  >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><h4>Message</h4></div>
+                <form action="../showMessage" method="post" id = "getMessage3">
+
+                    <div class="modal-body">
+
+		<pre class="tab">
+            <input type="text" name="rID" id = "rID" hidden>
+            <input type="text" name="location" value = "hehe" hidden>
+
+
+		</pre>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 </div>
 

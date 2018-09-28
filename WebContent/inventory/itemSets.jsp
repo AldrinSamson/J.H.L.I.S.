@@ -31,6 +31,7 @@
     <link href="../vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="../vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="../vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <link href="../vendor/datatables/datatables.min.css" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
     <link href="../css/theme.css" rel="stylesheet" media="all">
@@ -53,6 +54,7 @@ String MYclass = getBean.getMyClass();
 Class.forName(MYclass);
 con = DriverManager.getConnection(MYdburl);
 stmt = con.createStatement();
+//String set = getBean.getSet();
 %>
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
@@ -322,12 +324,12 @@ stmt = con.createStatement();
 						<div class="pt-2 col-lg-12">
 
                         <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mPAdd" data-toggle="modal"style = "color:black;">New Set</a></button>
-						<table class="table table-borderless table-striped table-earning" id = "pTable">
+						<table class="table table-borderless table-striped table-earning" >
 					<tr>
-					  <%   
+					  <%
 					  			try {
 					  				
-                                     String queryX = "select count(isCondition) from itemsetlist where isCondition = 'available' and isLab = 'Physics'";
+                                     String queryX = "select count(isCondition) from itemsetlist where isCondition = 'Available' and isLab = 'Physics'";
                                      counter = stmt.executeQuery(queryX);
                                      
                                      while(counter.next()){
@@ -343,11 +345,11 @@ stmt = con.createStatement();
 		       					%>
 					</table>
                         <div class="table-responsive table--no-card m-b-40">		
-                        <table class="table table-borderless table-striped table-earning" id = "Elist">
+                        <table class="table table-borderless table-striped table-earning" id = "pTable">
                         <thead>
-							<tr>
+							<tr data-toggle="modal" id="getViewSet">
 							<th>ID</th>
-							 <th>condi</th>
+							 <th>Condition</th>
 							</tr>
                         </thead>
                         <tbody>
@@ -380,7 +382,7 @@ stmt = con.createStatement();
 						<div class="pt-2 col-lg-12">
                         <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mISAdd" data-toggle="modal"style = "color:black;">new set</a></button>
 						<button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mCEdit" data-toggle="modal"style = "color:black;">edit set</a></button>
-						 <table class="table table-borderless table-striped table-earning" id = "Elist">
+						 <table class="table table-borderless table-striped table-earning" >
 					<tr>
 					  <%   
 					  			try {
@@ -401,7 +403,7 @@ stmt = con.createStatement();
 		       					%>
 					</table>
                         <div class="table-responsive table--no-card m-b-40">		
-                        <table class="table table-borderless table-striped table-earning" id = "Elist">
+                        <table class="table table-borderless table-striped table-earning" id = "cTable">
                         <thead>
 							<tr>
 							<th>ID</th>
@@ -487,6 +489,51 @@ stmt = con.createStatement();
             </div>
         </div>
 
+        <!-- View Set Modal -->
+        <div class="modal fade" id="viewSet" tabindex="-1" role="dialog" aria-hidden="true"  >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header"><h4>Message</h4></div>
+                    <form action="../showSet" method="post">
+
+                        <div class="modal-body">
+
+		<pre class="tab">
+
+            <%--<div class = "m-1"><%=set%></div>--%>
+
+		</pre>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="getViewSet" tabindex="-1" role="dialog" aria-hidden="true"  >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header"><h4>Message</h4></div>
+                    <form action="../showSet" method="post" id = "getSet">
+
+                        <div class="modal-body">
+
+		<pre class="tab">
+            <input type="text" name="ID" id = "pID" hidden>
+            <input type="text" name="location" value = "Physics/Admin" hidden>
+
+
+		</pre>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
 </div>    
             
  <!-- Jquery JS-->
@@ -502,6 +549,7 @@ stmt = con.createStatement();
     <script src="../vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
     </script>
     <script src="../vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="../vendor/datatables/datatables.min.js"></script>
     <script src="../vendor/counter-up/jquery.counterup.min.js">
     </script>
     <script src="../vendor/circle-progress/circle-progress.min.js"></script>
@@ -524,6 +572,19 @@ stmt = con.createStatement();
     	}
     });
 
+
+    $(document).ready(function (){
+        var RTable= $('#pTable').DataTable();
+        $('#pTable tbody').on('click', 'tr', function () {
+            var RTableData = RTable.row(this).data();
+            //$('').modal('show');
+            $(".modal-body #pID").val(RTableData[0]);
+            //$('#getSet').submit();
+        });
+    });
+
+
+
     $(document).ready(function() {
         var max_fields      = 10; //maximum input boxes allowed
         var wrapper         = $(".input_fields_wrap"); //Fields wrapper
@@ -535,9 +596,9 @@ stmt = con.createStatement();
             if(x < max_fields){ //max input box allowed
                 x++; //text box increment
                 $(wrapper).append('<div><tr>\n' +
-                    '                <td><input type="text" name="name[]" class="input-modal"></td>\n' +
-                    '                <td><input type="text" name="quantity[]" class="input-modal"><a href="#" class="remove_field">Remove</a></td>\n' +
-                    '            </tr><div>'); //add input box
+                    '<td><input type="text" name="name[]" class="input-modal"></td>\n' +
+                    '<td><input type="text" name="quantity[]" class="input-modal"><a href="#" class="remove_field">Remove</a></td>\n' +
+                    '</tr><div>'); //add input box
             }
         });
 
