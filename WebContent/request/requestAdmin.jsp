@@ -672,7 +672,6 @@
         var RTable= $('#rTable').DataTable();
         $('#rTable tbody').on('click', 'tr', function () {
             var RTableData = RTable.row(this).data();
-            //$('#mPMessage').modal('show');
             $(".modal-body #rID").val(RTableData[0]);
             $('#getMessage').submit();
         });
@@ -681,7 +680,6 @@
         var RTable= $('#rOKTable').DataTable();
         $('#rOKTable tbody').on('click', 'tr', function () {
             var RTableData = RTable.row(this).data();
-            // $('#mFMessage').modal('show');
             $(".modal-body #rID").val(RTableData[0]);
             $('#getMessage2').submit();
         });
@@ -690,7 +688,6 @@
         var RTable= $('#rHTable').DataTable();
         $('#rHTable tbody').on('click', 'tr', function () {
             var RTableData = RTable.row(this).data();
-            //$('#message').modal('show');
             $(".modal-body #rID").val(RTableData[0]);
             $('#getMessage3').submit();
         });

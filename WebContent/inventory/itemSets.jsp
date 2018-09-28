@@ -9,7 +9,7 @@
   <!-- Required meta tags-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   
+
 
     <!-- Title Page-->
     <title>Item Sets</title>
@@ -36,12 +36,12 @@
     <!-- Main CSS-->
     <link href="../css/theme.css" rel="stylesheet" media="all">
     <link href="../css/custom.css" rel="stylesheet" media="all">
-   
-    
+
+
 </head>
 <body class="animsition">
- 
-   
+
+
 <!-- declarations -->
 <%
 Connection con;
@@ -54,7 +54,7 @@ String MYclass = getBean.getMyClass();
 Class.forName(MYclass);
 con = DriverManager.getConnection(MYdburl);
 stmt = con.createStatement();
-//String set = getBean.getSet();
+String set = getBean.getSet();
 %>
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
@@ -307,7 +307,7 @@ stmt = con.createStatement();
         <div class="section__content section__content--p30">
             <div class="container-fluid">
            	<div class="row">
-          
+
 			<div class="col-md-12">
            		<div class = "card text-left" id = "ptab-marg">
 				<div class = "card-header" >
@@ -317,9 +317,9 @@ stmt = con.createStatement();
 					</ul>
 				</div>
            		<div class = "p-1 card-body">
-					
+
 				<div class= "tab-content">
-				
+
 						<div class="tab-pane fade-in active" id="tab-elist">
 						<div class="pt-2 col-lg-12">
 
@@ -328,23 +328,23 @@ stmt = con.createStatement();
 					<tr>
 					  <%
 					  			try {
-					  				
+
                                      String queryX = "select count(isCondition) from itemsetlist where isCondition = 'Available' and isLab = 'Physics'";
                                      counter = stmt.executeQuery(queryX);
-                                     
+
                                      while(counter.next()){
-                                  
-                                	%>                                   			
+
+                                	%>
 									<th>Available</th>
 									<td><%=counter.getString("count(isCondition)")%></td>
-									<%    
+									<%
                                     	 }
                                			 } catch (Exception e){
                                    			 e.printStackTrace();
                                			 }
 		       					%>
 					</table>
-                        <div class="table-responsive table--no-card m-b-40">		
+                        <div class="table-responsive table--no-card m-b-40">
                         <table class="table table-borderless table-striped table-earning" id = "pTable">
                         <thead>
 							<tr data-toggle="modal" id="getViewSet">
@@ -357,52 +357,52 @@ stmt = con.createStatement();
                             try {
 								query = "select * from itemsetlist where isLab = 'Physics'";
                                 rs = stmt.executeQuery(query);
-                                             
+
                                 while(rs.next()){
-								
+
                             %>
 							<tr>
 							<td><%=rs.getString("isKey")%></td>
 							<td><%=rs.getString("isCondition")%></td>
 							</tr>
-							<%    
+							<%
                                 }
                             }catch (Exception e){
                                 e.printStackTrace();
                             }
-                            %>  
+                            %>
                         </tbody>
                         </table>
                         </div>
-                        
+
                         </div>
                         </div>
-                
+
                 		<div class="tab-pane fade-in " id="tab-clist">
 						<div class="pt-2 col-lg-12">
                         <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mISAdd" data-toggle="modal"style = "color:black;">new set</a></button>
 						<button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mCEdit" data-toggle="modal"style = "color:black;">edit set</a></button>
 						 <table class="table table-borderless table-striped table-earning" >
 					<tr>
-					  <%   
+					  <%
 					  			try {
-					  				 
+
                                      String queryX = "select count(isCondition) from itemsetlist where isCondition = 'available' and isLab = 'Chemistry'";
                                      counter = stmt.executeQuery(queryX);
-                                     
+
                                      while(counter.next()){
-                                  
-                                	%>                                   			
+
+                                	%>
 									<th>Available</th>
 									<td><%=counter.getString("count(isCondition)")%></td>
-									<%    
+									<%
                                     	 }
                                			 } catch (Exception e){
                                    			 e.printStackTrace();
                                			 }
 		       					%>
 					</table>
-                        <div class="table-responsive table--no-card m-b-40">		
+                        <div class="table-responsive table--no-card m-b-40">
                         <table class="table table-borderless table-striped table-earning" id = "cTable">
                         <thead>
 							<tr>
@@ -413,42 +413,42 @@ stmt = con.createStatement();
                         <tbody>
                             <%
                             try {
-								
-                                        
+
+
                                 query = "select * from itemsetlist where isLab = 'Chemistry'";
                                 rs = stmt.executeQuery(query);
-                                             
+
                                 while(rs.next()){
-                                	
+
                             %>
 							<tr>
 							<td><%=rs.getString("isKey")%></td>
 							<td><%=rs.getString("isCondition")%></td>
 							</tr>
-							<%    
+							<%
                                 }
                             }catch (Exception e){
                                 e.printStackTrace();
                             }
-                            %>  
+                            %>
                         </tbody>
                         </table>
                         </div>
 						</div>
 						</div>
-                
+
                 </div>
                     </div>
                 </div>
             </div>
-                          
+
 			</div>
          	</div>
         </div>
     </div>
-     
+
 </div>
-     <!-- Main Body End-->           
+     <!-- Main Body End-->
 <!-- Modal -->
 
         <!-- Add ItemSet Physics Modal -->
@@ -500,7 +500,7 @@ stmt = con.createStatement();
 
 		<pre class="tab">
 
-            <%--<div class = "m-1"><%=set%></div>--%>
+            <div class = "m-1"><%=set%></div>
 
 		</pre>
                         </div>
@@ -534,8 +534,8 @@ stmt = con.createStatement();
             </div>
         </div>
 
-</div>    
-            
+</div>
+
  <!-- Jquery JS-->
     <script src="../vendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->
@@ -559,14 +559,14 @@ stmt = con.createStatement();
     </script>
      <script type="text/javascript">
     $(document).ready(function(){
-    	
+
     	if (window.location.href.indexOf('#mCCode') != 1) {
     		$('#mCCode').modal('show');
     	}
     });
-    
+
  	$(document).ready(function(){
-    	
+
     	if (window.location.href.indexOf('#mCode') != 1) {
     		$('#mCode').modal('show');
     	}
@@ -607,7 +607,7 @@ stmt = con.createStatement();
         })
     });
     </script>
-	
+
     <!-- Main JS-->
     <script src="../js/main.js"></script>
 </body>
