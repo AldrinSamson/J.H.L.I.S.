@@ -322,18 +322,12 @@
                                         }
                                     %>
                                     <span class="desc">Equipment Lent</span>
-                                    <div class="icon">
-                                        <i class="zmdi zmdi-account-o"></i>
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
                                     <h2 class="number">Next Time</h2>
                                     <span class="desc">Critical</span>
-                                    <div class="icon">
-                                        <i class="zmdi zmdi-shopping-cart"></i>
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-3">
@@ -353,13 +347,13 @@
                                     }
                                     %>
                                     <span class="desc">Requests Pending</span>
-                                    <div class="icon">
-                                        <i class="zmdi zmdi-calendar-note"></i>
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
+                                    <div class = "counter__icon">
+                                        <span class = "icon-018"></span>
+                                    </div>
                                     <%
                                         try{
                                             String queryx= "select count(itemCurrentQuantity) as count from inventory where itemCurrentQuantity <> itemTotalQuantity and itemCondition = 'Broken' or itemCondition = 'Missing'";
@@ -374,10 +368,7 @@
                                         e.printStackTrace();
                                     }
                                     %>
-                                    <span class="desc">Damaged/Missing</span>
-                                    <div class="icon">
-                                        <i class="zmdi zmdi-money"></i>
-                                    </div>
+                                    <span class="desc">Damaged / Missing</span>
                                 </div>
                                     </div>
                                 </div>
