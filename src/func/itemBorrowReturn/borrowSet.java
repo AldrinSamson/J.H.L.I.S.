@@ -81,8 +81,8 @@ public class borrowSet extends HttpServlet {
                     }
 
                     if (nowCondition.equals("Not Available")) {
-
-                        out.println("<html><body><script type='text/javascript'>alert('item not available');location='borrow/borrow.jsp';</script></body></html>");
+                        int g = i+ 1;
+                        out.println("<html><body><script type='text/javascript'>alert('"+iKeyList.get(i)+"not available , items lent is from 1 - "+g+"');location='borrow/borrow.jsp';</script></body></html>");
                     } else {
 
                         String getID = "select bID from borrowtransaction order by bID desc limit 1";
@@ -105,11 +105,9 @@ public class borrowSet extends HttpServlet {
                         stmt.execute(newTransaq);
                         String updateItem = "update inventory set itemCondition = 'Not Available' , itemCurrentQuantity = '" + newQ + "' where itemKey = '" + iKeyList.get(i) + "'";
                         stmt.execute(updateItem);
-
-                        out.println("<html><body><script type='text/javascript'>location='borrow/borrow.jsp';</script></body></html>");
                     }
-
                 }
+                out.println("<html><body><script type='text/javascript'>location='borrow/borrow.jsp';</script></body></html>");
                 if (con != null) {
                     con.close();
                 }

@@ -147,10 +147,26 @@ table.dataTable, table.dataTable th, table.dataTable td {
     color: #feff3b;
 }
 
+.login-wrap .login-content .logo {
+    background-color: #171c20;
+    color: #feff3b;
+}
+
+.login-wrap .login-content .logo .h1-yellow {
+    color: #feff3b;
+}
+
+.login-content {
+    background-color: #171c20;
+}
+
 pre > .table {
     border-bottom: none;
 }
 
+.animsition {
+    background-image: url("../images/ustjh.jpg");
+}
 
 
 
