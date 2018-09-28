@@ -307,6 +307,9 @@
                         <div class="row">
                             <div class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
+                                    <div class = "counter__icon">
+                                        <span class = "icon-018"></span>
+                                    </div>
                                     <%
                                         try{
                                             String queryx= "select count(itemCurrentQuantity) as count from inventory where itemCurrentQuantity <> itemTotalQuantity and itemCondition <> 'Broken' and itemCondition <> 'Missing'";
@@ -326,12 +329,18 @@
                             </div>
                             <div class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
+                                    <div class = "counter__icon">
+                                        <span class = "icon-275"></span>
+                                    </div>
                                     <h2 class="number">Next Time</h2>
                                     <span class="desc">Critical</span>
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
+                                    <div class = "counter__icon">
+                                        <span class = "icon-012"></span>
+                                    </div>
                                     <%
                                         try{
                                             String queryx= "select count(rID) as count from request where rCondition = 'Pending'";
@@ -352,7 +361,7 @@
                             <div class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
                                     <div class = "counter__icon">
-                                        <span class = "icon-018"></span>
+                                        <span class = "icon-036"></span>
                                     </div>
                                     <%
                                         try{
