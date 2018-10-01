@@ -110,22 +110,19 @@
                             <i class="fas fa-chart-bar"></i>Reports</a>
                         <ul class="list-unstyled navbar__sub-list js-sub-list">
                             <li>
-                                <a href="../report/inventory.jsp">Inventory Manifest</a>
+                                <a href="inventory.jsp">Inventory Manifest</a>
                             </li>
                             <li>
-                                <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
+                                <a href="borrowTransaction.jsp">Borrowing Transactions</a>
                             </li>
                             <li>
-                                <a href="../report/request.jsp">Request Reports</a>
+                                <a href="damagesMissing.jsp">Damage/Missing Reports</a>
                             </li>
                             <li>
-                                <a href="../report/damages.jsp">Damage Reports</a>
+                                <a href="audit.jsp">Audit</a>
                             </li>
                             <li>
-                                <a href="../report/missing.jsp">Missing Reports</a>
-                            </li>
-                            <li>
-                                <a href=../report/insights.jsp">Insights</a>
+                                <a href="insights.jsp">Insights</a>
                             </li>
                         </ul>
                     </li>
@@ -195,22 +192,19 @@
                             <i class="fas fa-chart-bar"></i>Reports</a>
                         <ul class="list-unstyled navbar__sub-list js-sub-list">
                             <li>
-                                <a href="../report/inventory.jsp">Inventory Manifest</a>
+                                <a href="inventory.jsp">Inventory Manifest</a>
                             </li>
                             <li>
-                                <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
+                                <a href="borrowTransaction.jsp">Borrowing Transactions</a>
                             </li>
                             <li>
-                                <a href="../report/request.jsp" >Request Reports</a>
+                                <a href="damagesMissing.jsp">Damage/Missing Reports</a>
                             </li>
                             <li>
-                                <a href="../report/damages.jsp">Damage Reports</a>
+                                <a href="audit.jsp">Audit</a>
                             </li>
                             <li>
-                                <a href="../report/missing.jsp">Missing Reports</a>
-                            </li>
-                            <li>
-                                <a href="../report/insights.jsp">Insights</a>
+                                <a href="insights.jsp">Insights</a>
                             </li>
                         </ul>
                     </li>
@@ -315,17 +309,17 @@
                                                 <thead>
                                                 <tr>
                                                     <th>ID</th>
+                                                    <th>Start Date</th>
+                                                    <th>Start Time</th>
+                                                    <th>End Time</th>
+                                                    <th>SID</th>
+                                                    <th>Student</th>
                                                     <th>Item</th>
                                                     <th>Name</th>
                                                     <th>Quantity</th>
-                                                    <th>SID</th>
-                                                    <th>Student</th>
                                                     <th>Section</th>
                                                     <th>Supervisor</th>
-                                                    <th>Start Date</th>
                                                     <th>End Date</th>
-                                                    <th>Start Time</th>
-                                                    <th>End Time</th>
                                                     <th>Condition</th>
                                                 </tr>
                                                 </thead>
@@ -341,17 +335,17 @@
                                                 %>
                                                 <tr>
                                                     <td><%=rs.getString("bID")%></td>
+                                                    <td><%=rs.getString("bSDate")%></td>
+                                                    <td><%=rs.getString("bSTime")%></td>
+                                                    <td><%=rs.getString("bETime")%></td>
+                                                    <td><%=rs.getString("sID")%></td>
+                                                    <td><%=rs.getString("sName")%></td>
                                                     <td><%=rs.getString("bItemKey")%></td>
                                                     <td><%=rs.getString("itemName")%></td>
                                                     <td><%=rs.getString("bQuantity")%></td>
-                                                    <td><%=rs.getString("sID")%></td>
-                                                    <td><%=rs.getString("sName")%></td>
                                                     <td><%=rs.getString("sSection")%></td>
                                                     <td><%=rs.getString("sSupervisor")%></td>
-                                                    <td><%=rs.getString("bSDate")%></td>
                                                     <td><%=rs.getString("bEDate")%></td>
-                                                    <td><%=rs.getString("bSTime")%></td>
-                                                    <td><%=rs.getString("bETime")%></td>
                                                     <td><%=rs.getString("bCondition")%></td>
                                                 </tr>
                                                 <%

@@ -121,16 +121,13 @@
                                 <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
                             </li>
                             <li>
-                                <a href="report/request.jsp">Request Reports</a>
+                                <a href="../report/damagesMissing.jsp">Damage/Missing Reports</a>
                             </li>
                             <li>
-                                <a href="report/damages.jsp">Damage Reports</a>
+                                <a href="../report/audit.jsp">Audit</a>
                             </li>
                             <li>
-                                <a href="report/missing.jsp">Missing Reports</a>
-                            </li>
-                            <li>
-                                <a href=report/insights.jsp">Insights</a>
+                                <a href="../report/insights.jsp">Insights</a>
                             </li>
                         </ul>
                     </li>
@@ -185,7 +182,7 @@
                                 <a href="../inventory/physics.jsp">Physics Laboratory</a>
                             </li>
                             <li>
-                                <a href=inventory/chemistry.jsp">Chemistry Laboratory</a>
+                                <a href="../inventory/chemistry.jsp">Chemistry Laboratory</a>
                             </li>
                             <li>
                                 <a href="../inventory/itemSets.jsp">Item Sets</a>
@@ -206,16 +203,13 @@
                                 <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
                             </li>
                             <li>
-                                <a href="report/request.jsp" >Request Reports</a>
+                                <a href="../report/damagesMissing.jsp">Damage/Missing Reports</a>
                             </li>
                             <li>
-                                <a href="report/damages.jsp">Damage Reports</a>
+                                <a href="../report/audit.jsp">Audit</a>
                             </li>
                             <li>
-                                <a href="report/missing.jsp">Missing Reports</a>
-                            </li>
-                            <li>
-                                <a href="report/insights.jsp">Insights</a>
+                                <a href="../report/insights.jsp">Insights</a>
                             </li>
                         </ul>
                     </li>

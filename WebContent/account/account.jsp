@@ -31,6 +31,7 @@
     <link href="../vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="../vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="../vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <link href="../vendor/datatables/datatables.min.css" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
     <link href="../css/theme.css" rel="stylesheet" media="all">
@@ -114,16 +115,13 @@ Class.forName(MYclass);
                                     <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
                                 </li>
                                 <li>
-                                    <a href="../report/request.jsp">Request Reports</a>
+                                    <a href="../report/damagesMissing.jsp">Damage/Missing Reports</a>
                                 </li>
                                 <li>
-                                    <a href="../report/damages.jsp">Damage Reports</a>
+                                    <a href="../report/audit.jsp">Audit</a>
                                 </li>
                                 <li>
-                                    <a href="../report/missing.jsp">Missing Reports</a>
-                                </li>
-                                <li>
-                                    <a href=../report/insights.jsp">Insights</a>
+                                    <a href="../report/insights.jsp">Insights</a>
                                 </li>
                             </ul>
                         </li>
@@ -199,13 +197,10 @@ Class.forName(MYclass);
                                     <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
                                 </li>
                                 <li>
-                                    <a href="../report/request.jsp" >Request Reports</a>
+                                    <a href="../report/damagesMissing.jsp">Damage/Missing Reports</a>
                                 </li>
                                 <li>
-                                    <a href="../report/damages.jsp">Damage Reports</a>
-                                </li>
-                                <li>
-                                    <a href="../report/missing.jsp">Missing Reports</a>
+                                    <a href="../report/audit.jsp">Audit</a>
                                 </li>
                                 <li>
                                     <a href="../report/insights.jsp">Insights</a>
@@ -311,7 +306,7 @@ Class.forName(MYclass);
 						<button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mEEdit" data-toggle="modal"style = "color:black;">edit account</a></button>
                         <div class="pt-2 table-responsive table--no-card m-b-40">
                         <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
-                        <table class="table table-borderless table-striped table-earning" id = "Elist">
+                        <table class="table table-borderless table-striped table-earning" id = "aTable">
                         <thead>
 							<tr>
 							<th>code</th>
@@ -400,8 +395,8 @@ Class.forName(MYclass);
         </div>
     	</div>
 
-		<!-- Edit Equipment Modal -->
-		<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id = "mEEdit" data-backdrop="static" data-keyboard="false">
+		<!-- Edit account Modal -->
+		<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id = "mAEdit" data-backdrop="static" data-keyboard="false">
   		<div class="modal-dialog">
     	<div class="modal-content">
     	<div class="modal-header"><h4>Edit Account<i class="fa fa-lock"></i></h4></div>
@@ -409,9 +404,9 @@ Class.forName(MYclass);
 		<div class="modal-body">
 		<pre class = "tab">
 		
-     	Code     <input type ="text" name = "aKey">
-     	Username <input type ="text" name = "un">
-     	Name	 <input type ="text" name = "name">
+     	Code     <input type ="text" name = "aKey" id = "aKey">
+     	Username <input type ="text" name = "un" id = "userName">
+     	Name	 <input type ="text" name = "name" id = "aName">
      	SQ1		 <input type ="text" name = "rq1">
      	SQA1	 <input type ="text" name = "ra1">
      	SQ2 	 <input type ="text" name = "rq2">
@@ -446,6 +441,7 @@ Class.forName(MYclass);
     <script src="../vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
     </script>
     <script src="../vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="../vendor/datatables/datatables.min.js"></script>
     <script src="../vendor/counter-up/jquery.counterup.min.js">
     </script>
     <script src="../vendor/circle-progress/circle-progress.min.js"></script>
@@ -454,6 +450,21 @@ Class.forName(MYclass);
     <script src="../vendor/select2/select2.min.js">
     </script>
 	<script type = "text/javascript">
+
+        $(document).ready(function(){
+
+            var aTable = $('#aTable').DataTable();
+            $('#aTable tbody').on('click', 'tr', function () {
+                var aTableData = aTable.row(this).data();
+                $('#mAEdit').modal('show');
+                $(".modal-body #aKey").val(aTableData[0]);
+                $(".modal-body #userName").val(aTableData[1]);
+                $(".modal-body #aName").val(aTableData[2]);
+                $(".modal-body #aClass").val(aTableData[3]);
+                $(".modal-body #aID").val(aTableData[5]);
+            });
+
+        });
 $(document).on("keyup", "#search", function(){     
     var val = '^(?=.*\\b' + $.trim($(this).val()).split(/\s+/).join('\\b)(?=.*\\b') + ').*$',
     reg = RegExp(val, 'i'),

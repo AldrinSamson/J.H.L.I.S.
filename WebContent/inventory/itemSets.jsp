@@ -122,16 +122,13 @@ String set = getBean.getSet();
                                     <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
                                 </li>
                                 <li>
-                                    <a href="../report/request.jsp">Request Reports</a>
+                                    <a href="../report/damagesMissing.jsp">Damage/Missing Reports</a>
                                 </li>
                                 <li>
-                                    <a href="../report/damages.jsp">Damage Reports</a>
+                                    <a href="../report/audit.jsp">Audit</a>
                                 </li>
                                 <li>
-                                    <a href="../report/missing.jsp">Missing Reports</a>
-                                </li>
-                                <li>
-                                    <a href=../report/insights.jsp">Insights</a>
+                                    <a href="../report/insights.jsp">Insights</a>
                                 </li>
                             </ul>
                         </li>
@@ -207,13 +204,10 @@ String set = getBean.getSet();
                                     <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
                                 </li>
                                 <li>
-                                    <a href="../report/request.jsp" >Request Reports</a>
+                                    <a href="../report/damagesMissing.jsp">Damage/Missing Reports</a>
                                 </li>
                                 <li>
-                                    <a href="../report/damages.jsp">Damage Reports</a>
-                                </li>
-                                <li>
-                                    <a href="../report/missing.jsp">Missing Reports</a>
+                                    <a href="../report/audit.jsp">Audit</a>
                                 </li>
                                 <li>
                                     <a href="../report/insights.jsp">Insights</a>
@@ -347,7 +341,7 @@ String set = getBean.getSet();
                         <div class="table-responsive table--no-card m-b-40">
                         <table class="table table-borderless table-striped table-earning" id = "pTable">
                         <thead>
-							<tr data-toggle="modal" id="getViewSet">
+							<tr>
 							<th>ID</th>
 							 <th>Condition</th>
 							</tr>
@@ -380,59 +374,57 @@ String set = getBean.getSet();
 
                 		<div class="tab-pane fade-in " id="tab-clist">
 						<div class="pt-2 col-lg-12">
-                        <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mISAdd" data-toggle="modal"style = "color:black;">new set</a></button>
-						<button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mCEdit" data-toggle="modal"style = "color:black;">edit set</a></button>
-						 <table class="table table-borderless table-striped table-earning" >
-					<tr>
-					  <%
+                            <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mCAdd" data-toggle="modal"style = "color:black;">New Set</a></button>
+                            <table class="table table-borderless table-striped table-earning" >
+                                <tr>
+                                        <%
 					  			try {
 
-                                     String queryX = "select count(isCondition) from itemsetlist where isCondition = 'available' and isLab = 'Chemistry'";
+                                     String queryX = "select count(isCondition) from itemsetlist where isCondition = 'Available' and isLab = 'Chemistry'";
                                      counter = stmt.executeQuery(queryX);
 
                                      while(counter.next()){
 
                                 	%>
-									<th>Available</th>
-									<td><%=counter.getString("count(isCondition)")%></td>
-									<%
+                                    <th>Available</th>
+                                    <td><%=counter.getString("count(isCondition)")%></td>
+                                        <%
                                     	 }
                                			 } catch (Exception e){
                                    			 e.printStackTrace();
                                			 }
 		       					%>
-					</table>
-                        <div class="table-responsive table--no-card m-b-40">
-                        <table class="table table-borderless table-striped table-earning" id = "cTable">
-                        <thead>
-							<tr>
-							<th>ID</th>
-							<th>condi</th>
-							</tr>
-                        </thead>
-                        <tbody>
-                            <%
-                            try {
+                            </table>
+                            <div class="table-responsive table--no-card m-b-40">
+                                <table class="table table-borderless table-striped table-earning" id = "cTable">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Condition</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <%
+                                        try {
+                                            query = "select * from itemsetlist where isLab = 'Chemistry'";
+                                            rs = stmt.executeQuery(query);
 
+                                            while(rs.next()){
 
-                                query = "select * from itemsetlist where isLab = 'Chemistry'";
-                                rs = stmt.executeQuery(query);
-
-                                while(rs.next()){
-
-                            %>
-							<tr>
-							<td><%=rs.getString("isKey")%></td>
-							<td><%=rs.getString("isCondition")%></td>
-							</tr>
-							<%
-                                }
-                            }catch (Exception e){
-                                e.printStackTrace();
-                            }
-                            %>
-                        </tbody>
-                        </table>
+                                    %>
+                                    <tr>
+                                        <td><%=rs.getString("isKey")%></td>
+                                        <td><%=rs.getString("isCondition")%></td>
+                                    </tr>
+                                    <%
+                                            }
+                                        }catch (Exception e){
+                                            e.printStackTrace();
+                                        }
+                                    %>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
 						</div>
 						</div>
@@ -469,11 +461,30 @@ String set = getBean.getSet();
             <td>Quantity</td>
             </tr>
             <tr>
-                <td><input type="text" name="name[]" class="input-modal"></td>
+                <td><input type="text" name="name[]" class="input-modal" list = "name"></td>
                 <td><input type="text" name="quantity[]" class="input-modal"></td>
                 <td><input type="text" name="lab" class="input-modal" value ="Physics" hidden></td>
             </tr>
+                <datalist id = "name">
+                    <%
+                    try{
 
+                        String getKeys = "select itemKey from inventory where itemLab = 'Physics'";
+                        rs = stmt.executeQuery(getKeys);
+
+                        while (rs.next()){
+
+                    %><option><%=rs.getString("itemKey")%></option><%
+
+                        }
+
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
+
+
+                    %>
+                </datalist>
             </table>
             </div>
 		</pre>
@@ -489,50 +500,123 @@ String set = getBean.getSet();
             </div>
         </div>
 
+<!-- Add ItemSet Chemistry Modal -->
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="mCAdd" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"><h4>New Item Set</h4></div>
+            <form action="../addSet" method="post">
+
+                <div class="modal-body">
+
+                    <div class="tab input_fields_wrap2">
+                        <%--<div class = "input_fields_wrap">--%>
+                        <table class="table table-borderless table-earning" style="border-spacing:20px">
+
+                            <tr>
+                                <td>Key</td>
+                                <td>Quantity</td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="name[]" class="input-modal" list = "nameC"></td>
+                                <td><input type="text" name="quantity[]" class="input-modal"></td>
+                                <td><input type="text" name="lab" class="input-modal" value ="Chemistry" hidden></td>
+                            </tr>
+                            <datalist id = "nameC">
+                                <%
+                                    try{
+
+                                        String getKeys = "select itemKey from inventory where itemLab = 'Chemistry'";
+                                        rs = stmt.executeQuery(getKeys);
+
+                                        while (rs.next()){
+
+                                %><option><%=rs.getString("itemKey")%></option><%
+
+                                    }
+
+                                }catch(Exception e){
+                                    e.printStackTrace();
+                                }
+
+
+                            %>
+                            </datalist>
+                        </table>
+                    </div>
+                    </pre>
+                </div>
+                <div class="modal-footer">
+                    <input type="text" name="lab" class="input-modal" value="Chemistry" hidden>
+                    <button class="btn btn-default btn-md add_field_button2">Add</button>
+                    <input type="submit" class="btn btn-default btn-md" value="Add">
+                    <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
         <!-- View Set Modal -->
         <div class="modal fade" id="viewSet" tabindex="-1" role="dialog" aria-hidden="true"  >
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header"><h4>Message</h4></div>
-                    <form action="../showSet" method="post">
+                    <div class="modal-header"><h4><%=set%></h4></div>
+                    <form action="../deleteSet" method="post">
 
                         <div class="modal-body">
 
 		<pre class="tab">
 
-            <div class = "m-1"><%=set%></div>
+           <table class="table table-borderless table-striped table-earning" >
+                        <thead>
+							<tr>
+							<th>ID</th>
+                                <th>quantity</th>
+							<th>condition</th>
+							</tr>
+                        </thead>
+                        <tbody>
+                            <%
+                                try {
+
+
+                                    query = "select g.itemKey , g.isQuantity , l.isCondition from itemsetgroup g join itemsetlist l on l.isKey = g.isKey where l.isKey = '"+set+"' ";
+                                    rs = stmt.executeQuery(query);
+
+                                    while(rs.next()){
+
+                            %>
+							<tr>
+							<td><%=rs.getString("itemKey")%></td>
+                                <td><%=rs.getString("isQuantity")%></td>
+							<td><%=rs.getString("isCondition")%></td>
+							</tr>
+							<%
+                                    }
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
+                            %>
+                        </tbody>
+                        </table>
 
 		</pre>
                         </div>
                         <div class="modal-footer">
+                            <button type="submit" class="btn btn-default btn-md" >Delete</button>
                             <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="getViewSet" tabindex="-1" role="dialog" aria-hidden="true"  >
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header"><h4>Message</h4></div>
-                    <form action="../showSet" method="post" id = "getSet">
 
-                        <div class="modal-body">
+            <form action="../showSet" method="post" id = "getSet">
+                <input type="text" name="ID"  class = "input-send" id = "ID" >
+                <input type="text" name="location" value = "admin" hidden>
+            </form>
 
-		<pre class="tab">
-            <input type="text" name="ID" id = "pID" hidden>
-            <input type="text" name="location" value = "Physics/Admin" hidden>
-
-
-		</pre>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
 
 </div>
 
@@ -558,30 +642,34 @@ String set = getBean.getSet();
     <script src="../vendor/select2/select2.min.js">
     </script>
      <script type="text/javascript">
-    $(document).ready(function(){
 
-    	if (window.location.href.indexOf('#mCCode') != 1) {
-    		$('#mCCode').modal('show');
-    	}
-    });
+         $(document).ready(function () {
 
- 	$(document).ready(function(){
+             if (window.location.href.indexOf('#viewSet') != -1) {
+                 $('#viewSet').modal('show');
+             }
 
-    	if (window.location.href.indexOf('#mCode') != 1) {
-    		$('#mCode').modal('show');
-    	}
-    });
+         });
+
 
 
     $(document).ready(function (){
         var RTable= $('#pTable').DataTable();
         $('#pTable tbody').on('click', 'tr', function () {
             var RTableData = RTable.row(this).data();
-            $('#getViewSet').modal('show');
-            $(".modal-body #pID").val(RTableData[0]);
-            //$('#getSet').submit();
+            $(".input-send #ID").val(RTableData[0]);
+            $('#getSet').submit();
         });
     });
+
+         $(document).ready(function (){
+             var RTable= $('#cTable').DataTable();
+             $('#cTable tbody').on('click', 'tr', function () {
+                 var RTableData = RTable.row(this).data();
+                 $(".input-send #ID").val(RTableData[0]);
+                 $('#getSet').submit();
+             });
+         });
 
 
 
@@ -596,7 +684,7 @@ String set = getBean.getSet();
             if(x < max_fields){ //max input box allowed
                 x++; //text box increment
                 $(wrapper).append('<div><tr>\n' +
-                    '<td><input type="text" name="name[]" class="input-modal"></td>\n' +
+                    '<td><input type="text" name="name[]" class="input-modal" list = "name"></td>\n' +
                     '<td><input type="text" name="quantity[]" class="input-modal"><a href="#" class="remove_field">Remove</a></td>\n' +
                     '</tr><div>'); //add input box
             }
@@ -606,6 +694,28 @@ String set = getBean.getSet();
             e.preventDefault(); $(this).parent('div').remove(); x--;
         })
     });
+
+         $(document).ready(function() {
+             var max_fields      = 10; //maximum input boxes allowed
+             var wrapper         = $(".input_fields_wrap2"); //Fields wrapper
+             var add_button      = $(".add_field_button2"); //Add button ID
+
+             var x = 1; //initlal text box count
+             $(add_button).on("click",function(e){ //on add input button click
+                 e.preventDefault();
+                 if(x < max_fields){ //max input box allowed
+                     x++; //text box increment
+                     $(wrapper).append('<div><tr>\n' +
+                         '<td><input type="text" name="name[]" class="input-modal" list = "nameC"></td>\n' +
+                         '<td><input type="text" name="quantity[]" class="input-modal"><a href="#" class="remove_field">Remove</a></td>\n' +
+                         '</tr><div>'); //add input box
+                 }
+             });
+
+             $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+                 e.preventDefault(); $(this).parent('div').remove(); x--;
+             })
+         });
     </script>
 
     <!-- Main JS-->

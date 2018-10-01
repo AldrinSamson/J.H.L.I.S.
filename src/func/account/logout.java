@@ -27,7 +27,7 @@ public class logout extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        try (PrintWriter out = response.getWriter()) {
+
 
             try {
                 Class.forName(MYclass);
@@ -37,7 +37,7 @@ public class logout extends HttpServlet {
                 // add audit log
                 HttpSession log = request.getSession(false);
                 log.invalidate();
-                response.sendRedirect("../index.html");
+                response.sendRedirect("index.html");
 
             }catch (Exception e){
                 e.printStackTrace();
@@ -46,7 +46,8 @@ public class logout extends HttpServlet {
 
 
 
-    }
+
+
 
 
 }

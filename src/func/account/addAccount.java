@@ -35,12 +35,12 @@ public class addAccount extends HttpServlet {
             String name = request.getParameter("name");
             String aKey = cls + "-" + id;
 
-            if (rq1.isEmpty() == true) {
+            if (rq1 == null) {
                 rq1 = "N/A";
                 ra1 = "N/A";
             }
 
-            if (rq2.isEmpty() == true) {
+            if (rq2 == null) {
                 rq2 = "N/A";
                 ra2 = "N/A";
 
@@ -57,20 +57,20 @@ public class addAccount extends HttpServlet {
 
                 chkRID = stmtCHK.executeQuery(chkID);
 
-                if (chkRID.next() == true) {
+                if (chkRID.next()) {
 
                     //id exists
-                    out.println("<html><body><script type='text/javascript'>alert('ID already exists');location='account.jsp';</script></body></html>");
+                    out.println("<html><body><script type='text/javascript'>alert('ID already exists');location='account/account.jsp';</script></body></html>");
 
 
                 } else {
 
                     chkRUN = stmtCHK.executeQuery(chkUN);
 
-                    if (chkRUN.next() == true) {
+                    if (chkRUN.next()) {
 
                         //username exists
-                        out.println("<html><body><script type='text/javascript'>alert('Username already exists');location='account.jsp';</script></body></html>");
+                        out.println("<html><body><script type='text/javascript'>alert('Username already exists');location='account/account.jsp';</script></body></html>");
 
 
                     } else {
@@ -79,7 +79,7 @@ public class addAccount extends HttpServlet {
                                 + " '" + rq1 + "', '" + rq2 + "', '" + ra1 + "','" + ra2 + "')";
 
                         stmtE.execute(addAccount);
-                        out.println("<html><body><script type='text/javascript'>alert('Account Added');location='account.jsp';</script></body></html>");
+                        out.println("<html><body><script type='text/javascript'>alert('Account Added');location='account/account.jsp';</script></body></html>");
 
                     }
                 }
@@ -90,10 +90,10 @@ public class addAccount extends HttpServlet {
 
             } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
-                out.println("<html><body><script type='text/javascript'>alert('SQL error');location='account.jsp';</script></body></html>");
+                out.println("<html><body><script type='text/javascript'>alert('SQL error');location='account/account.jsp';</script></body></html>");
             } catch (NumberFormatException d) {
 
-                out.println("<html><body><script type='text/javascript'>alert('ID format error');location='account.jsp';</script></body></html>");
+                out.println("<html><body><script type='text/javascript'>alert('ID format error');location='account/account.jsp';</script></body></html>");
 
             }
         }

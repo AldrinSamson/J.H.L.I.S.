@@ -68,12 +68,14 @@ public class addNew extends HttpServlet {
                 condition = "Available";
                 form = "N/A";
                 fAbbv = "N/A";
-            }
-            if (type.equals("Apparatus")) {
+            } else if (type.equals("Apparatus")) {
                 form = "N/A";
                 fAbbv = "N/A";
                 dateType = "N/A";
                 condition = "Complete";
+            } else {
+                dateType = "Expiration";
+                condition = "OK";
             }
 
             try {
