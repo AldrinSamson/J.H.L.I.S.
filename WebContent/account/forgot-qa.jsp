@@ -36,14 +36,16 @@
 
     <!-- Main CSS-->
     <link href="../css/theme.css" rel="stylesheet" media="all">
+    <link href="../css/custom.css" rel="stylesheet" media="all">
 
 </head>
 <body class="animsition">
+<img src = "../images/jhlis-img.png" alt = "background" class = "background__image">
     <div class="page-wrapper">
         <div class="page-content--bge5">
             <div class="container">
                 <div class="login-wrap">
-                    <div class="login-content">
+                    <div class="login-content fpq-content">
                         <div class="login-logo">
                            <h1>JHLIS</h1>  <br> University of Santo Tomas Junior High <br> Laboratory Inventory System
                         </div>
@@ -72,13 +74,23 @@
                         %>
                         
                         <div class="login-form">
-                         Hello , <%= get.getString("aClass") %> <%= get.getString("aName") %> 
+                            <p class = "fpq__greeting">Hello , <b><%= get.getString("aClass") %> <%= get.getString("aName") %></b></p>
                             <form action="../answerCHK" method="post" >
-                                <div class="form-group">
-                                <input name ="user" value =<%=get.getString("username") %>><br>
-                                    Security Question 1 :    <%=get.getString("rq1") %>?
-                                    <input class="au-input au-input--full"  name="A1" >
-                                    Security Question 2 : <%=get.getString("rq2") %>?
+                                <div class="form-group ">
+                                <%--<input name ="user" value =<%=get.getString("username") %>><br>--%>
+                                    <p class = "fpq__label"> Security Question 1 : <select>
+                                        <option>Who is your first love?</option>
+                                        <option>What is your favorite country?</option>
+                                        <option>Where is your hometown?</option>
+                                    </select>
+                                    </p>
+                                    <input class="au-input au-input--full a1"  name="A1" >
+                                    <p class = "fpq__label"> Security Question 2 : <select>
+                                        <option>What is your favorite pet?s name?</option>
+                                        <option>What is your favorite fruit?</option>
+                                        <option>What is your mother's name?</option>
+                                    </select>
+                                    </p>
                                 	 <input class="au-input au-input--full"  name="A2" >
                                 	 
                                 <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Enter</button>

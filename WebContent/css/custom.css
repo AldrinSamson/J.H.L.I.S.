@@ -200,8 +200,86 @@ input[type='search'] {
     color: #ffffff;
 }
 
+.background__image {
+    width: 100%!important;
+    height: 100%!important;
+    position: absolute!important;
+    z-index: 1!important;
+}
 
+.login-content {
+    height: 462px;
+    width: 540px;
+    position: absolute;
+    z-index: 2;
+}
 
+.btn-logout {
+    width: 305px!important;
+    color: #ffffff!important;
+}
+
+.btn-logout:hover {
+    color: #ffef3b!important;
+}
+
+.login-content > .logo, .login-logo, .login-logo h1 {
+    color: #feff3b;
+
+}
+
+.form-group > label {
+    color: #ffffff;
+}
+
+.au-btn--block {
+   margin-top: 20px;
+}
+
+.login-checkbox > label::after {
+    content: ' ';
+}
+
+.fp-mark {
+    color: #ff2e44;
+}
+
+.fpq__greeting {
+    margin-bottom: 10px;
+}
+.fpq__greeting, .fpq__label {
+    color: #ffffff;
+}
+
+.fpq__greeting > b {
+    font-weight: normal;
+    color: #ffef3b;
+}
+
+p > .au-input {
+    margin-top: 10px;
+    height: 39px;
+}
+
+.fpq-content {
+    height: 515px;
+}
+
+.fpq__label {
+    margin-bottom: 10px;
+}
+
+.fpq__label > select {
+    border-radius: 4px;
+    height: 30px;
+    width: 300px;
+    position: absolute;
+    right: 30px;
+}
+
+.a1 {
+    margin-bottom: 20px;
+}
 
 
 
