@@ -4960,13 +4960,19 @@ section {
 }
 
 .statistic__item {
-    border: 1px solid #e5e5e5;
-    background: #fff;
+    border: 1px solid #212529;
+    background-image: linear-gradient(#212529, #121212);
     padding: 20px 30px;
     position: relative;
     min-height: 180px;
     overflow: hidden;
     margin-bottom: 40px;
+    border-radius: 7px;
+    text-align: center;
+}
+
+.statistic__item > span.desc {
+    color: #ffffff;
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -4978,7 +4984,8 @@ section {
 .statistic__item h2 {
     font-size: 36px;
     font-weight: 300;
-    color: #4272d7;
+    color: #ffef3b;
+    padding-bottom: 10px;
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
