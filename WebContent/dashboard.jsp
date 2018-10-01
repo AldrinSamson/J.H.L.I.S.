@@ -279,7 +279,7 @@
 
                                             <div class="account-dropdown__footer">
                                                 <form method = "post" action = "../logout">
-                                                    <button class="btn btn-default btn-md">Logout<i class="zmdi zmdi-power"></i><input type="submit" value=""></button>
+                                                    <button class="btn btn-logout">Logout<i class="zmdi zmdi-power"></i><input type="submit" value=""></button>
                                                 </form>
                                             </div>
                                         </div>
