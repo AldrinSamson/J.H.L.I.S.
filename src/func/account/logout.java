@@ -13,6 +13,9 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @WebServlet("/logout")
 public class logout extends HttpServlet {
@@ -27,15 +30,22 @@ public class logout extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
-
+        DateFormat df = new SimpleDateFormat("HH:mm:ss");
+        String aTime = df.format(new java.util.Date());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        String aDate = sdf.format(new Date());
             try {
                 Class.forName(MYclass);
                 conn = DriverManager.getConnection(MYdburl);
                 stmt = conn.createStatement();
 
-                // add audit log
                 HttpSession log = request.getSession(false);
+
+                user = (String)request.getSession(false).getAttribute("user");
+
+                String audit = "insert into audit values (NULL,'"+user+"' , '"+aDate+"','"+aTime+"','Logged Out','Logout','N/A')";
+                stmt.execute(audit);
+
                 log.invalidate();
                 response.sendRedirect("index.html");
 

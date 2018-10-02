@@ -40,6 +40,13 @@
 <body class="animsition">
 <!-- declarations -->
 <%
+
+
+    if(session.getAttribute("user") == null){
+        out.println ("<html><body><script type='text/javascript'>alert('Please log-in first.');location='../index.html';</script></body></html>");
+    }
+
+
 Connection con;
 Statement stmt;
 ResultSet rs , get;
@@ -359,7 +366,7 @@ stmt = con.createStatement();
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header"><h4>New Equipment</h4></div>
-                    <form action="../checkNew" method="post">
+                    <form action="../checkNB" method="post">
 
                         <div class="modal-body">
 

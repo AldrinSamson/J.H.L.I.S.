@@ -41,6 +41,10 @@
 <body class="animsition">
 <!-- declarations -->
 <%
+    if(session.getAttribute("user") == null){
+        out.println ("<html><body><script type='text/javascript'>alert('Please log-in first.');location='../index.html';</script></body></html>");
+    }
+
     Connection con;
     Statement stmt;
     ResultSet rs , get;
