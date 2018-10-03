@@ -70,14 +70,15 @@
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
-                <div class="table-responsive-sm table--no-card ">
+                <div class = "side-title">Item List</div>
+                <div class="item-list-table table-responsive-sm table--no-card ">
                     <table class="table table-borderless table-striped " id = "iTable">
                         <thead>
-                        <tr >
-                            <th class = "col-md-6">Item List</th>
+                        <tr>
+                            <th>Sort</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody class = "item-list">
                         <%
                             try {
 
@@ -168,22 +169,20 @@
         <!-- HEADER DESKTOP-->
         <!-- Main Body -->
         <div class="main-content">
+            <div class = "mt-0 pb-3 pl-5 page-title">Item Requesting Module</div>
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
                             <div class = "card text-left" id = "ptab-marg">
                                 <div class = "card-header" >
-                                    <h3 class = "card-title">Item Requesting Module</h3>
-
+                                    <h3 class = "pt-3 req-header">Your Current Requests</h3>
                                 </div>
                                 <div class = "card-body">
 
 
                                     <div class="col-lg-12">
-                                        <button type="button" class="btn btn-outline-secondary"  href="#mEAdd" data-toggle="modal"><i
-                                                class="fa fa-plus-square"
-                                                style="color:black;"></i>New Request</button>
+                                        <button type="button" class="btn new-item-btn-nA"  href="#mEAdd" data-toggle="modal">NEW ITEM</button>
                                         <div class="table-responsive table--no-card m-b-40">
                                             Your Current Requests
                                             <table class="table table-borderless table-striped table-earning" id = "nTable">
