@@ -26,7 +26,7 @@ public class borrowSingle extends HttpServlet {
     Statement stmt;
     ResultSet chk , get;
     String nowCondition, type , newCondition , user;
-    int  nowQ , newQ , newid;
+    int  nowQ , newQ , newid ,nowTQ , newTQ;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
@@ -72,14 +72,16 @@ public class borrowSingle extends HttpServlet {
                 }else {
 
 
-                    String getQ = "select i.itemCurrentQuantity , d.itemType from inventory i join itemdetails d on i.itemKey = d.itemKey where i.itemKey = '"+iKey+"'";
+                    String getQ = "select i.itemCurrentQuantity , d.itemType ,i.itemTotalQuantity from inventory i join itemdetails d on i.itemKey = d.itemKey where i.itemKey = '"+iKey+"'";
                     get = stmt.executeQuery(getQ);
 
                     while (get.next()){
 
                         type = get.getString("itemType");
                         nowQ = get.getInt("itemCurrentQuantity");
+                        nowTQ = get.getInt("itemTotalQuantity");
                         newQ = nowQ - bQuantity;
+                        newTQ = nowTQ - bQuantity;
 
                     }
 
@@ -97,18 +99,32 @@ public class borrowSingle extends HttpServlet {
                         }
                     }
 
+                    String status;
+
                     if(type.equalsIgnoreCase("Equipment")){
                         newCondition = "Not Available";
+                        status = "Not Returned";
                     }else if (type.equalsIgnoreCase("Apparatus")){
                         newCondition = "Incomplete";
+                        status = "Not Returned";
                     }else {
                         newCondition = "OK";
+                        status = "N/A";
                     }
 
-                        String newTransaq = "insert into borrowTransaction values (NULL,'" + iKey + "','" + bQuantity + "','Not Returned','" + bID + "','" + bName + "','" + bClass + "','" + bSupervisor + "','" + bDate + "',NULL,'" + bSTime + "',NULL ,NULL)";
+                        String newTransaq = "insert into borrowTransaction values (NULL,'" + iKey + "','" + bQuantity + "','"+status+"','" + bID + "','" + bName + "','" + bClass + "','" + bSupervisor + "','" + bDate + "',NULL,'" + bSTime + "',NULL ,NULL)";
                         stmt.execute(newTransaq);
-                        String updateItem = "update inventory set itemCondition = '"+newCondition+"' , itemCurrentQuantity = '"+newQ+"' where itemKey = '"+iKey+"'";
-                        stmt.execute(updateItem);
+
+                        if (type.equalsIgnoreCase("Consumable")){
+
+                            String updateItem = "update inventory set itemCondition = '" + newCondition + "' , itemCurrentQuantity = '" + newQ + "', itemTotalQuantity = '" + newTQ + "' where itemKey = '" + iKey + "'";
+                            stmt.execute(updateItem);
+
+                        }else {
+
+                            String updateItem = "update inventory set itemCondition = '" + newCondition + "' , itemCurrentQuantity = '" + newQ + "' where itemKey = '" + iKey + "'";
+                            stmt.execute(updateItem);
+                        }
                         String audit = "insert into audit values (NULL,'"+user+"' , '"+bDate+"','"+bSTime+"','Lent item "+iKey+" to "+bName+" ','Lent Item','"+newid+"')";
                         stmt.execute(audit);
 
