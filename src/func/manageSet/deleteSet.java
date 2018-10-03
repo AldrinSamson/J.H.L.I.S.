@@ -1,4 +1,4 @@
-package func.account;
+package func.manageSet;
 
 import bean.getBean;
 
@@ -13,49 +13,39 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-@WebServlet("/logout")
-public class logout extends HttpServlet {
-
+@WebServlet("/deleteSet")
+public class deleteSet extends HttpServlet {
     Connection conn;
     Statement stmt;
-
     String MYdburl = getBean.getMyUrl();
     String MYclass = getBean.getMyClass();
-    String user, name, idNum , type;
-    boolean chk = false;
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        DateFormat df = new SimpleDateFormat("HH:mm:ss");
-        String aTime = df.format(new java.util.Date());
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-        String aDate = sdf.format(new Date());
+            String isKey = getBean.getSet();
+
             try {
                 Class.forName(MYclass);
                 conn = DriverManager.getConnection(MYdburl);
                 stmt = conn.createStatement();
 
-                HttpSession log = request.getSession(false);
+                String deleteGroup ="delete from itemsetgroup where isKey = '"+isKey+"'";
+                String deleteList = "delete from itemsetlist where isKey = '"+isKey+"'";
 
-                user = (String)request.getSession(false).getAttribute("user");
+                stmt.execute(deleteGroup);
+                stmt.execute(deleteList);
 
-                String audit = "insert into audit values (NULL,'"+user+"' , '"+aDate+"','"+aTime+"','Logged Out','Logout','N/A')";
-                stmt.execute(audit);
+                response.sendRedirect("inventory/itemSets.jsp");
 
-                log.invalidate();
-                response.sendRedirect("index.html");
+                if (conn != null){
+                    conn.close();
+                }
 
             }catch (Exception e){
                 e.printStackTrace();
             }
+
         }
-
-
-
 
 
 

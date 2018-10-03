@@ -22,7 +22,7 @@ public class addSet extends HttpServlet {
     String MYdburl = getBean.getMyUrl();
     String MYclass = getBean.getMyClass();
     String newKey ;
-    int newNum ;
+    int newNum = 1;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try (PrintWriter out = response.getWriter()) {
@@ -51,10 +51,17 @@ public class addSet extends HttpServlet {
                 String genKey = "select isNum from itemsetlist where isLab = '"+lab+"' order by isNum desc limit 1 ";
                 get = stmt.executeQuery(genKey);
 
-                while (get.next()){
-                    int num = get.getInt("isNum");
-                    newNum = ++num;
-                    newKey = abbv+"-"+newNum;
+                if (!get.next()){
+
+                    newKey = abbv+"-"+1;
+
+                }else {
+
+                    while (get.next()) {
+                        int num = get.getInt("isNum");
+                        newNum = ++num;
+                        newKey = abbv + "-" + newNum;
+                    }
                 }
 
                 int i = 0;

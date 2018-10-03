@@ -40,6 +40,11 @@
 <body class="animsition">
 <!-- declarations -->
 <%
+
+    if(session.getAttribute("user") == null){
+        out.println ("<html><body><script type='text/javascript'>alert('Please log-in first.');location='../index.html';</script></body></html>");
+    }
+
     Connection con;
     Statement stmt;
     ResultSet rs , get;
@@ -111,22 +116,19 @@
                             <i class="fas fa-chart-bar"></i>Reports</a>
                         <ul class="list-unstyled navbar__sub-list js-sub-list">
                             <li>
-                                <a href="../report/inventory.jsp">Inventory Manifest</a>
+                                <a href="inventory.jsp">Inventory Manifest</a>
                             </li>
                             <li>
-                                <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
+                                <a href="borrowTransaction.jsp">Borrowing Transactions</a>
                             </li>
                             <li>
-                                <a href="../report/request.jsp">Request Reports</a>
+                                <a href="damagesMissing.jsp">Damage/Missing Reports</a>
                             </li>
                             <li>
-                                <a href="../report/damages.jsp">Damage Reports</a>
+                                <a href="audit.jsp">Audit</a>
                             </li>
                             <li>
-                                <a href="../report/missing.jsp">Missing Reports</a>
-                            </li>
-                            <li>
-                                <a href=../report/insights.jsp">Insights</a>
+                                <a href="insights.jsp">Insights</a>
                             </li>
                         </ul>
                     </li>
@@ -202,13 +204,10 @@
                                 <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
                             </li>
                             <li>
-                                <a href="../report/request.jsp" >Request Reports</a>
+                                <a href="../report/damagesMissing.jsp.jsp">Damage/Missing Reports</a>
                             </li>
                             <li>
-                                <a href="../report/damages.jsp">Damage Reports</a>
-                            </li>
-                            <li>
-                                <a href="../report/missing.jsp">Missing Reports</a>
+                                <a href="../report/audit.jsp.jsp">Audit</a>
                             </li>
                             <li>
                                 <a href="../report/insights.jsp">Insights</a>

@@ -41,6 +41,11 @@
 
 <!-- declarations -->
 <%
+
+    if(session.getAttribute("user") == null){
+        out.println ("<html><body><script type='text/javascript'>alert('Please log-in first.');location='../index.html';</script></body></html>");
+    }
+
     Connection con;
     Statement stmt;
     ResultSet rs, get, counter;
@@ -132,16 +137,13 @@
                                 <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
                             </li>
                             <li>
-                                <a href="../report/request.jsp">Request Reports</a>
+                                <a href="../report/damagesMissing.jsp">Damage/Missing Reports</a>
                             </li>
                             <li>
-                                <a href="../report/damages.jsp">Damage Reports</a>
+                                <a href="../report/audit.jsp">Audit</a>
                             </li>
                             <li>
-                                <a href="../report/missing.jsp">Missing Reports</a>
-                            </li>
-                            <li>
-                                <a href=../report/insights.jsp">Insights</a>
+                                <a href="../report/insights.jsp">Insights</a>
                             </li>
                         </ul>
                     </li>
@@ -217,13 +219,10 @@
                                 <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
                             </li>
                             <li>
-                                <a href="../report/request.jsp" >Request Reports</a>
+                                <a href="../report/damagesMissing.jsp">Damage/Missing Reports</a>
                             </li>
                             <li>
-                                <a href="../report/damages.jsp">Damage Reports</a>
-                            </li>
-                            <li>
-                                <a href="../report/missing.jsp">Missing Reports</a>
+                                <a href="../report/audit.jsp">Audit</a>
                             </li>
                             <li>
                                 <a href="../report/insights.jsp">Insights</a>
@@ -946,7 +945,7 @@
     </div>
 
     <!-- Edit Consumable Modal -->
-    <div class = "modal fade" id = "mAEdit" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class = "modal fade" id = "mCEdit" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class = "modal-content">
                 <div class="modal-body">

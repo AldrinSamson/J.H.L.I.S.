@@ -13,14 +13,19 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @WebServlet("/approveRequest")
 public class approveRequest extends HttpServlet {
 
     Connection con;
-    Statement stmtCHK, stmtE;
+    Statement stmtGet, stmtE;
+    ResultSet get;
     String MYdburl = getBean.getMyUrl();
     String MYclass = getBean.getMyClass();
+    String user , prof;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -28,28 +33,51 @@ public class approveRequest extends HttpServlet {
 
             String mResponse = request.getParameter("response");
             String rID = getBean.getrID();
+            DateFormat df = new SimpleDateFormat("HH:mm:ss");
+            String aTime = df.format(new java.util.Date());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+            String aDate = sdf.format(new Date());
+
+            if(request.getSession(false).getAttribute("user") == null){
+                out.println ("<html><body><script type='text/javascript'>alert('Please log-in first.');location='../index.html';</script></body></html>");
+            }else {
+                user = (String)request.getSession(false).getAttribute("user");
+            }
 
 
             try {
                 Class.forName(MYclass);
                 con = DriverManager.getConnection(MYdburl);
-                stmtCHK = con.createStatement();
+                stmtGet = con.createStatement();
                 stmtE = con.createStatement();
+
+                String getProf = "select a.username from account a join request r on a.aKey = r.aKey where rID = '"+rID+"'";
+                get = stmtGet.executeQuery(getProf);
+
+                while(get.next()){
+                    prof = get.getString("username");
+                }
 
                 if (mResponse.equals("Approve")){
 
                     String approve = "update request set rCondition = 'Approved' where rID = '"+rID+"'";
                     stmtE.execute(approve);
+                    String audit = "insert into audit values (NULL,'"+user+"' , '"+aDate+"','"+aTime+"','"+user+" approved request of "+prof+" ','Approve Request','"+rID+"')";
+                    stmtE.execute(audit);
 
                 }else if (mResponse.equals("Reject")){
 
                     String reject = "update request set rCondition = 'Rejected',rStatus = 'Fulfilled' where rID = '"+rID+"'";
                     stmtE.execute(reject);
+                    String audit = "insert into audit values (NULL,'"+user+"' , '"+aDate+"','"+aTime+"','"+user+" rejected request of "+prof+" ','Rejected Request','"+rID+"')";
+                    stmtE.execute(audit);
 
                 }else {
 
                     String fulfill = "update request set rCondition = 'Approved' , rStatus = 'Fulfilled' where rID = '"+rID+"'";
                     stmtE.execute(fulfill);
+                    String audit = "insert into audit values (NULL,'"+user+"' , '"+aDate+"','"+aTime+"','"+user+" fulfilled request of "+prof+"','Fulfill Request','"+rID+"')";
+                    stmtE.execute(audit);
                 }
 
                 out.println("<html><body><script type='text/javascript'>location='request/requestAdmin.jsp';</script></body></html>");

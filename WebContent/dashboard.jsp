@@ -42,6 +42,10 @@
 <body class="animsition">
 <!-- declarations -->
 <%
+    if(session.getAttribute("user") == null){
+        out.println ("<html><body><script type='text/javascript'>alert('Please log-in first.');location='index.html';</script></body></html>");
+    }
+
     Connection con;
     Statement stmt;
     ResultSet rs, get, counter;
@@ -214,7 +218,7 @@
                                     <a href="report/missingR.jsp">Missing Item Reports</a>
                                 </li>
                                  <li>
-                                    <a href="report/insights.jsp">Analytics</a>
+                                    <a href="report/insights.jsp">Insights</a>
                                 </li>
                             </ul>
                         </li>
@@ -279,7 +283,7 @@
 
                                             <div class="account-dropdown__footer">
                                                 <form method = "post" action = "../logout">
-                                                    <button class="btn btn-logout">Logout<i class="zmdi zmdi-power"></i><input type="submit" value=""></button>
+                                                    <button class="btn btn-default btn-md">Logout<i class="zmdi zmdi-power"></i><input type="submit" value=""></button>
                                                 </form>
                                             </div>
                                         </div>
@@ -488,32 +492,6 @@
                                     </div>
                                 </div>
                                 <!-- END RECENT REPORT 2             -->
-                            </div>
-                            <div class="col-xl-4">
-                                <!-- TASK PROGRESS-->
-                                <div class="task-progress">
-                                    <h3 class="title-3">#myDevProgress</h3>
-                                    <div class="au-skill-container">
-                                        <div class="au-progress">
-                                            <span class="au-progress__title">Management Modules</span>
-                                            <div class="au-progress__bar">
-                                                <div class="au-progress__inner js-progressbar-simple" role="progressbar" data-transitiongoal="30">
-                                                    <span class="au-progress__value js-value"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="au-progress">
-                                            <span class="au-progress__title">Functional Modules</span>
-                                            <div class="au-progress__bar">
-                                                <div class="au-progress__inner js-progressbar-simple" role="progressbar" data-transitiongoal="15">
-                                                    <span class="au-progress__value js-value"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                       
-                                    </div>
-                                </div>
-                                <!-- END TASK PROGRESS-->
                             </div>
                         </div>
                     </div>

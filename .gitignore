@@ -124,3 +124,5 @@ out/artifacts/jhlis/account/recovery/
 src/lib/
 /.idea/
 !/.idea/
+!/out/
+/out/

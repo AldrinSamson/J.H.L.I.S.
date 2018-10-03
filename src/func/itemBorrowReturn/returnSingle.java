@@ -23,8 +23,9 @@ public class returnSingle extends HttpServlet {
     String MYclass = getBean.getMyClass();
     Statement stmt;
     ResultSet get;
-    int nowQ , newQ;
-    String itemCondition = "";
+    int nowReturnQuantity , newReturnQuantity ;
+    String type;
+    String condition;
     String transaqCondition = "";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -47,38 +48,46 @@ public class returnSingle extends HttpServlet {
                 con = DriverManager.getConnection(MYdburl);
                 stmt = con.createStatement();
 
+                String getDetails = "select itemType from itemdetails where itemKey = '"+iKey+"' ";
+                get = stmt.executeQuery(getDetails);
+
+                while (get.next()){
+                    type = get.getString("itemType");
+                } get.close();
+
+
+                String getBID = "select * from borrowtransaction where bID = '"+bID+"'";
+                get = stmt.executeQuery(getBID);
+
+                while (get.next()){
+                    nowReturnQuantity = get.getInt("bQuantity");
+                }
+                get.close();
+
                 if (rResponse.equals("Return")) {
-                    itemCondition = "Available";
-                    transaqCondition = "Returned";
 
-                    String getQ = "select itemCurrentQuantity from inventory where itemKey = '"+iKey+"'";
-                    get = stmt.executeQuery(getQ);
-
-                    while (get.next()){
-                        nowQ = get.getInt("itemCurrentQuantity");
-                        newQ = nowQ + bQ;
+                    if(type.equalsIgnoreCase("Equipment")){
+                        condition = "Available";
+                    }else if (type.equalsIgnoreCase("Apparatus")){
+                        condition = "Complete";
+                    }else {
+                        condition = "OK";
                     }
 
-                    String updateCQ = "update inventory set itemCurrentQuantity = '"+newQ+"' where itemKey = '"+iKey+"'";
-                    stmt.execute(updateCQ);
+                    String updateTransaction = "update borrowtransaction set bCondition = 'Returned' , bEDate = '"+bEDate+"' , bETime = '"+bETime+"'  bQuantityLoss = '0' where bID = '"+bID+"'";
+                    stmt.execute(updateTransaction);
+                    String updateInventory = "";
                 }
                 if (rResponse.equals("Missing")) {
-                    itemCondition = "Missing";
-                    transaqCondition = "Lost";
+
                 }
                 if (rResponse.equals("Broken")) {
-                    itemCondition = "Broken";
-                    transaqCondition = "Broken";
+
                 }
 
 
 
-                String updateTransaq = "update borrowtransaction set bCondition ='" + transaqCondition + "', bETime ='" + bETime + "' , bEDate = '"+bEDate+"'where bID = '"+bID+"' ";
-                String updateInventory = "update inventory set itemCondition = '" + itemCondition + "' where itemKey = '" + iKey + "'";
-                stmt.execute(updateInventory);
-                stmt.execute(updateTransaq);
 
-                out.println("<html><body><script type='text/javascript'>location='borrow/borrow.jsp';</script></body></html>");
 
                 if (con != null) {
                     con.close();

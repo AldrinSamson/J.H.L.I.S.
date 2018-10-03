@@ -40,6 +40,13 @@
 <body class="animsition">
 <!-- declarations -->
 <%
+
+
+    if(session.getAttribute("user") == null){
+        out.println ("<html><body><script type='text/javascript'>alert('Please log-in first.');location='../index.html';</script></body></html>");
+    }
+
+
 Connection con;
 Statement stmt;
 ResultSet rs , get;
@@ -116,16 +123,13 @@ stmt = con.createStatement();
                                     <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
                                 </li>
                                 <li>
-                                    <a href="../report/request.jsp">Request Reports</a>
+                                    <a href="../report/damagesMissing.jsp">Damage/Missing Reports</a>
                                 </li>
                                 <li>
-                                    <a href="../report/damages.jsp">Damage Reports</a>
+                                    <a href="../report/audit.jsp">Audit</a>
                                 </li>
                                 <li>
-                                    <a href="../report/missing.jsp">Missing Reports</a>
-                                </li>
-                                <li>
-                                    <a href=../report/insights.jsp">Insights</a>
+                                    <a href="../report/insights.jsp">Insights</a>
                                 </li>
                             </ul>
                         </li>
@@ -201,13 +205,10 @@ stmt = con.createStatement();
                                     <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
                                 </li>
                                 <li>
-                                    <a href="../report/request.jsp" >Request Reports</a>
+                                    <a href="../report/damagesMissing.jsp">Damage/Missing Reports</a>
                                 </li>
                                 <li>
-                                    <a href="../report/damages.jsp">Damage Reports</a>
-                                </li>
-                                <li>
-                                    <a href="../report/missing.jsp">Missing Reports</a>
+                                    <a href="../report/audit.jsp">Audit</a>
                                 </li>
                                 <li>
                                     <a href="../report/insights.jsp">Insights</a>
@@ -365,7 +366,7 @@ stmt = con.createStatement();
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header"><h4>New Equipment</h4></div>
-                    <form action="../checkNew" method="post">
+                    <form action="../checkNB" method="post">
 
                         <div class="modal-body">
 

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Title Page-->
-    <title>Physics</title>
+    <title>Request Admin</title>
 
     <!-- Fontfaces CSS-->
     <link href="../css/font-face.css" rel="stylesheet" media="all">
@@ -41,6 +41,11 @@
 
 <!-- declarations -->
 <%
+
+    if(session.getAttribute("user") == null){
+        out.println ("<html><body><script type='text/javascript'>alert('Please log-in first.');location='../index.html';</script></body></html>");
+    }
+
     Connection con;
     Statement stmt;
     ResultSet rs, get, counter;
@@ -121,16 +126,13 @@
                                 <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
                             </li>
                             <li>
-                                <a href="report/request.jsp">Request Reports</a>
+                                <a href="../report/damagesMissing.jsp">Damage/Missing Reports</a>
                             </li>
                             <li>
-                                <a href="report/damages.jsp">Damage Reports</a>
+                                <a href="../report/audit.jsp">Audit</a>
                             </li>
                             <li>
-                                <a href="report/missing.jsp">Missing Reports</a>
-                            </li>
-                            <li>
-                                <a href=report/insights.jsp">Insights</a>
+                                <a href="../report/insights.jsp">Insights</a>
                             </li>
                         </ul>
                     </li>
@@ -185,7 +187,7 @@
                                 <a href="../inventory/physics.jsp">Physics Laboratory</a>
                             </li>
                             <li>
-                                <a href=inventory/chemistry.jsp">Chemistry Laboratory</a>
+                                <a href="../inventory/chemistry.jsp">Chemistry Laboratory</a>
                             </li>
                             <li>
                                 <a href="../inventory/itemSets.jsp">Item Sets</a>
@@ -206,16 +208,13 @@
                                 <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
                             </li>
                             <li>
-                                <a href="report/request.jsp" >Request Reports</a>
+                                <a href="../report/damagesMissing.jsp">Damage/Missing Reports</a>
                             </li>
                             <li>
-                                <a href="report/damages.jsp">Damage Reports</a>
+                                <a href="../report/audit.jsp">Audit</a>
                             </li>
                             <li>
-                                <a href="report/missing.jsp">Missing Reports</a>
-                            </li>
-                            <li>
-                                <a href="report/insights.jsp">Insights</a>
+                                <a href="../report/insights.jsp">Insights</a>
                             </li>
                         </ul>
                     </li>
@@ -672,7 +671,6 @@
         var RTable= $('#rTable').DataTable();
         $('#rTable tbody').on('click', 'tr', function () {
             var RTableData = RTable.row(this).data();
-            //$('#mPMessage').modal('show');
             $(".modal-body #rID").val(RTableData[0]);
             $('#getMessage').submit();
         });
@@ -681,7 +679,6 @@
         var RTable= $('#rOKTable').DataTable();
         $('#rOKTable tbody').on('click', 'tr', function () {
             var RTableData = RTable.row(this).data();
-            // $('#mFMessage').modal('show');
             $(".modal-body #rID").val(RTableData[0]);
             $('#getMessage2').submit();
         });
@@ -690,7 +687,6 @@
         var RTable= $('#rHTable').DataTable();
         $('#rHTable tbody').on('click', 'tr', function () {
             var RTableData = RTable.row(this).data();
-            //$('#message').modal('show');
             $(".modal-body #rID").val(RTableData[0]);
             $('#getMessage3').submit();
         });

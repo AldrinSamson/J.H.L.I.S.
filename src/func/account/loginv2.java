@@ -10,6 +10,9 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 @WebServlet("/loginv2")
@@ -31,6 +34,10 @@ public class loginv2 extends HttpServlet {
 
             String user = request.getParameter("user");
             String pass = request.getParameter("pass");
+            DateFormat df = new SimpleDateFormat("HH:mm:ss");
+            String aTime = df.format(new java.util.Date());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+            String aDate = sdf.format(new Date());
 
             try {
                 Class.forName(MYclass);
@@ -58,9 +65,12 @@ public class loginv2 extends HttpServlet {
                     }
 
 
-                    HttpSession log = request.getSession();
+                    HttpSession log = request.getSession(true);
                     log.setAttribute("user", user);
-                    log.setAttribute("aKey", aKey);
+                    log.setAttribute("class", type);
+
+                    String audit = "insert into audit values (NULL,'"+user+"' , '"+aDate+"','"+aTime+"','Logged in','Login','N/A')";
+                    stmt.execute(audit);
 
                     if (type.equals("Administrator")){
                     response.sendRedirect("dashboard.jsp");

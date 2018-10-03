@@ -26,7 +26,7 @@ public class addRequest extends HttpServlet {
     ResultSet chkRID, chkRUN;
     String MYdburl = getBean.getMyUrl();
     String MYclass = getBean.getMyClass();
-    String aKey;
+    String aKey , user;
     int newKey;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,6 +38,7 @@ public class addRequest extends HttpServlet {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
             String bDate = sdf.format(new Date());
             String bSTime = df.format(new Date());
+
 
             try {
 
@@ -65,6 +66,8 @@ public class addRequest extends HttpServlet {
 
                     String newRequest = "insert into request values ('"+newKey+"','"+aKey+"','"+message+"','"+bDate+"','"+bSTime+"','Pending','Unfulfilled')";
                     stmtE.execute(newRequest);
+                    String audit = "insert into audit values (NULL,'"+user+"' , '"+bDate+"','"+bSTime+"',' "+user+" sent a request','Send Request','"+newKey+"')";
+                    stmtE.execute(audit);
 
                 out.println("<html><body><script type='text/javascript'>location='request/request.jsp';</script></body></html>");
 
