@@ -40,6 +40,13 @@
 <body class="animsition">
 <!-- declarations -->
 <%
+
+
+    if(session.getAttribute("user") == null){
+        out.println ("<html><body><script type='text/javascript'>alert('Please log-in first.');location='../index.html';</script></body></html>");
+    }
+
+
 Connection con;
 Statement stmt;
 ResultSet rs , get;
@@ -75,9 +82,17 @@ stmt = con.createStatement();
                             <a href="../dashboard.jsp">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
-                        <li>
-                            <a href="../borrow/borrow.jsp">
-                                <i class="fas fa-flask"></i>Item Borrow/Return</a>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-table"></i>Item Borrow/Return</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="../borrow/borrow.jsp">Single</a>
+                                </li>
+                                <li>
+                                    <a href="../borrow/borrowSet.jsp">Set</a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
@@ -108,21 +123,18 @@ stmt = con.createStatement();
                                     <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
                                 </li>
                                 <li>
-                                    <a href="../report/request.jsp">Request Reports</a>
+                                    <a href="../report/damagesMissing.jsp">Damage/Missing Reports</a>
                                 </li>
                                 <li>
-                                    <a href="../report/damages.jsp">Damage Reports</a>
+                                    <a href="../report/audit.jsp">Audit</a>
                                 </li>
                                 <li>
-                                    <a href="../report/missing.jsp">Missing Reports</a>
-                                </li>
-                                <li>
-                                    <a href=../report/insights.jsp">Insights</a>
+                                    <a href="../report/insights.jsp">Insights</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="../requestAdmin.jsp">
+                            <a href="../request/requestAdmin.jsp">
                                 <i class="far fa-check-square"></i>Requests</a>
                         </li>
 
@@ -152,9 +164,17 @@ stmt = con.createStatement();
                             <a href="../dashboard.jsp">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
-                        <li>
-                            <a href="../borrow/borrow.jsp">
-                                <i class="fas fa-flask"></i>Item Borrow/Return</a>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-table"></i>Item Borrow/Return</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="../borrow/borrow.jsp">Single</a>
+                                </li>
+                                <li>
+                                    <a href="../borrow/borrowSet.jsp">Set</a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
@@ -185,13 +205,10 @@ stmt = con.createStatement();
                                     <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
                                 </li>
                                 <li>
-                                    <a href="../report/request.jsp" >Request Reports</a>
+                                    <a href="../report/damagesMissing.jsp">Damage/Missing Reports</a>
                                 </li>
                                 <li>
-                                    <a href="../report/damages.jsp">Damage Reports</a>
-                                </li>
-                                <li>
-                                    <a href="../report/missing.jsp">Missing Reports</a>
+                                    <a href="../report/audit.jsp">Audit</a>
                                 </li>
                                 <li>
                                     <a href="../report/insights.jsp">Insights</a>
@@ -199,7 +216,7 @@ stmt = con.createStatement();
                             </ul>
                         </li>
                         <li>
-                            <a href="../requestAdmin.jsp">
+                            <a href="../request/requestAdmin.jsp">
                                 <i class="far fa-check-square"></i>Requests</a>
                         </li>
 
@@ -222,57 +239,57 @@ stmt = con.createStatement();
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="header-wrap">
-                            
+
                             <div class="header-button">
-                        <% 
-                        	try{
-              
-                    		getUser = (String)session.getAttribute("user");
-                    		
-                    		getQ = "select * from account where username = '"+getUser+"'";
-                    		get = stmt.executeQuery(getQ);
-                    		
-                    		while (get.next()){
-                    		
-                    	
-                        
-                        %>
+                                <%
+                                    try {
+                                        getUser = (String) session.getAttribute("user");
+
+                                        getQ = "select * from account    where username = '" + getUser + "'";
+                                        get = stmt.executeQuery(getQ);
+
+                                        while (get.next()) {
+                                %>
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
-                  
+
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#">Hello, <%= get.getString("aClass") %> <%= get.getString("aName") %> </a>
+                                            <a class="js-acc-btn"
+                                               href="#">Hello, <%= get.getString("aClass") %> <%= get.getString("aName") %>
+                                            </a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="../images/icon/avatar-01.jpg" alt="John Doe" />
+                                                        <img src="../images/icon/avatar-02.png"/>
                                                     </a>
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#"><%= get.getString("username") %> </a>
+                                                        <a href="#"><%= get.getString("username") %>
+                                                        </a>
                                                     </h5>
                                                     <span class="email"><%= get.getString("aID") %> </span>
                                                 </div>
                                             </div>
-                                          
+
                                             <div class="account-dropdown__footer">
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-power"></i>Logout</a>
+                                                <form method = "post" action = "../logout">
+                                                    <button class="btn btn-default btn-md">Logout<i class="zmdi zmdi-power"></i><input type="submit" value=""></button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                        <%
-                    		}
-                    	}catch (Exception e){
-                        	
-                        }
-                    	
-                    	
-                        %>
+                                <%
+                                        }
+                                    } catch (Exception e) {
+
+                                    }
+
+
+                                %>
                             </div>
                         </div>
                     </div>
@@ -281,22 +298,17 @@ stmt = con.createStatement();
             <!-- HEADER DESKTOP-->
      <!-- Main Body -->
      	<div class="main-content">
+        <div class = "pb-3 pl-5 page-title"> Non-Borrowable</div>
         <div class="section__content section__content--p30">
             <div class="container-fluid">
            	<div class="row">
            	<div class="col-md-12">
            		<div class = "card text-left" id = "ptab-marg">
-				<div class = "card-header" >
-					<h3 class = "card-title"> Non-borrowables </h3>
-					
-				</div>
-           		<div class = "card-body">
+           		<div class = "p-1 card-body">
 					
 			
 						<div class="col-lg-12">
-                            <button type="button" class="btn btn-outline-secondary"  href="#mEAdd" data-toggle="modal"><i
-                                    class="fa fa-plus-square"
-                                    style="color:black;"></i>NEW</button>
+                            <button type="button" class="btn new-item-btn-nb"  href="#mEAdd" data-toggle="modal">NEW ITEM</button>
                         <div class="table-responsive table--no-card m-b-40">
                         <table class="table table-borderless table-striped table-earning" id = "nTable">
                         <thead>
@@ -354,7 +366,7 @@ stmt = con.createStatement();
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header"><h4>New Equipment</h4></div>
-                    <form action="../checkNew" method="post">
+                    <form action="../checkNB" method="post">
 
                         <div class="modal-body">
 

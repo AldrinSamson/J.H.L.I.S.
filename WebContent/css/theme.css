@@ -307,7 +307,7 @@ section {
 }
 
 .main-content {
-    padding-top: 116px;
+    padding-top: 94px;
     min-height: 100vh;
 }
 
@@ -1172,16 +1172,18 @@ section {
 
 /* ----- Header ----- */
 .header-desktop {
-    background: #f5f5f5;
-    -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+    background: #171c20;
+    -webkit-box-shadow: 0px 4px 2px -2px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 4px 2px -2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 2px -2px rgba(0, 0, 0, 0.1);
     position: fixed;
     top: 0;
     right: 0;
     left: 300px;
     height: 75px;
     z-index: 3;
+    border-left: none;
+    color: white;
 }
 
 .header-desktop .section__content {
@@ -1417,7 +1419,7 @@ section {
 }
 
 .account-item > .content > a {
-    color: #333;
+    color: #f0f0f0;
     text-transform: capitalize;
     font-weight: 500;
 }
@@ -1431,8 +1433,8 @@ section {
     margin-left: 5px;
 }
 
-.account-item > .content > a:hover {
-    color: #666;
+.account-item > .content > a:hover, .account-item > .content > a:focus, .account-item > .content > a:active {
+    color: #feff3b;
 }
 
 .account-dropdown {
@@ -1440,7 +1442,7 @@ section {
     position: absolute;
     top: 58px;
     right: 0;
-    background: #fff;
+    background: #212529;
     -webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
@@ -1490,13 +1492,13 @@ section {
 }
 
 .account-dropdown .info .content .name a {
-    color: #333;
+    color: #f0f0f0;
     font-weight: 500;
     text-transform: capitalize;
 }
 
 .account-dropdown .info .content .name a:hover {
-    color: #666;
+    color: #feff3b;
 }
 
 .account-dropdown .info .content .email {
@@ -1523,14 +1525,14 @@ section {
 
 .account-dropdown__item a {
     display: block;
-    color: #333;
+    color: #f0f0f0;
     padding: 15px 25px;
     font-size: 14px;
 }
 
 .account-dropdown__item a:hover {
-    background: #4272d7;
-    color: #fff;
+    background: #212529;
+    color: #feff3b;
 }
 
 .account-dropdown__item a i {
@@ -1550,14 +1552,14 @@ section {
 
 .account-dropdown__footer a {
     display: block;
-    color: #333;
+    color: #f0f0f0;
     padding: 15px 25px;
     font-size: 14px;
 }
 
 .account-dropdown__footer a:hover {
-    background: #4272d7;
-    color: #fff;
+    background: #212529;
+    color: #feff3b;
 }
 
 .account-dropdown__footer a i {
@@ -1578,7 +1580,7 @@ section {
 }
 
 .menu-sidebar .logo {
-    background: #f5f5f5;
+    background: #171c20;
     height: 75px;
     padding: 0 35px;
     display: -webkit-box;
@@ -1591,12 +1593,16 @@ section {
     -moz-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
-    border-right: 1px solid #e5e5e5;
+    -webkit-box-shadow: 0px 4px 2px -2px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 4px 2px -2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 2px -2px rgba(0, 0, 0, 0.1);
+    border-right: none;
     position: relative;
     z-index: 3;
+}
+
+.menu-sidebar .logo h1{
+    color: #feff3b;
 }
 
 .menu-sidebar .navbar__list .navbar__sub-list {
@@ -1613,6 +1619,8 @@ section {
     height: -webkit-calc(100vh - 75px);
     height: -moz-calc(100vh - 75px);
     height: calc(100vh - 75px);
+    background: #212529;
+    color: #fff;
 }
 
 .navbar-sidebar {
@@ -1622,7 +1630,7 @@ section {
 
 .navbar-sidebar .navbar__list li a {
     display: block;
-    color: #555;
+    color: #f0f0f0;
     font-size: 16px;
     padding: 15px 0;
 }
@@ -1632,11 +1640,11 @@ section {
 }
 
 .navbar-sidebar .navbar__list li a:hover {
-    color: #4272d7;
+    color: #feff3b;
 }
 
 .navbar-sidebar .navbar__list li.active > a {
-    color: #4272d7;
+    color: #feff3b;
 }
 
 .has-sub {
@@ -4214,17 +4222,13 @@ section {
 }
 
 /* ----- Table ----- */
-.table {
-    margin: 0;
-}
-
 .table-responsive.table--no-card {
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+    /*-webkit-border-radius: 10px;*/
+    /*-moz-border-radius: 10px;*/
+    /*border-radius: 10px;*/
+    /*-webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);*/
+    /*-moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);*/
+    /*box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);*/
 }
 
 .table-earning thead th {
@@ -4956,13 +4960,19 @@ section {
 }
 
 .statistic__item {
-    border: 1px solid #e5e5e5;
-    background: #fff;
+    border: 1px solid #212529;
+    background-image: linear-gradient(#212529, #121212);
     padding: 20px 30px;
     position: relative;
     min-height: 180px;
     overflow: hidden;
     margin-bottom: 40px;
+    border-radius: 7px;
+    text-align: center;
+}
+
+.statistic__item > span.desc {
+    color: #ffffff;
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -4974,7 +4984,8 @@ section {
 .statistic__item h2 {
     font-size: 36px;
     font-weight: 300;
-    color: #4272d7;
+    color: #ffef3b;
+    padding-bottom: 10px;
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {

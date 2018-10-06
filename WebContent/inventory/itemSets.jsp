@@ -9,7 +9,7 @@
   <!-- Required meta tags-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   
+
 
     <!-- Title Page-->
     <title>Item Sets</title>
@@ -31,18 +31,24 @@
     <link href="../vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="../vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="../vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <link href="../vendor/datatables/datatables.min.css" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
     <link href="../css/theme.css" rel="stylesheet" media="all">
     <link href="../css/custom.css" rel="stylesheet" media="all">
-   
-    
+
+
 </head>
 <body class="animsition">
- 
-   
+
+
 <!-- declarations -->
 <%
+
+    if(session.getAttribute("user") == null){
+        out.println ("<html><body><script type='text/javascript'>alert('Please log-in first.');location='../index.html';</script></body></html>");
+    }
+
 Connection con;
 Statement stmt;
 ResultSet rs , get , counter , getName ;
@@ -53,6 +59,7 @@ String MYclass = getBean.getMyClass();
 Class.forName(MYclass);
 con = DriverManager.getConnection(MYdburl);
 stmt = con.createStatement();
+String set = getBean.getSet();
 %>
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
@@ -79,9 +86,17 @@ stmt = con.createStatement();
                             <a href="../dashboard.jsp">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
-                        <li>
-                            <a href="../borrow/borrow.jsp">
-                                <i class="fas fa-flask"></i>Item Borrow/Return</a>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-table"></i>Item Borrow/Return</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="../borrow/borrow.jsp">Single</a>
+                                </li>
+                                <li>
+                                    <a href="../borrow/borrowSet.jsp">Set</a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
@@ -112,21 +127,18 @@ stmt = con.createStatement();
                                     <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
                                 </li>
                                 <li>
-                                    <a href="../report/request.jsp">Request Reports</a>
+                                    <a href="../report/damagesMissing.jsp">Damage/Missing Reports</a>
                                 </li>
                                 <li>
-                                    <a href="../report/damages.jsp">Damage Reports</a>
+                                    <a href="../report/audit.jsp">Audit</a>
                                 </li>
                                 <li>
-                                    <a href="../report/missing.jsp">Missing Reports</a>
-                                </li>
-                                <li>
-                                    <a href=../report/insights.jsp">Insights</a>
+                                    <a href="../report/insights.jsp">Insights</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="../requestAdmin.jsp">
+                            <a href="../request/requestAdmin.jsp">
                                 <i class="far fa-check-square"></i>Requests</a>
                         </li>
 
@@ -156,9 +168,17 @@ stmt = con.createStatement();
                             <a href="../dashboard.jsp">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
-                        <li>
-                            <a href="../borrow/borrow.jsp">
-                                <i class="fas fa-flask"></i>Item Borrow/Return</a>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-table"></i>Item Borrow/Return</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="../borrow/borrow.jsp">Single</a>
+                                </li>
+                                <li>
+                                    <a href="../borrow/borrowSet.jsp">Set</a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
@@ -189,13 +209,10 @@ stmt = con.createStatement();
                                     <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
                                 </li>
                                 <li>
-                                    <a href="../report/request.jsp" >Request Reports</a>
+                                    <a href="../report/damagesMissing.jsp">Damage/Missing Reports</a>
                                 </li>
                                 <li>
-                                    <a href="../report/damages.jsp">Damage Reports</a>
-                                </li>
-                                <li>
-                                    <a href="../report/missing.jsp">Missing Reports</a>
+                                    <a href="../report/audit.jsp">Audit</a>
                                 </li>
                                 <li>
                                     <a href="../report/insights.jsp">Insights</a>
@@ -203,7 +220,7 @@ stmt = con.createStatement();
                             </ul>
                         </li>
                         <li>
-                            <a href="../requestAdmin.jsp">
+                            <a href="../request/requestAdmin.jsp">
                                 <i class="far fa-check-square"></i>Requests</a>
                         </li>
 
@@ -226,53 +243,57 @@ stmt = con.createStatement();
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="header-wrap">
-                            
+
                             <div class="header-button">
-                        <% 
-                        try{
-                    		getUser = (String)session.getAttribute("user");
-                    		
-                    		getQ = "select * from account where username = '"+getUser+"'";
-                    		get = stmt.executeQuery(getQ);
-                    		
-                    	while (get.next()){
-                        %>
+                                <%
+                                    try {
+                                        getUser = (String) session.getAttribute("user");
+
+                                        getQ = "select * from account    where username = '" + getUser + "'";
+                                        get = stmt.executeQuery(getQ);
+
+                                        while (get.next()) {
+                                %>
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
-                  
+
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#">Hello, <%= get.getString("aClass") %> <%= get.getString("aName") %> </a>
+                                            <a class="js-acc-btn"
+                                               href="#">Hello, <%= get.getString("aClass") %> <%= get.getString("aName") %>
+                                            </a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="../images/icon/avatar-01.jpg" alt="John Doe" />
+                                                        <img src="../images/icon/avatar-02.png"/>
                                                     </a>
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#"><%= get.getString("username") %> </a>
+                                                        <a href="#"><%= get.getString("username") %>
+                                                        </a>
                                                     </h5>
                                                     <span class="email"><%= get.getString("aID") %> </span>
                                                 </div>
                                             </div>
-                                          
+
                                             <div class="account-dropdown__footer">
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-power"></i>Logout</a>
+                                                <form method = "post" action = "../logout">
+                                                    <button class="btn btn-default btn-md">Logout<i class="zmdi zmdi-power"></i><input type="submit" value=""></button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                        <%
-                    		}
-                    	}catch (Exception e){
-                        	
-                        }
-                    	
-                    	
-                        %>
+                                <%
+                                        }
+                                    } catch (Exception e) {
+
+                                    }
+
+
+                                %>
                             </div>
                         </div>
                     </div>
@@ -281,53 +302,53 @@ stmt = con.createStatement();
             <!-- HEADER DESKTOP-->
      <!-- Main Body -->
      	<div class="main-content">
+        <div class="pb-3 pl-5 page-title">Item Sets</div>
         <div class="section__content section__content--p30">
             <div class="container-fluid">
            	<div class="row">
-          
+
 			<div class="col-md-12">
            		<div class = "card text-left" id = "ptab-marg">
 				<div class = "card-header" >
-					<h3 class = "card-title"> Item Sets</h3>
-					<ul class="nav nav-tabs ">
-					<li class = "nav-item"><a  style = "color : grey;" href="#tab-elist" data-toggle="tab" class = "nav-link active">Physics Lab</a></li>	
-					<li class = "nav-item"><a  style = "color : grey;" href="#tab-clist" data-toggle="tab" class = "nav-link" >Chemistry Lab</a></li>
+					<ul class="nav nav-pills">
+					<li class = "nav-item"><a href="#tab-elist" data-toggle="tab" class = "nav-link active">Physics Lab</a></li>
+					<li class = "nav-item"><a href="#tab-clist" data-toggle="tab" class = "nav-link" >Chemistry Lab</a></li>
 					</ul>
 				</div>
-           		<div class = "card-body">
-					
+           		<div class = "p-1 card-body">
+
 				<div class= "tab-content">
-				
+
 						<div class="tab-pane fade-in active" id="tab-elist">
-						<div class="col-lg-12">
-                        <h2 class="title-1 m-b-25">Physics Item Sets</h2>
-                        <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mPAdd" data-toggle="modal"style = "color:black;">new set</a></button>
-						<table class="table table-borderless table-striped table-earning" id = "pTable">
+						<div class="pt-2 col-lg-12">
+
+                        <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mPAdd" data-toggle="modal"style = "color:black;">New Set</a></button>
+						<table class="table table-borderless table-striped table-earning" >
 					<tr>
-					  <%   
+					  <%
 					  			try {
-					  				
-                                     String queryX = "select count(isCondition) from itemsetlist where isCondition = 'available' and isLab = 'Physics'";
+
+                                     String queryX = "select count(isCondition) from itemsetlist where isCondition = 'Available' and isLab = 'Physics'";
                                      counter = stmt.executeQuery(queryX);
-                                     
+
                                      while(counter.next()){
-                                  
-                                	%>                                   			
+
+                                	%>
 									<th>Available</th>
 									<td><%=counter.getString("count(isCondition)")%></td>
-									<%    
+									<%
                                     	 }
                                			 } catch (Exception e){
                                    			 e.printStackTrace();
                                			 }
 		       					%>
 					</table>
-                        <div class="table-responsive table--no-card m-b-40">		
-                        <table class="table table-borderless table-striped table-earning" id = "Elist">
+                        <div class="table-responsive table--no-card m-b-40">
+                        <table class="table table-borderless table-striped table-earning" id = "pTable">
                         <thead>
 							<tr>
 							<th>ID</th>
-							 <th>condi</th>
+							 <th>Condition</th>
 							</tr>
                         </thead>
                         <tbody>
@@ -335,99 +356,96 @@ stmt = con.createStatement();
                             try {
 								query = "select * from itemsetlist where isLab = 'Physics'";
                                 rs = stmt.executeQuery(query);
-                                             
+
                                 while(rs.next()){
-								
+
                             %>
 							<tr>
 							<td><%=rs.getString("isKey")%></td>
 							<td><%=rs.getString("isCondition")%></td>
 							</tr>
-							<%    
+							<%
                                 }
                             }catch (Exception e){
                                 e.printStackTrace();
                             }
-                            %>  
+                            %>
                         </tbody>
                         </table>
                         </div>
-                        
+
                         </div>
                         </div>
-                
+
                 		<div class="tab-pane fade-in " id="tab-clist">
-						<div class="col-lg-12">
-						 <h2 class="title-1 m-b-25">Chemistry Item Sets</h2>
-						 <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mISAdd" data-toggle="modal"style = "color:black;">new set</a></button>
-						<button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mCEdit" data-toggle="modal"style = "color:black;">edit set</a></button>
-						 <table class="table table-borderless table-striped table-earning" id = "Elist">
-					<tr>
-					  <%   
+						<div class="pt-2 col-lg-12">
+                            <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mCAdd" data-toggle="modal"style = "color:black;">New Set</a></button>
+                            <table class="table table-borderless table-striped table-earning" >
+                                <tr>
+                                        <%
 					  			try {
-					  				 
-                                     String queryX = "select count(isCondition) from itemsetlist where isCondition = 'available' and isLab = 'Chemistry'";
+
+                                     String queryX = "select count(isCondition) from itemsetlist where isCondition = 'Available' and isLab = 'Chemistry'";
                                      counter = stmt.executeQuery(queryX);
-                                     
+
                                      while(counter.next()){
-                                  
-                                	%>                                   			
-									<th>Available</th>
-									<td><%=counter.getString("count(isCondition)")%></td>
-									<%    
+
+                                	%>
+                                    <th>Available</th>
+                                    <td><%=counter.getString("count(isCondition)")%></td>
+                                        <%
                                     	 }
                                			 } catch (Exception e){
                                    			 e.printStackTrace();
                                			 }
 		       					%>
-					</table>
-                        <div class="table-responsive table--no-card m-b-40">		
-                        <table class="table table-borderless table-striped table-earning" id = "Elist">
-                        <thead>
-							<tr>
-							<th>ID</th>
-							<th>condi</th>
-							</tr>
-                        </thead>
-                        <tbody>
-                            <%
-                            try {
-								
-                                        
-                                query = "select * from itemsetlist where isLab = 'Chemistry'";
-                                rs = stmt.executeQuery(query);
-                                             
-                                while(rs.next()){
-                                	
-                            %>
-							<tr>
-							<td><%=rs.getString("isKey")%></td>
-							<td><%=rs.getString("isCondition")%></td>
-							</tr>
-							<%    
-                                }
-                            }catch (Exception e){
-                                e.printStackTrace();
-                            }
-                            %>  
-                        </tbody>
-                        </table>
+                            </table>
+                            <div class="table-responsive table--no-card m-b-40">
+                                <table class="table table-borderless table-striped table-earning" id = "cTable">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Condition</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <%
+                                        try {
+                                            query = "select * from itemsetlist where isLab = 'Chemistry'";
+                                            rs = stmt.executeQuery(query);
+
+                                            while(rs.next()){
+
+                                    %>
+                                    <tr>
+                                        <td><%=rs.getString("isKey")%></td>
+                                        <td><%=rs.getString("isCondition")%></td>
+                                    </tr>
+                                    <%
+                                            }
+                                        }catch (Exception e){
+                                            e.printStackTrace();
+                                        }
+                                    %>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
 						</div>
 						</div>
-                
+
                 </div>
                     </div>
                 </div>
             </div>
-                          
+
 			</div>
          	</div>
         </div>
     </div>
-     
+
 </div>
-     <!-- Main Body End-->           
+     <!-- Main Body End-->
 <!-- Modal -->
 
         <!-- Add ItemSet Physics Modal -->
@@ -448,10 +466,30 @@ stmt = con.createStatement();
             <td>Quantity</td>
             </tr>
             <tr>
-                <td><input type="text" name="name[]" class="input-modal"></td>
+                <td><input type="text" name="name[]" class="input-modal" list = "name"></td>
                 <td><input type="text" name="quantity[]" class="input-modal"></td>
+                <td><input type="text" name="lab" class="input-modal" value ="Physics" hidden></td>
             </tr>
+                <datalist id = "name">
+                    <%
+                    try{
 
+                        String getKeys = "select itemKey from inventory where itemLab = 'Physics'";
+                        rs = stmt.executeQuery(getKeys);
+
+                        while (rs.next()){
+
+                    %><option><%=rs.getString("itemKey")%></option><%
+
+                        }
+
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
+
+
+                    %>
+                </datalist>
             </table>
             </div>
 		</pre>
@@ -467,8 +505,126 @@ stmt = con.createStatement();
             </div>
         </div>
 
-</div>    
-            
+<!-- Add ItemSet Chemistry Modal -->
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="mCAdd" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"><h4>New Item Set</h4></div>
+            <form action="../addSet" method="post">
+
+                <div class="modal-body">
+
+                    <div class="tab input_fields_wrap2">
+                        <%--<div class = "input_fields_wrap">--%>
+                        <table class="table table-borderless table-earning" style="border-spacing:20px">
+
+                            <tr>
+                                <td>Key</td>
+                                <td>Quantity</td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="name[]" class="input-modal" list = "nameC"></td>
+                                <td><input type="text" name="quantity[]" class="input-modal"></td>
+                                <td><input type="text" name="lab" class="input-modal" value ="Chemistry" hidden></td>
+                            </tr>
+                            <datalist id = "nameC">
+                                <%
+                                    try{
+
+                                        String getKeys = "select itemKey from inventory where itemLab = 'Chemistry'";
+                                        rs = stmt.executeQuery(getKeys);
+
+                                        while (rs.next()){
+
+                                %><option><%=rs.getString("itemKey")%></option><%
+
+                                    }
+
+                                }catch(Exception e){
+                                    e.printStackTrace();
+                                }
+
+
+                            %>
+                            </datalist>
+                        </table>
+                    </div>
+                    </pre>
+                </div>
+                <div class="modal-footer">
+                    <input type="text" name="lab" class="input-modal" value="Chemistry" hidden>
+                    <button class="btn btn-default btn-md add_field_button2">Add</button>
+                    <input type="submit" class="btn btn-default btn-md" value="Add">
+                    <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+        <!-- View Set Modal -->
+        <div class="modal fade" id="viewSet" tabindex="-1" role="dialog" aria-hidden="true"  >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header"><h4><%=set%></h4></div>
+                    <form action="../deleteSet" method="post">
+
+                        <div class="modal-body">
+
+		<pre class="tab">
+
+           <table class="table table-borderless table-striped table-earning" >
+                        <thead>
+							<tr>
+							<th>ID</th>
+                                <th>quantity</th>
+							<th>condition</th>
+							</tr>
+                        </thead>
+                        <tbody>
+                            <%
+                                try {
+
+
+                                    query = "select g.itemKey , g.isQuantity , l.isCondition from itemsetgroup g join itemsetlist l on l.isKey = g.isKey where l.isKey = '"+set+"' ";
+                                    rs = stmt.executeQuery(query);
+
+                                    while(rs.next()){
+
+                            %>
+							<tr>
+							<td><%=rs.getString("itemKey")%></td>
+                                <td><%=rs.getString("isQuantity")%></td>
+							<td><%=rs.getString("isCondition")%></td>
+							</tr>
+							<%
+                                    }
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
+                            %>
+                        </tbody>
+                        </table>
+
+		</pre>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-default btn-md" >Delete</button>
+                            <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+            <form action="../showSet" method="post" id = "getSet">
+                <input type="text" name="ID"  class = "input-send" id = "ID" >
+                <input type="text" name="location" value = "admin" hidden>
+            </form>
+
+
+</div>
+
  <!-- Jquery JS-->
     <script src="../vendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->
@@ -482,6 +638,7 @@ stmt = con.createStatement();
     <script src="../vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
     </script>
     <script src="../vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="../vendor/datatables/datatables.min.js"></script>
     <script src="../vendor/counter-up/jquery.counterup.min.js">
     </script>
     <script src="../vendor/circle-progress/circle-progress.min.js"></script>
@@ -490,19 +647,36 @@ stmt = con.createStatement();
     <script src="../vendor/select2/select2.min.js">
     </script>
      <script type="text/javascript">
-    $(document).ready(function(){
-    	
-    	if (window.location.href.indexOf('#mCCode') != 1) {
-    		$('#mCCode').modal('show');
-    	}
+
+         $(document).ready(function () {
+
+             if (window.location.href.indexOf('#viewSet') != -1) {
+                 $('#viewSet').modal('show');
+             }
+
+         });
+
+
+
+    $(document).ready(function (){
+        var RTable= $('#pTable').DataTable();
+        $('#pTable tbody').on('click', 'tr', function () {
+            var RTableData = RTable.row(this).data();
+            $(".input-send #ID").val(RTableData[0]);
+            $('#getSet').submit();
+        });
     });
-    
- 	$(document).ready(function(){
-    	
-    	if (window.location.href.indexOf('#mCode') != 1) {
-    		$('#mCode').modal('show');
-    	}
-    });
+
+         $(document).ready(function (){
+             var RTable= $('#cTable').DataTable();
+             $('#cTable tbody').on('click', 'tr', function () {
+                 var RTableData = RTable.row(this).data();
+                 $(".input-send #ID").val(RTableData[0]);
+                 $('#getSet').submit();
+             });
+         });
+
+
 
     $(document).ready(function() {
         var max_fields      = 10; //maximum input boxes allowed
@@ -515,9 +689,9 @@ stmt = con.createStatement();
             if(x < max_fields){ //max input box allowed
                 x++; //text box increment
                 $(wrapper).append('<div><tr>\n' +
-                    '                <td><input type="text" name="name[]" class="input-modal"></td>\n' +
-                    '                <td><input type="text" name="quantity[]" class="input-modal"><a href="#" class="remove_field">Remove</a></td>\n' +
-                    '            </tr><div>'); //add input box
+                    '<td><input type="text" name="name[]" class="input-modal" list = "name"></td>\n' +
+                    '<td><input type="text" name="quantity[]" class="input-modal"><a href="#" class="remove_field">Remove</a></td>\n' +
+                    '</tr><div>'); //add input box
             }
         });
 
@@ -525,8 +699,30 @@ stmt = con.createStatement();
             e.preventDefault(); $(this).parent('div').remove(); x--;
         })
     });
+
+         $(document).ready(function() {
+             var max_fields      = 10; //maximum input boxes allowed
+             var wrapper         = $(".input_fields_wrap2"); //Fields wrapper
+             var add_button      = $(".add_field_button2"); //Add button ID
+
+             var x = 1; //initlal text box count
+             $(add_button).on("click",function(e){ //on add input button click
+                 e.preventDefault();
+                 if(x < max_fields){ //max input box allowed
+                     x++; //text box increment
+                     $(wrapper).append('<div><tr>\n' +
+                         '<td><input type="text" name="name[]" class="input-modal" list = "nameC"></td>\n' +
+                         '<td><input type="text" name="quantity[]" class="input-modal"><a href="#" class="remove_field">Remove</a></td>\n' +
+                         '</tr><div>'); //add input box
+                 }
+             });
+
+             $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+                 e.preventDefault(); $(this).parent('div').remove(); x--;
+             })
+         });
     </script>
-	
+
     <!-- Main JS-->
     <script src="../js/main.js"></script>
 </body>

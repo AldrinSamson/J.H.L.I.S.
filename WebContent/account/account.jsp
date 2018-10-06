@@ -31,13 +31,18 @@
     <link href="../vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="../vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="../vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <link href="../vendor/datatables/datatables.min.css" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
     <link href="../css/theme.css" rel="stylesheet" media="all">
+    <link href="../css/custom.css" rel="stylesheet" media="all">
 </head>
 <body class="animsition">
 <!-- declarations -->
 <%
+    if(session.getAttribute("user") == null){
+        out.println ("<html><body><script type='text/javascript'>alert('Please log-in first.');location='../index.html';</script></body></html>");
+    }
 Connection con;
 Statement stmt;
 ResultSet rs , get;
@@ -72,9 +77,17 @@ Class.forName(MYclass);
                             <a href="../dashboard.jsp">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
-                        <li>
-                            <a href="../borrow/borrow.jsp">
-                                <i class="fas fa-flask"></i>Item Borrow/Return</a>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-table"></i>Item Borrow/Return</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="../borrow/borrow.jsp">Single</a>
+                                </li>
+                                <li>
+                                    <a href="../borrow/borrowSet.jsp">Set</a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
@@ -105,21 +118,18 @@ Class.forName(MYclass);
                                     <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
                                 </li>
                                 <li>
-                                    <a href="../report/request.jsp">Request Reports</a>
+                                    <a href="../report/damagesMissing.jsp">Damage/Missing Reports</a>
                                 </li>
                                 <li>
-                                    <a href="../report/damages.jsp">Damage Reports</a>
+                                    <a href="../report/audit.jsp">Audit</a>
                                 </li>
                                 <li>
-                                    <a href="../report/missing.jsp">Missing Reports</a>
-                                </li>
-                                <li>
-                                    <a href=../report/insights.jsp">Insights</a>
+                                    <a href="../report/insights.jsp">Insights</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="../requestAdmin.jsp">
+                            <a href="../request/requestAdmin.jsp">
                                 <i class="far fa-check-square"></i>Requests</a>
                         </li>
 
@@ -149,9 +159,17 @@ Class.forName(MYclass);
                             <a href="../dashboard.jsp">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
-                        <li>
-                            <a href="../borrow/borrow.jsp">
-                                <i class="fas fa-flask"></i>Item Borrow/Return</a>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-table"></i>Item Borrow/Return</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="../borrow/borrow.jsp">Single</a>
+                                </li>
+                                <li>
+                                    <a href="../borrow/borrowSet.jsp">Set</a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
@@ -182,13 +200,10 @@ Class.forName(MYclass);
                                     <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
                                 </li>
                                 <li>
-                                    <a href="../report/request.jsp" >Request Reports</a>
+                                    <a href="../report/damagesMissing.jsp">Damage/Missing Reports</a>
                                 </li>
                                 <li>
-                                    <a href="../report/damages.jsp">Damage Reports</a>
-                                </li>
-                                <li>
-                                    <a href="../report/missing.jsp">Missing Reports</a>
+                                    <a href="../report/audit.jsp">Audit</a>
                                 </li>
                                 <li>
                                     <a href="../report/insights.jsp">Insights</a>
@@ -196,7 +211,7 @@ Class.forName(MYclass);
                             </ul>
                         </li>
                         <li>
-                            <a href="../requestAdmin.jsp">
+                            <a href="../request/requestAdmin.jsp">
                                 <i class="far fa-check-square"></i>Requests</a>
                         </li>
 
@@ -219,60 +234,59 @@ Class.forName(MYclass);
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="header-wrap">
-                            
+
                             <div class="header-button">
-                        <% 
-                        	try{
-                    		Class.forName(MYclass);
-                    		con = DriverManager.getConnection(MYdburl);
-                    		stmt = con.createStatement();
-                    		
-                    		getUser = (String)session.getAttribute("user");
-                    		
-                    		getQ = "select * from account where username = '"+getUser+"'";
-                    		get = stmt.executeQuery(getQ);
-                    		
-                    		while (get.next()){
-                    		
-                    	
-                        
-                        %>
+                                <%
+                                    try {
+                                        con = DriverManager.getConnection(MYdburl);
+                                        stmt = con.createStatement();
+                                        getUser = (String) session.getAttribute("user");
+
+                                        getQ = "select * from account    where username = '" + getUser + "'";
+                                        get = stmt.executeQuery(getQ);
+
+                                        while (get.next()) {
+                                %>
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
-                  
+
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#">Hello, <%= get.getString("aClass") %> <%= get.getString("aName") %> </a>
+                                            <a class="js-acc-btn"
+                                               href="#">Hello, <%= get.getString("aClass") %> <%= get.getString("aName") %>
+                                            </a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="../images/icon/avatar-01.jpg"/>
+                                                        <img src="../images/icon/avatar-02.png"/>
                                                     </a>
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#"><%= get.getString("username") %> </a>
+                                                        <a href="#"><%= get.getString("username") %>
+                                                        </a>
                                                     </h5>
                                                     <span class="email"><%= get.getString("aID") %> </span>
                                                 </div>
                                             </div>
-                                          
+
                                             <div class="account-dropdown__footer">
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-power"></i>Logout</a>
+                                                <form method = "post" action = "../logout">
+                                                    <button class="btn btn-default btn-md">Logout<i class="zmdi zmdi-power"></i><input type="submit" value=""></button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                        <%
-                    		}
-                    	}catch (Exception e){
-                        	
-                        }
-                    	
-                    	
-                        %>
+                                <%
+                                        }
+                                    } catch (Exception e) {
+
+                                    }
+
+
+                                %>
                             </div>
                         </div>
                     </div>
@@ -281,24 +295,21 @@ Class.forName(MYclass);
             <!-- HEADER DESKTOP-->
      <!-- Main Body -->
      	<div class="main-content">
+        <div class = "pl-5 pb-3 page-title">Account Management</div>
         <div class="section__content section__content--p30">
             <div class="container-fluid">
            	<div class="row">
            	<div class="col-md-12">
            		<div class = "card text-left" id = "ptab-marg">
-				<div class = "card-header" >
-					<h3 class = "card-title">Account Management </h3>
-					
-				</div>
            		<div class = "card-body">
 					
 			
 						<div class="col-lg-12">
                         <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mEAdd" data-toggle="modal"style = "color:black;">new account</a></button>
 						<button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mEEdit" data-toggle="modal"style = "color:black;">edit account</a></button>
-                        <div class="table-responsive table--no-card m-b-40">
+                        <div class="pt-2 table-responsive table--no-card m-b-40">
                         <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
-                        <table class="table table-borderless table-striped table-earning" id = "Elist">
+                        <table class="table table-borderless table-striped table-earning" id = "aTable">
                         <thead>
 							<tr>
 							<th>code</th>
@@ -387,8 +398,8 @@ Class.forName(MYclass);
         </div>
     	</div>
 
-		<!-- Edit Equipment Modal -->
-		<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id = "mEEdit" data-backdrop="static" data-keyboard="false">
+		<!-- Edit account Modal -->
+		<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id = "mAEdit" data-backdrop="static" data-keyboard="false">
   		<div class="modal-dialog">
     	<div class="modal-content">
     	<div class="modal-header"><h4>Edit Account<i class="fa fa-lock"></i></h4></div>
@@ -396,9 +407,9 @@ Class.forName(MYclass);
 		<div class="modal-body">
 		<pre class = "tab">
 		
-     	Code     <input type ="text" name = "aKey">
-     	Username <input type ="text" name = "un">
-     	Name	 <input type ="text" name = "name">
+     	Code     <input type ="text" name = "aKey" id = "aKey">
+     	Username <input type ="text" name = "un" id = "userName">
+     	Name	 <input type ="text" name = "name" id = "aName">
      	SQ1		 <input type ="text" name = "rq1">
      	SQA1	 <input type ="text" name = "ra1">
      	SQ2 	 <input type ="text" name = "rq2">
@@ -433,6 +444,7 @@ Class.forName(MYclass);
     <script src="../vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
     </script>
     <script src="../vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="../vendor/datatables/datatables.min.js"></script>
     <script src="../vendor/counter-up/jquery.counterup.min.js">
     </script>
     <script src="../vendor/circle-progress/circle-progress.min.js"></script>
@@ -441,6 +453,21 @@ Class.forName(MYclass);
     <script src="../vendor/select2/select2.min.js">
     </script>
 	<script type = "text/javascript">
+
+        $(document).ready(function(){
+
+            var aTable = $('#aTable').DataTable();
+            $('#aTable tbody').on('click', 'tr', function () {
+                var aTableData = aTable.row(this).data();
+                $('#mAEdit').modal('show');
+                $(".modal-body #aKey").val(aTableData[0]);
+                $(".modal-body #userName").val(aTableData[1]);
+                $(".modal-body #aName").val(aTableData[2]);
+                $(".modal-body #aClass").val(aTableData[3]);
+                $(".modal-body #aID").val(aTableData[5]);
+            });
+
+        });
 $(document).on("keyup", "#search", function(){     
     var val = '^(?=.*\\b' + $.trim($(this).val()).split(/\s+/).join('\\b)(?=.*\\b') + ').*$',
     reg = RegExp(val, 'i'),

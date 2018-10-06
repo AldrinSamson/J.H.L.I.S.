@@ -13,6 +13,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @WebServlet("/editItem")
 public class editItem extends HttpServlet {
@@ -26,7 +29,7 @@ public class editItem extends HttpServlet {
     int quantityB = 0;
     int newITQ , newICQ;
     String lab;
-    String type;
+    String type , user;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -35,15 +38,23 @@ public class editItem extends HttpServlet {
 
             String sqlDate ="";
             String code = request.getParameter("code");
-            String name = request.getParameter("name");
             String quantityT = request.getParameter("quantityT");
             String quantityC = request.getParameter("quantityC");
             String date = request.getParameter("date");
-            String form = request.getParameter("form");
             String desc = request.getParameter("desc");
             String unit = request.getParameter("unit");
             String condi = request.getParameter("condi");
             String mResponse = request.getParameter("response");
+            DateFormat df = new SimpleDateFormat("HH:mm:ss");
+            String aTime = df.format(new java.util.Date());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+            String aDate = sdf.format(new Date());
+
+            if(request.getSession(false).getAttribute("user") == null){
+                out.println ("<html><body><script type='text/javascript'>alert('Please log-in first.');location='../index.html';</script></body></html>");
+            }else {
+                user = (String)request.getSession(false).getAttribute("user");
+            }
 
             // Value validation
             desc = desc == null ? "N/A" : desc;
@@ -98,6 +109,8 @@ public class editItem extends HttpServlet {
 
                             String addItem = "update inventory set itemTotalQuantity = '" + newITQ + "', itemCurrentQuantity = '" + newICQ + "' where itemKey = '" + code + "'";
                             stmt.execute(addItem);
+                            String audit = "insert into audit values (NULL,'"+user+"' , '"+aDate+"','"+aTime+"','Added Quantity to item "+code+"','Add Quantity to Item','N/A')";
+                            stmtE.execute(audit);
                             if (lab.equalsIgnoreCase("Physics")) {
                                 out.println("<html><body><script type='text/javascript'>;location='inventory/physics.jsp';</script></body></html>");
                             } else {
@@ -112,6 +125,8 @@ public class editItem extends HttpServlet {
                         String editItemInventory = "update inventory set itemTotalQuantity = '"+quantityA+"' , itemCurrentQuantity = '"+quantityB+"' , itemDate ="+sqlDate+" ,itemCondition ='"+condi+"' where itemKey = '"+code+"'";
                         stmt.execute(editItem);
                         stmt.execute(editItemInventory);
+                        String audit = "insert into audit values (NULL,'"+user+"' , '"+aDate+"','"+aTime+"','Edited item "+code+"','Edited Item','N/A')";
+                        stmtE.execute(audit);
                         if (lab.equalsIgnoreCase("Physics")) {
                             out.println("<html><body><script type='text/javascript'>;location='inventory/physics.jsp';</script></body></html>");
                         } else {
@@ -122,6 +137,8 @@ public class editItem extends HttpServlet {
 
                         String deleteItem = "delete i , d from inventory i join itemdetails d on i.itemKey = d.itemKey where i.itemKey = '"+code+"' ";
                         stmt.execute(deleteItem);
+                        String audit = "insert into audit values (NULL,'"+user+"' , '"+aDate+"','"+aTime+"','Deleted item "+code+"','Deleted Item','N/A')";
+                        stmtE.execute(audit);
                         if (lab.equalsIgnoreCase("Physics")) {
                             out.println("<html><body><script type='text/javascript'>;location='inventory/physics.jsp';</script></body></html>");
                         } else {

@@ -40,6 +40,10 @@
 <body class="animsition">
 <!-- declarations -->
 <%
+    if(session.getAttribute("user") == null){
+        out.println ("<html><body><script type='text/javascript'>alert('Please log-in first.');location='../index.html';</script></body></html>");
+    }
+
     Connection con;
     Statement stmt;
     ResultSet rs , get;
@@ -66,14 +70,15 @@
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
-                <div class="table-responsive-sm table--no-card ">
+                <div class = "side-title">Item List</div>
+                <div class="item-list-table table-responsive-sm table--no-card ">
                     <table class="table table-borderless table-striped " id = "iTable">
                         <thead>
-                        <tr >
-                            <th class = "col-md-6">Item List</th>
+                        <tr>
+                            <th>Sort</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody class = "item-list">
                         <%
                             try {
 
@@ -108,49 +113,49 @@
 
                         <div class="header-button">
                             <%
-                                try{
+                                try {
+                                    getUser = (String) session.getAttribute("user");
 
-                                    getUser = (String)session.getAttribute("user");
-
-                                    getQ = "select * from account where username = '"+getUser+"'";
+                                    getQ = "select * from account    where username = '" + getUser + "'";
                                     get = stmt.executeQuery(getQ);
 
-                                    while (get.next()){
-                                    aKey = get.getString("aKey");
-
-
+                                    while (get.next()) {
                             %>
                             <div class="account-wrap">
                                 <div class="account-item clearfix js-item-menu">
 
                                     <div class="content">
-                                        <a class="js-acc-btn" href="#">Hello, <%= get.getString("aClass") %> <%= get.getString("aName") %> </a>
+                                        <a class="js-acc-btn"
+                                           href="#">Hello, <%= get.getString("aClass") %> <%= get.getString("aName") %>
+                                        </a>
                                     </div>
                                     <div class="account-dropdown js-dropdown">
                                         <div class="info clearfix">
                                             <div class="image">
                                                 <a href="#">
-                                                    <img src="../images/icon/avatar-01.jpg" alt="John Doe" />
+                                                    <img src="../images/icon/avatar-02.png"/>
                                                 </a>
                                             </div>
                                             <div class="content">
                                                 <h5 class="name">
-                                                    <a href="#"><%= get.getString("username") %> </a>
+                                                    <a href="#"><%= get.getString("username") %>
+                                                    </a>
                                                 </h5>
                                                 <span class="email"><%= get.getString("aID") %> </span>
                                             </div>
                                         </div>
 
                                         <div class="account-dropdown__footer">
-                                            <a href="#">
-                                                <i class="zmdi zmdi-power"></i>Logout</a>
+                                            <form method = "post" action = "/logout">
+                                                <button class="btn btn-default btn-md">Logout<i class="zmdi zmdi-power"></i><input type="submit" value=""></button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <%
                                     }
-                                }catch (Exception e){
+                                } catch (Exception e) {
 
                                 }
 
@@ -164,22 +169,20 @@
         <!-- HEADER DESKTOP-->
         <!-- Main Body -->
         <div class="main-content">
+            <div class = "mt-0 pb-3 pl-5 page-title">Item Requesting Module</div>
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
                             <div class = "card text-left" id = "ptab-marg">
                                 <div class = "card-header" >
-                                    <h3 class = "card-title">Item Requesting Module</h3>
-
+                                    <h3 class = "pt-3 req-header">Your Current Requests</h3>
                                 </div>
                                 <div class = "card-body">
 
 
                                     <div class="col-lg-12">
-                                        <button type="button" class="btn btn-outline-secondary"  href="#mEAdd" data-toggle="modal"><i
-                                                class="fa fa-plus-square"
-                                                style="color:black;"></i>New Request</button>
+                                        <button type="button" class="btn new-item-btn-nA"  href="#mEAdd" data-toggle="modal">NEW ITEM</button>
                                         <div class="table-responsive table--no-card m-b-40">
                                             Your Current Requests
                                             <table class="table table-borderless table-striped table-earning" id = "nTable">
@@ -196,7 +199,7 @@
                                                 <%
                                                     try {
 
-
+                                                        aKey = (String) session.getAttribute("aKey");
                                                         query = "SELECT * from request where aKey = '"+aKey+"'";
                                                         rs = stmt.executeQuery(query);
 
@@ -244,7 +247,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header"><h4>New Request</h4></div>
-                <form action="addRequest" method="post" name ="addRequest">
+                <form action="../addRequest" method="post" name ="addRequest">
 
                     <div class="modal-body">
 
@@ -392,25 +395,25 @@
 </div>
 
 <!-- Jquery JS-->
-<script src="vendor/jquery-3.2.1.min.js"></script>
+<script src="../vendor/jquery-3.2.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- Bootstrap JS-->
-<script src="vendor/bootstrap-4.1/popper.min.js"></script>
-<script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+<script src="../vendor/bootstrap-4.1/popper.min.js"></script>
+<script src="../vendor/bootstrap-4.1/bootstrap.min.js"></script>
 <!-- Vendor JS -->
-<script src="vendor/slick/slick.min.js"></script>
-<script src="vendor/wow/wow.min.js"></script>
-<script src="vendor/animsition/animsition.min.js"></script>
-<script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-<script src="vendor/counter-up/jquery.waypoints.min.js"></script>
-<script src="vendor/datatables/datatables.min.js"></script>
-<script src="vendor/counter-up/jquery.counterup.min.js"></script>
-<script src="vendor/circle-progress/circle-progress.min.js"></script>
-<script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-<script src="vendor/chartjs/Chart.bundle.min.js"></script>
-<script src="vendor/select2/select2.min.js"></script>
+<script src="../vendor/slick/slick.min.js"></script>
+<script src="../vendor/wow/wow.min.js"></script>
+<script src="../vendor/animsition/animsition.min.js"></script>
+<script src="../vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<script src="../vendor/counter-up/jquery.waypoints.min.js"></script>
+<script src="../vendor/datatables/datatables.min.js"></script>
+<script src="../vendor/counter-up/jquery.counterup.min.js"></script>
+<script src="../vendor/circle-progress/circle-progress.min.js"></script>
+<script src="../vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="../vendor/chartjs/Chart.bundle.min.js"></script>
+<script src="../vendor/select2/select2.min.js"></script>
 <!-- Main JS-->
-<script src="js/main.js"></script>
+<script src="../js/main.js"></script>
 <script type = "text/javascript">
     $(document).ready(function(){
 

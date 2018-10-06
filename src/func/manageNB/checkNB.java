@@ -12,6 +12,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 @WebServlet("/checkNB")
@@ -25,6 +28,7 @@ public class checkNB extends HttpServlet {
 
     String MYdburl = getBean.getMyUrl();
     String MYclass = getBean.getMyClass();
+    String user;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -33,6 +37,16 @@ public class checkNB extends HttpServlet {
             String nLab = request.getParameter("nLab");
             String nName = request.getParameter("nName");
             String nDesc = request.getParameter("nDesc");
+            DateFormat df = new SimpleDateFormat("HH:mm:ss");
+            String aTime = df.format(new java.util.Date());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+            String aDate = sdf.format(new Date());
+
+            if(request.getSession(false).getAttribute("user") == null){
+                out.println ("<html><body><script type='text/javascript'>alert('Please log-in first.');location='../index.html';</script></body></html>");
+            }else {
+                user = (String)request.getSession(false).getAttribute("user");
+            }
 
             if (nDesc.isEmpty() == true) {
 
@@ -67,6 +81,10 @@ public class checkNB extends HttpServlet {
                     String addNB = "insert into nonborrowable values ('" + codeN + "','" + nName + "', '" + newNum + "','" + getAbbv + "','" + nDesc + "','" + nLab + "','OK')";
 
                     stmtE.execute(addNB);
+
+                    String audit = "insert into audit values (NULL,'"+user+"' , '"+aDate+"','"+aTime+"','Added item "+codeN+"','Add Item','N/A')";
+                    stmtE.execute(audit);
+
                     out.println("<html><body><script type='text/javascript'>alert('item added ');location='nonBorrowable.jsp';</script></body></html>");
 
 

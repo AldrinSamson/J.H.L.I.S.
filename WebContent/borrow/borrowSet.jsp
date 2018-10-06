@@ -12,7 +12,7 @@
 
 
     <!-- Title Page-->
-    <title>Borrow Prototype</title>
+    <title>Borrow Sets</title>
 
     <!-- Fontfaces CSS-->
     <link href="../css/font-face.css" rel="stylesheet" media="all">
@@ -33,28 +33,33 @@
     <link href="../vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
     <link href="../vendor/datatables/datatables.min.css" rel="stylesheet" media="all">
 
-
     <!-- Main CSS-->
-    <link href ="../css/custom.css" rel = "stylesheet" media = "all">
     <link href="../css/theme.css" rel="stylesheet" media="all">
+    <link href="../css/custom.css" rel="stylesheet" media="all">
+
+
 </head>
 <body class="animsition">
+
+
 <!-- declarations -->
 <%
+
     if(session.getAttribute("user") == null){
         out.println ("<html><body><script type='text/javascript'>alert('Please log-in first.');location='../index.html';</script></body></html>");
     }
 
     Connection con;
     Statement stmt;
-    ResultSet rs , get;
+    ResultSet rs , get , counter , getName ;
     PreparedStatement lps;
-    String getQ , getUser , query;
+    String getQ , getUser ,query;
     String MYdburl = getBean.getMyUrl();
     String MYclass = getBean.getMyClass();
     Class.forName(MYclass);
     con = DriverManager.getConnection(MYdburl);
     stmt = con.createStatement();
+    String set = getBean.getSet();
 %>
 <div class="page-wrapper">
     <!-- HEADER MOBILE-->
@@ -86,10 +91,10 @@
                             <i class="fas fa-table"></i>Item Borrow/Return</a>
                         <ul class="list-unstyled navbar__sub-list js-sub-list">
                             <li>
-                                <a href="borrow.jsp">Single</a>
+                                <a href="../borrow/borrow.jsp">Single</a>
                             </li>
                             <li>
-                                <a href="borrowSet.jsp">Set</a>
+                                <a href="../borrow/borrowSet.jsp">Set</a>
                             </li>
                         </ul>
                     </li>
@@ -168,10 +173,10 @@
                             <i class="fas fa-table"></i>Item Borrow/Return</a>
                         <ul class="list-unstyled navbar__sub-list js-sub-list">
                             <li>
-                                <a href="borrow.jsp">Single</a>
+                                <a href="../borrow/borrow.jsp">Single</a>
                             </li>
                             <li>
-                                <a href="borrowSet.jsp">Set</a>
+                                <a href="../borrow/borrowSet.jsp">Set</a>
                             </li>
                         </ul>
                     </li>
@@ -297,86 +302,109 @@
         <!-- HEADER DESKTOP-->
         <!-- Main Body -->
         <div class="main-content">
-            <div class = "mt-0 pb-3 pl-5 page-title"> Borrowables(Singles Only)(v1)</div>
+            <div class="pb-3 pl-5 page-title">Borrow Sets (UI ONLY)</div>
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
                     <div class="row">
+
                         <div class="col-md-12">
                             <div class = "card text-left" id = "ptab-marg">
                                 <div class = "card-header" >
                                     <ul class="nav nav-pills">
-                                        <li class = "nav-item"><a href="#tab-blist" data-toggle="tab" class = "nav-link active">Borrow</a></li>
-                                        <li class = "nav-item"><a href="#tab-rlist" data-toggle="tab" class = "nav-link" >Return</a></li>
+                                        <li class = "nav-item"><a href="#tab-elist" data-toggle="tab" class = "nav-link active">Physics Lab</a></li>
+                                        <li class = "nav-item"><a href="#tab-clist" data-toggle="tab" class = "nav-link" >Chemistry Lab</a></li>
                                     </ul>
                                 </div>
-                                <div class = "card-body">
+                                <div class = "p-1 card-body">
 
-                                    <div class ="tab-content">
-                                    <div class="tab-pane fade-in active" id="tab-blist">
-                                    <div class="col-lg-12">
-                                        <div class="table-responsive table--no-card m-b-40">
-                                            <table class="pt-2 table table-borderless table-striped table-earning" id = "borrowETable">
-                                                <thead>
-                                                <tr data-toggle = "modal" data-target = "mEBorrow">
-                                                    <th>ID</th>
-                                                    <th>name</th>
-                                                    <th>description</th>
-                                                    <th>item CQ</th>
-                                                    <th>item TQ</th>
-                                                    <th>item unit</th>
-                                                    <th>item Date</th>
-                                                    <th>item condition</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <%
-                                                    try {
+                                    <div class= "tab-content">
 
+                                        <div class="tab-pane fade-in active" id="tab-elist">
+                                            <div class="pt-2 col-lg-12">
+                                                <table class="table table-borderless table-striped table-earning" >
+                                                    <tr>
+                                                            <%
+					  			try {
 
-                                                        query = "select * from inventory i join itemdetails d on i.itemKey = d.itemKey ";
-                                                        rs = stmt.executeQuery(query);
+                                     String queryX = "select count(isCondition) from itemsetlist where isCondition = 'Available' and isLab = 'Physics'";
+                                     counter = stmt.executeQuery(queryX);
 
-                                                        while(rs.next()){
-                                                %>
-                                                <tr>
-                                                    <td><%=rs.getString("itemKey")%></td>
-                                                    <td><%=rs.getString("itemName")%></td>
-                                                    <td><%=rs.getString("itemDesc")%></td>
-                                                    <td><%=rs.getString("itemCurrentQuantity")%></td>
-                                                    <td><%=rs.getString("itemTotalQuantity")%></td>
-                                                    <td><%=rs.getString("itemUnit")%></td>
-                                                    <td><%=rs.getString("itemDate")%></td>
-                                                    <td><%=rs.getString("itemCondition")%></td>
-                                                </tr>
-                                                <%
-                                                        }
-                                                    }catch (Exception e){
-                                                        e.printStackTrace();
-                                                    }
-                                                %>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                                     while(counter.next()){
 
-                                </div>
-                                        <div class="tab-pane fade-in" id="tab-rlist">
-                                            <div class="col-lg-12">
+                                	%>
+                                                        <th>Available</th>
+                                                        <td><%=counter.getString("count(isCondition)")%></td>
+                                                            <%
+                                    	 }
+                               			 } catch (Exception e){
+                                   			 e.printStackTrace();
+                               			 }
+		       					%>
+                                                </table>
                                                 <div class="table-responsive table--no-card m-b-40">
-                                                    <table class="table table-borderless table-striped table-earning" id = "ReturnETable">
+                                                    <table class="table table-borderless table-striped table-earning" id = "pTable">
                                                         <thead>
-                                                        <tr data-toggle = "modal" data-target = "mEReturn">
+                                                        <tr>
                                                             <th>ID</th>
-                                                            <th>Item</th>
-                                                            <th>Name</th>
-                                                            <th>Quantity</th>
-                                                            <th>SID</th>
-                                                            <th>Student</th>
-                                                            <th>Section</th>
-                                                            <th>Supervisor</th>
-                                                            <th>Start Date</th>
-                                                            <th>Start Time</th>
                                                             <th>Condition</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <%
+                                                            try {
+                                                                query = "select * from itemsetlist where isLab = 'Physics'";
+                                                                rs = stmt.executeQuery(query);
+
+                                                                while(rs.next()){
+
+                                                        %>
+                                                        <tr>
+                                                            <td><%=rs.getString("isKey")%></td>
+                                                            <td><%=rs.getString("isCondition")%></td>
+                                                        </tr>
+                                                        <%
+                                                                }
+                                                            }catch (Exception e){
+                                                                e.printStackTrace();
+                                                            }
+                                                        %>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="tab-pane fade-in " id="tab-clist">
+                                            <div class="pt-2 col-lg-12">
+                                                <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mISAdd" data-toggle="modal"style = "color:black;">new set</a></button>
+                                                <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mCEdit" data-toggle="modal"style = "color:black;">edit set</a></button>
+                                                <table class="table table-borderless table-striped table-earning" >
+                                                    <tr>
+                                                            <%
+					  			try {
+
+                                     String queryX = "select count(isCondition) from itemsetlist where isCondition = 'available' and isLab = 'Chemistry'";
+                                     counter = stmt.executeQuery(queryX);
+
+                                     while(counter.next()){
+
+                                	%>
+                                                        <th>Available</th>
+                                                        <td><%=counter.getString("count(isCondition)")%></td>
+                                                            <%
+                                    	 }
+                               			 } catch (Exception e){
+                                   			 e.printStackTrace();
+                               			 }
+		       					%>
+                                                </table>
+                                                <div class="table-responsive table--no-card m-b-40">
+                                                    <table class="table table-borderless table-striped table-earning" id = "cTable">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>condi</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -384,23 +412,15 @@
                                                             try {
 
 
-                                                                query = "select * from borrowtransaction b join itemdetails d on b.bItemKey = d.itemKey where bCondition = 'Not Returned'   ";
+                                                                query = "select * from itemsetlist where isLab = 'Chemistry'";
                                                                 rs = stmt.executeQuery(query);
 
                                                                 while(rs.next()){
+
                                                         %>
                                                         <tr>
-                                                            <td><%=rs.getString("bID")%></td>
-                                                            <td><%=rs.getString("bItemKey")%></td>
-                                                            <td><%=rs.getString("itemName")%></td>
-                                                            <td><%=rs.getString("bQuantity")%></td>
-                                                            <td><%=rs.getString("sID")%></td>
-                                                            <td><%=rs.getString("sName")%></td>
-                                                            <td><%=rs.getString("sSection")%></td>
-                                                            <td><%=rs.getString("sSupervisor")%></td>
-                                                            <td><%=rs.getString("bSDate")%></td>
-                                                            <td><%=rs.getString("bSTime")%></td>
-                                                            <td><%=rs.getString("bCondition")%></td>
+                                                            <td><%=rs.getString("isKey")%></td>
+                                                            <td><%=rs.getString("isCondition")%></td>
                                                         </tr>
                                                         <%
                                                                 }
@@ -412,12 +432,12 @@
                                                     </table>
                                                 </div>
                                             </div>
-
                                         </div>
-                            </div>
+
+                                    </div>
                                 </div>
-                                </div>
                             </div>
+                        </div>
 
                     </div>
                 </div>
@@ -427,41 +447,38 @@
     </div>
     <!-- Main Body End-->
     <!-- Modal -->
-    <!-- borrow -->
-    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id = "mEBorrow"  data-keyboard="false">
+
+    <!-- Add ItemSet Physics Modal -->
+    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="mPAdd" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header"><h4>Borrow Equipement</h4></div>
-                <form action="../borrowSingle"  method = "post">
+                <div class="modal-header"><h4>New Item Set</h4></div>
+                <form action="../addSet" method="post">
 
                     <div class="modal-body">
 
-		<pre class = "tab">
-        <div  style = "display:table">
-            <div style = "display:table-cell">
-                <label  class = "label-modal">Item Code</label>
-                <label  class = "label-modal">Name</label>
-                <label  class = "label-modal">Quantity</label>
-                <label  class = "label-modal">ID</label>
-                <label  class = "label-modal">Name</label>
-                <label  class = "label-modal">Class</label>
-                <label  class = "label-modal">Supervisor</label>
-            </div>
-            <div  style = "display:table-cell; position:absolute; top:40px;">
-                <input type ="text" name = "iKey" class="input-modal" id = "EID" readonly>
-                <input type ="text" name = "iName" class="input-modal" id = "EName" readonly>
-                <input type ="text" name = "bQuantity" class="input-modal">
-                <input type ="text" name = "bID" class="input-modal">
-                <input type ="text" name = "bName" class="input-modal">
-                <input type ="text" name = "bClass" class="input-modal">
-                <input type ="text" name = "bSupervisor" class="input-modal">
-            </div>
-        </div>
-		</pre>
-                    </div>
+                        <div class="tab input_fields_wrap">
+                            <%--<div class = "input_fields_wrap">--%>
+                            <table class="table table-borderless table-earning" style="border-spacing:20px">
 
+                                <tr>
+                                    <td>Key</td>
+                                    <td>Quantity</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" name="name[]" class="input-modal"></td>
+                                    <td><input type="text" name="quantity[]" class="input-modal"></td>
+                                    <td><input type="text" name="lab" class="input-modal" value ="Physics" hidden></td>
+                                </tr>
+
+                            </table>
+                        </div>
+                        </pre>
+                    </div>
                     <div class="modal-footer">
-                        <input type ="submit" class="btn btn-default btn-md" value = "Lend">
+                        <input type="text" name="lab" class="input-modal" value="Physics" hidden>
+                        <button class="add_field_button">Add</button>
+                        <input type="submit" class="btn btn-default btn-md" value="Add">
                         <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
                     </div>
                 </form>
@@ -469,45 +486,82 @@
         </div>
     </div>
 
-    <!-- return -->
-    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id = "mEReturn"  data-keyboard="false">
+    <!-- View Set Modal -->
+    <div class="modal fade" id="viewSet" tabindex="-1" role="dialog" aria-hidden="true"  >
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header"><h4>Return Equipment</h4></div>
+                <div class="modal-header"><h4><%=set%></h4></div>
+                <form action="../showSet" method="post">
 
                     <div class="modal-body">
 
-		<pre class = "tab">
-        <div  style = "display:table">
-            <div style = "display:table-cell">
-                <form action="../returnSingle"  method = "post">
-                <label  class = "label-modal">Item Code</label>
-                <label  class = "label-modal">Name</label>
-            </div>
-            <div  style = "display:table-cell; position:absolute; top:40px;">
-                <input type ="text" name = "iKey" class="input-modal" id = "EID" readonly>
-                <input type ="text" name = "iName" class="input-modal" id = "EName" readonly>
-                 <input type ="text" name = "bID" class="input-modal" id = "BID" hidden>
-                <input type ="text" name = "bQ" class="input-modal" id = "BQ" >
-                Report:
-                        <input type ="submit" name = "response" class="btn btn-default btn-md" value = "Missing">
-                        <input type ="submit" name = "response" class="btn btn-default btn-md" value = "Broken">
-                        <input type ="submit" name = "response" class="btn btn-default btn-md" value = "Return">
-                </form>
+		<pre class="tab">
 
-            </div>
-        </div>
+           <table class="table table-borderless table-striped table-earning" >
+                        <thead>
+							<tr>
+							<th>ID</th>
+                                <th> quanitity </th>
+							<th>condi</th>
+							</tr>
+                        </thead>
+                        <tbody>
+                            <%
+                                try {
+
+
+                                    query = "select g.itemKey , g.isQuantity , l.isCondition from itemsetgroup g join itemsetlist l on l.isKey = g.isKey where l.isKey = '"+set+"' ";
+                                    rs = stmt.executeQuery(query);
+
+                                    while(rs.next()){
+
+                            %>
+							<tr>
+							<td><%=rs.getString("itemKey")%></td>
+                                <td><%=rs.getString("isQuantity")%></td>
+							<td><%=rs.getString("isCondition")%></td>
+							</tr>
+							<%
+                                    }
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
+                            %>
+                        </tbody>
+                        </table>
+
 		</pre>
                     </div>
                     <div class="modal-footer">
-
-                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Lend</button>
+                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
                     </div>
+                </form>
             </div>
         </div>
     </div>
+    <div class="modal fade" id="getViewSet" tabindex="-1" role="dialog" aria-hidden="true"  >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><h4><h4><%=set%></h4></div>
+                <form action="../showSet" method="post" id = "getSet">
+
+                    <div class="modal-body">
+
+		<pre class="tab">
+            <input type="text" name="ID" id = "pID" >
+            <input type="text" name="location" value = "borrow" hidden>
 
 
+		</pre>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 </div>
 
@@ -532,37 +586,53 @@
 <script src="../vendor/chartjs/Chart.bundle.min.js"></script>
 <script src="../vendor/select2/select2.min.js">
 </script>
-<script type = "text/javascript">
-    $(document).ready(function(){
+<script type="text/javascript">
 
-        if (window.location.href.indexOf('#mNCode') != -1) {
-            $('#mNCode').modal('show');
+    $(document).ready(function () {
+
+        if (window.location.href.indexOf('#viewSet') != -1) {
+            $('#viewSet').modal('show');
         }
+
     });
 
-    $(document).ready(function(){
-        var borrowETableX = $("#borrowETable").DataTable();
-        $('#borrowETable tbody').on('click', 'tr', function(){
-            var borrowEdata = borrowETableX.row(this).data();
-            $('#mEBorrow').modal('show');
-            $(".modal-body #EID").val( borrowEdata[0] );
-            $(".modal-body #EName").val( borrowEdata[1] );
-            $(".modal-body #EType").val( borrowEdata[8] );
+
+
+    $(document).ready(function (){
+        var RTable= $('#pTable').DataTable();
+        $('#pTable tbody').on('click', 'tr', function () {
+            var RTableData = RTable.row(this).data();
+            //$('#getViewSet').modal('show');
+            $(".modal-body #pID").val(RTableData[0]);
+            $('#getSet').submit();
         });
     });
 
-    $(document).ready(function(){
-        var ReturnETableX = $("#ReturnETable").DataTable();
-        $('#ReturnETable tbody').on('click', 'tr', function(){
-            var ReturnEdata = ReturnETableX.row(this).data();
-            $('#mEReturn').modal('show');
-            $(".modal-body #EID").val( ReturnEdata[1] );
-            $(".modal-body #EName").val( ReturnEdata[2] );
-            $(".modal-body #BID").val( ReturnEdata[0] );
-            $(".modal-body #BQ").val( ReturnEdata[3] );
+
+
+    $(document).ready(function() {
+        var max_fields      = 10; //maximum input boxes allowed
+        var wrapper         = $(".input_fields_wrap"); //Fields wrapper
+        var add_button      = $(".add_field_button"); //Add button ID
+
+        var x = 1; //initlal text box count
+        $(add_button).on("click",function(e){ //on add input button click
+            e.preventDefault();
+            if(x < max_fields){ //max input box allowed
+                x++; //text box increment
+                $(wrapper).append('<div><tr>\n' +
+                    '<td><input type="text" name="name[]" class="input-modal"></td>\n' +
+                    '<td><input type="text" name="quantity[]" class="input-modal"><a href="#" class="remove_field">Remove</a></td>\n' +
+                    '</tr><div>'); //add input box
+            }
         });
+
+        $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+            e.preventDefault(); $(this).parent('div').remove(); x--;
+        })
     });
 </script>
+
 <!-- Main JS-->
 <script src="../js/main.js"></script>
 </body>

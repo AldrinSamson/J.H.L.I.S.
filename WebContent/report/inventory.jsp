@@ -40,6 +40,11 @@
 <body class="animsition">
 <!-- declarations -->
 <%
+
+    if(session.getAttribute("user") == null){
+        out.println ("<html><body><script type='text/javascript'>alert('Please log-in first.');location='../index.html';</script></body></html>");
+    }
+
     Connection con;
     Statement stmt;
     ResultSet rs , get;
@@ -76,9 +81,17 @@
                         <a href="../dashboard.jsp">
                             <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                     </li>
-                    <li>
-                        <a href="../borrow/borrow.jsp">
-                            <i class="fas fa-flask"></i>Item Borrow/Return</a>
+                    <li class="has-sub">
+                        <a class="js-arrow" href="#">
+                            <i class="fas fa-table"></i>Item Borrow/Return</a>
+                        <ul class="list-unstyled navbar__sub-list js-sub-list">
+                            <li>
+                                <a href="../borrow/borrow.jsp">Single</a>
+                            </li>
+                            <li>
+                                <a href="../borrow/borrowSet.jsp">Set</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="has-sub">
                         <a class="js-arrow" href="#">
@@ -103,27 +116,24 @@
                             <i class="fas fa-chart-bar"></i>Reports</a>
                         <ul class="list-unstyled navbar__sub-list js-sub-list">
                             <li>
-                                <a href="../report/inventory.jsp">Inventory Manifest</a>
+                                <a href="inventory.jsp">Inventory Manifest</a>
                             </li>
                             <li>
-                                <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
+                                <a href="borrowTransaction.jsp">Borrowing Transactions</a>
                             </li>
                             <li>
-                                <a href="../report/request.jsp">Request Reports</a>
+                                <a href="damagesMissing.jsp">Damage/Missing Reports</a>
                             </li>
                             <li>
-                                <a href="../report/damages.jsp">Damage Reports</a>
+                                <a href="audit.jsp">Audit</a>
                             </li>
                             <li>
-                                <a href="../report/missing.jsp">Missing Reports</a>
-                            </li>
-                            <li>
-                                <a href=../report/insights.jsp">Insights</a>
+                                <a href="insights.jsp">Insights</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="../requestAdmin.jsp">
+                        <a href="../request/requestAdmin.jsp">
                             <i class="far fa-check-square"></i>Requests</a>
                     </li>
 
@@ -153,9 +163,17 @@
                         <a href="../dashboard.jsp">
                             <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                     </li>
-                    <li>
-                        <a href="../borrow/borrow.jsp">
-                            <i class="fas fa-flask"></i>Item Borrow/Return</a>
+                    <li class="has-sub">
+                        <a class="js-arrow" href="#">
+                            <i class="fas fa-table"></i>Item Borrow/Return</a>
+                        <ul class="list-unstyled navbar__sub-list js-sub-list">
+                            <li>
+                                <a href="../borrow/borrow.jsp">Single</a>
+                            </li>
+                            <li>
+                                <a href="../borrow/borrowSet.jsp">Set</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="has-sub">
                         <a class="js-arrow" href="#">
@@ -186,13 +204,10 @@
                                 <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
                             </li>
                             <li>
-                                <a href="../report/request.jsp" >Request Reports</a>
+                                <a href="../report/damagesMissing.jsp.jsp">Damage/Missing Reports</a>
                             </li>
                             <li>
-                                <a href="../report/damages.jsp">Damage Reports</a>
-                            </li>
-                            <li>
-                                <a href="../report/missing.jsp">Missing Reports</a>
+                                <a href="../report/audit.jsp.jsp">Audit</a>
                             </li>
                             <li>
                                 <a href="../report/insights.jsp">Insights</a>
@@ -200,7 +215,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="../requestAdmin.jsp">
+                        <a href="../request/requestAdmin.jsp">
                             <i class="far fa-check-square"></i>Requests</a>
                     </li>
 
@@ -227,49 +242,49 @@
 
                         <div class="header-button">
                             <%
-                                try{
+                                try {
+                                    getUser = (String) session.getAttribute("user");
 
-                                    getUser = (String)session.getAttribute("user");
-
-                                    getQ = "select * from account where username = '"+getUser+"'";
+                                    getQ = "select * from account    where username = '" + getUser + "'";
                                     get = stmt.executeQuery(getQ);
 
-                                    while (get.next()){
-
-
-
+                                    while (get.next()) {
                             %>
                             <div class="account-wrap">
                                 <div class="account-item clearfix js-item-menu">
 
                                     <div class="content">
-                                        <a class="js-acc-btn" href="#">Hello, <%= get.getString("aClass") %> <%= get.getString("aName") %> </a>
+                                        <a class="js-acc-btn"
+                                           href="#">Hello, <%= get.getString("aClass") %> <%= get.getString("aName") %>
+                                        </a>
                                     </div>
                                     <div class="account-dropdown js-dropdown">
                                         <div class="info clearfix">
                                             <div class="image">
                                                 <a href="#">
-                                                    <img src="../images/icon/avatar-01.jpg" alt="John Doe" />
+                                                    <img src="../images/icon/avatar-02.png"/>
                                                 </a>
                                             </div>
                                             <div class="content">
                                                 <h5 class="name">
-                                                    <a href="#"><%= get.getString("username") %> </a>
+                                                    <a href="#"><%= get.getString("username") %>
+                                                    </a>
                                                 </h5>
                                                 <span class="email"><%= get.getString("aID") %> </span>
                                             </div>
                                         </div>
 
                                         <div class="account-dropdown__footer">
-                                            <a href="#">
-                                                <i class="zmdi zmdi-power"></i>Logout</a>
+                                            <form method = "post" action = "../logout">
+                                                <button class="btn btn-default btn-md">Logout<i class="zmdi zmdi-power"></i><input type="submit" value=""></button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <%
                                     }
-                                }catch (Exception e){
+                                } catch (Exception e) {
 
                                 }
 
@@ -283,22 +298,17 @@
         <!-- HEADER DESKTOP-->
         <!-- Main Body -->
         <div class="main-content">
+            <div class = "pl-5 pb-3 page-title">Inventory Manifest</div>
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
                             <div class = "card text-left" id = "ptab-marg">
-                                <div class = "card-header" >
-                                    <h3 class = "card-title">Inventory Manifest</h3>
-
-                                </div>
                                 <div class = "card-body">
-
-
                                     <div class="col-lg-12">
                                         <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mEAdd" data-toggle="modal"style = "color:black;">Export .csv</a></button>
                                         <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mEEdit" data-toggle="modal"style = "color:black;">Export .pdf</a></button>
-                                        <div class="table-responsive table--no-card m-b-40">
+                                        <div class="pt-2 table-responsive table--no-card m-b-40">
                                             <table class="table table-borderless table-striped table-earning" id = "IElist">
                                                 <thead>
                                                 <tr>

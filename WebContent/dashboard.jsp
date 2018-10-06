@@ -33,14 +33,19 @@
     <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
     <link href="vendor/datatables/datatables.min.css" rel="stylesheet" media="all">
-    <link href="vendor/datatables/datatables.css" rel="stylesheet" media="all">
+    <link href="vendor/datatables/datatables.css" rel="stylesheet" media="  all">
 
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
+    <link href = "css/custom.css" rel = "stylesheet" media = "all">
 </head>
 <body class="animsition">
 <!-- declarations -->
 <%
+    if(session.getAttribute("user") == null){
+        out.println ("<html><body><script type='text/javascript'>alert('Please log-in first.');location='index.html';</script></body></html>");
+    }
+
     Connection con;
     Statement stmt;
     ResultSet rs, get, counter;
@@ -78,9 +83,17 @@
                             <a href="dashboard.jsp">
                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
-                         <li>
-                            <a href="borrow/borrow.jsp">
-                                <i class="fas fa-flask"></i>Item Borrow/Return</a>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-table"></i>Item Borrow/Return</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="borrow/borrow.jsp">Single</a>
+                                </li>
+                                <li>
+                                    <a href="borrow/borrowSet.jsp">Set</a>
+                                </li>
+                            </ul>
                         </li>
                           <li class="has-sub">
                             <a class="js-arrow" href="#">
@@ -125,7 +138,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="requestAdmin.jsp">
+                            <a href="request/requestAdmin.jsp">
                                 <i class="far fa-check-square"></i>Requests</a>
                         </li>
                        
@@ -155,9 +168,17 @@
                             <a href="dashboard.jsp">
                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
-                         <li>
-                            <a href="borrow/borrow.jsp">
-                                <i class="fas fa-flask"></i>Item Borrow/Return</a>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-table"></i>Item Borrow/Return</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="borrow/borrow.jsp">Single</a>
+                                </li>
+                                <li>
+                                    <a href="borrow/borrowSet.jsp">Set</a>
+                                </li>
+                            </ul>
                         </li>
                           <li class="has-sub">
                             <a class="js-arrow" href="#">
@@ -197,12 +218,12 @@
                                     <a href="report/missingR.jsp">Missing Item Reports</a>
                                 </li>
                                  <li>
-                                    <a href="report/insights.jsp">Analytics</a>
+                                    <a href="report/insights.jsp">Insights</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="requestAdmin.jsp">
+                            <a href="request/requestAdmin.jsp">
                                 <i class="far fa-check-square"></i>Requests</a>
                         </li>
                        
@@ -225,60 +246,57 @@
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="header-wrap">
-                            
+
                             <div class="header-button">
-                        <% 
-                        	try{
-                    		Class.forName(MYclass);
-                    		con = DriverManager.getConnection(MYdburl);
-                    		stmt = con.createStatement();
-                    		
-                    		getUser = (String)session.getAttribute("user");
-                    		
-                    		getQ = "select * from account where username = '"+getUser+"'";
-                    		get = stmt.executeQuery(getQ);
-                    		
-                    		while (get.next()){
-                    		
-                    	
-                        
-                        %>
+                                <%
+                                    try {
+                                        getUser = (String) session.getAttribute("user");
+
+                                        getQ = "select * from account    where username = '" + getUser + "'";
+                                        get = stmt.executeQuery(getQ);
+
+                                        while (get.next()) {
+                                %>
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
-                  
+
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#">Hello, <%= get.getString("aClass") %> <%= get.getString("aName") %> </a>
+                                            <a class="js-acc-btn"
+                                               href="#">Hello, <%= get.getString("aClass") %> <%= get.getString("aName") %>
+                                            </a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                                        <img src="../images/icon/avatar-02.png"/>
                                                     </a>
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#"><%= get.getString("username") %> </a>
+                                                        <a href="#"><%= get.getString("username") %>
+                                                        </a>
                                                     </h5>
                                                     <span class="email"><%= get.getString("aID") %> </span>
                                                 </div>
                                             </div>
-                                          
+
                                             <div class="account-dropdown__footer">
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-power"></i>Logout</a>
+                                                <form method = "post" action = "../logout">
+                                                    <button class="btn btn-default btn-md">Logout<i class="zmdi zmdi-power"></i><input type="submit" value=""></button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                        <%
-                    		}
-                    	}catch (Exception e){
-                        	
-                        }
-                    	
-                    	
-                        %>
+                                <%
+                                        }
+                                    } catch (Exception e) {
+
+                                    }
+
+
+                                %>
                             </div>
                         </div>
                     </div>
@@ -293,6 +311,9 @@
                         <div class="row">
                             <div class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
+                                    <div class = "counter__icon">
+                                        <span class = "icon-018"></span>
+                                    </div>
                                     <%
                                         try{
                                             String queryx= "select count(itemCurrentQuantity) as count from inventory where itemCurrentQuantity <> itemTotalQuantity and itemCondition <> 'Broken' and itemCondition <> 'Missing'";
@@ -308,22 +329,22 @@
                                         }
                                     %>
                                     <span class="desc">Equipment Lent</span>
-                                    <div class="icon">
-                                        <i class="zmdi zmdi-account-o"></i>
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
+                                    <div class = "counter__icon">
+                                        <span class = "icon-275"></span>
+                                    </div>
                                     <h2 class="number">Next Time</h2>
                                     <span class="desc">Critical</span>
-                                    <div class="icon">
-                                        <i class="zmdi zmdi-shopping-cart"></i>
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
+                                    <div class = "counter__icon">
+                                        <span class = "icon-012"></span>
+                                    </div>
                                     <%
                                         try{
                                             String queryx= "select count(rID) as count from request where rCondition = 'Pending'";
@@ -339,13 +360,13 @@
                                     }
                                     %>
                                     <span class="desc">Requests Pending</span>
-                                    <div class="icon">
-                                        <i class="zmdi zmdi-calendar-note"></i>
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
+                                    <div class = "counter__icon">
+                                        <span class = "icon-036"></span>
+                                    </div>
                                     <%
                                         try{
                                             String queryx= "select count(itemCurrentQuantity) as count from inventory where itemCurrentQuantity <> itemTotalQuantity and itemCondition = 'Broken' or itemCondition = 'Missing'";
@@ -360,10 +381,7 @@
                                         e.printStackTrace();
                                     }
                                     %>
-                                    <span class="desc">Damaged/Missing</span>
-                                    <div class="icon">
-                                        <i class="zmdi zmdi-money"></i>
-                                    </div>
+                                    <span class="desc">Damaged / Missing</span>
                                 </div>
                                     </div>
                                 </div>
@@ -376,7 +394,7 @@
                             <div class="col-lg-12">
                                 <div class="card text-left" id="ptab-marg">
                                     <div class="card-header">
-                                        <h3 class="card-title"> Requests </h3>
+                                        <h3 class="pt-2 card-title"> Requests </h3>
                                     </div>
                                     <div class="card-body">
                                         <table class="table table-borderless table-striped table-earning" id = "rTable">
@@ -474,32 +492,6 @@
                                     </div>
                                 </div>
                                 <!-- END RECENT REPORT 2             -->
-                            </div>
-                            <div class="col-xl-4">
-                                <!-- TASK PROGRESS-->
-                                <div class="task-progress">
-                                    <h3 class="title-3">#myDevProgress</h3>
-                                    <div class="au-skill-container">
-                                        <div class="au-progress">
-                                            <span class="au-progress__title">Management Modules</span>
-                                            <div class="au-progress__bar">
-                                                <div class="au-progress__inner js-progressbar-simple" role="progressbar" data-transitiongoal="30">
-                                                    <span class="au-progress__value js-value"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="au-progress">
-                                            <span class="au-progress__title">Functional Modules</span>
-                                            <div class="au-progress__bar">
-                                                <div class="au-progress__inner js-progressbar-simple" role="progressbar" data-transitiongoal="15">
-                                                    <span class="au-progress__value js-value"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                       
-                                    </div>
-                                </div>
-                                <!-- END TASK PROGRESS-->
                             </div>
                         </div>
                     </div>
