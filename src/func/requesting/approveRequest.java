@@ -27,7 +27,7 @@ public class approveRequest extends HttpServlet {
     String MYclass = getBean.getMyClass();
     String user , prof;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         try (PrintWriter out = response.getWriter()) {
 

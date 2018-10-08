@@ -403,7 +403,7 @@ Class.forName(MYclass);
   		<div class="modal-dialog">
     	<div class="modal-content">
     	<div class="modal-header"><h4>Edit Account<i class="fa fa-lock"></i></h4></div>
-    	<form action="../editAccount"  method = "post">
+    	<form class = "editAccount" action="../editAccount"  method = "post">
 		<div class="modal-body">
 		<pre class = "tab">
 		

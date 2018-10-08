@@ -23,7 +23,7 @@ public class showMessage extends HttpServlet {
     String MYdburl = getBean.getMyUrl();
     String MYclass = getBean.getMyClass();
     String rMessage;
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         try (PrintWriter out = response.getWriter()) {
 

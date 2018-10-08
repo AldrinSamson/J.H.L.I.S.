@@ -32,6 +32,7 @@
     <link href="../vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="../vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
     <link href="../vendor/datatables/datatables.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/Buttons-1.5.4/css/buttons.dataTables.css" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
     <link href ="../css/custom.css" rel = "stylesheet" media = "all">
@@ -527,6 +528,9 @@
 <script src="../vendor/chartjs/Chart.bundle.min.js"></script>
 <script src="../vendor/select2/select2.min.js">
 </script>
+<script src = "../vendor/pdfmake-0.1.36/pdfmake.js"></script>
+<script src = "../vendor/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script src = "../vendor/Buttons-1.5.4/js/buttons.html5.js"></script>
 <script type = "text/javascript">
     $(document).ready(function(){
 
@@ -535,8 +539,17 @@
         }
     });
     $(document).ready(function(){
-        var ReturnETableX = $("#IElist").DataTable()
-
+        $("#IElist").DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'csvHtml5',
+                {
+                    extend: 'pdfHtml5',
+                    download: 'open',
+                    message : 'University of Santo Tomas | Junior Highschool | Physics/Chemistry Laboratory '
+                }
+            ]
+        });
     });
 </script>
 <!-- Main JS-->

@@ -31,6 +31,7 @@
     <link href="../vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="../vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="../vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <link href="../vendor/Buttons-1.5.4/css/buttons.dataTables.css" rel="stylesheet" media="all">
     owgg
 
 
@@ -330,7 +331,7 @@
                                                             try {
 
 
-                                                                query = "select b.bItemKey , i.itemName , i.itemDesc , b.bQuantity , i.itemUnit , b.bCondition from borrowtransaction b join itemdetails i on b.bItemKey = i.itemKey where b.bCondition = 'Broken' ";
+                                                                query = "select b.bItemKey , i.itemName , i.itemDesc , b.bQuantity , i.itemUnit , b.bCondition from borrowtransaction b join itemdetails i on b.bItemKey = i.itemKey where b.bCondition = 'Damaged' ";
                                                                 rs = stmt.executeQuery(query);
 
                                                                 while(rs.next()){
@@ -376,7 +377,7 @@
                                                             try {
 
 
-                                                                query = "select b.bItemKey , i.itemName , i.itemDesc , b.bQuantity , i.itemUnit , b.bCondition from borrowtransaction b join itemdetails i on b.bItemKey = i.itemKey where b.bCondition = 'Lost' ";
+                                                                query = "select b.bItemKey , i.itemName , i.itemDesc , b.bQuantity , i.itemUnit , b.bCondition from borrowtransaction b join itemdetails i on b.bItemKey = i.itemKey where b.bCondition = 'Missing' ";
                                                                 rs = stmt.executeQuery(query);
 
                                                                 while(rs.next()){
@@ -519,6 +520,9 @@
 <script src="../vendor/chartjs/Chart.bundle.min.js"></script>
 <script src="../vendor/select2/select2.min.js">
 </script>
+<script src = "../vendor/pdfmake-0.1.36/pdfmake.js"></script>
+<script src = "../vendor/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script src = "../vendor/Buttons-1.5.4/js/buttons.html5.js"></script>
 <script type = "text/javascript">
     $(document).ready(function(){
 
@@ -528,15 +532,33 @@
     });
 
     $(document).ready(function(){
-        var borrowETableX = $("#borrowETable").DataTable();
+       $("#borrowETable").DataTable({
+           dom: 'Bfrtip',
+           buttons: [
+               'csvHtml5',
+               {
+                   extend: 'pdfHtml5',
+                   download: 'open',
+                   message : 'University of Santo Tomas | Junior Highschool | Physics/Chemistry Laboratory '
+               }
+           ]
+       });
 
 
     });
 
     $(document).ready(function(){
-        var ReturnETableX = $("#ReturnETable").DataTable();
-
-
+       $("#ReturnETable").DataTable({
+           dom: 'Bfrtip',
+           buttons: [
+               'csvHtml5',
+               {
+                   extend: 'pdfHtml5',
+                   download: 'open',
+                   message : 'University of Santo Tomas | Junior Highschool | Physics/Chemistry Laboratory '
+               }
+           ]
+       });
     });
 </script>
 <!-- Main JS-->

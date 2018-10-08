@@ -12,7 +12,9 @@ import java.io.PrintWriter;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.Date;
+import java.util.function.DoubleUnaryOperator;
 
 
 @WebServlet("/loginv2")
@@ -24,6 +26,9 @@ public class loginv2 extends HttpServlet {
     String MYdburl = getBean.getMyUrl();
     String MYclass = getBean.getMyClass();
     String user, name, idNum , type ,aKey;
+    String  iKey ;
+    int CQ , TQ  , count  ;
+
     boolean chk = false;
 
     @Override
@@ -38,6 +43,10 @@ public class loginv2 extends HttpServlet {
             String aTime = df.format(new java.util.Date());
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
             String aDate = sdf.format(new Date());
+            List<String> iKey = new ArrayList<>();
+            List<Double> CQ = new ArrayList<>();
+            List<Double> TQ = new ArrayList<>();
+            List<Long> Date = new ArrayList<>();
 
             try {
                 Class.forName(MYclass);
@@ -51,8 +60,6 @@ public class loginv2 extends HttpServlet {
                 ResultSet rs = ps.executeQuery();
                 chk = rs.next();
 
-                //add audit log
-
                 if (chk) {
 
                     ResultSet getz;
@@ -62,6 +69,53 @@ public class loginv2 extends HttpServlet {
                         aKey = getz.getString("aKey");
                         type = getz.getString("aClass");
 
+                    } getz.close();
+
+
+                    // get data
+                    String doCritical = "SELECT  COUNT(*) as rowss  from inventory ";
+                    getz  = stmt.executeQuery(doCritical);
+                    while(getz.next()) {
+                        count = getz.getInt("rowss");
+                    }
+                    getz.close();
+
+                    String doCritical2 = "SELECT * from inventory  ";
+                    getz  = stmt.executeQuery(doCritical2);
+
+                    int i = 0;
+                    while(i < count){
+                        getz.next();
+                        String itemKey = getz.getString("itemKey");
+                        iKey.add(itemKey);
+                        double CurrentQuantity = getz.getInt("itemCurrentQuantity");
+                        CQ.add(CurrentQuantity);
+                        double TotalQuantity = getz.getInt("itemTotalQuantity");
+                       TQ.add(TotalQuantity);
+
+                        i++;
+                    }
+
+
+                    getz.close();
+                    //end get data
+
+                    //compare quantity
+                    int x = 0 ;
+                    while (x < iKey.size()){
+                        double criticalTQ = TQ.get(x) * 0.25;
+                        double nowQ = CQ.get(x);
+                        String key = iKey.get(x);
+                        if (criticalTQ >= nowQ){
+
+                            String filterRecord = "select * from audit where date = '"+aDate+"' and actionID = '"+key+"'";
+                            getz = stmt.executeQuery(filterRecord);
+                            if (!getz.next()){
+                                String criticalQ = "insert into audit values (NULL , '"+user+"' , '"+aDate+"' , '"+aTime+"' , 'Critical Quantity on "+key+"' , 'Critical' ,'"+key+"')";
+                                stmt.execute(criticalQ);
+                            }
+                        }
+                        x++;
                     }
 
 

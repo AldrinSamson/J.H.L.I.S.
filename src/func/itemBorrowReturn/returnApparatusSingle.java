@@ -17,8 +17,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@WebServlet("/returnMissingSingle")
-public class returnMissingSingle extends HttpServlet {
+@WebServlet("/returnApparatusSingle")
+public class returnApparatusSingle extends HttpServlet {
     Connection con;
     String MYdburl = getBean.getMyUrl();
     String MYclass = getBean.getMyClass();
@@ -29,14 +29,14 @@ public class returnMissingSingle extends HttpServlet {
     String type,iKey ,sName;
     String condition;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         response.setContentType("text/html;charset=UTF-8");
 
         try (PrintWriter out = response.getWriter()) {
 
             int quantityLoss = Integer.parseInt(request.getParameter("qLoss"));
-            int quantityTotal = Integer.parseInt(request.getParameter("qTotal"));
+            int quantityTotal = (Integer) request.getSession(false).getAttribute("quantityTotal");
             String mResponse = request.getParameter("response");
             String bID = (String)request.getSession(false).getAttribute("bID");
 

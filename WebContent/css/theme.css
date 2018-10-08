@@ -92,6 +92,8 @@ p {
 }
 
 .btn {
+    background: transparent;
+    border: solid 1px #6c757d;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;

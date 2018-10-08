@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -23,7 +24,7 @@ public class showSet extends HttpServlet {
     String MYdburl = getBean.getMyUrl();
     String MYclass = getBean.getMyClass();
     String rMessage;
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         try (PrintWriter out = response.getWriter()) {
 
@@ -36,9 +37,8 @@ public class showSet extends HttpServlet {
                 stmtCHK = con.createStatement();
                 stmtE = con.createStatement();
 
-
-
-                getBean.setSet(ID);
+                HttpSession log = request.getSession(true);
+                log.setAttribute("set", ID);
 
                 if (location.equals("admin")) {
                     out.println("<html><body><script type='text/javascript'>;location='inventory/itemSets.jsp#viewSet';</script></body></html>");
