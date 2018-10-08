@@ -1,13 +1,13 @@
 <application>
   <component name="FindSettings">
-    <option name="customScope" value="Project 'J.H.L.I.S'" />
-    <option name="defaultScopeName" value="Project 'J.H.L.I.S'" />
+    <option name="customScope" value="File '...\WebContent\inventory\itemSets.jsp [jhlis]'" />
+    <option name="defaultScopeName" value="File '...\WebContent\inventory\itemSets.jsp [jhlis]'" />
     <option name="localCaseSensitive" value="true" />
     <option name="localRegularExpressions" value="true" />
     <option name="localWholeWordsOnly" value="true" />
     <option name="LOCAL_CASE_SENSITIVE_SEARCH" value="true" />
     <option name="LOCAL_WHOLE_WORDS_ONLY" value="true" />
     <option name="LOCAL_REGULAR_EXPRESSIONS" value="true" />
-    <option name="SEARCH_SCOPE" value="Project 'J.H.L.I.S'" />
+    <option name="SEARCH_SCOPE" value="File '...\WebContent\inventory\itemSets.jsp [jhlis]'" />
   </component>
 </application>
