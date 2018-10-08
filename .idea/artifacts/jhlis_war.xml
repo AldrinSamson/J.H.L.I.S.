@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="jhlis:war">
-    <output-path>$PROJECT_DIR$/out/artifacts/jhlis_war</output-path>
-    <root id="archive" name="jhlis_war.war">
-      <element id="artifact" artifact-name="jhlis:war exploded" />
-    </root>
-  </artifact>
-</component>
