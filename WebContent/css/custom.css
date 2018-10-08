@@ -318,10 +318,18 @@ p > .au-input {
 
 }
 
-
-.item-list-table  .dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
-    color: white!important
+.menu-sidebar .dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+    color: white!important;
 }
+
+.menu-sidebar__content .item-list-table .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+    color: #ffef3b!important;
+}
+
+.section__content .item-list-table  .dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+    color: black!important;
+}
+
 
 .item-list-table .dataTables_length label select{
     margin-left: 20px;
@@ -342,4 +350,61 @@ p > .au-input {
     color: #ffef3b;
 }
 
+.modal-footer .btn {
+    background: transparent;
+    border: solid 1px #212529;
+}
 
+.btn-card {
+    border: solid 1px #212529;
+    color: #212529;
+}
+
+.modal-footer .btn:hover, .btn-card:hover {
+    background: #212529;
+    color: white;
+}
+
+.modal-body .table {
+    color: #212529;
+}
+
+.modal-body .table td {
+    color: #212529;
+}
+
+.modal-body .table input[type="text"], input[type="password"], select {
+    border: solid 1px #212529;
+}
+
+.modal-body select {
+    height: 30px;
+}
+
+.dashboard-counter a:hover span {
+    color: #ffef3b;
+}
+
+.dashboard-counter a:hover .number {
+    background-image: linear-gradient(#E7E2F0 40%, #ffef3b 60%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.dashboard-counter a:hover .statistic__item{
+    background: #0C0C10;
+}
+
+.account-dropdown__footer {
+    text-align: center;
+}
+
+.account-dropdown__footer button {
+    width: 100%;
+}
+.account-dropdown__footer button:hover {
+    color: #ffef3b;
+}
+.account-dropdown__footer button{
+    color: white;
+}

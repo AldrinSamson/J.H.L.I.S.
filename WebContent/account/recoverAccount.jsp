@@ -83,13 +83,13 @@ if( session.getAttribute("good") == null){
                         
                         <div class="login-form">
                          Reset your password, <%= get.getString("aClass") %> <%= get.getString("aName") %> 
-                            <form action="../changePass" method="post" >
+                            <form action="../changePass" id = "changePass" method="post" >
                                 <div class="form-group">
                                <input name ="user" value =<%=get.getString("username") %>><br>
                                    New Password:
-                                    <input class="au-input au-input--full"  name="newPass" >
+                                    <input class="au-input au-input--full"  id = "newPassword" name="newPass" >
                                     Retype Password:
-                                	 <input class="au-input au-input--full"  name="passChk" >
+                                    <input class="au-input au-input--full"  name="passChk" >
                                 	 
                                 <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Enter</button>
                                   
@@ -137,6 +137,25 @@ if( session.getAttribute("good") == null){
 
     <!-- Main JS-->
     <script src="../js/main.js"></script>
+    <script type = "text/javascript">
+        $("#changePass").submit(function(event){
+            var passwordRegex = /^.*(?=.{6,20})(?=.*\d)(?=.*[0-9])(?=.*[A-Z])(^[a-zA-Z0-9]+$)/;
+            var restriction = passwordRegex.test(document.getElementById('newPassword').value);
+            //can be changed to dynamic alert later on bitch
+            console.log(restriction);
+            console.log(document.getElementById('newPassword').value);
+            if(!restriction) {
+                alert("Password restrictions..\n" +
+                    "1. At least 1 uppercase letter\n" +
+                    "2. At least one digit\n" +
+                    "3. Minimum of 6 and a maximum of 20 characters\n" +
+                    "4. Special Characters are not allowed");
+                //use this if you want to clear textbox
+                // document.getElementById('newAccountPass').value = "";
+                event.preventDefault();
+            }
+        });
+    </script>
 
 </body>
 </html>

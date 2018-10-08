@@ -604,12 +604,12 @@
 
     <!-- Add Equipment Modal -->
     <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="mEAdd" data-keyboard="false">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header"><h4>New Equipment</h4></div>
-                <form action="../checkNew" method="post">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"><h4>New Equipment</h4></div>
+            <form action="../checkNew" method="post">
 
-                    <div class="modal-body">
+                <div class="modal-body">
 
 		<pre class="tab">
         <table class="table table-borderless table-earning" style="border-spacing:20px">
@@ -627,17 +627,17 @@
             </tr>
         </table>
 		</pre>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="text" name="type" class="input-modal" value="Equipment" hidden>
-                        <input type="text" name="lab" class="input-modal" value="Chemistry" hidden>
-                        <input type="submit" class="btn btn-default btn-md" value="Add">
-                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="text" name="type" class="input-modal" value="Equipment" hidden>
+                    <input type="text" name="lab" class="input-modal" value="Chemistry" hidden>
+                    <input type="submit" class="btn btn-default btn-md" value="Add">
+                    <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 
     <!-- Add Apparatus Modal -->
     <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="mAAdd" data-keyboard="false">

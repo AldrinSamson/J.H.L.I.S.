@@ -4,6 +4,8 @@
 <%@page import = "java.io.*"%>
 <%@ page import = "bean.getBean"%>
 <%@ page import="javax.swing.plaf.nimbus.State" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -48,24 +50,27 @@
 
     Connection con;
     Statement stmt;
-    ResultSet rs, get, counter;
+    ResultSet rs, get;
     String getQ, getUser, query;
     String MYdburl = getBean.getMyUrl();
     String MYclass = getBean.getMyClass();
     Class.forName(MYclass);
     con = DriverManager.getConnection(MYdburl);
     stmt = con.createStatement();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+    String date = sdf.format(new Date());
+
 
     String message = getBean.getrMessage();
 %>
     <div class="page-wrapper">
-                        <!-- HEADER MOBILE-->
+        <!-- HEADER MOBILE-->
         <header class="header-mobile d-block d-lg-none">
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="dashboard.jsp">
-                           <h1>JHLIS</h1>
+                        <a class="logo" href="../dashboard.jsp">
+                            <h1>JHLIS</h1>
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -78,73 +83,70 @@
             <nav class="navbar-mobile">
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
-                       
-                       <li >
-                            <a href="dashboard.jsp">
-                               <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+
+                        <li>
+                            <a href="../dashboard.jsp">
+                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-table"></i>Item Borrow/Return</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="borrow/borrow.jsp">Single</a>
+                                    <a href="borrow.jsp">Single</a>
                                 </li>
                                 <li>
-                                    <a href="borrow/borrowSet.jsp">Set</a>
-                                </li>
-                            </ul>
-                        </li>
-                          <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                 <i class="fas fa-table"></i>Laboratory Item Management</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="inventory/physics.jsp">Physics Laboratory</a>
-                                </li>
-                                <li>
-                                    <a href="inventory/chemistry.jsp">Chemistry Laboratory</a>
-                                </li>
-                                <li>
-                                    <a href="inventory/itemSets.jsp">Item Sets</a>
-                                </li>
-                                 <li>
-                                    <a href="inventory/nonBorrowable.jsp">Non-Borrowable</a>
+                                    <a href="borrowSet.jsp">Set</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                 <i class="fas fa-chart-bar"></i>Reports</a>
+                                <i class="fas fa-table"></i>Laboratory Item Management</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="report/inventory.jsp">Inventory Manifest</a>
+                                    <a href="../inventory/physics.jsp">Physics Laboratory</a>
                                 </li>
                                 <li>
-                                    <a href="report/borrowTransaction.jsp">Borrowing Transactions</a>
+                                    <a href="../inventory/chemistry.jsp">Chemistry Laboratory</a>
                                 </li>
                                 <li>
-                                    <a href="report/request.jsp">Request Reports</a>
+                                    <a href="../inventory/itemSets.jsp">Item Sets</a>
                                 </li>
                                 <li>
-                                    <a href="report/damages.jsp">Damage Reports</a>
+                                    <a href="../inventory/nonBorrowable.jsp">Non-Borrowable</a>
                                 </li>
-                                 <li>
-                                    <a href="report/missing.jsp">Missing Item Reports</a>
+                            </ul>
+                        </li>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-chart-bar"></i>Reports</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="../report/inventory.jsp">Inventory Manifest</a>
                                 </li>
-                                 <li>
-                                    <a href="report/insights.jsp">Insights</a>
+                                <li>
+                                    <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
+                                </li>
+                                <li>
+                                    <a href="../report/damagesMissing.jsp">Damage/Missing Reports</a>
+                                </li>
+                                <li>
+                                    <a href="../report/audit.jsp">Audit</a>
+                                </li>
+                                <li>
+                                    <a href="../report/insights.jsp">Insights</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="request/requestAdmin.jsp">
+                            <a href="../request/requestAdmin.jsp">
                                 <i class="far fa-check-square"></i>Requests</a>
                         </li>
-                       
-                        
+
+
                         <li>
-                            <a href="account/account.jsp">
+                            <a href="../account/account.jsp">
                                 <i class="fas fa-users"></i>Account Management</a>
                         </li>
                     </ul>
@@ -156,83 +158,80 @@
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="dashboard.jsp">
-                <h1>JHLIS</h1>
+                <a href="../dashboard.jsp">
+                    <h1>JHLIS</h1>
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                      
-                       <li >
-                            <a href="dashboard.jsp">
-                               <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+
+                        <li>
+                            <a href="../dashboard.jsp">
+                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-table"></i>Item Borrow/Return</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="borrow/borrow.jsp">Single</a>
+                                    <a href="borrow.jsp">Single</a>
                                 </li>
                                 <li>
-                                    <a href="borrow/borrowSet.jsp">Set</a>
-                                </li>
-                            </ul>
-                        </li>
-                          <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                 <i class="fas fa-table"></i>Laboratory Item Management</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="inventory/physics.jsp">Physics Laboratory</a>
-                                </li>
-                                <li>
-                                    <a href="inventory/chemistry.jsp">Chemistry Laboratory</a>
-                                </li>
-                                <li>
-                                    <a href="inventory/itemSets.jsp">Item Sets</a>
-                                </li>
-                                 <li>
-                                    <a href="inventory/nonBorrowable.jsp">Non-Borrowable</a>
+                                    <a href="borrowSet.jsp">Set</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                 <i class="fas fa-chart-bar"></i>Reports</a>
+                                <i class="fas fa-table"></i>Laboratory Item Management</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="report/inventory.jsp">Inventory Manifest</a>
+                                    <a href="../inventory/physics.jsp">Physics Laboratory</a>
                                 </li>
                                 <li>
-                                    <a href="report/borrowTransaction.jsp">Borrowing Transactions</a>
+                                    <a href="../inventory/chemistry.jsp">Chemistry Laboratory</a>
                                 </li>
                                 <li>
-                                    <a href="report/request.jsp">Request Reports</a>
+                                    <a href="../inventory/itemSets.jsp">Item Sets</a>
                                 </li>
                                 <li>
-                                    <a href="report/damages.jsp">Damage Reports</a>
+                                    <a href="../inventory/nonBorrowable.jsp">Non-Borrowable</a>
                                 </li>
-                                 <li>
-                                    <a href="report/missingR.jsp">Missing Item Reports</a>
+                            </ul>
+                        </li>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-chart-bar"></i>Reports</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="../report/inventory.jsp">Inventory Manifest</a>
                                 </li>
-                                 <li>
-                                    <a href="report/insights.jsp">Insights</a>
+                                <li>
+                                    <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
+                                </li>
+                                <li>
+                                    <a href="../report/damagesMissing.jsp">Damage/Missing Reports</a>
+                                </li>
+                                <li>
+                                    <a href="../report/audit.jsp">Audit</a>
+                                </li>
+                                <li>
+                                    <a href="../report/insights.jsp">Insights</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="request/requestAdmin.jsp">
+                            <a href="../request/requestAdmin.jsp">
                                 <i class="far fa-check-square"></i>Requests</a>
                         </li>
-                       
-                        
+
+
                         <li>
-                            <a href="account/account.jsp">
+                            <a href="../account/account.jsp">
                                 <i class="fas fa-users"></i>Account Management</a>
                         </li>
-                       
+
                     </ul>
                 </nav>
             </div>
@@ -308,8 +307,8 @@
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-6 col-lg-3">
+                        <div class="row dashboard-counter">
+                            <a href ="#" class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
                                     <div class = "counter__icon">
                                         <span class = "icon-018"></span>
@@ -330,17 +329,30 @@
                                     %>
                                     <span class="desc">Equipment Lent</span>
                                 </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
+                            </a>
+                            <a href ="#" class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
                                     <div class = "counter__icon">
                                         <span class = "icon-275"></span>
                                     </div>
-                                    <h2 class="number">Next Time</h2>
+                                    <%
+                                        try{
+                                            String queryx= "select count(actionType) as count from audit where actionType = 'Critical' and date = '"+date+"'";
+                                            rs = stmt.executeQuery(queryx);
+
+                                            while (rs.next()){
+
+                                    %>
+                                    <h2 class="number"><%=rs.getString("count")%></h2>
+                                    <%}
+                                    }catch(Exception e){
+                                        e.printStackTrace();
+                                    }
+                                    %>
                                     <span class="desc">Critical</span>
                                 </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
+                            </a>
+                            <a href ="#" class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
                                     <div class = "counter__icon">
                                         <span class = "icon-012"></span>
@@ -361,8 +373,8 @@
                                     %>
                                     <span class="desc">Requests Pending</span>
                                 </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
+                            </a>
+                            <a href ="#" class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
                                     <div class = "counter__icon">
                                         <span class = "icon-036"></span>
@@ -381,9 +393,49 @@
                                         e.printStackTrace();
                                     }
                                     %>
-                                    <span class="desc">Damaged / Missing</span>
+                                    <span class="desc">Damaged</span>
                                 </div>
+                                    </a>
+
+                            <a href ="#" class="col-md-6 col-lg-3">
+                                <div class="statistic__item">
+                                    <div class = "counter__icon">
+                                        <span class = "icon-017"></span>
                                     </div>
+                                    <h2 class="number">NaN</h2>
+                                    <span class="desc">Apparatus Borrowed</span>
+                                </div>
+                            </a>
+
+                            <a href ="#" class="col-md-6 col-lg-3">
+                                <div class="statistic__item">
+                                    <div class = "counter__icon">
+                                        <span class = "icon-033"></span>
+                                    </div>
+                                    <h2 class="number">NaN</h2>
+                                    <span class="desc">Critical Date</span>
+                                </div>
+                            </a>
+
+                            <a href ="#" class="col-md-6 col-lg-3">
+                                <div class="statistic__item">
+                                    <div class = "counter__icon">
+                                        <span class = "icon-011"></span>
+                                    </div>
+                                    <h2 class="number">NaN</h2>
+                                    <span class="desc">Requests Unfulfilled</span>
+                                </div>
+                            </a>
+
+                            <a href ="#" class="col-md-6 col-lg-3">
+                                <div class="statistic__item">
+                                    <div class = "counter__icon">
+                                        <span class = "icon-087"></span>
+                                    </div>
+                                    <h2 class="number">NaN</h2>
+                                    <span class="desc">Missing</span>
+                                </div>
+                            </a>
                                 </div>
                             </div>
                         </div>

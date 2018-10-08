@@ -29,7 +29,7 @@ public class addRequest extends HttpServlet {
     String aKey , user;
     int newKey;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try (PrintWriter out = response.getWriter()) {
 
             String message = request.getParameter("message");

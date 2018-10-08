@@ -27,7 +27,6 @@ public class returnSingle extends HttpServlet {
     int nowReturnQuantity , newReturnCurrentQuantity ,newReturnTotalQuantity , nowCurrentInventoryQuantity ,  nowTotalInventoryQuantity;
     String type,bName;
     String condition , user;
-    String transaqCondition = "";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -117,7 +116,8 @@ public class returnSingle extends HttpServlet {
 
                         HttpSession log = request.getSession(false);
                         log.setAttribute("bID", bID);
-                        response.sendRedirect("borrow/borrow.jsp#missingSingle");
+                        log.setAttribute("quantityTotal", nowReturnQuantity);
+                        response.sendRedirect("borrow/borrow.jsp#returnApparatus");
 
                     }
 
@@ -141,7 +141,7 @@ public class returnSingle extends HttpServlet {
 
                         HttpSession log = request.getSession(false);
                         log.setAttribute("bID", bID);
-                        response.sendRedirect("borrow/borrow.jsp#damageSingle");
+                        response.sendRedirect("borrow/borrow.jsp#returnApparatus");
 
                     }
 

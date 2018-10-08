@@ -19,6 +19,7 @@ import java.util.Date;
 
 @WebServlet("/returnMissingSingle")
 public class returnMissingSingle extends HttpServlet {
+
     Connection con;
     String MYdburl = getBean.getMyUrl();
     String MYclass = getBean.getMyClass();
@@ -36,7 +37,7 @@ public class returnMissingSingle extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
 
             int quantityLoss = Integer.parseInt(request.getParameter("qLoss"));
-            int quantityTotal = Integer.parseInt(request.getParameter("qTotal"));
+            int quantityTotal = (Integer) request.getSession(false).getAttribute("quantityTotal");
             String mResponse = request.getParameter("response");
             String bID = (String)request.getSession(false).getAttribute("bID");
 
@@ -82,7 +83,7 @@ public class returnMissingSingle extends HttpServlet {
                 String bCondition = mResponse.equals("Missing")? "Missing" : "Damaged";
 
                 if (newTQ == 0 ){
-                   condition = "Empty";
+                    condition = "Empty";
                 }else if (inventoryTQ == newCQ){
                     condition = "Complete";
                 }else {

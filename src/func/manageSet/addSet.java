@@ -28,6 +28,7 @@ public class addSet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
 
             String lab = request.getParameter("lab");
+            String setName = request.getParameter("setName");
             String[] name = request.getParameterValues("name[]");
             String[] quantity = request.getParameterValues("quantity[]");
             String abbv ;
@@ -64,6 +65,8 @@ public class addSet extends HttpServlet {
                     }
                 }
 
+
+
                 int i = 0;
                 while(i< nameList.size()){
 
@@ -72,7 +75,7 @@ public class addSet extends HttpServlet {
                     i++;
                 }
 
-                String addList = "insert into itemsetlist values ('"+newKey+"','"+lab+"','"+newNum+"','Available')";
+                String addList = "insert into itemsetlist values ('"+newKey+"','"+lab+"','"+newNum+"','Available' , '"+setName+"')";
                 stmtE.execute(addList);
             } catch (Exception e){
                 e.printStackTrace();

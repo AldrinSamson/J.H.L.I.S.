@@ -159,15 +159,16 @@ public class checkNew extends HttpServlet {
                     getBean.setiCondition(condition);
 
                     //iKey code generator
+                    String namex = name.trim().replaceAll("\\s", "");
                     //make name abbv
                     //get middle second
                     char first, middle, last;
-                    first = name.charAt(0);
-                    last = name.charAt(name.length() - 1);
-                    if (name.length() % 2 == 0) {
-                        middle = name.charAt(name.length() / 2 - 1 / 2);
+                    first = namex.charAt(0);
+                    last = namex.charAt(namex.length() - 1);
+                    if (namex.length() % 2 == 0) {
+                        middle = namex.charAt(namex.length() / 2 - 1 / 2);
                     } else {
-                        middle = name.charAt(name.length() / 2 - 1);
+                        middle = namex.charAt(namex.length() / 2 - 1);
                     }
                     String firstS = Character.toString(first);
                     String lastS = Character.toString(last);
@@ -177,9 +178,9 @@ public class checkNew extends HttpServlet {
 
                     // get 3rd
                     char first2, middle2, last2;
-                    first2 = name.charAt(0);
-                    middle2 = name.charAt(2);
-                    last2 = name.charAt(name.length() - 1);
+                    first2 = namex.charAt(0);
+                    middle2 = namex.charAt(2);
+                    last2 = namex.charAt(namex.length() - 1);
 
                     String firstS2 = Character.toString(first2);
                     String lastS2 = Character.toString(last2);
@@ -189,9 +190,9 @@ public class checkNew extends HttpServlet {
 
                     // get 2rd
                     char first3, middle3, last3;
-                    first3 = name.charAt(0);
-                    middle3 = name.charAt(1);
-                    last3 = name.charAt(name.length() - 1);
+                    first3 = namex.charAt(0);
+                    middle3 = namex.charAt(1);
+                    last3 = namex.charAt(namex.length() - 1);
 
                     String firstS3 = Character.toString(first3);
                     String lastS3 = Character.toString(last3);
@@ -206,16 +207,18 @@ public class checkNew extends HttpServlet {
 
                     //make form abbv 
                     //get middle second abbv1
+                    String formx = form.trim().replaceAll("\\s", "");
+
                     char firstF, middleF, lastF;
 
-                    if (form.length() % 2 == 0) {
-                        firstF = form.charAt(0);
-                        middleF = form.charAt(form.length() / 2 - 1 / 2);
-                        lastF = form.charAt(form.length() - 1);
+                    if (formx.length() % 2 == 0) {
+                        firstF = formx.charAt(0);
+                        middleF = formx.charAt(formx.length() / 2 - 1 / 2);
+                        lastF = formx.charAt(formx.length() - 1);
                     } else {
-                        firstF = form.charAt(0);
-                        middleF = form.charAt(form.length() / 2 - 1);
-                        lastF = form.charAt(form.length() - 1);
+                        firstF = formx.charAt(0);
+                        middleF = formx.charAt(formx.length() / 2 - 1);
+                        lastF = formx.charAt(formx.length() - 1);
 
                     }
                     String firstSF = Character.toString(firstF);
@@ -226,9 +229,9 @@ public class checkNew extends HttpServlet {
 
                     // get 3rd abbv2
                     char firstF2, middleF2, lastF2;
-                    firstF2 = form.charAt(0);
-                    middleF2 = form.charAt(2);
-                    lastF2 = form.charAt(form.length() - 1);
+                    firstF2 = formx.charAt(0);
+                    middleF2 = formx.charAt(2);
+                    lastF2 = formx.charAt(form.length() - 1);
 
                     String firstSF2 = Character.toString(firstF2);
                     String lastSF2 = Character.toString(lastF2);
@@ -238,9 +241,9 @@ public class checkNew extends HttpServlet {
 
                     // get 2rd abbv3
                     char firstF3, middleF3, lastF3;
-                    firstF3 = form.charAt(0);
-                    middleF3 = form.charAt(1);
-                    lastF3 = form.charAt(form.length() - 1);
+                    firstF3 = formx.charAt(0);
+                    middleF3 = formx.charAt(1);
+                    lastF3 = formx.charAt(formx.length() - 1);
 
                     String firstSF3 = Character.toString(firstF3);
                     String lastSF3 = Character.toString(lastF3);

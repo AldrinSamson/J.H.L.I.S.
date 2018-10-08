@@ -33,6 +33,7 @@
     <link href="../vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="../vendor/datatables/datatables.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/Buttons-1.5.4/css/buttons.dataTables.css" rel="stylesheet" media="all">
     <!-- Main CSS-->
     <link href="../css/theme.css" rel="stylesheet" media="all">
     <link href="../css/custom.css" rel="stylesheet" media="all">
@@ -432,6 +433,9 @@
 <script src="../vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
 <script src="../vendor/chartjs/Chart.bundle.min.js"></script>
 <script src="../vendor/select2/select2.min.js"></script>
+<script src = "../vendor/pdfmake-0.1.36/pdfmake.js"></script>
+<script src = "../vendor/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script src = "../vendor/Buttons-1.5.4/js/buttons.html5.js"></script>
 <!-- Main JS-->
 <script src="../js/main.js"></script>
 <script type = "text/javascript">
@@ -443,7 +447,32 @@
     });
 
     $(document).ready(function () {
-        var eTable = $("#nTable").DataTable();
+        var eTable = $("#nTable").DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'csvHtml5',
+                {   customize: function ( doc ) {
+                        var cols = [];
+                        cols[0] = {text: 'Left part', alignment: 'left', margin:[20] };
+                        cols[1] = {text: 'Right part', alignment: 'right', margin:[0,0,20] };
+                        var objFooter = {};
+                        objFooter['columns'] = cols;
+                        doc['footer']=objFooter;
+                        doc.content.splice(1, 0,
+                            {
+                                margin: [0, 0, 0, 12],
+                                alignment: 'center',
+                                image: 'data:image/png;base64,...',
+                            }
+                        );
+                    },
+                    extend: 'pdfHtml5',
+                    download: 'open',
+                    orientation: 'landscape',
+                    message : 'University of Santo Tomas  Junior Highschool  Physics/Chemistry Laboratory '
+                }
+            ]
+        });
         $('#nTable tbody').on('click', 'tr', function () {
             var eTableData = eTable.row(this).data();
             $('#mEEdit').modal('show');

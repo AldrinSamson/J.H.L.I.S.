@@ -305,10 +305,9 @@ Class.forName(MYclass);
 					
 			
 						<div class="col-lg-12">
-                        <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mEAdd" data-toggle="modal"style = "color:black;">new account</a></button>
-						<button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mEEdit" data-toggle="modal"style = "color:black;">edit account</a></button>
+                        <a class ="btn btn-card" href="#mEAdd" data-toggle="modal">New Account</a>
                         <div class="pt-2 table-responsive table--no-card m-b-40">
-                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+                        <%--<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">--%>
                         <table class="table table-borderless table-striped table-earning" id = "aTable">
                         <thead>
 							<tr>
@@ -368,24 +367,51 @@ Class.forName(MYclass);
     	<form action="../addAccount" id = "addAccount" method = "post">
         
 		<div class="modal-body">
-		
-		<pre class = "tab">  
-       
-    	name     <input type ="text" name = "name"> 
-    	username <input type ="text" name = "un">  
-            class    <select name = "cls">
-            <option>Administrator</option>
-            <option>Professor</option>
-        </select>
-    	id    	 <input type ="text" name = "id">  
-    	SQ1      <input type ="text" name = "rq1">  
-    	SQA1     <input type ="text" name = "ra1">  
-    	SQ2      <input type ="text" name = "rq2">  
-    	SQA2     <input type ="text" name = "ra2">  
-    	password <input type ="password" id = "newAccountPass" name = "pass">
-	
-      
-      
+
+        <pre class="tab">
+        <table class="table table-borderless table-earning" style="border-spacing:20px">
+            <tr>
+                <td><label class="label-modal">Name</label></td>
+                <td><input type="text" name="name" class="input-modal" list="nameR"></td>
+            </tr><br>
+            <tr>
+                <td><label class="label-modal">Username</label></td>
+                <td><input type="text" name="un" class="input-modal"></td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">Class</label></td>
+                <td>
+                <select name = "cls">
+                    <option>Administrator</option>
+                    <option>Professor</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">ID</label></td>
+                <td><input type="text" name="id" class="input-modal"></td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">SQ1</label></td>
+                <td><input type="text" name="rq1" class="input-modal"></td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">SQA1</label></td>
+                <td><input type="text" name="ra1" class="input-modal"></td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">SQ2e</label></td>
+                <td><input type="text" name="rq2" class="input-modal"></td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">SQA2</label></td>
+                <td><input type="text" name="ra1" class="input-modal"></td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">Password</label></td>
+                <td><input type="password" id = "newAccountPass" name="pass" class="input-modal"></td>
+            </tr>
+        </table>
 		</pre>
 		</div>
       	   
@@ -403,21 +429,47 @@ Class.forName(MYclass);
   		<div class="modal-dialog">
     	<div class="modal-content">
     	<div class="modal-header"><h4>Edit Account<i class="fa fa-lock"></i></h4></div>
-    	<form action="../editAccount"  method = "post">
+    	<form class = "editAccount" action="../editAccount"  method = "post">
 		<div class="modal-body">
 		<pre class = "tab">
-		
-     	Code     <input type ="text" name = "aKey" id = "aKey">
-     	Username <input type ="text" name = "un" id = "userName">
-     	Name	 <input type ="text" name = "name" id = "aName">
-     	SQ1		 <input type ="text" name = "rq1">
-     	SQA1	 <input type ="text" name = "ra1">
-     	SQ2 	 <input type ="text" name = "rq2">
-     	SQA2 	 <input type ="text" name = "ra2">
-     	old pass <input type ="password" name = "oP">
-     	new pass <input type ="password" name = "nP">
-     	
-     	
+        <table class="table table-borderless table-earning" style="border-spacing:20px">
+            <tr>
+                <td><label class="label-modal">Code</label></td>
+                <td><input type="text" name="aKey" class="input-modal" id = "aKey" readonly></td>
+            </tr><br>
+            <tr>
+                <td><label class="label-modal">Username</label></td>
+                <td><input type="text" name="un" class="input-modal" id = "userName" readonly></td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">Name</label></td>
+                <td><input type="text" name="name" class="input-modal" id = "aName" readonly></td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">SQ1</label></td>
+                <td><input type="text" name="rq1" class="input-modal"></td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">SQA1</label></td>
+                <td><input type="text" name="ra1" class="input-modal"></td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">SQ2e</label></td>
+                <td><input type="text" name="rq2" class="input-modal"></td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">SQA2</label></td>
+                <td><input type="text" name="ra1" class="input-modal"></td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">Old Password</label></td>
+                <td><input type="password" name="oP" class="input-modal"></td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">New Password</label></td>
+                <td><input type="password" name="nP" class="input-modal"></td>
+            </tr>
+        </table>
 		</pre>
 		</div>
       	<div class="modal-footer">
@@ -429,6 +481,8 @@ Class.forName(MYclass);
         </div>
         </div>
     	</div>
+
+
 </div>    
             
  <!-- Jquery JS-->
@@ -500,20 +554,21 @@ function myFunction() {
 	}
 
 	$("#addAccount").submit(function(event){
-        var passwordRegex = /^(?=.*?[0-9])(?=.*?[A-Z])(?=.*?[a-z])/;
+        var passwordRegex = /^.*(?=.{6,20})(?=.*\d)(?=.*[0-9])(?=.*[A-Z])(^[a-zA-Z0-9]+$)/;
         var restriction = passwordRegex.test(document.getElementById('newAccountPass').value);
         //can be changed to dynamic alert later on bitch
         console.log(restriction);
         console.log(document.getElementById('newAccountPass').value);
         if(!restriction) {
-            alert("Password should contain..\n" +
+            alert("Password restrictions..\n" +
                 "1. At least 1 uppercase letter\n" +
-                "2. At least one digit");
+                "2. At least one digit\n" +
+                "3. Minimum of 6 and a maximum of 20 characters\n" +
+                "4. Special Characters are not allowed");
             //use this if you want to clear textbox
             // document.getElementById('newAccountPass').value = "";
             event.preventDefault();
         }
-
     });
 
 </script>

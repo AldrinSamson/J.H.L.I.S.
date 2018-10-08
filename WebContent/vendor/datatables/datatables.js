@@ -15305,6 +15305,7 @@
 	 */
 
 	return $.fn.dataTable;
-}));
+});
+)
 
 

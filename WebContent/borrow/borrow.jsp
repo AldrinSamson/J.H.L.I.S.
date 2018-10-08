@@ -55,6 +55,7 @@
     Class.forName(MYclass);
     con = DriverManager.getConnection(MYdburl);
     stmt = con.createStatement();
+    String bID = (String)request.getSession(false).getAttribute("bID");
 %>
 <div class="page-wrapper">
     <!-- HEADER MOBILE-->
@@ -508,6 +509,43 @@
     </div>
 
 
+    <!-- return apparatus -->
+    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id = "returnApparatus"  data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><h4>Return Apparatus</h4></div>
+
+                <div class="modal-body">
+
+		<pre class = "tab">
+        <div  style = "display:table">
+            <div style = "display:table-cell">
+                <form action="../returnApparatusSingle"  method = "post">
+                    <label  class = "label-modal">Key</label>
+                <label  class = "label-modal">Loss : </label>
+
+            </div>
+            <div  style = "display:table-cell; position:absolute; top:40px;">
+                <input type ="text" name = "iName" class="input-modal" id = "name" value = <%=bID%> readonly>
+                <input type ="text" name = "qLoss" class="input-modal"  >
+                Report:
+                        <input type ="submit" name = "response" class="btn btn-default btn-md" value = "Missing">
+                        <input type ="submit" name = "response" class="btn btn-default btn-md" value = "Damaged">
+                </form>
+
+            </div>
+        </div>
+		</pre>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 </div>
 
@@ -535,8 +573,8 @@
 <script type = "text/javascript">
     $(document).ready(function(){
 
-        if (window.location.href.indexOf('#mNCode') != -1) {
-            $('#mNCode').modal('show');
+        if (window.location.href.indexOf('#returnApparatus') != -1) {
+            $('#returnApparatus').modal('show');
         }
     });
 

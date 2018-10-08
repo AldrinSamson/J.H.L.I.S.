@@ -22,15 +22,15 @@ public class deleteSet extends HttpServlet {
     String MYclass = getBean.getMyClass();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-            String isKey = getBean.getSet();
+            String set = (String)request.getSession(false).getAttribute("set");
 
             try {
                 Class.forName(MYclass);
                 conn = DriverManager.getConnection(MYdburl);
                 stmt = conn.createStatement();
 
-                String deleteGroup ="delete from itemsetgroup where isKey = '"+isKey+"'";
-                String deleteList = "delete from itemsetlist where isKey = '"+isKey+"'";
+                String deleteGroup ="delete from itemsetgroup where isKey = '"+set+"'";
+                String deleteList = "delete from itemsetlist where isKey = '"+set+"'";
 
                 stmt.execute(deleteGroup);
                 stmt.execute(deleteList);
