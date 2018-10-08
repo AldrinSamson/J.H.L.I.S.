@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -23,9 +24,9 @@ public class returnSingle extends HttpServlet {
     String MYclass = getBean.getMyClass();
     Statement stmt;
     ResultSet get;
-    int nowReturnQuantity , newReturnQuantity ;
-    String type;
-    String condition;
+    int nowReturnQuantity , newReturnCurrentQuantity ,newReturnTotalQuantity , nowCurrentInventoryQuantity ,  nowTotalInventoryQuantity;
+    String type,bName;
+    String condition , user;
     String transaqCondition = "";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -42,17 +43,25 @@ public class returnSingle extends HttpServlet {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
             String bEDate = sdf.format(new Date());
 
+            if(request.getSession(false).getAttribute("user") == null){
+                out.println ("<html><body><script type='text/javascript'>alert('Please log-in first.');location='../index.html';</script></body></html>");
+            }else {
+                user = (String)request.getSession(false).getAttribute("user");
+            }
+
             try {
 
                 Class.forName(MYclass);
                 con = DriverManager.getConnection(MYdburl);
                 stmt = con.createStatement();
 
-                String getDetails = "select itemType from itemdetails where itemKey = '"+iKey+"' ";
+                String getDetails = "select d.itemType  , i.itemCurrentQuantity ,i.itemTotalQuantity from itemdetails d join inventory i on i.itemKey = d.itemKey  where i.itemKey = '"+iKey+"' ";
                 get = stmt.executeQuery(getDetails);
 
                 while (get.next()){
                     type = get.getString("itemType");
+                    nowCurrentInventoryQuantity = get.getInt("itemCurrentQuantity");
+                    nowTotalInventoryQuantity = get.getInt("itemTotalQuantity");
                 } get.close();
 
 
@@ -61,6 +70,7 @@ public class returnSingle extends HttpServlet {
 
                 while (get.next()){
                     nowReturnQuantity = get.getInt("bQuantity");
+                    bName = get.getString("sName");
                 }
                 get.close();
 
@@ -74,20 +84,68 @@ public class returnSingle extends HttpServlet {
                         condition = "OK";
                     }
 
-                    String updateTransaction = "update borrowtransaction set bCondition = 'Returned' , bEDate = '"+bEDate+"' , bETime = '"+bETime+"'  bQuantityLoss = '0' where bID = '"+bID+"'";
-                    stmt.execute(updateTransaction);
-                    String updateInventory = "";
+                    newReturnCurrentQuantity = nowReturnQuantity + nowCurrentInventoryQuantity;
+
+                    if (!type.equalsIgnoreCase("Consumable")){
+
+                        String updateTransaction = "update borrowtransaction set bCondition = 'Returned' , bEDate = '"+bEDate+"' , bETime = '"+bETime+"' , bQuantityLoss = '0' where bID = '"+bID+"'";
+                        stmt.execute(updateTransaction);
+                        String updateInventory = "update inventory set itemCondition = '"+condition+"' , itemCurrentQuantity = '"+newReturnCurrentQuantity+"' where itemKey = '"+iKey+"'";
+                        stmt.execute(updateInventory);
+                        String audit = "insert into audit values (NULL,'"+user+"' , '"+bEDate+"','"+bETime+"','Received item "+iKey+" from "+bName+" ','Received Item','"+bID+"')";
+                        stmt.execute(audit);
+                    }
+
+                    response.sendRedirect("borrow/borrow.jsp");
                 }
                 if (rResponse.equals("Missing")) {
+
+                    if (type.equalsIgnoreCase("Equipment")){
+
+                        condition = "Missing";
+
+                        String updateTransaction = "update borrowtransaction set bCondition = 'Missing' , bEDate = '"+bEDate+"' , bETime = '"+bETime+"' , bQuantityLoss = '1' where bID = '"+bID+"'";
+                        stmt.execute(updateTransaction);
+                        String updateInventory = "update inventory set itemCondition = '"+condition+"' where itemKey = '"+iKey+"'";
+                        stmt.execute(updateInventory);
+                        String audit = "insert into audit values (NULL,'"+user+"' , '"+bEDate+"','"+bETime+"','"+bName+" reported item "+iKey+" as Missing','Missing Item','"+bID+"')";
+                        stmt.execute(audit);
+
+                        response.sendRedirect("borrow/borrow.jsp");
+
+                    }else {
+
+                        HttpSession log = request.getSession(false);
+                        log.setAttribute("bID", bID);
+                        response.sendRedirect("borrow/borrow.jsp#missingSingle");
+
+                    }
 
                 }
                 if (rResponse.equals("Broken")) {
 
+                    if (type.equalsIgnoreCase("Equipment")){
+
+                        condition = "Damaged";
+
+                        String updateTransaction = "update borrowtransaction set bCondition = 'Damaged' , bEDate = '"+bEDate+"' , bETime = '"+bETime+"' , bQuantityLoss = '1' where bID = '"+bID+"'";
+                        stmt.execute(updateTransaction);
+                        String updateInventory = "update inventory set itemCondition = '"+condition+"' where itemKey = '"+iKey+"'";
+                        stmt.execute(updateInventory);
+                        String audit = "insert into audit values (NULL,'"+user+"' , '"+bEDate+"','"+bETime+"','"+bName+" reported item "+iKey+" as Damaged','Damaged Item','"+bID+"')";
+                        stmt.execute(audit);
+
+                        response.sendRedirect("borrow/borrow.jsp");
+
+                    }else {
+
+                        HttpSession log = request.getSession(false);
+                        log.setAttribute("bID", bID);
+                        response.sendRedirect("borrow/borrow.jsp#damageSingle");
+
+                    }
+
                 }
-
-
-
-
 
                 if (con != null) {
                     con.close();
