@@ -307,8 +307,8 @@
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-6 col-lg-3">
+                        <div class="row dashboard-counter">
+                            <a href ="#" class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
                                     <div class = "counter__icon">
                                         <span class = "icon-018"></span>
@@ -329,8 +329,8 @@
                                     %>
                                     <span class="desc">Equipment Lent</span>
                                 </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
+                            </a>
+                            <a href ="#" class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
                                     <div class = "counter__icon">
                                         <span class = "icon-275"></span>
@@ -351,8 +351,8 @@
                                     %>
                                     <span class="desc">Critical</span>
                                 </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
+                            </a>
+                            <a href ="#" class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
                                     <div class = "counter__icon">
                                         <span class = "icon-012"></span>
@@ -373,8 +373,8 @@
                                     %>
                                     <span class="desc">Requests Pending</span>
                                 </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
+                            </a>
+                            <a href ="#" class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
                                     <div class = "counter__icon">
                                         <span class = "icon-036"></span>
@@ -393,9 +393,49 @@
                                         e.printStackTrace();
                                     }
                                     %>
-                                    <span class="desc">Damaged / Missing</span>
+                                    <span class="desc">Damaged</span>
                                 </div>
+                                    </a>
+
+                            <a href ="#" class="col-md-6 col-lg-3">
+                                <div class="statistic__item">
+                                    <div class = "counter__icon">
+                                        <span class = "icon-017"></span>
                                     </div>
+                                    <h2 class="number">NaN</h2>
+                                    <span class="desc">Apparatus Borrowed</span>
+                                </div>
+                            </a>
+
+                            <a href ="#" class="col-md-6 col-lg-3">
+                                <div class="statistic__item">
+                                    <div class = "counter__icon">
+                                        <span class = "icon-033"></span>
+                                    </div>
+                                    <h2 class="number">NaN</h2>
+                                    <span class="desc">Critical Date</span>
+                                </div>
+                            </a>
+
+                            <a href ="#" class="col-md-6 col-lg-3">
+                                <div class="statistic__item">
+                                    <div class = "counter__icon">
+                                        <span class = "icon-011"></span>
+                                    </div>
+                                    <h2 class="number">NaN</h2>
+                                    <span class="desc">Requests Unfulfilled</span>
+                                </div>
+                            </a>
+
+                            <a href ="#" class="col-md-6 col-lg-3">
+                                <div class="statistic__item">
+                                    <div class = "counter__icon">
+                                        <span class = "icon-087"></span>
+                                    </div>
+                                    <h2 class="number">NaN</h2>
+                                    <span class="desc">Missing</span>
+                                </div>
+                            </a>
                                 </div>
                             </div>
                         </div>
