@@ -193,13 +193,14 @@
                                                     <th>Time</th>
                                                     <th>Condition</th>
                                                     <th>Status</th>
+                                                    <th>Date Required</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                 <%
                                                     try {
 
-                                                        aKey = (String) session.getAttribute("aKey");
+                                                        aKey = (String)session.getAttribute("aKey");
                                                         query = "SELECT * from request where aKey = '"+aKey+"'";
                                                         rs = stmt.executeQuery(query);
 
@@ -215,6 +216,8 @@
                                                     <td><%=rs.getString("rCondition") %>
                                                     </td>
                                                     <td><%=rs.getString("rStatus")%>
+                                                    </td>
+                                                    <td><%=rs.getString("rDateRequired")%>
                                                     </td>
 
                                                 </tr>
@@ -256,6 +259,7 @@
             <tr>
                 <td><label class="label-modal">Message</label></td>
                 <td><input type="text" name="message" class ="input-modal" ></td>
+                <td><input type="text" name="date"  class="input-modal--date" placeholder="yy/mm/dd" ></td>
             </tr>
         </table>
 		</pre>
@@ -381,7 +385,7 @@
                     </table>
                 </div>
 
-		</pre>
+                        </pre>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
@@ -433,7 +437,7 @@
         var eTable = $("#nTable").DataTable();
         $('#nTable tbody').on('click', 'tr', function () {
             var eTableData = eTable.row(this).data();
-            $('#mEgdit').modal('show');
+           // $('#mEgdit').modal('show');
             $(".modal-body #rID").val(eTableData[0]);
             $('#getMessage').submit();
 
@@ -444,7 +448,7 @@
         var iTable = $("#iTable").DataTable();
         $('#iTable tbody').on('click', 'tr', function () {
             var iTableData = iTable.row(this).data();
-            $('#m3').modal('show');
+            //$('#m3').modal('show');
             $(".modal-body #iID").val(iTableData[0]);
             $('#getItem').submit();
 
@@ -456,7 +460,12 @@
 
     });
 
-
+    // datepicker
+    $(function () {
+        $(".input-modal--date").datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+    });
 
 
 </script>

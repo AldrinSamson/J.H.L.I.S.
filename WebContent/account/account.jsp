@@ -400,7 +400,7 @@ Class.forName(MYclass);
                 <td><input type="text" name="ra1" class="input-modal"></td>
             </tr>
             <tr>
-                <td><label class="label-modal">SQ2e</label></td>
+                <td><label class="label-modal">SQ2</label></td>
                 <td><input type="text" name="rq2" class="input-modal"></td>
             </tr>
             <tr>
@@ -454,7 +454,7 @@ Class.forName(MYclass);
                 <td><input type="text" name="ra1" class="input-modal"></td>
             </tr>
             <tr>
-                <td><label class="label-modal">SQ2e</label></td>
+                <td><label class="label-modal">SQ2</label></td>
                 <td><input type="text" name="rq2" class="input-modal"></td>
             </tr>
             <tr>

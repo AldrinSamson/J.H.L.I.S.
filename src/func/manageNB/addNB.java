@@ -71,12 +71,12 @@ public class addNB extends HttpServlet {
                     String audit = "insert into audit values (NULL,'"+user+"' , '"+aDate+"','"+aTime+"','Added item "+nKey+"','Add Item','N/A')";
                     stmtE.execute(audit);
 
-                    out.println("<html><body><script type='text/javascript'>alert('item added ');location='nonBorrowable.jsp';</script></body></html>");
+                    out.println("<html><body><script type='text/javascript'>alert('item added ');location='inventory/nonBorrowable.jsp';</script></body></html>");
 
                 } else {
                     //abbv already in use
 
-                    out.println("<html><body><script type='text/javascript'>alert('abbv already exists please pick a new one ');location=nonBorrowable.jsp#mNCode';</script></body></html>");
+                    out.println("<html><body><script type='text/javascript'>alert('abbv already exists please pick a new one ');location=inventory/nonBorrowable.jsp#mNCode';</script></body></html>");
                 }
 
                 if (con != null) {

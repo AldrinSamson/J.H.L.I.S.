@@ -85,7 +85,7 @@ public class checkNB extends HttpServlet {
                     String audit = "insert into audit values (NULL,'"+user+"' , '"+aDate+"','"+aTime+"','Added item "+codeN+"','Add Item','N/A')";
                     stmtE.execute(audit);
 
-                    out.println("<html><body><script type='text/javascript'>alert('item added ');location='nonBorrowable.jsp';</script></body></html>");
+                    out.println("<html><body><script type='text/javascript'>alert('item added ');location='inventory/nonBorrowable.jsp';</script></body></html>");
 
 
                 } else {
@@ -136,7 +136,7 @@ public class checkNB extends HttpServlet {
                     getBean.setAbbvN2(abbv2);
                     getBean.setAbbvN3(abbv3);
 
-                    out.println("<html><body><script type='text/javascript'>location='nonBorrowable.jsp#mNCode';</script></body></html>");
+                    out.println("<html><body><script type='text/javascript'>location='inventory/nonBorrowable.jsp#mNCode';</script></body></html>");
                 }
                 if (con != null) {
                     con.close();

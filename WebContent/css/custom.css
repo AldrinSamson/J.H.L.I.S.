@@ -11,6 +11,17 @@
   	
 }
 
+.input-send {
+    line-height: 30px;
+    border: 1px solid #e5e5e5;
+    font-size: 14px;
+    color: #666;
+    display:block;
+    font-family:"Arial";
+
+
+}
+
 .input-modal--date {
     line-height: 30px;
     border: 1px solid #e5e5e5;
@@ -92,7 +103,7 @@ label::after{
     top: 13px;
 }
 .nav-pills .nav-link {
-    background-color: none;
+    background-color: transparent;
     color: #ffffff;
 }
 

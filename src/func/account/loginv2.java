@@ -122,6 +122,7 @@ public class loginv2 extends HttpServlet {
                     HttpSession log = request.getSession(true);
                     log.setAttribute("user", user);
                     log.setAttribute("class", type);
+                    log.setAttribute("aKey", aKey);
 
                     String audit = "insert into audit values (NULL,'"+user+"' , '"+aDate+"','"+aTime+"','Logged in','Login','N/A')";
                     stmt.execute(audit);

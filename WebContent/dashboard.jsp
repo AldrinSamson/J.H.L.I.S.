@@ -69,7 +69,7 @@
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="../dashboard.jsp">
+                        <a class="logo" href="dashboard.jsp">
                             <h1>JHLIS</h1>
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
@@ -85,7 +85,7 @@
                     <ul class="navbar-mobile__list list-unstyled">
 
                         <li>
-                            <a href="../dashboard.jsp">
+                            <a href="dashboard.jsp">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
                         <li class="has-sub">
@@ -93,10 +93,10 @@
                                 <i class="fas fa-table"></i>Item Borrow/Return</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="borrow.jsp">Single</a>
+                                    <a href="borrow/borrow.jsp">Single</a>
                                 </li>
                                 <li>
-                                    <a href="borrowSet.jsp">Set</a>
+                                    <a href="borrow/borrowSet.jsp">Set</a>
                                 </li>
                             </ul>
                         </li>
@@ -105,16 +105,16 @@
                                 <i class="fas fa-table"></i>Laboratory Item Management</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="../inventory/physics.jsp">Physics Laboratory</a>
+                                    <a href="inventory/physics.jsp">Physics Laboratory</a>
                                 </li>
                                 <li>
-                                    <a href="../inventory/chemistry.jsp">Chemistry Laboratory</a>
+                                    <a href="inventory/chemistry.jsp">Chemistry Laboratory</a>
                                 </li>
                                 <li>
-                                    <a href="../inventory/itemSets.jsp">Item Sets</a>
+                                    <a href="inventory/itemSets.jsp">Item Sets</a>
                                 </li>
                                 <li>
-                                    <a href="../inventory/nonBorrowable.jsp">Non-Borrowable</a>
+                                    <a href="inventory/nonBorrowable.jsp">Non-Borrowable</a>
                                 </li>
                             </ul>
                         </li>
@@ -123,30 +123,30 @@
                                 <i class="fas fa-chart-bar"></i>Reports</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="../report/inventory.jsp">Inventory Manifest</a>
+                                    <a href="report/inventory.jsp">Inventory Manifest</a>
                                 </li>
                                 <li>
-                                    <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
+                                    <a href="report/borrowTransaction.jsp">Borrowing Transactions</a>
                                 </li>
                                 <li>
-                                    <a href="../report/damagesMissing.jsp">Damage/Missing Reports</a>
+                                    <a href="report/damagesMissing.jsp">Damage/Missing Reports</a>
                                 </li>
                                 <li>
-                                    <a href="../report/audit.jsp">Audit</a>
+                                    <a href="report/audit.jsp">Audit</a>
                                 </li>
                                 <li>
-                                    <a href="../report/insights.jsp">Insights</a>
+                                    <a href="report/insights.jsp">Insights</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="../request/requestAdmin.jsp">
+                            <a href="request/requestAdmin.jsp">
                                 <i class="far fa-check-square"></i>Requests</a>
                         </li>
 
 
                         <li>
-                            <a href="../account/account.jsp">
+                            <a href="account/account.jsp">
                                 <i class="fas fa-users"></i>Account Management</a>
                         </li>
                     </ul>
@@ -158,7 +158,7 @@
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="../dashboard.jsp">
+                <a href="dashboard.jsp">
                     <h1>JHLIS</h1>
                 </a>
             </div>
@@ -167,7 +167,7 @@
                     <ul class="list-unstyled navbar__list">
 
                         <li>
-                            <a href="../dashboard.jsp">
+                            <a href="dashboard.jsp">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
                         <li class="has-sub">
@@ -175,10 +175,10 @@
                                 <i class="fas fa-table"></i>Item Borrow/Return</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="borrow.jsp">Single</a>
+                                    <a href="borrow/borrow.jsp">Single</a>
                                 </li>
                                 <li>
-                                    <a href="borrowSet.jsp">Set</a>
+                                    <a href="borrow/borrowSet.jsp">Set</a>
                                 </li>
                             </ul>
                         </li>
@@ -187,16 +187,16 @@
                                 <i class="fas fa-table"></i>Laboratory Item Management</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="../inventory/physics.jsp">Physics Laboratory</a>
+                                    <a href="inventory/physics.jsp">Physics Laboratory</a>
                                 </li>
                                 <li>
-                                    <a href="../inventory/chemistry.jsp">Chemistry Laboratory</a>
+                                    <a href="inventory/chemistry.jsp">Chemistry Laboratory</a>
                                 </li>
                                 <li>
-                                    <a href="../inventory/itemSets.jsp">Item Sets</a>
+                                    <a href="inventory/itemSets.jsp">Item Sets</a>
                                 </li>
                                 <li>
-                                    <a href="../inventory/nonBorrowable.jsp">Non-Borrowable</a>
+                                    <a href="inventory/nonBorrowable.jsp">Non-Borrowable</a>
                                 </li>
                             </ul>
                         </li>
@@ -205,30 +205,30 @@
                                 <i class="fas fa-chart-bar"></i>Reports</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="../report/inventory.jsp">Inventory Manifest</a>
+                                    <a href="report/inventory.jsp">Inventory Manifest</a>
                                 </li>
                                 <li>
-                                    <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
+                                    <a href="report/borrowTransaction.jsp">Borrowing Transactions</a>
                                 </li>
                                 <li>
-                                    <a href="../report/damagesMissing.jsp">Damage/Missing Reports</a>
+                                    <a href="report/damagesMissing.jsp">Damage/Missing Reports</a>
                                 </li>
                                 <li>
-                                    <a href="../report/audit.jsp">Audit</a>
+                                    <a href="report/audit.jsp">Audit</a>
                                 </li>
                                 <li>
-                                    <a href="../report/insights.jsp">Insights</a>
+                                    <a href="report/insights.jsp">Insights</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="../request/requestAdmin.jsp">
+                            <a href="request/requestAdmin.jsp">
                                 <i class="far fa-check-square"></i>Requests</a>
                         </li>
 
 
                         <li>
-                            <a href="../account/account.jsp">
+                            <a href="account/account.jsp">
                                 <i class="fas fa-users"></i>Account Management</a>
                         </li>
 

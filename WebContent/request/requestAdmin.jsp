@@ -334,6 +334,7 @@
                                                             <th>Name</th>
                                                             <th>Date</th>
                                                             <th>Time</th>
+                                                            <th>Date Required</th>
                                                             <th>Message</th>
                                                         </tr>
                                                         </thead>
@@ -354,7 +355,9 @@
                                                             </td>
                                                             <td><%=rs.getString("rDate")%>
                                                             </td>
-                                                            <td><%=rs.getString("rTime")%>
+                                                            <td><%=rs.getString("rTime")%></td>
+                                                            <td><%=rs.getString("rDateRequired")%>
+                                                            </td>
                                                             <td><%=rs.getString("message")%>
                                                             </td>
 
@@ -402,7 +405,11 @@
                                                             </td>
                                                             <td><%=rs.getString("rDate")%>
                                                             </td>
-                                                            <td><%=rs.getString("rTime")%>
+                                                            <td><%=rs.getString("rTime")%></td>
+                                                            <td><%=rs.getString("rDateRequired")%>
+                                                            </td>
+                                                            <td><%=rs.getString("rDateRequired")%>
+                                                            </td>
                                                             <td><%=rs.getString("message")%>
                                                             </td>
 
@@ -452,6 +459,9 @@
                                                             <td><%=rs.getString("rDate")%>
                                                             </td>
                                                             <td><%=rs.getString("rTime")%>
+                                                            </td>
+                                                            <td><%=rs.getString("rDateRequired")%>
+                                                            </td>
                                                             <td><%=rs.getString("message")%>
                                                             </td>
                                                             <td><%=rs.getString("rCondition")%>

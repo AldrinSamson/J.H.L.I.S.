@@ -65,7 +65,7 @@ public class editNB extends HttpServlet {
                     stmt.execute(editNB);
                     String audit = "insert into audit values (NULL,'"+user+"' , '"+aDate+"','"+aTime+"','Edited item "+nKey+"','Edit Item','N/A')";
                     stmt.execute(audit);
-                    out.println("<html><body><script type='text/javascript'>alert('equipment edited');location='nonBorrowable.jsp';</script></body></html>");
+                    out.println("<html><body><script type='text/javascript'>alert('equipment edited');location='inventory/nonBorrowable.jsp';</script></body></html>");
 
                 } else {
 
@@ -73,7 +73,7 @@ public class editNB extends HttpServlet {
                     stmt.execute(delNB);
                     String audit = "insert into audit values (NULL,'"+user+"' , '"+aDate+"','"+aTime+"','Deleted item "+nKey+"','Deleted Item','N/A')";
                     stmt.execute(audit);
-                    out.println("<html><body><script type='text/javascript'>alert('equipment deleted');location='nonBorrowable.jsp';</script></body></html>");
+                    out.println("<html><body><script type='text/javascript'>alert('equipment deleted');location='inventory/nonBorrowable.jsp';</script></body></html>");
                 }
 
 

@@ -59,7 +59,9 @@ String MYclass = getBean.getMyClass();
 Class.forName(MYclass);
 con = DriverManager.getConnection(MYdburl);
 stmt = con.createStatement();
-String set = getBean.getSet();
+
+String set = (String)request.getSession(false).getAttribute("set");
+    String setName = (String)request.getSession(false).getAttribute("setName");
 %>
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
@@ -348,6 +350,7 @@ String set = getBean.getSet();
                         <thead>
 							<tr>
 							<th>ID</th>
+                                <th>Name</th>
 							 <th>Condition</th>
 							</tr>
                         </thead>
@@ -362,6 +365,7 @@ String set = getBean.getSet();
                             %>
 							<tr>
 							<td><%=rs.getString("isKey")%></td>
+                                <td><%=rs.getString("isName")%></td>
 							<td><%=rs.getString("isCondition")%></td>
 							</tr>
 							<%
@@ -405,6 +409,7 @@ String set = getBean.getSet();
                                     <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>Name</th>
                                         <th>Condition</th>
                                     </tr>
                                     </thead>
@@ -419,6 +424,7 @@ String set = getBean.getSet();
                                     %>
                                     <tr>
                                         <td><%=rs.getString("isKey")%></td>
+                                        <td><%=rs.getString("isName")%></td>
                                         <td><%=rs.getString("isCondition")%></td>
                                     </tr>
                                     <%
@@ -461,11 +467,16 @@ String set = getBean.getSet();
             <%--<div class = "input_fields_wrap">--%>
             <table class="table table-borderless table-earning" style="border-spacing:20px">
 
-            <tr>
+            <thead>
+            <td>Set Name<td>
             <td>Key</td>
             <td>Quantity</td>
-            </tr>
+            </thead>
+                <tr>
+                    <td><input type="text" name="setName" class="input-modal"></td>
+                </tr>
             <tr>
+
                 <td><input type="text" name="name[]" class="input-modal" list = "name"></td>
                 <td><input type="text" name="quantity[]" class="input-modal"></td>
                 <td><input type="text" name="lab" class="input-modal" value ="Physics" hidden></td>
@@ -566,8 +577,8 @@ String set = getBean.getSet();
         <div class="modal fade" id="viewSet" tabindex="-1" role="dialog" aria-hidden="true"  >
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header"><h4><%=set%></h4></div>
-                    <form action="../deleteSet" method="post">
+                    <div class="modal-header"><h4><%=setName%></h4></div>
+                    <form action="../deleteDuplicateSet" method="post">
 
                         <div class="modal-body">
 
@@ -609,18 +620,20 @@ String set = getBean.getSet();
 		</pre>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-default btn-md" >Delete</button>
+                            <button type="submit" class="btn btn-default btn-md" name = "response" value = "Duplicate">Duplicate</button>
+                            <button type="submit" class="btn btn-default btn-md" name = "response" value = "Delete">Delete</button>
                             <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-
+            <div class = "sendForm">
             <form action="../showSet" method="post" id = "getSet">
-                <input type="text" name="ID"  class = "input-send" id = "ID" >
+                <input type="text" name="setID" id = "setID" >
                 <input type="text" name="location" value = "admin" hidden>
             </form>
+            </div>
 
 
 </div>
@@ -658,23 +671,25 @@ String set = getBean.getSet();
 
 
 
-    $(document).ready(function (){
-        var RTable= $('#pTable').DataTable();
-        $('#pTable tbody').on('click', 'tr', function () {
-            var RTableData = RTable.row(this).data();
-            $(".input-send #ID").val(RTableData[0]);
-            $('#getSet').submit();
-        });
-    });
-
-         $(document).ready(function (){
-             var RTable= $('#cTable').DataTable();
-             $('#cTable tbody').on('click', 'tr', function () {
-                 var RTableData = RTable.row(this).data();
-                 $(".input-send #ID").val(RTableData[0]);
+    $(document).ready(function(){
+             var table = $('#pTable').DataTable();
+             $('#pTable tbody').on('click','tr',function(){
+                 var tableData = table.row(this).data();
+                 $('.sendForm #setID').val(tableData[0]);
                  $('#getSet').submit();
              });
+
          });
+         $(document).ready(function(){
+             var table = $('#cTable').DataTable();
+             $('#cTable tbody').on('click','tr',function(){
+                 var tableData = table.row(this).data();
+                 $('.sendForm #setID').val(tableData[0]);
+                 $('#getSet').submit();
+             });
+
+         });
+
 
 
 

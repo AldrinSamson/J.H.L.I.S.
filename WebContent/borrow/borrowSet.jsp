@@ -543,13 +543,13 @@
     <div class="modal fade" id="getViewSet" tabindex="-1" role="dialog" aria-hidden="true"  >
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header"><h4><h4><%=set%></h4></div>
+                <div class="modal-header"><h4><%=set%></h4></div>
                 <form action="../showSet" method="post" id = "getSet">
 
                     <div class="modal-body">
 
 		<pre class="tab">
-            <input type="text" name="ID" id = "pID" >
+            <input type="text" name="setID" id = "setID" >
             <input type="text" name="location" value = "borrow" hidden>
 
 
@@ -603,7 +603,7 @@
         $('#pTable tbody').on('click', 'tr', function () {
             var RTableData = RTable.row(this).data();
             //$('#getViewSet').modal('show');
-            $(".modal-body #pID").val(RTableData[0]);
+            $(".modal-body #setID").val(RTableData[0]);
             $('#getSet').submit();
         });
     });
