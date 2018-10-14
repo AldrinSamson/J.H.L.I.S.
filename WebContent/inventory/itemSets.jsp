@@ -508,7 +508,7 @@ String set = (String)request.getSession(false).getAttribute("set");
                         <div class="modal-footer">
                             <input type="text" name="lab" class="input-modal" value="Physics" hidden>
                             <button class="add_field_button">Add</button>
-                            <input type="submit" class="btn btn-default btn-md" value="Add">
+                            <input type="submit" class="btn btn-default btn-md" value="Save">
                             <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
                         </div>
                     </form>
@@ -565,7 +565,7 @@ String set = (String)request.getSession(false).getAttribute("set");
                 <div class="modal-footer">
                     <input type="text" name="lab" class="input-modal" value="Chemistry" hidden>
                     <button class="btn btn-default btn-md add_field_button2">Add</button>
-                    <input type="submit" class="btn btn-default btn-md" value="Add">
+                    <input type="submit" class="btn btn-default btn-md" value="Save">
                     <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
                 </div>
             </form>
