@@ -36,7 +36,7 @@ public class editNB extends HttpServlet {
             String nDesc = request.getParameter("nDesc");
             String nLab = request.getParameter("nLab");
             String nCondition = request.getParameter("nCondition");
-            String del = request.getParameter("del");
+            String del = request.getParameter("response");
             DateFormat df = new SimpleDateFormat("HH:mm:ss");
             String aTime = df.format(new java.util.Date());
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
@@ -48,7 +48,7 @@ public class editNB extends HttpServlet {
                 user = (String)request.getSession(false).getAttribute("user");
             }
 
-            if (nDesc.isEmpty() == true) {
+            if (nDesc.isEmpty()) {
 
                 nDesc = "N/A";
 
@@ -59,7 +59,7 @@ public class editNB extends HttpServlet {
                 con = DriverManager.getConnection(MYdburl);
                 stmt = con.createStatement();
 
-                if (del == null) {
+                if (del.equalsIgnoreCase("Edit")) {
 
                     String editNB = "update nonborrowable set nDesc = '" + nDesc + "' , nLab = '" + nLab + "', nCondition ='" + nCondition + "' where nKey = '" + nKey + "'";
                     stmt.execute(editNB);

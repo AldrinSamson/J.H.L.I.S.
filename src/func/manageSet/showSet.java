@@ -40,7 +40,7 @@ public class showSet extends HttpServlet {
                 chk = stmtE.executeQuery(getName);
                 chk.next();
 
-                HttpSession log = request.getSession(true);
+                HttpSession log = request.getSession(false);
                 log.setAttribute("set", ID);
                 log.setAttribute("setName", chk.getString("isName"));
                 chk.close();
