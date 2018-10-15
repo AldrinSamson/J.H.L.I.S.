@@ -11,8 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3a8f9b66-ebec-4db9-bcd2-8796a87d45f7" name="Default Changelist" comment="duplicate set">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/inventory/itemSets.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/inventory/itemSets.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/func/manageSet/addSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/func/manageSet/addSet.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/build/classes/" />
@@ -31,8 +29,11 @@
             <file leaf-file-name="addSet.java" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/src/func/manageSet/addSet.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="31">
-                    <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+                  <state relative-caret-position="255">
+                    <caret line="15" column="41" lean-forward="true" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
+                    <folding>
+                      <element signature="imports" expanded="true" />
+                    </folding>
                   </state>
                 </provider>
               </entry>
@@ -149,8 +150,8 @@
       <file leaf-file-name="itemSets.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WebContent/inventory/itemSets.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="650" column="22" lean-forward="true" selection-start-line="650" selection-start-column="22" selection-end-line="650" selection-end-column="22" />
+            <state relative-caret-position="230">
+              <caret line="379" lean-forward="true" selection-start-line="379" selection-end-line="379" />
             </state>
           </provider>
         </entry>
@@ -264,8 +265,8 @@
         <option value="$PROJECT_DIR$/WebContent/dashboard.jsp" />
         <option value="$PROJECT_DIR$/src/func/manageSet/showSet.java" />
         <option value="$PROJECT_DIR$/WebContent/borrow/borrowSet.jsp" />
-        <option value="$PROJECT_DIR$/WebContent/inventory/itemSets.jsp" />
         <option value="$PROJECT_DIR$/src/func/manageSet/addSet.java" />
+        <option value="$PROJECT_DIR$/WebContent/inventory/itemSets.jsp" />
       </list>
     </option>
   </component>
@@ -287,9 +288,8 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-7" />
-    <option name="y" value="1" />
-    <option name="width" value="1046" />
-    <option name="height" value="870" />
+    <option name="width" value="1033" />
+    <option name="height" value="1087" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -298,6 +298,8 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -384,8 +386,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -589,7 +589,8 @@
       <workItem from="1539229826593" duration="8044000" />
       <workItem from="1539336651627" duration="1611000" />
       <workItem from="1539483250752" duration="4486000" />
-      <workItem from="1539521165011" duration="608000" />
+      <workItem from="1539521165011" duration="925000" />
+      <workItem from="1539601365326" duration="2052000" />
     </task>
     <task id="LOCAL-00001" summary="Default Changelist">
       <created>1537696657774</created>
@@ -703,11 +704,18 @@
       <option name="project" value="LOCAL" />
       <updated>1539233777668</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="duplicate set">
+      <created>1539522162996</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1539522162996</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="220349000" />
+    <option name="totallyTimeSpent" value="222718000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -719,7 +727,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="1" width="1046" height="870" extended-state="0" />
+    <frame x="-7" y="0" width="1033" height="1087" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -742,7 +750,7 @@
       <window_info anchor="bottom" id="Run" order="2" weight="0.2888889" />
       <window_info anchor="bottom" id="Version Control" order="13" weight="0.3281046" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3786885" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.856528" visible="true" weight="0.20194174" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.856528" visible="true" weight="0.2045231" />
       <window_info id="Web" order="7" sideWeight="0.14347202" side_tool="true" weight="0.12026002" />
       <window_info id="Learn" order="8" />
       <window_info anchor="right" id="Theme Preview" order="8" />
@@ -1175,15 +1183,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/func/manageSet/addSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="31">
-          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+        <state relative-caret-position="255">
+          <caret line="15" column="41" lean-forward="true" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/inventory/itemSets.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="650" column="22" lean-forward="true" selection-start-line="650" selection-start-column="22" selection-end-line="650" selection-end-column="22" />
+        <state relative-caret-position="230">
+          <caret line="379" lean-forward="true" selection-start-line="379" selection-end-line="379" />
         </state>
       </provider>
     </entry>
