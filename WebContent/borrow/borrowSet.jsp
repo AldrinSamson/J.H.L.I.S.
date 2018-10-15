@@ -59,7 +59,10 @@
     Class.forName(MYclass);
     con = DriverManager.getConnection(MYdburl);
     stmt = con.createStatement();
-    String set = getBean.getSet();
+
+
+    String set = (String)request.getSession(false).getAttribute("set");
+    String setName = (String)request.getSession(false).getAttribute("setName");
 %>
 <div class="page-wrapper">
     <!-- HEADER MOBILE-->
@@ -302,7 +305,7 @@
         <!-- HEADER DESKTOP-->
         <!-- Main Body -->
         <div class="main-content">
-            <div class="pb-3 pl-5 page-title">Borrow Sets (UI ONLY)</div>
+            <div class="pb-3 pl-5 page-title">Borrow Sets</div>
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
                     <div class="row">
@@ -346,6 +349,7 @@
                                                         <thead>
                                                         <tr>
                                                             <th>ID</th>
+                                                            <th>Name</th>
                                                             <th>Condition</th>
                                                         </tr>
                                                         </thead>
@@ -360,6 +364,7 @@
                                                         %>
                                                         <tr>
                                                             <td><%=rs.getString("isKey")%></td>
+                                                            <td><%=rs.getString("isName")%></td>
                                                             <td><%=rs.getString("isCondition")%></td>
                                                         </tr>
                                                         <%
@@ -377,8 +382,6 @@
 
                                         <div class="tab-pane fade-in " id="tab-clist">
                                             <div class="pt-2 col-lg-12">
-                                                <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mISAdd" data-toggle="modal"style = "color:black;">new set</a></button>
-                                                <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mCEdit" data-toggle="modal"style = "color:black;">edit set</a></button>
                                                 <table class="table table-borderless table-striped table-earning" >
                                                     <tr>
                                                             <%
@@ -404,7 +407,8 @@
                                                         <thead>
                                                         <tr>
                                                             <th>ID</th>
-                                                            <th>condi</th>
+                                                            <th>Name</th>
+                                                            <th>Condition</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -420,6 +424,7 @@
                                                         %>
                                                         <tr>
                                                             <td><%=rs.getString("isKey")%></td>
+                                                            <td><%=rs.getString("isName")%></td>
                                                             <td><%=rs.getString("isCondition")%></td>
                                                         </tr>
                                                         <%
@@ -490,8 +495,8 @@
     <div class="modal fade" id="viewSet" tabindex="-1" role="dialog" aria-hidden="true"  >
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header"><h4><%=set%></h4></div>
-                <form action="../showSet" method="post">
+                <div class="modal-header"><h4><%=setName%></h4></div>
+                <form action="../deleteDuplicateSet" method="post">
 
                     <div class="modal-body">
 
@@ -501,8 +506,8 @@
                         <thead>
 							<tr>
 							<th>ID</th>
-                                <th> quanitity </th>
-							<th>condi</th>
+                                <th>quantity</th>
+							<th>condition</th>
 							</tr>
                         </thead>
                         <tbody>
@@ -533,35 +538,19 @@
 		</pre>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Lend</button>
                         <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="getViewSet" tabindex="-1" role="dialog" aria-hidden="true"  >
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header"><h4><%=set%></h4></div>
-                <form action="../showSet" method="post" id = "getSet">
-
-                    <div class="modal-body">
-
-		<pre class="tab">
+    <div class = "sendForm">
+        <form action="../showSet" method="post" id = "getSet">
             <input type="text" name="setID" id = "setID" >
             <input type="text" name="location" value = "borrow" hidden>
-
-
-		</pre>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+        </form>
     </div>
+
 
 </div>
 
@@ -597,15 +586,23 @@
     });
 
 
-
-    $(document).ready(function (){
-        var RTable= $('#pTable').DataTable();
-        $('#pTable tbody').on('click', 'tr', function () {
-            var RTableData = RTable.row(this).data();
-            //$('#getViewSet').modal('show');
-            $(".modal-body #setID").val(RTableData[0]);
+    $(document).ready(function(){
+        var table = $('#pTable').DataTable();
+        $('#pTable tbody').on('click','tr',function(){
+            var tableData = table.row(this).data();
+            $('.sendForm #setID').val(tableData[0]);
             $('#getSet').submit();
         });
+
+    });
+    $(document).ready(function(){
+        var table = $('#cTable').DataTable();
+        $('#cTable tbody').on('click','tr',function(){
+            var tableData = table.row(this).data();
+            $('.sendForm #setID').val(tableData[0]);
+            $('#getSet').submit();
+        });
+
     });
 
 
