@@ -668,7 +668,10 @@
             </tr>
             <tr>
                 <td><label class="label-modal">Unit</label></td>
-                <td><input type="text" name="unit" class="input-modal"></td>
+                <td><select name = "unit" class = "select-modal">
+                    <option> Piece </option>
+                    </select>
+                </td>
             </tr>
         </table>
 
@@ -718,7 +721,12 @@
                 </tr>
                 <tr>
                 <td><label class="label-modal">Unit</label></td>
-                 <td><input type="text" name="unit" class="input-modal"></td>
+                 <td><select name = "unit" class = "select-modal">
+                    <option> Piece </option>
+                     <option> Militter </option>
+                    <option> Litter</option>
+                     </select>
+                 </td>
                 </tr>
                 <tr>
                 <td><label class="label-modal">Expiration Date</label></td>
@@ -775,7 +783,10 @@
             </tr>
             <tr>
                 <td><label class="label-modal">Unit</label></td>
-                <td><input type="text" name="unit" class="input-modal" value = "<%=iUnit%>"></td>
+                <td><select name = "unit" class = "select-modal" value = "<%=iUnit%>">
+                    <option> Piece </option>
+
+                     </select> </td>
             </tr>
         </table>
 		</pre>
@@ -884,7 +895,11 @@
                 </tr>
                 <tr>
                 <td><label class="label-modal">Unit</label></td>
-                 <td><input type="text" name="unit" class="input-modal" value = "<%= iUnit%>"></td>
+                 <td><select name = "unit" class = "select-modal" value = "<%=iUnit%>">
+                    <option> Piece </option>
+                    <option> Litter</option>
+                     <option> Militter </option>
+                     </select></td>
                 </tr>
                 <tr>
                 <td><label class="label-modal">Expiration Date</label></td>
@@ -1004,7 +1019,10 @@
                                         </tr>
                                         <tr>
                                             <td><label class="label-modal">Unit</label></td>
-                                            <td><input type="text" name="unit" class="input-modal" id = "AUnit"></td>
+                                            <td><select name = "unit" class = "select-modal" id = "AUnit">
+                                                <option> Piece </option>
+
+                                            </select> </td>
                                         </tr>
                                         <tr>
                                             <td><label class="label-modal">Condition</label></td>
@@ -1075,7 +1093,7 @@
                                             <td><input type="text" name="form" class="input-modal" id = "CForm"readonly></td>
                                         </tr>
                                         <tr>
-                                            <td><label class="label-modal">Description</label></td>
+                                            <td><label <!--  -->lass="label-modal">Description</label></td>
                                             <td><input type="text" name="desc" class="input-modal" id = "CDesc"></td>
                                         </tr>
                                         <tr>
@@ -1084,7 +1102,11 @@
                                         </tr>
                                         <tr>
                                             <td><label class="label-modal">Unit</label></td>
-                                            <td><input type="text" name="unit" class="input-modal" id = "CUnit"></td>
+                                            <td><select name = "unit" class = "select-modal" id = "CUnit">
+                                                <option> Piece </option>
+                                                <option> Militter </option>
+                                                <option> Litter</option>
+                                            </select> </td>
                                         </tr>
                                         <tr>
                                             <td><label class="label-modal">Expiration Date</label></td>

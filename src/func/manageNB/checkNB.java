@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -48,14 +49,15 @@ public class checkNB extends HttpServlet {
                 user = (String)request.getSession(false).getAttribute("user");
             }
 
-            if (nDesc.isEmpty() == true) {
+            if (nDesc.isEmpty()) {
 
                 nDesc = "N/A";
             }
 
-            getBean.setnName(nName);
-            getBean.setnLab(nLab);
-            getBean.setnDesc(nDesc);
+            HttpSession log = request.getSession(false);
+            log.setAttribute("nName" , nName);
+            log.setAttribute("nLab" , nLab);
+            log.setAttribute("nDesc" , nDesc);
 
             try {
                 Class.forName(MYclass);
@@ -66,7 +68,7 @@ public class checkNB extends HttpServlet {
                 String chkName = "select * from nonborrowable where nName = '" + nName + "'";
                 chk = stmt.executeQuery(chkName);
 
-                if (chk.next() == true) {
+                if (chk.next()) {
 
                     String getData = "select nAbbv , nNum from nonborrowable where nName = '" + nName + "'order by nNum desc limit 1";
                     get = stmt.executeQuery(getData);
@@ -89,6 +91,8 @@ public class checkNB extends HttpServlet {
 
 
                 } else {
+
+                    nName = nName.trim().replaceAll("\\s", "");
                     //get middle second abbv1
                     char first, middle, last;
 
@@ -132,9 +136,9 @@ public class checkNB extends HttpServlet {
                     String abbvS3 = firstS3 + middleS3 + lastS3;
                     String abbv3 = abbvS3.toUpperCase();
 
-                    getBean.setAbbvN1(abbv1);
-                    getBean.setAbbvN2(abbv2);
-                    getBean.setAbbvN3(abbv3);
+                    log.setAttribute("abbvN1" ,abbv1);
+                    log.setAttribute("abbvN2" , abbv2);
+                    log.setAttribute("abbvN3" , abbv3);
 
                     out.println("<html><body><script type='text/javascript'>location='inventory/nonBorrowable.jsp#mNCode';</script></body></html>");
                 }

@@ -182,7 +182,7 @@
 
 
                                     <div class="col-lg-12">
-                                        <button type="button" class="btn new-item-btn-nA"  href="#mEAdd" data-toggle="modal">NEW ITEM</button>
+                                        <button type="button" class="btn new-item-btn-nA"  href="#mEAdd" data-toggle="modal">Add Request</button>
                                         <div class="table-responsive table--no-card m-b-40">
                                             Your Current Requests
                                             <table class="table table-borderless table-striped table-earning" id = "nTable">

@@ -56,6 +56,12 @@ String MYclass = getBean.getMyClass();
 Class.forName(MYclass);
 con = DriverManager.getConnection(MYdburl);
 stmt = con.createStatement();
+String nName = (String)session.getAttribute("nName");
+String nLab =(String)session.getAttribute("nLab");
+String nDesc = (String)session.getAttribute("nDesc");
+String abbv1 = (String)session.getAttribute("abbvN1");
+String abbv2 = (String)session.getAttribute("abbvN2");
+String abbv3 = (String)session.getAttribute("abbvN3");
 %>
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
@@ -389,6 +395,93 @@ stmt = con.createStatement();
                         </div>
                         <div class="modal-footer">
                             <input type="submit" class="btn btn-default btn-md" value="Add">
+                            <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add New Equipement Modal -->
+        <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="mNCode" data-keyboard="false" data-backdrop = "static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header"><h4>New Equipment</h4></div>
+                    <form action="../addNB" method="post">
+
+                        <div class="modal-body">
+
+		<pre class="tab">
+        <table class="table table-borderless table-earning" style="border-spacing:20px">
+             <tr>
+                <td><label class="label-modal">Code</label></td>
+                <td> <select name="nAbbv" class="select-modal">
+                    <option> <%= abbv1 %></option>
+                    <option><%= abbv2 %></option>
+                     <option><%= abbv3 %></option>
+                    </select>
+                </td>
+            </tr><br>
+            <tr>
+                <td><label class="label-modal">Name</label></td>
+                <td><input type="text" name="nName" class="input-modal" value = "<%=nName%>" readonly></td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">Description</label></td>
+                <td><input type="text" name="nDesc" class="input-modal"value = "<%=nDesc%>"></td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">Laboratory</label></td>
+                <td><input type="text" name="nLab" class="input-modal"value = "<%=nLab%>"></td>
+            </tr>
+        </table>
+		</pre>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" class="btn btn-default btn-md" value="Save">
+                            <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Equipment Modal -->
+        <div class="modal fade" id="mEEdit" tabindex="-1" role="dialog" aria-hidden="true"  >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header"><h4>Edit Equipment</h4></div>
+                    <form action="../editNB" method="post">
+
+                        <div class="modal-body">
+
+		<pre class="tab">
+            <h2><input type="text" name="nKey" id = "nID" readonly></h2>
+        <table class="table table-borderless table-earning" style="border-spacing:20px">
+            <tr>
+                <td><label class="label-modal">Name</label></td>
+                <td><input type="text" name="nName" class="input-modal" id = "nName" readonly></td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">Description</label></td>
+                <td><input type="text" name="nDesc" class="input-modal" id = "nDesc"></td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">Laboratory</label></td>
+                <td><input type="text" name="nLab" class="input-modal"  id = "nLab"></td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">Condition</label></td>
+                <td><input type="text" name="nCondi" class="input-modal" id = "nCondi"></td>
+            </tr>
+            <tr>
+                                            <td></td>
+                                            <td><input type="submit" name = "response" class="btn btn-default btn-md" value="Edit" >&emsp;<input type="submit" name = "response" class="btn btn-default btn-md" value="Delete" ></td>
+                                        </tr>
+        </table>
+		</pre>
+                        </div>
+                        <div class="modal-footer">
                             <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
                         </div>
                     </form>
