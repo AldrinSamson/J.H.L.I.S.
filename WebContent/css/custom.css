@@ -419,3 +419,27 @@ p > .au-input {
 .account-dropdown__footer button{
     color: white;
 }
+
+.item-set-mt {
+    border-bottom: none;
+}
+
+.item-set-mb {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.item-set-mt .input-modal {
+    height: 30px;
+}
+
+.tr-divider {
+    border-top: solid 1px #212529;
+}
+
+.input_fields_wrap .remove_field {
+    position: absolute;
+    left: 15px;
+    font-size: 25px
+}
