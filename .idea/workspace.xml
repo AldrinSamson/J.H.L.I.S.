@@ -9,7 +9,7 @@
     <bookmark url="file://$PROJECT_DIR$/WebContent/report/audit.jsp" line="305" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a8f9b66-ebec-4db9-bcd2-8796a87d45f7" name="Default Changelist" comment="duplicate set">
+    <list default="true" id="3a8f9b66-ebec-4db9-bcd2-8796a87d45f7" name="Default Changelist" comment="--">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -29,8 +29,8 @@
             <file leaf-file-name="addSet.java" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/src/func/manageSet/addSet.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="255">
-                    <caret line="15" column="41" lean-forward="true" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
+                  <state relative-caret-position="64">
+                    <caret line="15" column="41" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
                     <folding>
                       <element signature="imports" expanded="true" />
                     </folding>
@@ -132,7 +132,7 @@
       <file leaf-file-name="showSet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/func/manageSet/showSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
+            <state relative-caret-position="136">
               <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
             </state>
           </provider>
@@ -141,8 +141,8 @@
       <file leaf-file-name="borrowSet.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebContent/borrow/borrowSet.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9333">
-              <caret line="549" selection-start-line="549" selection-end-line="549" />
+            <state relative-caret-position="9316">
+              <caret line="548" selection-start-line="548" selection-end-line="548" />
             </state>
           </provider>
         </entry>
@@ -150,8 +150,8 @@
       <file leaf-file-name="itemSets.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WebContent/inventory/itemSets.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="379" lean-forward="true" selection-start-line="379" selection-end-line="379" />
+            <state relative-caret-position="238">
+              <caret line="483" column="36" lean-forward="true" selection-start-line="483" selection-start-column="36" selection-end-line="483" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -159,8 +159,8 @@
       <file leaf-file-name="checkNB.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/func/manageNB/checkNB.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1683">
-              <caret line="99" column="48" selection-start-line="99" selection-start-column="48" selection-end-line="99" selection-end-column="48" />
+            <state relative-caret-position="1496">
+              <caret line="103" column="48" selection-start-line="103" selection-start-column="48" selection-end-line="103" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -168,7 +168,7 @@
       <file leaf-file-name="editNB.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/func/manageNB/editNB.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1275">
+            <state relative-caret-position="1054">
               <caret line="75" column="123" selection-start-line="75" selection-start-column="123" selection-end-line="75" selection-end-column="123" />
             </state>
           </provider>
@@ -177,7 +177,7 @@
       <file leaf-file-name="addNB.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/func/manageNB/addNB.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1326">
+            <state relative-caret-position="1088">
               <caret line="78" column="147" selection-start-line="78" selection-start-column="147" selection-end-line="78" selection-end-column="147" />
             </state>
           </provider>
@@ -297,9 +297,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -590,7 +590,8 @@
       <workItem from="1539336651627" duration="1611000" />
       <workItem from="1539483250752" duration="4486000" />
       <workItem from="1539521165011" duration="925000" />
-      <workItem from="1539601365326" duration="2052000" />
+      <workItem from="1539601365326" duration="2740000" />
+      <workItem from="1539692878028" duration="882000" />
     </task>
     <task id="LOCAL-00001" summary="Default Changelist">
       <created>1537696657774</created>
@@ -711,11 +712,25 @@
       <option name="project" value="LOCAL" />
       <updated>1539522162996</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="--">
+      <created>1539603954558</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1539603954559</updated>
+    </task>
+    <task id="LOCAL-00019" summary="--">
+      <created>1539604028751</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1539604028751</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="222718000" />
+    <option name="totallyTimeSpent" value="224288000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -728,7 +743,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1033" height="1087" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
@@ -748,9 +762,9 @@
       <window_info anchor="bottom" id="Java Enterprise" order="11" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.2888889" />
-      <window_info anchor="bottom" id="Version Control" order="13" weight="0.3281046" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="13" visible="true" weight="0.3271605" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3786885" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.856528" visible="true" weight="0.2045231" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.856528" visible="true" weight="0.2045231" />
       <window_info id="Web" order="7" sideWeight="0.14347202" side_tool="true" weight="0.12026002" />
       <window_info id="Learn" order="8" />
       <window_info anchor="right" id="Theme Preview" order="8" />
@@ -837,10 +851,10 @@
     <MESSAGE value="login ui change" />
     <MESSAGE value="add .war archive" />
     <MESSAGE value="-_(-__)" />
-    <MESSAGE value="--" />
     <MESSAGE value="added audit , critical Quantity on login , insights" />
     <MESSAGE value="duplicate set" />
-    <option name="LAST_COMMIT_MESSAGE" value="duplicate set" />
+    <MESSAGE value="--" />
+    <option name="LAST_COMMIT_MESSAGE" value="--" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1127,22 +1141,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/func/manageNB/addNB.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1326">
+        <state relative-caret-position="1088">
           <caret line="78" column="147" selection-start-line="78" selection-start-column="147" selection-end-line="78" selection-end-column="147" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/func/manageNB/editNB.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
+        <state relative-caret-position="1054">
           <caret line="75" column="123" selection-start-line="75" selection-start-column="123" selection-end-line="75" selection-end-column="123" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/func/manageNB/checkNB.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1683">
-          <caret line="99" column="48" selection-start-line="99" selection-start-column="48" selection-end-line="99" selection-end-column="48" />
+        <state relative-caret-position="1496">
+          <caret line="103" column="48" selection-start-line="103" selection-start-column="48" selection-end-line="103" selection-end-column="48" />
         </state>
       </provider>
     </entry>
@@ -1162,15 +1176,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/func/manageSet/showSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
+        <state relative-caret-position="136">
           <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/borrow/borrowSet.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9333">
-          <caret line="549" selection-start-line="549" selection-end-line="549" />
+        <state relative-caret-position="9316">
+          <caret line="548" selection-start-line="548" selection-end-line="548" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/func/manageSet/addSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="15" column="41" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1181,20 +1205,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/func/manageSet/addSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="41" lean-forward="true" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/inventory/itemSets.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="379" lean-forward="true" selection-start-line="379" selection-end-line="379" />
+        <state relative-caret-position="238">
+          <caret line="483" column="36" lean-forward="true" selection-start-line="483" selection-start-column="36" selection-end-line="483" selection-end-column="36" />
         </state>
       </provider>
     </entry>
