@@ -33,6 +33,7 @@
     <link href="../vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="../vendor/datatables/datatables.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/gigjo/gijgo.min.css" rel="stylesheet" media="all">
     <!-- Main CSS-->
     <link href="../css/theme.css" rel="stylesheet" media="all">
     <link href="../css/custom.css" rel="stylesheet" media="all">
@@ -55,8 +56,8 @@
     con = DriverManager.getConnection(MYdburl);
     stmt = con.createStatement();
 
-    String message = getBean.getrMessage();
-    String rID = getBean.getrID();
+    String message = (String)session.getAttribute("rMessage");
+    String rID = (String)session.getAttribute("rID");
 %>
 <div class="page-wrapper">
 
@@ -416,6 +417,7 @@
 <script src="../vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
 <script src="../vendor/chartjs/Chart.bundle.min.js"></script>
 <script src="../vendor/select2/select2.min.js"></script>
+<script src="../vendor/gigjo/gijgo.min.js"></script>
 <!-- Main JS-->
 <script src="../js/main.js"></script>
 <script type = "text/javascript">
@@ -463,7 +465,8 @@
     // datepicker
     $(function () {
         $(".input-modal--date").datepicker({
-            dateFormat: "yy-mm-dd"
+            dateFormat: "yy-mm-dd",
+            uiLibrary: 'bootstrap4'
         });
     });
 

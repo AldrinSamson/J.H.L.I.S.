@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -22,11 +23,11 @@ public class checkNew extends HttpServlet {
     Connection con;
     Statement stmt;
     ResultSet chk, get;
-    String MYdburl = getBean.getMyUrl();
     String MYclass = getBean.getMyClass();
     String itemNAbbv, itemFAbbv, newKey;
     int itemNum, newItemNum;
     int quantity = 0;
+    String MYdburl = getBean.getMyUrl();
     String user;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -146,18 +147,6 @@ public class checkNew extends HttpServlet {
 
                 } else {
 
-
-                    getBean.setiName(name);
-                    getBean.setiForm(form);
-                    getBean.setiType(type);
-                    getBean.setiDesc(desc);
-                    getBean.setiDate(date);
-                    getBean.setiDateType(dateType);
-                    getBean.setiQuantity(quantity);
-                    getBean.setiUnit(unit);
-                    getBean.setiLab(lab);
-                    getBean.setiCondition(condition);
-
                     //iKey code generator
                     String namex = name.trim().replaceAll("\\s", "");
                     //make name abbv
@@ -200,9 +189,6 @@ public class checkNew extends HttpServlet {
                     String abbvS3 = firstS3 + middleS3 + lastS3;
                     String abbv3 = abbvS3.toUpperCase();
 
-                    getBean.setAbbv1(abbv1);
-                    getBean.setAbbv2(abbv2);
-                    getBean.setAbbv3(abbv3);
                     //end make name abbv
 
                     //make form abbv 
@@ -251,10 +237,26 @@ public class checkNew extends HttpServlet {
                     String abbvSF3 = firstSF3 + middleSF3 + lastSF3;
                     String form3 = abbvSF3.toUpperCase();
 
-                    getBean.setAbbvF1(form1);
-                    getBean.setAbbvF2(form2);
-                    getBean.setAbbvF3(form3);
                     //end make form abbv
+
+                    //set to session
+                    HttpSession log = request.getSession(false);
+                    log.setAttribute("itemName", name);
+                    log.setAttribute("itemForm" ,form);
+                    log.setAttribute("itemQuantity", quantityA);
+                    log.setAttribute("itemDate" , date);
+                    log.setAttribute("itemUnit" , unit);
+                    log.setAttribute("itemDesc",desc);
+                    log.setAttribute("itemLab" , lab);
+                    log.setAttribute("type" , type);
+                    log.setAttribute("itemAbbv1" , abbv1);
+                    log.setAttribute("itemAbbv2", abbv2);
+                    log.setAttribute("itemAbbv3" , abbv3);
+                    log.setAttribute("itemFAbbv1" , form1);
+                    log.setAttribute("itemFAbbv2" , form2);
+                    log.setAttribute("itemFAbbv3" , form3);
+
+
 
 
                     if (lab.equalsIgnoreCase("Physics")) {

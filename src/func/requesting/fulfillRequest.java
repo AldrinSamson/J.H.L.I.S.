@@ -31,11 +31,11 @@ public class fulfillRequest extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
 
             String mResponse = request.getParameter("response");
-            String rID = getBean.getrID();
             DateFormat df = new SimpleDateFormat("HH:mm:ss");
             String aTime = df.format(new java.util.Date());
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
             String aDate = sdf.format(new Date());
+            String rID = (String)request.getSession(false).getAttribute("rID");
 
             if(request.getSession(false).getAttribute("user") == null){
                 out.println ("<html><body><script type='text/javascript'>alert('Please log-in first.');location='../index.html';</script></body></html>");
