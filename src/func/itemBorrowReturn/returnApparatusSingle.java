@@ -17,8 +17,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@WebServlet("/returnMissingSingle")
-public class returnMissingSingle extends HttpServlet {
+@WebServlet("/returnApparatusSingle")
+public class returnApparatusSingle extends HttpServlet {
 
     Connection con;
     String MYdburl = getBean.getMyUrl();

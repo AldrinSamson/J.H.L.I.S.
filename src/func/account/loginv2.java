@@ -46,6 +46,7 @@ public class loginv2 extends HttpServlet {
             List<Double> CQ = new ArrayList<>();
             List<Double> TQ = new ArrayList<>();
             List<String> date = new ArrayList<>();
+            List<String> iType = new ArrayList<>();
 
             try {
 
@@ -90,7 +91,7 @@ public class loginv2 extends HttpServlet {
                     }
                     getz.close();
 
-                    String doCritical2 = "SELECT * from inventory  ";
+                    String doCritical2 = "SELECT i.* , d.* from inventory i join itemdetails d on i.itemKey = d.itemKey ";
                     getz  = stmt.executeQuery(doCritical2);
 
                     int i = 0;
@@ -104,6 +105,8 @@ public class loginv2 extends HttpServlet {
                         TQ.add(TotalQuantity);
                         String dateX = getz.getString("itemDate");
                         date.add(dateX);
+                        String iTypeX = getz.getString("itemType");
+                        iType.add(iTypeX);
                         i++;
                     }
 
@@ -113,19 +116,23 @@ public class loginv2 extends HttpServlet {
                     //compare quantity
                     int x = 0 ;
                     while (x < iKey.size()){
-                        double criticalTQ = TQ.get(x) * 0.25;
-                        double nowQ = CQ.get(x);
-                        String key = iKey.get(x);
-                        if (criticalTQ >= nowQ){
+                        if (iType.get(x).equals("Apparatus")) {
+                            double criticalTQ = TQ.get(x) * 0.25;
+                            double nowQ = CQ.get(x);
+                            String key = iKey.get(x);
+                            if (criticalTQ >= nowQ) {
 
-                            String filterRecord = "select * from audit where date = '"+aDate+"' and actionID = '"+key+"' and actionType = 'Critical Quantity'";
-                            getz = stmt.executeQuery(filterRecord);
-                            if (!getz.next()){
-                                String criticalQ = "insert into audit values (NULL , '"+user+"' , '"+aDate+"' , '"+aTime+"' , 'Critical Quantity on "+key+"' , 'Critical Quantity' ,'"+key+"')";
-                                stmt.execute(criticalQ);
+                                String filterRecord = "select * from audit where date = '" + aDate + "' and actionID = '" + key + "' and actionType = 'Critical Quantity'";
+                                getz = stmt.executeQuery(filterRecord);
+                                if (!getz.next()) {
+                                    String criticalQ = "insert into audit values (NULL , '" + user + "' , '" + aDate + "' , '" + aTime + "' , 'Critical Quantity on " + key + "' , 'Critical Quantity' ,'" + key + "')";
+                                    stmt.execute(criticalQ);
+                                }
                             }
+                            x++;
+                        }else {
+                            x++;
                         }
-                        x++;
                     }
 
                     // compare date

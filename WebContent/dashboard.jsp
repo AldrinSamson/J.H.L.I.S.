@@ -6,6 +6,8 @@
 <%@ page import="javax.swing.plaf.nimbus.State" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.Date" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -50,7 +52,7 @@
 
     Connection con;
     Statement stmt;
-    ResultSet rs, get;
+    ResultSet rs, get,  rs2 , rs3;
     String getQ, getUser, query;
     String MYdburl = getBean.getMyUrl();
     String MYclass = getBean.getMyClass();
@@ -63,7 +65,98 @@
 
     String message = (String)session.getAttribute("rMessage");
     String rID = (String)session.getAttribute("rID");
+    %>
+
+<%!
+    public String join(ArrayList<?> arr, String del)
+    {
+
+        StringBuilder output = new StringBuilder();
+
+        for (int i = 0; i < arr.size(); i++)
+        {
+
+            if (i > 0) output.append(del);
+            
+            if (arr.get(i) instanceof String) output.append("\"");
+            output.append(arr.get(i));
+            if (arr.get(i) instanceof String) output.append("\"");
+        }
+
+        return output.toString();
+    }
 %>
+<%
+
+
+    ArrayList<String> itemName = new ArrayList<>();
+    ArrayList<String> itemKeyDamaged = new ArrayList<>();
+    ArrayList<String> itemKeyMissing = new ArrayList<>();
+    ArrayList<Integer> borrowCount = new ArrayList<>();
+    ArrayList<Integer> damagedCount = new ArrayList<>();
+    ArrayList<Integer> missingCount = new ArrayList<>();
+
+    try {
+        String getBorrowTop = "select distinct bItemKey, count(bItemKey) as count from borrowtransaction group by bItemKey order by count desc limit 10";
+        rs = stmt.executeQuery(getBorrowTop);
+
+        int x = 0;
+        while(x < 10){
+            rs.next();
+            itemName.add(rs.getString("bItemKey"));
+            borrowCount.add(rs.getInt("count"));
+            x++;
+        }
+
+        rs.close();
+    }catch(Exception e){
+        e.printStackTrace();
+    }
+
+    try {
+        String getDamageTop = "select b.bItemKey, d.itemName ,sum(b.bQuantityLoss) as count  from borrowTransaction b join itemdetails d on b.bItemKey = d.itemKey where b.bCondition = 'Damaged' group by b.bItemKey order by sum(b.bQuantityLoss) desc limit 10 ";
+        rs2 = stmt.executeQuery(getDamageTop);
+
+        int y = 0;
+        while (y < 10){
+            rs2.next();
+            itemKeyDamaged.add(rs2.getString("bItemKey"));
+            damagedCount.add(rs2.getInt("count"));
+            y++;
+        }
+        rs2.close();
+    }catch(Exception e){
+        e.printStackTrace();
+    }
+
+    try {
+        String getMissingTop = "select b.bItemKey, d.itemName ,sum(b.bQuantityLoss) as count  from borrowTransaction b join itemdetails d on b.bItemKey = d.itemKey where b.bCondition = 'Missing' group by b.bItemKey order by sum(b.bQuantityLoss) desc limit 10 ";
+        rs3 = stmt.executeQuery(getMissingTop);
+
+        int z = 0;
+        while (z < 10){
+            rs3.next();
+            itemKeyMissing.add(rs3.getString("bItemKey"));
+            missingCount.add(rs3.getInt("count"));
+            z++;
+        }
+        rs3.close();
+    }catch(Exception e){
+        e.printStackTrace();
+    }
+
+%>
+<script>
+
+    var itemNameData = [<%= join(itemName, ",") %>];
+    var borrowCountData = [<%= join(borrowCount, ",") %>];
+    var itemKeyDamagedData = [<%= join(itemKeyDamaged, ",") %>];
+    var damagedCountData = [<%= join(damagedCount, ",") %>];
+    var itemKeyMissingData = [<%= join(itemKeyMissing, ",") %>];
+    var missingCountData = [<%= join(missingCount, ",") %>];
+
+
+</script>
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
         <header class="header-mobile d-block d-lg-none">
@@ -316,7 +409,7 @@
                                     </div>
                                     <%
                                         try{
-                                            String queryx= "select count(i.itemCurrentQuantity) as count from inventory i join itemdetails d on i.itemKey = d.itemKey where i.itemCondition = 'Not Returned' and d.itemType = 'Equipment' ";
+                                            String queryx= "select count(*) as count from itemdetails d left join inventory i on d.itemKey = i.itemKey right join borrowtransaction b on i.itemKey = b.bitemKey where d.itemType = 'Equipment' and b.bCondition = 'Not Returned'";
                                             rs = stmt.executeQuery(queryx);
 
                                             while (rs.next()){
@@ -338,7 +431,7 @@
                                     </div>
                                     <%
                                         try{
-                                            String queryx= "select count(actionType) as count from audit where actionType = 'Critical' and date = '"+date+"'";
+                                            String queryx= "select count(actionType) as count from audit where actionType = 'Critical Quantity' and date = '"+date+"'";
                                             rs = stmt.executeQuery(queryx);
 
                                             while (rs.next()){
@@ -350,7 +443,7 @@
                                         e.printStackTrace();
                                     }
                                     %>
-                                    <span class="desc">Critical</span>
+                                    <span class="desc">Critical Quantity</span>
                                 </div>
                             </a>
                             <a href ="request/requestAdmin.jsp" class="col-md-6 col-lg-3">
@@ -405,7 +498,7 @@
                                     </div>
                                     <%
                                         try{
-                                            String queryx= "select count(i.itemCurrentQuantity) as count from inventory i join itemdetails d on i.itemKey = d.itemKey where  i.itemCondition = 'Incomplete' and d.itemType = 'Apparatus' ";
+                                            String queryx= "select count(bQuantity) as count from itemdetails d left join inventory i on d.itemKey = i.itemKey right join borrowtransaction b on i.itemKey = b.bitemKey where d.itemType = 'Apparatus' and b.bCondition = 'Not Returned' ";
                                             rs = stmt.executeQuery(queryx);
 
                                             while (rs.next()){
@@ -426,7 +519,20 @@
                                     <div class = "counter__icon">
                                         <span class = "icon-033"></span>
                                     </div>
-                                    <h2 class="number">NaN</h2>
+                                    <%
+                                        try{
+                                            String queryx= "select count(actionType) as count from audit where actionType = 'Critical Date' and date = '"+date+"'";
+                                            rs = stmt.executeQuery(queryx);
+
+                                            while (rs.next()){
+
+                                    %>
+                                    <h2 class="number"><%=rs.getString("count")%></h2>
+                                    <%}
+                                    }catch(Exception e){
+                                        e.printStackTrace();
+                                    }
+                                    %>
                                     <span class="desc">Critical Date</span>
                                 </div>
                             </a>
@@ -438,7 +544,7 @@
                                     </div>
                                     <%
                                         try{
-                                            String queryx= "select count(rID) as count from request where rCondition = 'Unfulfilled'";
+                                            String queryx= "select count(rID) as count from request where rCondition = 'Approved' and rStatus = 'Unfulfilled'";
                                             rs = stmt.executeQuery(queryx);
 
                                             while (rs.next()){
@@ -480,208 +586,45 @@
                             </div>
                         </div>
 
-                <div class="section__content section__content--p30">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="card text-left" id="ptab-marg">
-                                    <div class="card-header">
-                                        <h3 class="pt-2 card-title"> Requests </h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <table class="table table-borderless table-striped table-earning" id = "rTable">
-                                            <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Name</th>
-                                                <th>Date</th>
-                                                <th>Time</th>
-                                                <th>Condition</th>
-                                                <th>Status</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <%
-                                                try {
-
-
-                                                    query = "SELECT r.*, a.* from request r join account a on r.aKey = a.aKey ";
-                                                    rs = stmt.executeQuery(query);
-
-                                                    while(rs.next()){
-                                            %>
-                                            <tr data-toggle="modal" id="mRView">
-                                                <td><%=rs.getString("rID")%>
-                                                </td>
-                                                <td><%=rs.getString("aClass")%> <%=rs.getString("aName")%>
-                                                </td>
-                                                <td><%=rs.getString("rDate")%>
-                                                </td>
-                                                <td><%=rs.getString("rTime")%>
-                                                </td>
-                                                <td><%=rs.getString("rCondition") %>
-                                                </td>
-                                                <td><%=rs.getString("rStatus")%>
-                                                </td>
-
-                                            </tr>
-                                            <%
-                                                    }
-                                                }catch (Exception e){
-                                                    e.printStackTrace();
-                                                }
-                                            %>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                                  
-                      <section>
+                <section>
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-xl-8">
-                                <!-- RECENT REPORT 2-->
-                                <div class="recent-report2">
-                                    <h3 class="title-3">Demo Descriptive Analytics</h3>
-                                    <div class="chart-info">
-                                        <div class="chart-info__left">
-                                            <div class="chart-note">
-                                                <span class="dot dot--blue"></span>
-                                                <span>Breakage</span>
-                                            </div>
-                                            <div class="chart-note">
-                                                <span class="dot dot--green"></span>
-                                                <span>Missing</span>
-                                            </div>
-                                        </div>
-                                        <div class="chart-info-right">
-                                            <div class="rs-select2--dark rs-select2--md m-r-10">
-                                                <select class="js-select2" name="property">
-                                                    <option selected="selected">All Properties</option>
-                                                    <option value="">Breakage</option>
-                                                    <option value="">Missing</option>
-                                                </select>
-                                                <div class="dropDownSelect2"></div>
-                                            </div>
-                                            <div class="rs-select2--dark rs-select2--sm">
-                                                <select class="js-select2 au-select-dark" name="time">
-                                                    <option selected="selected">All Time</option>
-                                                    <option value="">By Month</option>
-                                                    <option value="">By Day</option>
-                                                </select>
-                                                <div class="dropDownSelect2"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="recent-report__chart">
-                                        <canvas id="recent-rep2-chart"></canvas>
-                                    </div>
-                                </div>
-                                <!-- END RECENT REPORT 2             -->
+                            <canvas id="borrowTop" width="800" height="450"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+                </section>
+                <section>
+                    <div class="section__content section__content--p30">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-xl-8">
+                                    <canvas id="damagedTop" width="800" height="450"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="section__content section__content--p30">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-xl-8">
+                                    <canvas id="missingTop" width="800" height="450"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-                      
-                      
                     </div>
                 </div>
             </div>
             <!-- END MAIN CONTENT-->
             <!-- END PAGE CONTAINER-->
-
-<!-- Add Equipment Modal -->
-<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="mRView" data-keyboard="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header"><h4>New Equipment</h4></div>
-            <form action="../checkNew" method="post">
-
-                <div class="modal-body">
-
-		<pre class="tab">
-        <table class="table table-borderless table-earning" style="border-spacing:20px">
-            <tr>
-                <td><label class="label-modal">Name</label></td>
-                <td><input type="text" name="name" class="input-modal" list="nameR"></td>
-            </tr><br>
-            <tr>
-                <td><label class="label-modal">Description</label></td>
-                <td><input type="text" name="desc" class="input-modal"></td>
-            </tr>
-            <tr>
-                <td><label class="label-modal">Calibration date</label></td>
-                <td><input type="text" name="date" class="input-modal--date" placeholder="yy/mm/dd"></td>
-            </tr>
-        </table>
-		</pre>
-                </div>
-                <div class="modal-footer">
-                    <input type="text" name="type" class="input-modal" value="Equipment" hidden>
-                    <input type="text" name="lab" class="input-modal" value="Physics" hidden>
-                    <input type="submit" class="btn btn-default btn-md" value="Add">
-                    <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- View Request Modal -->
-<div class="modal fade" id="message" tabindex="-1" role="dialog" aria-hidden="true"  >
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header"><h4>Message</h4></div>
-            <form action="../showMessage" method="post">
-
-                <div class="modal-body">
-
-		<pre class="tab">
-
-            <%=message%>
-
-		</pre>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default btn-md" data-dismiss="modal">OH BOI GO BACK</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="mEgdit" tabindex="-1" role="dialog" aria-hidden="true"  >
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header"><h4>Message</h4></div>
-            <form action="../showMessage" method="post" id = "getMessage">
-
-                <div class="modal-body">
-
-		<pre class="tab">
-            <input type="text" name="rID" id = "rID">
-             <input type="text" name="location" value = "admin" hidden>
-
-
-		</pre>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default btn-md" data-dismiss="modal">OH BOI GO BACK</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-
 
 <!-- Jquery JS-->
 <script src="vendor/jquery-3.2.1.min.js"></script>
@@ -720,6 +663,66 @@
             $(".modal-body #rID").val(RTableData[0]);
             $('#getMessage').submit();
         });
+    });
+
+    new Chart(document.getElementById("borrowTop"), {
+        type: 'bar',
+        data: {
+            labels: itemNameData,
+            datasets: [
+                {
+                    backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                    data: borrowCountData
+                }
+            ]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'Top 10 Most Borrowed'
+            }
+        }
+    });
+
+    new Chart(document.getElementById("damagedTop"), {
+        type: 'bar',
+        data: {
+            labels: itemKeyDamagedData,
+            datasets: [
+                {
+                    backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                    data: damagedCountData
+                }
+            ]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'Top 10 Most Damaged'
+            }
+        }
+    });
+
+    new Chart(document.getElementById("missingTop"), {
+        type: 'bar',
+        data: {
+            labels: itemKeyMissingData,
+            datasets: [
+                {
+                    backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                    data: missingCountData
+                }
+            ]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'Top 10 Most Missing'
+            }
+        }
     });
 
 

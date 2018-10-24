@@ -301,7 +301,6 @@
         <!-- Main Body -->
         <div class="main-content">
             <div class="pb-3 pl-5 page-title">Daily Insights</div>
-            * will replace queries with itemName instead of itemKey soon
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
                     <div class="row">
@@ -327,11 +326,11 @@
                                                     <table class="table table-borderless table-striped table-earning" id = "auditTable">
                                                         <thead>
                                                         <tr>
-                                                            <th>ID</th>
-                                                            <th>action type</th>
-                                                            <th>date</th>
-                                                            <th>time</th>
-                                                            <th>summary</th>
+                                                            <th>item key</th>
+                                                            <th>item name</th>
+                                                            <th>Current Quantity</th>
+                                                            <th>Total Quantity</th>
+                                                            <th>Laboratory</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -339,17 +338,18 @@
                                                             try {
 
 
-                                                                query = "select * from audit where actionType = 'Critical Quantity' and date = '"+date+"' ";
+                                                                query = "select a.actionID , d.itemName , i.itemCurrentQuantity , i.itemTotalQuantity , i.itemLab from audit a left join inventory i  on a.actionID = i.itemKey right join itemdetails d on d.itemKey = i.itemKey where a.actionType = 'Critical Quantity'  ";
                                                                 rs = stmt.executeQuery(query);
 
                                                                 while(rs.next()){
                                                         %>
                                                         <tr>
                                                             <td><%=rs.getString("actionID")%></td>
-                                                            <td><%=rs.getString("actionType")%></td>
-                                                            <td><%=rs.getString("date")%></td>
-                                                            <td><%=rs.getString("time")%></td>
-                                                            <td><%=rs.getString("actionSummary")%></td>
+                                                            <td><%=rs.getString("itemName")%></td>
+                                                            <td><%=rs.getString("itemCurrentQuantity")%></td>
+                                                            <td><%=rs.getString("itemTotalQuantity")%></td>
+                                                            <td><%=rs.getString("itemLab")%></td>
+
                                                         </tr>
                                                         <%
                                                                 }
@@ -366,14 +366,14 @@
                                         <div class="tab-pane fade-in " id="tab-plist">
                                             <div class="pt-2 col-lg-12">
                                                 <div class="table-responsive table--no-card m-b-40">
-                                                    <table class="table table-borderless table-striped table-earning" id = pTable">
+                                                    <table class="table table-borderless table-striped table-earning" id = "pTable">
                                                         <thead>
                                                         <tr>
-                                                            <th>ID</th>
-                                                            <th>action type</th>
+                                                            <th>item key</th>
+                                                            <th>item name</th>
+                                                            <th>item form</th>
                                                             <th>date</th>
-                                                            <th>time</th>
-                                                            <th>summary</th>
+                                                            <th>type</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -381,17 +381,17 @@
                                                             try {
 
 
-                                                                query = "select * from audit where actionType = 'Critical Date' and date = '"+date+"' ";
+                                                                query = "select i.itemKey , d.itemName , d.itemForm , i.itemDate , i.itemDateType from audit a left join inventory i on a.actionID = i.itemKey right join itemdetails d on  d.itemKey = i.itemKey  where a.actionType = 'Critical Date' and date = '"+date+"' ";
                                                                 rs = stmt.executeQuery(query);
 
                                                                 while(rs.next()){
                                                         %>
                                                         <tr>
-                                                            <td><%=rs.getString("actionID")%></td>
-                                                            <td><%=rs.getString("actionType")%></td>
-                                                            <td><%=rs.getString("date")%></td>
-                                                            <td><%=rs.getString("time")%></td>
-                                                            <td><%=rs.getString("actionSummary")%></td>
+                                                            <td><%=rs.getString("itemKey")%></td>
+                                                            <td><%=rs.getString("itemName")%></td>
+                                                            <td><%=rs.getString("itemForm")%></td>
+                                                            <td><%=rs.getString("itemDate")%></td>
+                                                            <td><%=rs.getString("itemDateType")%></td>
                                                         </tr>
                                                         <%
                                                                 }
@@ -411,6 +411,7 @@
                                                     <table class="table table-borderless table-striped table-earning" id = "cTable">
                                                         <thead>
                                                         <tr>
+                                                            <th>item key</th>
                                                             <th>item name</th>
                                                             <th>borrow count</th>
                                                         </tr>
@@ -420,13 +421,14 @@
                                                             try {
 
 
-                                                                query = "select distinct bItemKey, count(bItemKey) as count from borrowtransaction group by bItemKey order by  count desc ";
+                                                                query = "select distinct b.bItemKey, count(b.bItemKey) as count , d.itemName from borrowtransaction b join itemdetails d on b.bItemKey = d.itemKey group by b.bItemKey order by count desc ";
                                                                 rs = stmt.executeQuery(query);
 
                                                                 while(rs.next()){
                                                         %>
                                                         <tr>
                                                             <td><%=rs.getString("bItemKey")%></td>
+                                                            <td><%=rs.getString("itemName")%></td>
                                                             <td><%=rs.getString("count")%></td>
                                                         </tr>
                                                         <%
@@ -450,6 +452,7 @@
                                                     <table class="table table-borderless table-striped table-earning" id = "dTable">
                                                         <thead>
                                                         <tr>
+                                                            <th>item key</th>
                                                             <th>item name</th>
                                                             <th>damage count</th>
                                                         </tr>
@@ -459,14 +462,17 @@
                                                             try {
 
 
-                                                                query = "select bItemKey,   sum(bQuantityLoss) as count from borrowtransaction where bCondition = 'Damaged'  group by bItemKey order by  count desc  ";
+                                                                query = "select b.bItemKey, d.itemName ,sum(b.bQuantityLoss) as count  from borrowTransaction b join itemdetails d on b.bItemKey = d.itemKey where b.bCondition = 'Damaged' group by b.bItemKey order by sum(b.bQuantityLoss) desc   ";
                                                                 rs = stmt.executeQuery(query);
 
                                                                 while(rs.next()){
                                                         %>
                                                         <tr>
+
                                                             <td><%=rs.getString("bItemKey")%></td>
+                                                            <td><%=rs.getString("itemName")%></td>
                                                             <td><%=rs.getString("count")%></td>
+
                                                         </tr>
                                                         <%
                                                                 }
@@ -489,6 +495,7 @@
                                                     <table class="table table-borderless table-striped table-earning" id = "mTable">
                                                         <thead>
                                                         <tr>
+                                                            <th>item key</th>
                                                             <th>item name</th>
                                                             <th>missing count</th>
                                                         </tr>
@@ -498,14 +505,16 @@
                                                             try {
 
 
-                                                                query = "select bItemKey,  sum(bQuantityLoss) as count from borrowtransaction where bCondition = 'Missing'  group by bItemKey order by  count desc  ";
+                                                                query = "select b.bItemKey, d.itemName ,sum(b.bQuantityLoss) as count  from borrowTransaction b join itemdetails d on b.bItemKey = d.itemKey where b.bCondition = 'Missing' group by b.bItemKey order by sum(b.bQuantityLoss) desc    ";
                                                                 rs = stmt.executeQuery(query);
 
                                                                 while(rs.next()){
                                                         %>
                                                         <tr>
                                                             <td><%=rs.getString("bItemKey")%></td>
+                                                            <td><%=rs.getString("itemName")%></td>
                                                             <td><%=rs.getString("count")%></td>
+
                                                         </tr>
                                                         <%
                                                                 }
@@ -560,21 +569,31 @@
 <script type = "text/javascript">
 
     $(document).ready(function(){
-        $("#auditTable").DataTable();
+        $("#auditTable").DataTable({
+            "order":[[2 , "asc"]]
+        });
     });
 
     $(document).ready(function(){
-        $("#pTable").DataTable();
+        $("#pTable").DataTable({
+            "order":[[4 , "desc"]]
+        });
     });
 
     $(document).ready(function(){
-        $("#cTable").DataTable();
+        $("#cTable").DataTable({
+            "order":[[2 , "desc"]]
+        });
     });
     $(document).ready(function(){
-        $("#dTable").DataTable();
+        $("#dTable").DataTable({
+            "order":[[2 , "desc"]]
+        });
     });
     $(document).ready(function(){
-        $("#mTable").DataTable();
+        $("#mTable").DataTable({
+            "order":[[2 , "desc"]]
+        });
     });
 
 </script>
