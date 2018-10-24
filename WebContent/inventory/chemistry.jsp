@@ -29,6 +29,8 @@
     <link href="../vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="../vendor/datatables/datatables.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/gigjo/gijgo.min.css" rel="stylesheet" media="all">
+
     <!-- Main CSS-->
     <link href="../css/theme.css" rel="stylesheet" media="all">
     <link href="../css/custom.css" rel="stylesheet" media="all">
@@ -56,19 +58,20 @@
     con = DriverManager.getConnection(MYdburl);
     stmt = con.createStatement();
 
-    String iName = getBean.getiName();
-    String iForm = getBean.getiForm();
-    String iDesc = getBean.getiDesc();
-    String iDate = getBean.getiDate();
-    int iQuantity = getBean.getiQuantity();
-    String iUnit = getBean.getiUnit();
+    String iName = (String)session.getAttribute("itemName");
+    String iForm = (String)session.getAttribute("itemForm");
+    String iDesc = (String)session.getAttribute("itemDesc");
+    String iDate = (String)session.getAttribute("itemDate");
+    String  iQuantity = (String)session.getAttribute("itemQuantity");
+    String iUnit = (String)session.getAttribute("itemUnit");
 
-    String abbv1 = getBean.getAbbv1();
-    String abbv2 = getBean.getAbbv2();
-    String abbv3 = getBean.getAbbv3();
-    String abbvF1 = getBean.getAbbvF1();
-    String abbvF2 = getBean.getAbbvF2();
-    String abbvF3 = getBean.getAbbvF3();
+
+    String abbv1 = (String)session.getAttribute("itemAbbv1");
+    String abbv2 = (String)session.getAttribute("itemAbbv2");
+    String abbv3 = (String)session.getAttribute("itemAbbv3");
+    String abbvF1 = (String)session.getAttribute("itemFAbbv1");
+    String abbvF2 = (String)session.getAttribute("itemFAbvv2");
+    String abbvF3 = (String)session.getAttribute("itemFAbbv3");
 %>
 
 <div class="page-wrapper">
@@ -956,6 +959,90 @@
         </div>
     </div>
 
+    <!-- Edit Apparatus Modal -->
+    <div class = "modal fade" id = "mAEdit" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class = "modal-content">
+                <div class="modal-body">
+                    <div role = "tabpanel">
+                        <!-- Nav tabs -->
+                        <ul class ="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link" href = "#AAQ" aria-controls="AAQ"  data-toggle ="tab">Add Quantity</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href = "#AE" aria-controls="AE"  data-toggle ="tab">Edit Apparatus</a>
+                            </li>
+                        </ul>
+                        <!-- Tabs -->
+                        <div class="tab-content">
+                            <!-- Add Quantity -->
+                            <div  class="tab-pane" id="AAQ">
+                                <form action="../editItem" method="post">
+                                    <h2 ><input type="text" name="code" id = "AID" readonly></h2>
+                                    <table class="table table-borderless table-earning" style="border-spacing:20px">
+                                        <tr>
+                                            <td><label class="label-modal">Quantity</label></td>
+                                            <td><input type="text" name="quantityT" class="input-modal" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td><input type="submit" name = "response" class="btn btn-default btn-md" value="Add" ></td>
+                                        </tr>
+                                    </table>
+
+                                </form>
+                            </div>
+                            <!-- Edit -->
+                            <div class="tab-pane active" id="AE">
+                                <form action ="../editItem" method="post">
+                                    <h2><input type="text" name="code" id = "AID" readonly></h2>
+                                    <table class="table table-borderless table-earning" style="border-spacing:20px">
+                                        <tr>
+                                            <td><label class="label-modal">Name</label>
+                                            <td><input type="text" name="name" class="input-modal" id = "AName" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="label-modal">Description</label></td>
+                                            <td><input type="text" name="desc" class="input-modal" id = "ADesc"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="label-modal">Total Quantity</label></td>
+                                            <td><input type="text" name="quantityT" class="input-modal" id = "ATQ"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="label-modal">Current Quantity</label></td>
+                                            <td><input type="text" name="quantityC" class="input-modal" id = "ACQ"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="label-modal">Unit</label></td>
+                                            <td><select name = "unit" class = "select-modal" id = "AUnit">
+                                                <option> Piece </option>
+
+                                            </select> </td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="label-modal">Condition</label></td>
+                                            <td><input type="text" name="condi" class="input-modal" id = "ACondi"></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td><input type="submit" name = "response" class="btn btn-default btn-md" value="Edit" >&emsp;<input type="submit" name = "response" class="btn btn-default btn-md" value="Delete" ></td>
+                                        </tr>
+                                    </table>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <!-- Edit Consumable Modal -->
     <div class = "modal fade" id = "mCEdit" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
@@ -1045,6 +1132,7 @@
 <script src="../vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
 <script src="../vendor/chartjs/Chart.bundle.min.js"></script>
 <script src="../vendor/select2/select2.min.js"></script>
+<script src="../vendor/gigjo/gijgo.min.js"></script>
 <!-- Main JS-->
 <script src="../js/main.js"></script>
 <script name="pageScripts" type="text/javascript">
@@ -1119,7 +1207,8 @@
     // datepicker
     $(function () {
         $(".input-modal--date").datepicker({
-            dateFormat: "yy-mm-dd"
+            dateFormat: "yy-mm-dd",
+            uiLibrary: 'bootstrap4'
         });
     });
 </script>

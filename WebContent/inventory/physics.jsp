@@ -29,6 +29,7 @@
     <link href="../vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="../vendor/datatables/datatables.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/gigjo/gijgo.min.css" rel="stylesheet" media="all">
     <!-- Main CSS-->
     <link href="../css/theme.css" rel="stylesheet" media="all">
     <link href="../css/custom.css" rel="stylesheet" media="all">
@@ -56,19 +57,20 @@
     con = DriverManager.getConnection(MYdburl);
     stmt = con.createStatement();
 
-    String iName = getBean.getiName();
-    String iForm = getBean.getiForm();
-    String iDesc = getBean.getiDesc();
-    String iDate = getBean.getiDate();
-    int iQuantity = getBean.getiQuantity();
-    String iUnit = getBean.getiUnit();
 
-    String abbv1 = getBean.getAbbv1();
-    String abbv2 = getBean.getAbbv2();
-    String abbv3 = getBean.getAbbv3();
-    String abbvF1 = getBean.getAbbvF1();
-    String abbvF2 = getBean.getAbbvF2();
-    String abbvF3 = getBean.getAbbvF3();
+    String iName = (String)session.getAttribute("itemName");
+    String iForm = (String)session.getAttribute("itemForm");
+    String iDesc = (String)session.getAttribute("itemDesc");
+    String iDate = (String)session.getAttribute("itemDate");
+    String  iQuantity = (String)session.getAttribute("itemQuantity");
+    String iUnit = (String)session.getAttribute("itemUnit");
+
+    String abbv1 = (String)session.getAttribute("itemAbbv1");
+    String abbv2 = (String)session.getAttribute("itemAbbv2");
+    String abbv3 = (String)session.getAttribute("itemAbbv3");
+    String abbvF1 = (String)session.getAttribute("itemFAbbv1");
+    String abbvF2 = (String)session.getAttribute("itemFAbvv2");
+    String abbvF3 = (String)session.getAttribute("itemFAbbv3");
 %>
 
 <div class="page-wrapper">
@@ -1152,6 +1154,7 @@
 <script src="../vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
 <script src="../vendor/chartjs/Chart.bundle.min.js"></script>
 <script src="../vendor/select2/select2.min.js"></script>
+<script src="../vendor/gigjo/gijgo.min.js"></script>
 <!-- Main JS-->
 <script src="../js/main.js"></script>
 <script name="pageScripts" type="text/javascript">
@@ -1226,7 +1229,8 @@
     // datepicker
     $(function () {
         $(".input-modal--date").datepicker({
-            dateFormat: "yy-mm-dd"
+            dateFormat: "yy-mm-dd",
+            uiLibrary: 'bootstrap4'
         });
     });
 </script>

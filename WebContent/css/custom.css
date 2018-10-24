@@ -443,3 +443,28 @@ p > .au-input {
     left: 15px;
     font-size: 25px
 }
+
+option.popup {
+    height: 0;
+    color: #fff;
+    position: relative;
+    cursor: pointer;
+}
+option.popup:after {
+    content: attr(data-popuptext);
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 3px;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    position: absolute;
+    transition: 500ms ease;
+    white-space: nowrap;
+    max-height: 0;
+}
+option.popup:hover:after {
+    opacity: 1;
+    top: 1.2em;
+    max-height: 200px;
+    padding: .4em;
+}

@@ -71,7 +71,6 @@ public class borrowSingle extends HttpServlet {
                     out.println("<html><body><script type='text/javascript'>alert('item not available');location='borrow/borrow.jsp';</script></body></html>");
                 }else {
 
-
                     String getQ = "select i.itemCurrentQuantity , d.itemType ,i.itemTotalQuantity from inventory i join itemdetails d on i.itemKey = d.itemKey where i.itemKey = '"+iKey+"'";
                     get = stmt.executeQuery(getQ);
 
