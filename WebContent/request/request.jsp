@@ -259,7 +259,11 @@
         <table class="table table-borderless table-earning" style=  "border-spacing:20px">
             <tr>
                 <td><label class="label-modal">Message</label></td>
-                <td><input type="text" name="message" class ="input-modal" ></td>
+            <td><input type="text" name="message" class ="input-modal" ></td>
+
+            </tr>
+            <tr>
+                <td><label class="label-modal">Date Required</label></td>
                 <td><input type="text" name="date"  class="input-modal--date" placeholder="yy/mm/dd" ></td>
             </tr>
         </table>
@@ -465,7 +469,7 @@
     // datepicker
     $(function () {
         $(".input-modal--date").datepicker({
-            dateFormat: "yy-mm-dd",
+            format: "yyyy-mm-dd",
             uiLibrary: 'bootstrap4'
         });
     });

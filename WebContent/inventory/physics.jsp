@@ -29,7 +29,7 @@
     <link href="../vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="../vendor/datatables/datatables.min.css" rel="stylesheet" media="all">
-    <link href="../vendor/gigjo/gijgo.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/gigjo/css/gijgo.min.css" rel="stylesheet" media="all">
     <!-- Main CSS-->
     <link href="../css/theme.css" rel="stylesheet" media="all">
     <link href="../css/custom.css" rel="stylesheet" media="all">
@@ -671,7 +671,7 @@
             <tr>
                 <td><label class="label-modal">Unit</label></td>
                 <td><select name = "unit" class = "select-modal">
-                    <option> Piece </option>
+                    <option valu> Piece </option>
                     </select>
                 </td>
             </tr>
@@ -1095,7 +1095,7 @@
                                             <td><input type="text" name="form" class="input-modal" id = "CForm"readonly></td>
                                         </tr>
                                         <tr>
-                                            <td><label <!--  -->lass="label-modal">Description</label></td>
+                                            <td><label class="label-modal">Description</label></td>
                                             <td><input type="text" name="desc" class="input-modal" id = "CDesc"></td>
                                         </tr>
                                         <tr>
@@ -1154,7 +1154,7 @@
 <script src="../vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
 <script src="../vendor/chartjs/Chart.bundle.min.js"></script>
 <script src="../vendor/select2/select2.min.js"></script>
-<script src="../vendor/gigjo/gijgo.min.js"></script>
+<script src="../vendor/gigjo/js/gijgo.min.js"></script>
 <!-- Main JS-->
 <script src="../js/main.js"></script>
 <script name="pageScripts" type="text/javascript">
@@ -1226,10 +1226,9 @@
         });
     });
 
-    // datepicker
     $(function () {
         $(".input-modal--date").datepicker({
-            dateFormat: "yy-mm-dd",
+            format: "yyyy-mm-dd",
             uiLibrary: 'bootstrap4'
         });
     });
