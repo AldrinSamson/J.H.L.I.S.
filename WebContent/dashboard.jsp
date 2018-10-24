@@ -61,7 +61,8 @@
     String date = sdf.format(new Date());
 
 
-    String message = getBean.getrMessage();
+    String message = (String)session.getAttribute("rMessage");
+    String rID = (String)session.getAttribute("rID");
 %>
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
@@ -308,14 +309,14 @@
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="row dashboard-counter">
-                            <a href ="#" class="col-md-6 col-lg-3">
+                            <a href ="borrow/borrow.jsp" class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
                                     <div class = "counter__icon">
                                         <span class = "icon-018"></span>
                                     </div>
                                     <%
                                         try{
-                                            String queryx= "select count(itemCurrentQuantity) as count from inventory where itemCurrentQuantity <> itemTotalQuantity and itemCondition <> 'Broken' and itemCondition <> 'Missing'";
+                                            String queryx= "select count(i.itemCurrentQuantity) as count from inventory i join itemdetails d on i.itemKey = d.itemKey where i.itemCondition = 'Not Returned' and d.itemType = 'Equipment' ";
                                             rs = stmt.executeQuery(queryx);
 
                                             while (rs.next()){
@@ -330,7 +331,7 @@
                                     <span class="desc">Equipment Lent</span>
                                 </div>
                             </a>
-                            <a href ="#" class="col-md-6 col-lg-3">
+                            <a href ="report/insights.jsp" class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
                                     <div class = "counter__icon">
                                         <span class = "icon-275"></span>
@@ -352,7 +353,7 @@
                                     <span class="desc">Critical</span>
                                 </div>
                             </a>
-                            <a href ="#" class="col-md-6 col-lg-3">
+                            <a href ="request/requestAdmin.jsp" class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
                                     <div class = "counter__icon">
                                         <span class = "icon-012"></span>
@@ -374,14 +375,14 @@
                                     <span class="desc">Requests Pending</span>
                                 </div>
                             </a>
-                            <a href ="#" class="col-md-6 col-lg-3">
+                            <a href ="report/damagesMissing.jsp" class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
                                     <div class = "counter__icon">
                                         <span class = "icon-036"></span>
                                     </div>
                                     <%
                                         try{
-                                            String queryx= "select count(itemCurrentQuantity) as count from inventory where itemCurrentQuantity <> itemTotalQuantity and itemCondition = 'Broken' or itemCondition = 'Missing'";
+                                            String queryx= "select count(itemCurrentQuantity) as count from inventory where itemCondition = 'Damaged' ";
                                             rs = stmt.executeQuery(queryx);
 
                                             while (rs.next()){
@@ -397,17 +398,30 @@
                                 </div>
                                     </a>
 
-                            <a href ="#" class="col-md-6 col-lg-3">
+                            <a href ="borrow/borrow.jsp" class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
                                     <div class = "counter__icon">
                                         <span class = "icon-017"></span>
                                     </div>
-                                    <h2 class="number">NaN</h2>
+                                    <%
+                                        try{
+                                            String queryx= "select count(i.itemCurrentQuantity) as count from inventory i join itemdetails d on i.itemKey = d.itemKey where  i.itemCondition = 'Incomplete' and d.itemType = 'Apparatus' ";
+                                            rs = stmt.executeQuery(queryx);
+
+                                            while (rs.next()){
+
+                                    %>
+                                    <h2 class="number"><%=rs.getString("count")%></h2>
+                                    <%}
+                                    }catch(Exception e){
+                                        e.printStackTrace();
+                                    }
+                                    %>
                                     <span class="desc">Apparatus Borrowed</span>
                                 </div>
                             </a>
 
-                            <a href ="#" class="col-md-6 col-lg-3">
+                            <a href ="report/insights.jsp" class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
                                     <div class = "counter__icon">
                                         <span class = "icon-033"></span>
@@ -417,22 +431,48 @@
                                 </div>
                             </a>
 
-                            <a href ="#" class="col-md-6 col-lg-3">
+                            <a href ="request/requestAdmin.jsp" class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
                                     <div class = "counter__icon">
                                         <span class = "icon-011"></span>
                                     </div>
-                                    <h2 class="number">NaN</h2>
+                                    <%
+                                        try{
+                                            String queryx= "select count(rID) as count from request where rCondition = 'Unfulfilled'";
+                                            rs = stmt.executeQuery(queryx);
+
+                                            while (rs.next()){
+
+                                    %>
+                                    <h2 class="number"><%=rs.getString("count")%></h2>
+                                    <%}
+                                    }catch(Exception e){
+                                        e.printStackTrace();
+                                    }
+                                    %>
                                     <span class="desc">Requests Unfulfilled</span>
                                 </div>
                             </a>
 
-                            <a href ="#" class="col-md-6 col-lg-3">
+                            <a href ="report/insights.jsp" class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
                                     <div class = "counter__icon">
                                         <span class = "icon-087"></span>
                                     </div>
-                                    <h2 class="number">NaN</h2>
+                                    <%
+                                        try{
+                                            String queryx= "select count(itemCurrentQuantity) as count from inventory where itemCondition = 'Missing'";
+                                            rs = stmt.executeQuery(queryx);
+
+                                            while (rs.next()){
+
+                                    %>
+                                    <h2 class="number"><%=rs.getString("count")%></h2>
+                                    <%}
+                                    }catch(Exception e){
+                                        e.printStackTrace();
+                                    }
+                                    %>
                                     <span class="desc">Missing</span>
                                 </div>
                             </a>

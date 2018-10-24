@@ -14,11 +14,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
 @WebServlet("/showSet")
 public class showSet extends HttpServlet {
 
-    Connection con;
+    String con;
     Statement stmtCHK, stmtE;
     ResultSet chk;
     String MYdburl = getBean.getMyUrl();
@@ -32,7 +31,7 @@ public class showSet extends HttpServlet {
 
             try {
                 Class.forName(MYclass);
-                con = DriverManager.getConnection(MYdburl);
+                Connection con = DriverManager.getConnection(MYdburl);
                 stmtCHK = con.createStatement();
                 stmtE = con.createStatement();
 

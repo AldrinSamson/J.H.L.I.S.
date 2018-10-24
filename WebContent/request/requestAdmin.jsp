@@ -56,7 +56,8 @@
     con = DriverManager.getConnection(MYdburl);
     stmt = con.createStatement();
 
-    String message = getBean.getrMessage();
+    String message = (String)session.getAttribute("rMessage");
+    String rID = (String)session.getAttribute("rID");
 %>
 
 <div class="page-wrapper">
@@ -385,6 +386,7 @@
                                                             <th>Name</th>
                                                             <th>Date</th>
                                                             <th>Time</th>
+                                                            <th>Required By</th>
                                                             <th>Message</th>
                                                         </tr>
                                                         </thead>
@@ -406,8 +408,6 @@
                                                             <td><%=rs.getString("rDate")%>
                                                             </td>
                                                             <td><%=rs.getString("rTime")%></td>
-                                                            <td><%=rs.getString("rDateRequired")%>
-                                                            </td>
                                                             <td><%=rs.getString("rDateRequired")%>
                                                             </td>
                                                             <td><%=rs.getString("message")%>
@@ -437,6 +437,7 @@
                                                             <th>Name</th>
                                                             <th>Date</th>
                                                             <th>Time</th>
+                                                            <th>Required By</th>
                                                             <th>Message</th>
                                                             <th>Condition</th>
                                                         </tr>

@@ -311,6 +311,7 @@
                                 <div class = "card-header" >
                                     <ul class="nav nav-pills">
                                         <li class = "nav-item"><a href="#tab-elist" data-toggle="tab" class = "nav-link active">Critical Quantity</a></li>
+                                        <li class = "nav-item"><a href="#tab-plist" data-toggle="tab" class = "nav-link" >Critical Date</a></li>
                                         <li class = "nav-item"><a href="#tab-clist" data-toggle="tab" class = "nav-link" >Most Borrowed</a></li>
                                         <li class = "nav-item"><a href="#tab-dlist" data-toggle="tab" class = "nav-link" >Most Damaged</a></li>
                                         <li class = "nav-item"><a href="#tab-mlist" data-toggle="tab" class = "nav-link" >Most Missing</a></li>
@@ -338,7 +339,49 @@
                                                             try {
 
 
-                                                                query = "select * from audit where actionType = 'Critical' and date = '"+date+"' ";
+                                                                query = "select * from audit where actionType = 'Critical Quantity' and date = '"+date+"' ";
+                                                                rs = stmt.executeQuery(query);
+
+                                                                while(rs.next()){
+                                                        %>
+                                                        <tr>
+                                                            <td><%=rs.getString("actionID")%></td>
+                                                            <td><%=rs.getString("actionType")%></td>
+                                                            <td><%=rs.getString("date")%></td>
+                                                            <td><%=rs.getString("time")%></td>
+                                                            <td><%=rs.getString("actionSummary")%></td>
+                                                        </tr>
+                                                        <%
+                                                                }
+                                                            }catch (Exception e){
+                                                                e.printStackTrace();
+                                                            }
+                                                        %>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="tab-pane fade-in " id="tab-plist">
+                                            <div class="pt-2 col-lg-12">
+                                                <div class="table-responsive table--no-card m-b-40">
+                                                    <table class="table table-borderless table-striped table-earning" id = pTable">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>action type</th>
+                                                            <th>date</th>
+                                                            <th>time</th>
+                                                            <th>summary</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <%
+                                                            try {
+
+
+                                                                query = "select * from audit where actionType = 'Critical Date' and date = '"+date+"' ";
                                                                 rs = stmt.executeQuery(query);
 
                                                                 while(rs.next()){
@@ -518,6 +561,10 @@
 
     $(document).ready(function(){
         $("#auditTable").DataTable();
+    });
+
+    $(document).ready(function(){
+        $("#pTable").DataTable();
     });
 
     $(document).ready(function(){

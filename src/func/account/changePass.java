@@ -19,11 +19,8 @@ public class changePass extends HttpServlet {
     private static final long serialVersionUID = 1L;
     Connection con;
     Statement stmt;
-    ResultSet chkUN, chkQ;
-    String getUser;
     String MYdburl = getBean.getMyUrl();
     String MYclass = getBean.getMyClass();
-    String ra1, ra2;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {

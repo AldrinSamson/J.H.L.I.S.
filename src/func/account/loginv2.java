@@ -14,20 +14,19 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
-import java.util.function.DoubleUnaryOperator;
+import org.apache.commons.dbcp2.*;
+
 
 
 @WebServlet("/loginv2")
 public class loginv2 extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    Connection conn;
     Statement stmt;
-
+    //BasicDataSource connectionPool;
     String MYdburl = getBean.getMyUrl();
     String MYclass = getBean.getMyClass();
-    String user, name, idNum , type ,aKey;
-    String  iKey ;
-    int CQ , TQ  , count  ;
+    String type ,aKey;
+    int count  ;
 
     boolean chk = false;
 
@@ -46,11 +45,22 @@ public class loginv2 extends HttpServlet {
             List<String> iKey = new ArrayList<>();
             List<Double> CQ = new ArrayList<>();
             List<Double> TQ = new ArrayList<>();
-            List<Long> Date = new ArrayList<>();
+            List<String> date = new ArrayList<>();
 
             try {
+
+                //Connection pooling
+                /*this.connectionPool = new BasicDataSource();
+                Class.forName(getBean.getMyClass()).newInstance();
+                connectionPool.setUrl(getBean.getDburl());
+                connectionPool.setUsername(getBean.getDbuser());
+                connectionPool.setPassword(getBean.getDbpass());
+                connectionPool.setDriverClassName(getBean.getMyClass());
+                connectionPool.setInitialSize(1);
+                Connection conn = connectionPool.getConnection();*/
+
                 Class.forName(MYclass);
-                conn = DriverManager.getConnection(MYdburl);
+                Connection conn = DriverManager.getConnection(MYdburl);
                 stmt = conn.createStatement();
 
                 String query = "SELECT * FROM account where username=? and password=?";
@@ -91,11 +101,11 @@ public class loginv2 extends HttpServlet {
                         double CurrentQuantity = getz.getInt("itemCurrentQuantity");
                         CQ.add(CurrentQuantity);
                         double TotalQuantity = getz.getInt("itemTotalQuantity");
-                       TQ.add(TotalQuantity);
-
+                        TQ.add(TotalQuantity);
+                        String dateX = getz.getString("itemDate");
+                        date.add(dateX);
                         i++;
                     }
-
 
                     getz.close();
                     //end get data
@@ -108,24 +118,47 @@ public class loginv2 extends HttpServlet {
                         String key = iKey.get(x);
                         if (criticalTQ >= nowQ){
 
-                            String filterRecord = "select * from audit where date = '"+aDate+"' and actionID = '"+key+"'";
+                            String filterRecord = "select * from audit where date = '"+aDate+"' and actionID = '"+key+"' and actionType = 'Critical Quantity'";
                             getz = stmt.executeQuery(filterRecord);
                             if (!getz.next()){
-                                String criticalQ = "insert into audit values (NULL , '"+user+"' , '"+aDate+"' , '"+aTime+"' , 'Critical Quantity on "+key+"' , 'Critical' ,'"+key+"')";
+                                String criticalQ = "insert into audit values (NULL , '"+user+"' , '"+aDate+"' , '"+aTime+"' , 'Critical Quantity on "+key+"' , 'Critical Quantity' ,'"+key+"')";
                                 stmt.execute(criticalQ);
                             }
                         }
                         x++;
                     }
 
+                    // compare date
+                    int z = 0 ;
+                    while (z < iKey.size()){
+                        if (date.get(z) == null){
+                            z++;
+                        }else {
+                            String criticalYear = date.get(z).substring(0, 4);
+                            String criticalMonth = date.get(z).substring(5, 7);
+                            String currentYear = aDate.substring(0, 4);
+                            String currentMonth = aDate.substring(5, 7);
+                            if (criticalYear.equals(currentYear) && criticalMonth.equals(currentMonth)) {
+                                String filterRecord = "select * from audit where date = '" + aDate + "' and actionID = '" + iKey.get(z) + "' and actionType = 'Critical Date'";
+                                getz = stmt.executeQuery(filterRecord);
+                                if (!getz.next()) {
+                                    String criticalQ = "insert into audit values (NULL , '" + user + "' , '" + aDate + "' , '" + aTime + "' , 'Critical Date on " + iKey.get(z) + "' , 'Critical Date' ,'" + iKey.get(z) + "')";
+                                    stmt.execute(criticalQ);
+                                }
+                            }
+                            z++;
+                        }
+
+
+                    }
+
+                    String audit = "insert into audit values (NULL,'"+user+"' , '"+aDate+"','"+aTime+"','Logged in','Login','N/A')";
+                    stmt.execute(audit);
 
                     HttpSession log = request.getSession(true);
                     log.setAttribute("user", user);
                     log.setAttribute("class", type);
                     log.setAttribute("aKey", aKey);
-
-                    String audit = "insert into audit values (NULL,'"+user+"' , '"+aDate+"','"+aTime+"','Logged in','Login','N/A')";
-                    stmt.execute(audit);
 
                     if (type.equals("Administrator")){
                     response.sendRedirect("dashboard.jsp");
@@ -135,9 +168,6 @@ public class loginv2 extends HttpServlet {
 
                 } else {
                     out.println("<html><body><script type='text/javascript'>alert('Invalid username or password!');location='index.html';</script></body></html>");
-                }
-                if (conn != null) {
-                    conn.close();
                 }
 
             } catch (Exception e) {

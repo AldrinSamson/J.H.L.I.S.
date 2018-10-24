@@ -579,7 +579,9 @@
     });
 
     $(document).ready(function(){
-        var borrowETableX = $("#borrowETable").DataTable();
+        var borrowETableX = $("#borrowETable").DataTable({
+            "pagingType": "full_numbers"
+        });
         $('#borrowETable tbody').on('click', 'tr', function(){
             var borrowEdata = borrowETableX.row(this).data();
             $('#mEBorrow').modal('show');

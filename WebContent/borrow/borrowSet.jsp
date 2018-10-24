@@ -324,6 +324,7 @@
 
                                         <div class="tab-pane fade-in active" id="tab-elist">
                                             <div class="pt-2 col-lg-12">
+                                                <button type="button" class="btn new-item-btn"  href="#mPAdd" data-toggle="modal">NEW ITEM</button>
                                                 <table class="table table-borderless table-striped table-earning" >
                                                     <tr>
                                                             <%
@@ -453,50 +454,12 @@
     <!-- Main Body End-->
     <!-- Modal -->
 
-    <!-- Add ItemSet Physics Modal -->
-    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="mPAdd" data-keyboard="false">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header"><h4>New Item Set</h4></div>
-                <form action="../addSet" method="post">
-
-                    <div class="modal-body">
-
-                        <div class="tab input_fields_wrap">
-                            <%--<div class = "input_fields_wrap">--%>
-                            <table class="table table-borderless table-earning" style="border-spacing:20px">
-
-                                <tr>
-                                    <td>Key</td>
-                                    <td>Quantity</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="text" name="name[]" class="input-modal"></td>
-                                    <td><input type="text" name="quantity[]" class="input-modal"></td>
-                                    <td><input type="text" name="lab" class="input-modal" value ="Physics" hidden></td>
-                                </tr>
-
-                            </table>
-                        </div>
-                        </pre>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="text" name="lab" class="input-modal" value="Physics" hidden>
-                        <button class="add_field_button">Add</button>
-                        <input type="submit" class="btn btn-default btn-md" value="Add">
-                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
     <!-- View Set Modal -->
     <div class="modal fade" id="viewSet" tabindex="-1" role="dialog" aria-hidden="true"  >
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header"><h4><%=setName%></h4></div>
-                <form action="../deleteDuplicateSet" method="post">
+                <form action="../borrowSet" method="post">
 
                     <div class="modal-body">
 
@@ -515,7 +478,7 @@
                                 try {
 
 
-                                    query = "select g.itemKey , g.isQuantity , l.isCondition from itemsetgroup g join itemsetlist l on l.isKey = g.isKey where l.isKey = '"+set+"' ";
+                                    query = "select g.itemKey , g.isQuantity , i.itemCondition from itemsetgroup g join inventory i  on i.itemKey = g.itemKey where g.isKey = '"+set+"' ";
                                     rs = stmt.executeQuery(query);
 
                                     while(rs.next()){
@@ -524,7 +487,7 @@
 							<tr>
 							<td><%=rs.getString("itemKey")%></td>
                                 <td><%=rs.getString("isQuantity")%></td>
-							<td><%=rs.getString("isCondition")%></td>
+							<td><%=rs.getString("itemCondition")%></td>
 							</tr>
 							<%
                                     }
@@ -534,10 +497,33 @@
                             %>
                         </tbody>
                         </table>
+            <table class = "table table-borderless table-earning" style="border-spacing:20px">
+                <tr>
+                                    <td>setID</td>
+                                    <td><input type="text" name="setID" class="input-modal" value = "<%=set%>"></td>
+                                </tr>
+                                <tr>
+                                    <td>borrower ID</td>
+                                    <td><input type="text" name="bID" class="input-modal"></td>
+                                </tr>
+                                <tr>
+                                    <td>Name</td>
+                                    <td><input type="text" name="bName" class="input-modal"></td>
+                                </tr>
+                                <tr>
+                                    <td>Class</td>
+                                    <td><input type="text" name="bClass" class="input-modal"></td>
+                                </tr>
+                                <tr>
+                                    <td>Supervisor</td>
+                                    <td><input type="text" name="bSupervisor" class="input-modal"></td>
+                                </tr>
+            </table>
 
 		</pre>
                     </div>
                     <div class="modal-footer">
+                        <input type="submit" class="btn btn-default btn-md" value="Lend">
                         <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
                     </div>
                 </form>
@@ -585,7 +571,6 @@
 
     });
 
-
     $(document).ready(function(){
         var table = $('#pTable').DataTable();
         $('#pTable tbody').on('click','tr',function(){
@@ -603,30 +588,6 @@
             $('#getSet').submit();
         });
 
-    });
-
-
-
-    $(document).ready(function() {
-        var max_fields      = 10; //maximum input boxes allowed
-        var wrapper         = $(".input_fields_wrap"); //Fields wrapper
-        var add_button      = $(".add_field_button"); //Add button ID
-
-        var x = 1; //initlal text box count
-        $(add_button).on("click",function(e){ //on add input button click
-            e.preventDefault();
-            if(x < max_fields){ //max input box allowed
-                x++; //text box increment
-                $(wrapper).append('<div><tr>\n' +
-                    '<td><input type="text" name="name[]" class="input-modal"></td>\n' +
-                    '<td><input type="text" name="quantity[]" class="input-modal"><a href="#" class="remove_field">Remove</a></td>\n' +
-                    '</tr><div>'); //add input box
-            }
-        });
-
-        $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-            e.preventDefault(); $(this).parent('div').remove(); x--;
-        })
     });
 </script>
 
