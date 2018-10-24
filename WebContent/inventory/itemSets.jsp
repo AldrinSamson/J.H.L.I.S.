@@ -463,7 +463,6 @@ String set = (String)request.getSession(false).getAttribute("set");
 
                         <div class="modal-body item-set-mb">
 		<div class="tab input_fields_wrap">
-            <%--<div class = "input_fields_wrap">--%>
             <table class="table item-set-mt table-borderless table-earning" style="border-spacing:20px;">
                 <tr>
                     <td><label class="label-modal">Set Name</label></td>
@@ -484,12 +483,12 @@ String set = (String)request.getSession(false).getAttribute("set");
                     <%
                     try{
 
-                        String getKeys = "select itemKey from inventory where itemLab = 'Physics'";
+                        String getKeys = "select d.itemKey  , d.itemName from itemdetails d join inventory i on d.itemKey = i.itemKey where i.itemLab = 'Physics'";
                         rs = stmt.executeQuery(getKeys);
 
                         while (rs.next()){
 
-                    %><option><%=rs.getString("itemKey")%></option><%
+                    %><option title = "<%=rs.getString("itemName")%>"><%=rs.getString("itemKey")%></option><%
 
                         }
 
@@ -596,7 +595,7 @@ String set = (String)request.getSession(false).getAttribute("set");
                                 try {
 
 
-                                    query = "select g.itemKey , g.isQuantity , l.isCondition from itemsetgroup g join itemsetlist l on l.isKey = g.isKey where l.isKey = '"+set+"' ";
+                                    query = "select i.itemKey , g.isQuantity , i.itemCondition from inventory i join itemsetgroup g on i.itemKey = g.itemKey where g.isKey ='"+set+"' ";
                                     rs = stmt.executeQuery(query);
 
                                     while(rs.next()){
@@ -605,7 +604,7 @@ String set = (String)request.getSession(false).getAttribute("set");
 							<tr>
 							<td><%=rs.getString("itemKey")%></td>
                                 <td><%=rs.getString("isQuantity")%></td>
-							<td><%=rs.getString("isCondition")%></td>
+							<td><%=rs.getString("itemCondition")%></td>
 							</tr>
 							<%
                                     }
@@ -660,6 +659,14 @@ String set = (String)request.getSession(false).getAttribute("set");
     </script>
 
      <script type="text/javascript">
+
+         $(document).ready(function () {
+
+             $('#name').mouseover(function () {
+                 var tooltip = ($(this).first('span').text().trim());
+                 $(this).attr('title', tooltip);
+             });
+         });
 
          $(document).ready(function () {
 
