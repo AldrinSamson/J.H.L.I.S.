@@ -11,11 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3a8f9b66-ebec-4db9-bcd2-8796a87d45f7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/borrow/borrowSet.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/borrow/borrowSet.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/inventory/nonBorrowable.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/inventory/nonBorrowable.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/func/manageNB/checkNB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/func/manageNB/checkNB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/func/manageNB/editNB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/func/manageNB/editNB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/func/manageSet/showSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/func/manageSet/showSet.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/build/classes/" />
@@ -83,13 +78,20 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="java" value="210" />
-          <entry key="jsp" value="406" />
+          <entry key="jsp" value="407" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JAVA" value="210" />
-          <entry key="JSP" value="406" />
+          <entry key="JSP" value="407" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.107" value="1" />
+          <entry key="project.opened" value="1" />
         </counts>
       </usages-collector>
     </session>
@@ -99,8 +101,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebContent/inventory/physics.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="962" column="10" lean-forward="true" selection-start-line="921" selection-start-column="4" selection-end-line="962" selection-end-column="10" />
+            <state relative-caret-position="16354">
+              <caret line="962" column="10" selection-start-line="921" selection-start-column="4" selection-end-line="962" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -108,8 +110,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebContent/inventory/nonBorrowable.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="472" column="16" lean-forward="true" selection-start-line="472" selection-start-column="16" selection-end-line="472" selection-end-column="16" />
+            <state relative-caret-position="8024">
+              <caret line="472" column="16" selection-start-line="472" selection-start-column="16" selection-end-line="472" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -117,7 +119,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/func/manageSet/showSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
+            <state relative-caret-position="510">
               <caret line="43" column="36" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
             </state>
           </provider>
@@ -126,8 +128,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebContent/inventory/itemSets.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="63" column="79" lean-forward="true" selection-start-line="61" selection-end-line="63" selection-end-column="79" />
+            <state relative-caret-position="1071">
+              <caret line="63" column="79" selection-start-line="61" selection-end-line="63" selection-end-column="79" />
             </state>
           </provider>
         </entry>
@@ -135,7 +137,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebContent/borrow/borrowSet.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
+            <state relative-caret-position="9333">
               <caret line="549" column="62" selection-start-line="549" selection-start-column="62" selection-end-line="549" selection-end-column="62" />
             </state>
           </provider>
@@ -144,8 +146,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/func/itemBorrowReturn/borrowSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-37">
-              <caret line="43" column="67" lean-forward="true" selection-start-line="43" selection-start-column="67" selection-end-line="43" selection-end-column="67" />
+            <state relative-caret-position="442">
+              <caret line="43" column="67" selection-start-line="43" selection-start-column="67" selection-end-line="43" selection-end-column="67" />
             </state>
           </provider>
         </entry>
@@ -153,8 +155,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WebContent/request/requestAdmin.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="624" column="59" selection-start-line="624" selection-start-column="59" selection-end-line="624" selection-end-column="59" />
+            <state relative-caret-position="433">
+              <caret line="634" column="14" lean-forward="true" selection-start-line="634" selection-start-column="14" selection-end-line="634" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -162,7 +164,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/bean/getBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1884">
+            <state relative-caret-position="2057">
               <caret line="204" column="11" selection-start-line="204" selection-start-column="11" selection-end-line="204" selection-end-column="11" />
             </state>
           </provider>
@@ -171,7 +173,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/func/manageNB/editNB.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
+            <state relative-caret-position="289">
               <caret line="30" column="81" selection-start-line="30" selection-start-column="81" selection-end-line="30" selection-end-column="81" />
             </state>
           </provider>
@@ -180,8 +182,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/func/manageNB/checkNB.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
-              <caret line="138" column="54" lean-forward="true" selection-start-line="138" selection-start-column="54" selection-end-line="138" selection-end-column="54" />
+            <state relative-caret-position="2091">
+              <caret line="138" column="54" selection-start-line="138" selection-start-column="54" selection-end-line="138" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -260,7 +262,6 @@
         <option value="$PROJECT_DIR$/src/func/account/loginv2.java" />
         <option value="$PROJECT_DIR$/src/func/requesting/addRequest.java" />
         <option value="$PROJECT_DIR$/WebContent/request/request.jsp" />
-        <option value="$PROJECT_DIR$/WebContent/request/requestAdmin.jsp" />
         <option value="$PROJECT_DIR$/src/func/manageNB/addNB.java" />
         <option value="$PROJECT_DIR$/src/func/manageSet/deleteDuplicateSet.java" />
         <option value="$PROJECT_DIR$/WebContent/dashboard.jsp" />
@@ -271,6 +272,7 @@
         <option value="$PROJECT_DIR$/src/func/manageNB/editNB.java" />
         <option value="$PROJECT_DIR$/WebContent/inventory/itemSets.jsp" />
         <option value="$PROJECT_DIR$/WebContent/borrow/borrowSet.jsp" />
+        <option value="$PROJECT_DIR$/WebContent/request/requestAdmin.jsp" />
       </list>
     </option>
   </component>
@@ -287,11 +289,11 @@
     <option name="FILTER_DEBUG" value="false" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-7" />
     <option name="y" value="1" />
     <option name="width" value="1046" />
-    <option name="height" value="870" />
+    <option name="height" value="788" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -300,7 +302,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -393,13 +394,13 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539593634820" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539602337530" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/WebContent" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -599,6 +600,7 @@
       <workItem from="1539336651627" duration="1611000" />
       <workItem from="1539483250752" duration="4486000" />
       <workItem from="1539521165011" duration="608000" />
+      <workItem from="1540357125174" duration="330000" />
     </task>
     <task id="LOCAL-00001" summary="Default Changelist">
       <created>1537696657774</created>
@@ -719,11 +721,18 @@
       <option name="project" value="LOCAL" />
       <updated>1539585817695</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="duplicate set">
+      <created>1539601903283</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1539601903283</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="226306000" />
+    <option name="totallyTimeSpent" value="227119000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -738,7 +747,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.856528" visible="true" weight="0.18986385" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.856528" visible="true" weight="0.14447807" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -750,7 +759,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32921812" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.2885246" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.40655738" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.40655738" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32941177" />
@@ -1065,9 +1074,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="104">
           <caret line="27" selection-start-line="27" selection-end-line="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1113,73 +1119,73 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/func/manageNB/checkNB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="138" column="54" lean-forward="true" selection-start-line="138" selection-start-column="54" selection-end-line="138" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/inventory/physics.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="962" column="10" lean-forward="true" selection-start-line="921" selection-start-column="4" selection-end-line="962" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bean/getBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1884">
-          <caret line="204" column="11" selection-start-line="204" selection-start-column="11" selection-end-line="204" selection-end-column="11" />
+        <state relative-caret-position="16354">
+          <caret line="962" column="10" selection-start-line="921" selection-start-column="4" selection-end-line="962" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/inventory/nonBorrowable.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="472" column="16" lean-forward="true" selection-start-line="472" selection-start-column="16" selection-end-line="472" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/func/manageNB/editNB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="30" column="81" selection-start-line="30" selection-start-column="81" selection-end-line="30" selection-end-column="81" />
+        <state relative-caret-position="8024">
+          <caret line="472" column="16" selection-start-line="472" selection-start-column="16" selection-end-line="472" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/func/manageSet/showSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
+        <state relative-caret-position="510">
           <caret line="43" column="36" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/inventory/itemSets.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="63" column="79" lean-forward="true" selection-start-line="61" selection-end-line="63" selection-end-column="79" />
+        <state relative-caret-position="1071">
+          <caret line="63" column="79" selection-start-line="61" selection-end-line="63" selection-end-column="79" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/borrow/borrowSet.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
+        <state relative-caret-position="9333">
           <caret line="549" column="62" selection-start-line="549" selection-start-column="62" selection-end-line="549" selection-end-column="62" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/func/itemBorrowReturn/borrowSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-37">
-          <caret line="43" column="67" lean-forward="true" selection-start-line="43" selection-start-column="67" selection-end-line="43" selection-end-column="67" />
+        <state relative-caret-position="442">
+          <caret line="43" column="67" selection-start-line="43" selection-start-column="67" selection-end-line="43" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bean/getBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2057">
+          <caret line="204" column="11" selection-start-line="204" selection-start-column="11" selection-end-line="204" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/func/manageNB/editNB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="30" column="81" selection-start-line="30" selection-start-column="81" selection-end-line="30" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/func/manageNB/checkNB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2091">
+          <caret line="138" column="54" selection-start-line="138" selection-start-column="54" selection-end-line="138" selection-end-column="54" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/request/requestAdmin.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="624" column="59" selection-start-line="624" selection-start-column="59" selection-end-line="624" selection-end-column="59" />
+        <state relative-caret-position="433">
+          <caret line="634" column="14" lean-forward="true" selection-start-line="634" selection-start-column="14" selection-end-line="634" selection-end-column="14" />
         </state>
       </provider>
     </entry>
