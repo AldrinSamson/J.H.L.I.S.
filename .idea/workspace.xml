@@ -9,16 +9,7 @@
     <bookmark url="file://$PROJECT_DIR$/WebContent/report/audit.jsp" line="305" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a8f9b66-ebec-4db9-bcd2-8796a87d45f7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/borrow/borrow.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/borrow/borrow.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/css/custom.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/inventory/physics.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/inventory/physics.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/request/request.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/request/request.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bean/getBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bean/getBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/func/account/loginv2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/func/account/loginv2.java" afterDir="false" />
-    </list>
+    <list default="true" id="3a8f9b66-ebec-4db9-bcd2-8796a87d45f7" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -107,8 +98,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WebContent/request/request.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-560">
-              <caret line="256" column="25" lean-forward="true" selection-start-line="256" selection-start-column="25" selection-end-line="256" selection-end-column="25" />
+            <state relative-caret-position="171">
+              <caret line="323" column="28" lean-forward="true" selection-start-line="323" selection-start-column="28" selection-end-line="323" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -352,7 +343,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540386615543" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540386877252" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/WebContent" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -555,7 +546,7 @@
       <workItem from="1539521165011" duration="608000" />
       <workItem from="1539617554933" duration="667000" />
       <workItem from="1539689811963" duration="8157000" />
-      <workItem from="1540380985543" duration="5484000" />
+      <workItem from="1540380985543" duration="5827000" />
     </task>
     <task id="LOCAL-00001" summary="Default Changelist">
       <created>1537696657774</created>
@@ -673,7 +664,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="236152000" />
+    <option name="totallyTimeSpent" value="236495000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -685,8 +676,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.85737705" visible="true" weight="0.14599092" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1158,8 +1148,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/request/request.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-560">
-          <caret line="256" column="25" lean-forward="true" selection-start-line="256" selection-start-column="25" selection-end-line="256" selection-end-column="25" />
+        <state relative-caret-position="171">
+          <caret line="323" column="28" lean-forward="true" selection-start-line="323" selection-start-column="28" selection-end-line="323" selection-end-column="28" />
         </state>
       </provider>
     </entry>
