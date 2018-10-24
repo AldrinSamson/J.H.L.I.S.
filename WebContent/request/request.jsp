@@ -253,18 +253,20 @@
                 <div class="modal-header"><h4>New Request</h4></div>
                 <form action="../addRequest" method="post" name ="addRequest">
 
-                    <div class="modal-body">
-
+        <div class="modal-body">
 		<pre class="tab">
         <table class="table table-borderless table-earning" style=  "border-spacing:20px">
-            <tr>
-                <td><label class="label-modal">Message</label></td>
-                <td><input type="text" name="message" class ="input-modal" ></td>
-                <td><input type="text" name="date"  class="input-modal--date" placeholder="yy/mm/dd" ></td>
-            </tr>
+                <tr>
+                    <td><label class="label-modal">Message</label>
+                    <td><input type="text" name="message" class ="input-modal"> </td>
+                </tr>
+                <tr>
+                    <td><label class="label-modal">Date Required</label></td>
+                    <td><input type="text" name="date"  class="input-modal--date" placeholder="yy/mm/dd" ></td>
+                </tr>
         </table>
 		</pre>
-                    </div>
+        </div>
                     <div class="modal-footer">
                         <input type="submit" class="btn btn-default btn-md" value="Add">
                         <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
@@ -309,8 +311,6 @@
 		<pre class="tab">
             <input type="text" name="rID" id = "rID" hidden>
             <input type="text" name="location" value = "prof" hidden>
-
-
 		</pre>
                     </div>
                     <div class="modal-footer">

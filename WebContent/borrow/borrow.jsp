@@ -473,6 +473,7 @@
     <!-- return -->
     <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id = "mEReturn"  data-keyboard="false">
         <div class="modal-dialog">
+        <form action="../returnSingle"  method = "post">
             <div class="modal-content">
                 <div class="modal-header"><h4>Return Equipment</h4></div>
 
@@ -480,31 +481,30 @@
 
 		<pre class = "tab">
         <div  style = "display:table">
+
             <div style = "display:table-cell">
-                <form action="../returnSingle"  method = "post">
                 <label  class = "label-modal">Item Code</label>
                 <label  class = "label-modal">Name</label>
+                <label  class = "label-modal">Quantity</label>
             </div>
             <div  style = "display:table-cell; position:absolute; top:40px;">
                 <input type ="text" name = "iKey" class="input-modal" id = "EID" readonly>
                 <input type ="text" name = "iName" class="input-modal" id = "EName" readonly>
-                 <input type ="text" name = "bID" class="input-modal" id = "BID" hidden>
                 <input type ="text" name = "bQ" class="input-modal" id = "BQ" >
-                Report:
-                        <input type ="submit" name = "response" class="btn btn-default btn-md" value = "Missing">
-                        <input type ="submit" name = "response" class="btn btn-default btn-md" value = "Broken">
-                        <input type ="submit" name = "response" class="btn btn-default btn-md" value = "Return">
-                </form>
-
+                <input type ="text" name = "bID" class="input-modal" id = "BID" hidden>
             </div>
+
         </div>
 		</pre>
                     </div>
                     <div class="modal-footer">
-
+                        <input type ="submit" name = "response" class="btn btn-default btn-md" value = "Missing">
+                        <input type ="submit" name = "response" class="btn btn-default btn-md" value = "Broken">
+                        <input type ="submit" name = "response" class="btn btn-default btn-md" value = "Return">
                         <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
                     </div>
             </div>
+        </form>
         </div>
     </div>
 
@@ -519,11 +519,10 @@
 
 		<pre class = "tab">
         <div  style = "display:table">
+            <form action="../returnApparatusSingle"  method = "post">
             <div style = "display:table-cell">
-                <form action="../returnApparatusSingle"  method = "post">
-                    <label  class = "label-modal">Key</label>
+                <label  class = "label-modal">Key</label>
                 <label  class = "label-modal">Loss : </label>
-
             </div>
             <div  style = "display:table-cell; position:absolute; top:40px;">
                 <input type ="text" name = "iName" class="input-modal" id = "name" value = <%=bID%> readonly>
@@ -531,9 +530,8 @@
                 Report:
                         <input type ="submit" name = "response" class="btn btn-default btn-md" value = "Missing">
                         <input type ="submit" name = "response" class="btn btn-default btn-md" value = "Damaged">
-                </form>
-
             </div>
+            </form>
         </div>
 		</pre>
                 </div>
