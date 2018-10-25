@@ -27,12 +27,12 @@
     <link href="../vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
     <link href="../vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
     <link href="../vendor/wow/animate.css" rel="stylesheet" media="all">
-    <link href="../vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/css-hamburgers/ham   burgers.min.css" rel="stylesheet" media="all">
     <link href="../vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="../vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="../vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <link href="../vendor/datatables/datatables.min.css" rel="stylesheet" media="all">
     <link href="../vendor/Buttons-1.5.4/css/buttons.dataTables.css" rel="stylesheet" media="all">
-
 
     <!-- Main CSS-->
     <link href ="../css/custom.css" rel = "stylesheet" media = "all">
@@ -396,7 +396,8 @@
                    download: 'open',
                    message : 'University of Santo Tomas | Junior Highschool | Physics/Chemistry Laboratory '
                }
-           ]
+           ],
+           "paging" : false
        });
     });
 

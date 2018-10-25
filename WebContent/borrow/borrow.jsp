@@ -298,7 +298,7 @@
         <!-- HEADER DESKTOP-->
         <!-- Main Body -->
         <div class="main-content">
-            <div class = "mt-0 pb-3 pl-5 page-title"> Borrowables(Singles Only)(v1)</div>
+            <div class = "mt-0 pb-3 pl-5 page-title"> Borrowables</div>
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
                     <div class="row">
@@ -578,7 +578,7 @@
 
     $(document).ready(function(){
         var borrowETableX = $("#borrowETable").DataTable({
-            "pagingType": "full_numbers"
+            "paging": false
         });
         $('#borrowETable tbody').on('click', 'tr', function(){
             var borrowEdata = borrowETableX.row(this).data();
@@ -590,7 +590,9 @@
     });
 
     $(document).ready(function(){
-        var ReturnETableX = $("#ReturnETable").DataTable();
+        var ReturnETableX = $("#ReturnETable").DataTable({
+            "paging": false
+        });
         $('#ReturnETable tbody').on('click', 'tr', function(){
             var ReturnEdata = ReturnETableX.row(this).data();
             $('#mEReturn').modal('show');

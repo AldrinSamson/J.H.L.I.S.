@@ -205,10 +205,10 @@
                                 <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
                             </li>
                             <li>
-                                <a href="../report/damagesMissing.jsp.jsp">Damage/Missing Reports</a>
+                                <a href="../report/damagesMissing.jsp">Damage/Missing Reports</a>
                             </li>
                             <li>
-                                <a href="../report/audit.jsp.jsp">Audit</a>
+                                <a href="../report/audit.jsp">Audit</a>
                             </li>
                             <li>
                                 <a href="../report/insights.jsp">Insights</a>
@@ -305,10 +305,18 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class = "card text-left" id = "ptab-marg">
+                                <div class = "card-header" >
+                                    <ul class="nav nav-pills">
+                                        <li class = "nav-item"><a href="#tab-elist" data-toggle="tab" class = "nav-link active">Physics Lab</a></li>
+                                        <li class = "nav-item"><a href="#tab-clist" data-toggle="tab" class = "nav-link" >Chemistry Lab</a></li>
+                                    </ul>
+                                </div>
                                 <div class = "card-body">
+
+                                    <div class= "tab-content">
+
+                                        <div class="tab-pane fade-in active" id="tab-elist">
                                     <div class="col-lg-12">
-                                        <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mEAdd" data-toggle="modal"style = "color:black;">Export .csv</a></button>
-                                        <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mEEdit" data-toggle="modal"style = "color:black;">Export .pdf</a></button>
                                         <div class="pt-2 table-responsive table--no-card m-b-40">
                                             <table class="table table-borderless table-striped table-earning" id = "IElist">
                                                 <thead>
@@ -328,7 +336,7 @@
                                                     try {
 
 
-                                                        query = "SELECT * from inventory i join itemdetails d on i.itemKey = d.itemKey";
+                                                        query = "SELECT * from inventory i join itemdetails d on i.itemKey = d.itemKey where i.itemLab = 'Physics'";
                                                         rs = stmt.executeQuery(query);
 
                                                         while(rs.next()){
@@ -350,36 +358,61 @@
                                                         e.printStackTrace();
                                                     }
                                                 %>
-                                                <%
-                                                    try {
-
-
-                                                        query = "SELECT i.* , c.cName , c.cDesc FROM inventory i join consumabledetails c on c.cKey = i.itemKey";
-                                                        rs = stmt.executeQuery(query);
-
-                                                        while(rs.next()){
-                                                %>
-                                                <tr>
-                                                    <td><%=rs.getString("i.itemKey")%></td>
-                                                    <td><%=rs.getString("c.cName")%></td>
-                                                    <td><%=rs.getString("c.cDesc")%></td>
-                                                    <td><%=rs.getString("i.itemCurrentQuantity")%></td>
-                                                    <td><%=rs.getString("i.itemTotalQuantity")%></td>
-                                                    <td><%=rs.getString("i.itemDate")%></td>
-                                                    <td><%=rs.getString("i.itemLab")%></td>
-                                                    <td><%=rs.getString("i.itemCondition")%></td>
-
-                                                </tr>
-                                                <%
-                                                        }
-                                                    }catch (Exception e){
-                                                        e.printStackTrace();
-                                                    }
-                                                %>
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
+                                        </div>
+
+                                        <div class="tab-pane fade-in" id="tab-clist">
+                                            <div class="col-lg-12">
+                                                <div class="pt-2 table-responsive table--no-card m-b-40">
+                                                    <table class="table table-borderless table-striped table-earning" id = "IClist">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>itemKey</th>
+                                                            <th>name</th>
+                                                            <th>desc</th>
+                                                            <th>currentQuantity</th>
+                                                            <th>totalQuantity</th>
+                                                            <th>calibration date</th>
+                                                            <th>lab</th>
+                                                            <th>condition</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <%
+                                                            try {
+
+
+                                                                query = "SELECT * from inventory i join itemdetails d on i.itemKey = d.itemKey where i.itemLab = 'Chemistry'";
+                                                                rs = stmt.executeQuery(query);
+
+                                                                while(rs.next()){
+                                                        %>
+                                                        <tr>
+                                                            <td><%=rs.getString("itemKey")%></td>
+                                                            <td><%=rs.getString("itemName")%></td>
+                                                            <td><%=rs.getString("itemDesc")%></td>
+                                                            <td><%=rs.getString("itemCurrentQuantity")%></td>
+                                                            <td><%=rs.getString("itemTotalQuantity")%></td>
+                                                            <td><%=rs.getString("itemDate")%></td>
+                                                            <td><%=rs.getString("itemLab")%></td>
+                                                            <td><%=rs.getString("itemCondition")%></td>
+
+                                                        </tr>
+                                                        <%
+                                                                }
+                                                            }catch (Exception e){
+                                                                e.printStackTrace();
+                                                            }
+                                                        %>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
 
                                 </div>
                             </div>
@@ -437,9 +470,25 @@
                 {
                     extend: 'pdfHtml5',
                     download: 'open',
-                    message : 'University of Santo Tomas | Junior Highschool | Physics/Chemistry Laboratory '
+                    message : 'University of Santo Tomas | Junior Highschool | Physics Laboratory '
                 }
-            ]
+            ],
+            "paging": false
+        });
+    });
+
+    $(document).ready(function(){
+        $("#IClist").DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'csvHtml5',
+                {
+                    extend: 'pdfHtml5',
+                    download: 'open',
+                    message : 'University of Santo Tomas | Junior Highschool | Chemistry Laboratory '
+                }
+            ],
+            "paging": false
         });
     });
 </script>
