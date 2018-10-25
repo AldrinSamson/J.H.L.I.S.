@@ -205,10 +205,10 @@
                                 <a href="../report/borrowTransaction.jsp">Borrowing Transactions</a>
                             </li>
                             <li>
-                                <a href="../report/damagesMissing.jsp.jsp">Damage/Missing Reports</a>
+                                <a href="../report/damagesMissing.jsp">Damage/Missing Reports</a>
                             </li>
                             <li>
-                                <a href="../report/audit.jsp.jsp">Audit</a>
+                                <a href="../report/audit.jsp">Audit</a>
                             </li>
                             <li>
                                 <a href="../report/insights.jsp">Insights</a>

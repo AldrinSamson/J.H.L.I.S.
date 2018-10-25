@@ -48,11 +48,11 @@ label::after{
 }
 
 .select-modal{
+    line-height: 30px;
     border: 1px solid #e5e5e5;
-    font-size: 17px;
+    font-size: 14px;
     color: #666;
     border-radius: 3px;
-  	display:block;
   	font-family:"Arial";
     -webkit-appearance: menulist-button;
     height: 30px;
