@@ -10,20 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a8f9b66-ebec-4db9-bcd2-8796a87d45f7" name="Default Changelist" comment="--">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bean/getBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bean/getBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/func/itemBorrowReturn/borrowSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/func/itemBorrowReturn/borrowSet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/func/itemBorrowReturn/borrowSingle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/func/itemBorrowReturn/borrowSingle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/func/itemBorrowReturn/returnApparatusSingle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/func/itemBorrowReturn/returnApparatusSingle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/func/itemBorrowReturn/returnSingle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/func/itemBorrowReturn/returnSingle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/func/manageItem/addNew.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/func/manageItem/addNew.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/func/manageItem/checkNew.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/func/manageItem/checkNew.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/func/manageItem/editItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/func/manageItem/editItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/func/manageNB/addNB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/func/manageNB/addNB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/func/manageNB/checkNB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/func/manageNB/checkNB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/func/manageNB/editNB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/func/manageNB/editNB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/func/requesting/approveRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/func/requesting/approveRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/func/requesting/fulfillRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/func/requesting/fulfillRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/build/classes/" />
@@ -78,8 +65,8 @@
       <file leaf-file-name="borrowSet.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WebContent/borrow/borrowSet.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="683">
-              <caret line="351" column="71" selection-start-line="351" selection-start-column="71" selection-end-line="351" selection-end-column="71" />
+            <state relative-caret-position="1747">
+              <caret line="443" column="38" lean-forward="true" selection-start-line="443" selection-start-column="38" selection-end-line="443" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -610,7 +597,7 @@
       <workItem from="1540355435874" duration="3191000" />
       <workItem from="1540364886607" duration="140000" />
       <workItem from="1540365181680" duration="17342000" />
-      <workItem from="1540420151699" duration="594000" />
+      <workItem from="1540420151699" duration="1194000" />
     </task>
     <task id="LOCAL-00001" summary="Default Changelist">
       <created>1537696657774</created>
@@ -787,11 +774,18 @@
       <option name="project" value="LOCAL" />
       <updated>1540387077186</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="--">
+      <created>1540441035071</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1540441035071</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="286641000" />
+    <option name="totallyTimeSpent" value="287241000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -803,7 +797,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1472" height="878" extended-state="6" />
+    <frame x="-8" y="-8" width="1858" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
@@ -816,8 +811,9 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.22018349" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.17125382" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32941177" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.498632" weight="0.18518518" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info id="Image Layers" order="3" />
       <window_info anchor="bottom" id="Java Enterprise" order="11" />
@@ -825,12 +821,11 @@
       <window_info anchor="bottom" id="Version Control" order="13" weight="0.25382262" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.2888889" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3786885" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.856528" visible="true" weight="0.13511659" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.856528" visible="true" weight="0.10694897" />
       <window_info id="Web" order="7" sideWeight="0.14347202" side_tool="true" weight="0.12026002" />
       <window_info id="Learn" order="8" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.498632" weight="0.18518518" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32893" />
@@ -1294,8 +1289,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/borrow/borrowSet.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="683">
-          <caret line="351" column="71" selection-start-line="351" selection-start-column="71" selection-end-line="351" selection-end-column="71" />
+        <state relative-caret-position="1747">
+          <caret line="443" column="38" lean-forward="true" selection-start-line="443" selection-start-column="38" selection-end-line="443" selection-end-column="38" />
         </state>
       </provider>
     </entry>
