@@ -366,6 +366,16 @@ p > .au-input {
     border: solid 1px #212529;
 }
 
+.cs-btn {
+    background: transparent;
+    border: solid 1px #212529;
+}
+
+.cs-btn:hover {
+    background: #212529;
+    color: white;
+}
+
 .btn-card {
     border: solid 1px #212529;
     color: #212529;

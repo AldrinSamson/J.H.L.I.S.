@@ -43,7 +43,8 @@ public class checkNB extends HttpServlet {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
             String aDate = sdf.format(new Date());
 
-            if(request.getSession(false).getAttribute("user") == null){
+            HttpSession session = request.getSession(false);
+            if(session == null){
                 out.println ("<html><body><script type='text/javascript'>alert('Please log-in first.');location='../index.html';</script></body></html>");
             }else {
                 user = (String)request.getSession(false).getAttribute("user");
@@ -52,102 +53,103 @@ public class checkNB extends HttpServlet {
             if (nDesc.isEmpty()) {
 
                 nDesc = "N/A";
-            }
-
-            HttpSession log = request.getSession(false);
-            log.setAttribute("nName" , nName);
-            log.setAttribute("nLab" , nLab);
-            log.setAttribute("nDesc" , nDesc);
-
-            try {
-                Class.forName(MYclass);
-                con = DriverManager.getConnection(MYdburl);
-                stmt = con.createStatement();
-                stmtE = con.createStatement();
-
-                String chkName = "select * from nonborrowable where nName = '" + nName + "'";
-                chk = stmt.executeQuery(chkName);
-
-                if (chk.next()) {
-
-                    String getData = "select nAbbv , nNum from nonborrowable where nName = '" + nName + "'order by nNum desc limit 1";
-                    get = stmt.executeQuery(getData);
-
-                    while (get.next()) {
-                        getAbbv = get.getString("nAbbv");
-                        getNum = get.getInt("nNum");
-                        newNum = getNum + 1;
-                    }
-                    codeN = getAbbv + "-" + newNum;
-
-                    String addNB = "insert into nonborrowable values ('" + codeN + "','" + nName + "', '" + newNum + "','" + getAbbv + "','" + nDesc + "','" + nLab + "','OK')";
-
-                    stmtE.execute(addNB);
-
-                    String audit = "insert into audit values (NULL,'"+user+"' , '"+aDate+"','"+aTime+"','Added item "+codeN+"','Add Item','N/A')";
-                    stmtE.execute(audit);
-
-                    out.println("<html><body><script type='text/javascript'>alert('item added ');location='inventory/nonBorrowable.jsp';</script></body></html>");
 
 
-                } else {
+                HttpSession log = request.getSession(false);
+                log.setAttribute("nName", nName);
+                log.setAttribute("nLab", nLab);
+                log.setAttribute("nDesc", nDesc);
 
-                    nName = nName.trim().replaceAll("\\s", "");
-                    //get middle second abbv1
-                    char first, middle, last;
+                try {
+                    Class.forName(MYclass);
+                    con = DriverManager.getConnection(MYdburl);
+                    stmt = con.createStatement();
+                    stmtE = con.createStatement();
 
-                    if (nName.length() % 2 == 0) {
-                        first = nName.charAt(0);
-                        middle = nName.charAt(nName.length() / 2 - 1 / 2);
-                        last = nName.charAt(nName.length() - 1);
+                    String chkName = "select * from nonborrowable where nName = '" + nName + "'";
+                    chk = stmt.executeQuery(chkName);
+
+                    if (chk.next()) {
+
+                        String getData = "select nAbbv , nNum from nonborrowable where nName = '" + nName + "'order by nNum desc limit 1";
+                        get = stmt.executeQuery(getData);
+
+                        while (get.next()) {
+                            getAbbv = get.getString("nAbbv");
+                            getNum = get.getInt("nNum");
+                            newNum = getNum + 1;
+                        }
+                        codeN = getAbbv + "-" + newNum;
+
+                        String addNB = "insert into nonborrowable values ('" + codeN + "','" + nName + "', '" + newNum + "','" + getAbbv + "','" + nDesc + "','" + nLab + "','OK')";
+
+                        stmtE.execute(addNB);
+
+                        String audit = "insert into audit values (NULL,'" + user + "' , '" + aDate + "','" + aTime + "','Added item " + codeN + "','Add Item','N/A')";
+                        stmtE.execute(audit);
+
+                        out.println("<html><body><script type='text/javascript'>alert('item added ');location='inventory/nonBorrowable.jsp';</script></body></html>");
+
+
                     } else {
-                        first = nName.charAt(0);
-                        middle = nName.charAt(nName.length() / 2 - 1);
-                        last = nName.charAt(nName.length() - 1);
 
+                        nName = nName.trim().replaceAll("\\s", "");
+                        //get middle second abbv1
+                        char first, middle, last;
+
+                        if (nName.length() % 2 == 0) {
+                            first = nName.charAt(0);
+                            middle = nName.charAt(nName.length() / 2 - 1 / 2);
+                            last = nName.charAt(nName.length() - 1);
+                        } else {
+                            first = nName.charAt(0);
+                            middle = nName.charAt(nName.length() / 2 - 1);
+                            last = nName.charAt(nName.length() - 1);
+
+                        }
+                        String firstS = Character.toString(first);
+                        String lastS = Character.toString(last);
+                        String middleS = Character.toString(middle);
+                        String abbvS = firstS + middleS + lastS;
+                        String abbv1 = abbvS.toUpperCase();
+
+                        // get 3rd abbv2
+                        char first2, middle2, last2;
+                        first2 = nName.charAt(0);
+                        middle2 = nName.charAt(2);
+                        last2 = nName.charAt(nName.length() - 1);
+
+                        String firstS2 = Character.toString(first2);
+                        String lastS2 = Character.toString(last2);
+                        String middleS2 = Character.toString(middle2);
+                        String abbvS2 = firstS2 + middleS2 + lastS2;
+                        String abbv2 = abbvS2.toUpperCase();
+
+                        // get 2rd abbv3
+                        char first3, middle3, last3;
+                        first3 = nName.charAt(0);
+                        middle3 = nName.charAt(1);
+                        last3 = nName.charAt(nName.length() - 1);
+
+                        String firstS3 = Character.toString(first3);
+                        String lastS3 = Character.toString(last3);
+                        String middleS3 = Character.toString(middle3);
+                        String abbvS3 = firstS3 + middleS3 + lastS3;
+                        String abbv3 = abbvS3.toUpperCase();
+
+                        log.setAttribute("abbvN1", abbv1);
+                        log.setAttribute("abbvN2", abbv2);
+                        log.setAttribute("abbvN3", abbv3);
+
+                        out.println("<html><body><script type='text/javascript'>location='inventory/nonBorrowable.jsp#mNCode';</script></body></html>");
                     }
-                    String firstS = Character.toString(first);
-                    String lastS = Character.toString(last);
-                    String middleS = Character.toString(middle);
-                    String abbvS = firstS + middleS + lastS;
-                    String abbv1 = abbvS.toUpperCase();
+                    if (con != null) {
+                        con.close();
+                    }
 
-                    // get 3rd abbv2
-                    char first2, middle2, last2;
-                    first2 = nName.charAt(0);
-                    middle2 = nName.charAt(2);
-                    last2 = nName.charAt(nName.length() - 1);
-
-                    String firstS2 = Character.toString(first2);
-                    String lastS2 = Character.toString(last2);
-                    String middleS2 = Character.toString(middle2);
-                    String abbvS2 = firstS2 + middleS2 + lastS2;
-                    String abbv2 = abbvS2.toUpperCase();
-
-                    // get 2rd abbv3
-                    char first3, middle3, last3;
-                    first3 = nName.charAt(0);
-                    middle3 = nName.charAt(1);
-                    last3 = nName.charAt(nName.length() - 1);
-
-                    String firstS3 = Character.toString(first3);
-                    String lastS3 = Character.toString(last3);
-                    String middleS3 = Character.toString(middle3);
-                    String abbvS3 = firstS3 + middleS3 + lastS3;
-                    String abbv3 = abbvS3.toUpperCase();
-
-                    log.setAttribute("abbvN1" ,abbv1);
-                    log.setAttribute("abbvN2" , abbv2);
-                    log.setAttribute("abbvN3" , abbv3);
-
-                    out.println("<html><body><script type='text/javascript'>location='inventory/nonBorrowable.jsp#mNCode';</script></body></html>");
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-                if (con != null) {
-                    con.close();
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
             }
         }
     }

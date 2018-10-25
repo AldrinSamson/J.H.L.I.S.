@@ -41,118 +41,119 @@ public class returnSingle extends HttpServlet {
             String bETime = df.format(new Date());
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
             String bEDate = sdf.format(new Date());
-
-            if(request.getSession(false).getAttribute("user") == null){
+            HttpSession session = request.getSession(false);
+            if(session == null){
                 out.println ("<html><body><script type='text/javascript'>alert('Please log-in first.');location='../index.html';</script></body></html>");
             }else {
-                user = (String)request.getSession(false).getAttribute("user");
-            }
+                user = (String) request.getSession(false).getAttribute("user");
 
-            try {
+                try {
 
-                Class.forName(MYclass);
-                con = DriverManager.getConnection(MYdburl);
-                stmt = con.createStatement();
+                    Class.forName(MYclass);
+                    con = DriverManager.getConnection(MYdburl);
+                    stmt = con.createStatement();
 
-                String getDetails = "select d.itemType  , i.itemCurrentQuantity ,i.itemTotalQuantity from itemdetails d join inventory i on i.itemKey = d.itemKey  where i.itemKey = '"+iKey+"' ";
-                get = stmt.executeQuery(getDetails);
+                    String getDetails = "select d.itemType  , i.itemCurrentQuantity ,i.itemTotalQuantity from itemdetails d join inventory i on i.itemKey = d.itemKey  where i.itemKey = '" + iKey + "' ";
+                    get = stmt.executeQuery(getDetails);
 
-                while (get.next()){
-                    type = get.getString("itemType");
-                    nowCurrentInventoryQuantity = get.getInt("itemCurrentQuantity");
-                    nowTotalInventoryQuantity = get.getInt("itemTotalQuantity");
-                } get.close();
-
-
-                String getBID = "select * from borrowtransaction where bID = '"+bID+"'";
-                get = stmt.executeQuery(getBID);
-
-                while (get.next()){
-                    nowReturnQuantity = get.getInt("bQuantity");
-                    bName = get.getString("sName");
-                }
-                get.close();
-
-                if (rResponse.equals("Return")) {
-
-                    if(type.equalsIgnoreCase("Equipment")){
-                        condition = "Available";
-                    }else if (type.equalsIgnoreCase("Apparatus")){
-                        condition = "Complete";
-                    }else {
-                        condition = "OK";
+                    while (get.next()) {
+                        type = get.getString("itemType");
+                        nowCurrentInventoryQuantity = get.getInt("itemCurrentQuantity");
+                        nowTotalInventoryQuantity = get.getInt("itemTotalQuantity");
                     }
+                    get.close();
 
-                    newReturnCurrentQuantity = nowReturnQuantity + nowCurrentInventoryQuantity;
 
-                    if (!type.equalsIgnoreCase("Consumable")){
+                    String getBID = "select * from borrowtransaction where bID = '" + bID + "'";
+                    get = stmt.executeQuery(getBID);
 
-                        String updateTransaction = "update borrowtransaction set bCondition = 'Returned' , bEDate = '"+bEDate+"' , bETime = '"+bETime+"' , bQuantityLoss = '0' where bID = '"+bID+"'";
-                        stmt.execute(updateTransaction);
-                        String updateInventory = "update inventory set itemCondition = '"+condition+"' , itemCurrentQuantity = '"+newReturnCurrentQuantity+"' where itemKey = '"+iKey+"'";
-                        stmt.execute(updateInventory);
-                        String audit = "insert into audit values (NULL,'"+user+"' , '"+bEDate+"','"+bETime+"','Received item "+iKey+" from "+bName+" ','Received Item','"+bID+"')";
-                        stmt.execute(audit);
+                    while (get.next()) {
+                        nowReturnQuantity = get.getInt("bQuantity");
+                        bName = get.getString("sName");
                     }
+                    get.close();
 
-                    response.sendRedirect("borrow/borrow.jsp");
-                }
-                if (rResponse.equals("Missing")) {
+                    if (rResponse.equals("Return")) {
 
-                    if (type.equalsIgnoreCase("Equipment")){
+                        if (type.equalsIgnoreCase("Equipment")) {
+                            condition = "Available";
+                        } else if (type.equalsIgnoreCase("Apparatus")) {
+                            condition = "Complete";
+                        } else {
+                            condition = "OK";
+                        }
 
-                        condition = "Missing";
+                        newReturnCurrentQuantity = nowReturnQuantity + nowCurrentInventoryQuantity;
 
-                        String updateTransaction = "update borrowtransaction set bCondition = 'Missing' , bEDate = '"+bEDate+"' , bETime = '"+bETime+"' , bQuantityLoss = '1' where bID = '"+bID+"'";
-                        stmt.execute(updateTransaction);
-                        String updateInventory = "update inventory set itemCondition = '"+condition+"' where itemKey = '"+iKey+"'";
-                        stmt.execute(updateInventory);
-                        String audit = "insert into audit values (NULL,'"+user+"' , '"+bEDate+"','"+bETime+"','"+bName+" reported item "+iKey+" as Missing','Missing Item','"+bID+"')";
-                        stmt.execute(audit);
+                        if (!type.equalsIgnoreCase("Consumable")) {
+
+                            String updateTransaction = "update borrowtransaction set bCondition = 'Returned' , bEDate = '" + bEDate + "' , bETime = '" + bETime + "' , bQuantityLoss = '0' where bID = '" + bID + "'";
+                            stmt.execute(updateTransaction);
+                            String updateInventory = "update inventory set itemCondition = '" + condition + "' , itemCurrentQuantity = '" + newReturnCurrentQuantity + "' where itemKey = '" + iKey + "'";
+                            stmt.execute(updateInventory);
+                            String audit = "insert into audit values (NULL,'" + user + "' , '" + bEDate + "','" + bETime + "','Received item " + iKey + " from " + bName + " ','Received Item','" + bID + "')";
+                            stmt.execute(audit);
+                        }
 
                         response.sendRedirect("borrow/borrow.jsp");
+                    }
+                    if (rResponse.equals("Missing")) {
 
-                    }else {
+                        if (type.equalsIgnoreCase("Equipment")) {
 
-                        HttpSession log = request.getSession(false);
-                        log.setAttribute("bID", bID);
-                        log.setAttribute("quantityTotal", nowReturnQuantity);
-                        response.sendRedirect("borrow/borrow.jsp#returnApparatus");
+                            condition = "Missing";
+
+                            String updateTransaction = "update borrowtransaction set bCondition = 'Missing' , bEDate = '" + bEDate + "' , bETime = '" + bETime + "' , bQuantityLoss = '1' where bID = '" + bID + "'";
+                            stmt.execute(updateTransaction);
+                            String updateInventory = "update inventory set itemCondition = '" + condition + "' where itemKey = '" + iKey + "'";
+                            stmt.execute(updateInventory);
+                            String audit = "insert into audit values (NULL,'" + user + "' , '" + bEDate + "','" + bETime + "','" + bName + " reported item " + iKey + " as Missing','Missing Item','" + bID + "')";
+                            stmt.execute(audit);
+
+                            response.sendRedirect("borrow/borrow.jsp");
+
+                        } else {
+
+                            HttpSession log = request.getSession(false);
+                            log.setAttribute("bID", bID);
+                            log.setAttribute("quantityTotal", nowReturnQuantity);
+                            response.sendRedirect("borrow/borrow.jsp#returnApparatus");
+
+                        }
+
+                    }
+                    if (rResponse.equals("Broken")) {
+
+                        if (type.equalsIgnoreCase("Equipment")) {
+
+                            condition = "Damaged";
+
+                            String updateTransaction = "update borrowtransaction set bCondition = 'Damaged' , bEDate = '" + bEDate + "' , bETime = '" + bETime + "' , bQuantityLoss = '1' where bID = '" + bID + "'";
+                            stmt.execute(updateTransaction);
+                            String updateInventory = "update inventory set itemCondition = '" + condition + "' where itemKey = '" + iKey + "'";
+                            stmt.execute(updateInventory);
+                            String audit = "insert into audit values (NULL,'" + user + "' , '" + bEDate + "','" + bETime + "','" + bName + " reported item " + iKey + " as Damaged','Damaged Item','" + bID + "')";
+                            stmt.execute(audit);
+
+                            response.sendRedirect("borrow/borrow.jsp");
+
+                        } else {
+
+                            HttpSession log = request.getSession(false);
+                            log.setAttribute("bID", bID);
+                            response.sendRedirect("borrow/borrow.jsp#returnApparatus");
+
+                        }
 
                     }
 
-                }
-                if (rResponse.equals("Broken")) {
-
-                    if (type.equalsIgnoreCase("Equipment")){
-
-                        condition = "Damaged";
-
-                        String updateTransaction = "update borrowtransaction set bCondition = 'Damaged' , bEDate = '"+bEDate+"' , bETime = '"+bETime+"' , bQuantityLoss = '1' where bID = '"+bID+"'";
-                        stmt.execute(updateTransaction);
-                        String updateInventory = "update inventory set itemCondition = '"+condition+"' where itemKey = '"+iKey+"'";
-                        stmt.execute(updateInventory);
-                        String audit = "insert into audit values (NULL,'"+user+"' , '"+bEDate+"','"+bETime+"','"+bName+" reported item "+iKey+" as Damaged','Damaged Item','"+bID+"')";
-                        stmt.execute(audit);
-
-                        response.sendRedirect("borrow/borrow.jsp");
-
-                    }else {
-
-                        HttpSession log = request.getSession(false);
-                        log.setAttribute("bID", bID);
-                        response.sendRedirect("borrow/borrow.jsp#returnApparatus");
-
+                    if (con != null) {
+                        con.close();
                     }
 
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-
-                if (con != null) {
-                    con.close();
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
             }
         }
 

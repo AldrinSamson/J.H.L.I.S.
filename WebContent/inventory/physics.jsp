@@ -29,7 +29,7 @@
     <link href="../vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="../vendor/datatables/datatables.min.css" rel="stylesheet" media="all">
-    <link href="../vendor/gigjo/gijgo.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/gigjo/css/gijgo.min.css" rel="stylesheet" media="all">
     <!-- Main CSS-->
     <link href="../css/theme.css" rel="stylesheet" media="all">
     <link href="../css/custom.css" rel="stylesheet" media="all">
@@ -671,7 +671,7 @@
             <tr>
                 <td><label class="label-modal">Unit</label></td>
                 <td><select name = "unit" class = "select-modal">
-                    <option> Piece </option>
+                    <option valu> Piece </option>
                     </select>
                 </td>
             </tr>
@@ -924,10 +924,9 @@
     <!-- Edit Equipment Modal -->
     <div class="modal fade" id="mEEdit" tabindex="-1" role="dialog" aria-hidden="true"  >
         <div class="modal-dialog">
+        <form action="../editItem" method="post">
             <div class="modal-content">
                 <div class="modal-header"><h4>Edit Equipment</h4></div>
-                <form action="../editItem" method="post">
-
                     <div class="modal-body">
 
 		<pre class="tab">
@@ -949,18 +948,16 @@
                 <td><label class="label-modal">Condition</label></td>
                 <td><input type="text" name="condi" class="input-modal" id = "ECondi"></td>
             </tr>
-            <tr>
-                                            <td></td>
-                                            <td><input type="submit" name = "response" class="btn btn-default btn-md" value="Edit" >&emsp;<input type="submit" name = "response" class="btn btn-default btn-md" value="Delete" ></td>
-                                        </tr>
         </table>
 		</pre>
                     </div>
                     <div class="modal-footer">
+                        <input type="submit" name = "response" class="btn btn-default btn-md" value="Edit" >&emsp;
+                        <input type="submit" name = "response" class="btn btn-default btn-md" value="Delete" >
                         <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
                     </div>
-                </form>
             </div>
+        </form>
         </div>
     </div>
 
@@ -992,10 +989,13 @@
                                         </tr>
                                         <tr>
                                             <td></td>
-                                            <td><input type="submit" name = "response" class="btn btn-default btn-md" value="Add" ></td>
+                                            <td></td>
                                         </tr>
                                     </table>
-
+                                    <div class = "float-right pt-3">
+                                        <input type="submit" name = "response" class="btn btn-default btn-md cs-btn" value="Add" >
+                                        <button type="button" class="btn btn-default cs-btn" data-dismiss="modal">Close</button>
+                                    </div>
                                 </form>
                             </div>
                             <!-- Edit -->
@@ -1030,18 +1030,16 @@
                                             <td><label class="label-modal">Condition</label></td>
                                             <td><input type="text" name="condi" class="input-modal" id = "ACondi"></td>
                                         </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td><input type="submit" name = "response" class="btn btn-default btn-md" value="Edit" >&emsp;<input type="submit" name = "response" class="btn btn-default btn-md" value="Delete" ></td>
-                                        </tr>
                                     </table>
+                                    <div class = "float-right pt-3">
+                                        <input type="submit" name = "response" class="btn btn-default btn-md cs-btn" value="Edit" >&emsp;
+                                        <input type="submit" name = "response" class="btn btn-default btn-md cs-btn" value="Delete" >
+                                        <button type="button" class="btn btn-default cs-btn" data-dismiss="modal">Close</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -1074,12 +1072,11 @@
                                             <td><label class="label-modal">Quantity</label></td>
                                             <td><input type="text" name="quantityT" class="input-modal" ></td>
                                         </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td><input type="submit" name = "response" class="btn btn-default btn-md" value="Add" ></td>
-                                        </tr>
                                     </table>
-
+                                <div class = "pt-3 float-right">
+                                    <input type="submit" name = "response" class="btn btn-default btn-md cs-btn" value="Add" >
+                                    <button type="button" class="btn btn-default cs-btn" data-dismiss="modal">Close</button>
+                                </div>
                                 </form>
                             </div>
                             <!-- Edit -->
@@ -1096,7 +1093,7 @@
                                             <td><input type="text" name="form" class="input-modal" id = "CForm"readonly></td>
                                         </tr>
                                         <tr>
-                                            <td><label <!--  -->lass="label-modal">Description</label></td>
+                                            <td><label class="label-modal">Description</label></td>
                                             <td><input type="text" name="desc" class="input-modal" id = "CDesc"></td>
                                         </tr>
                                         <tr>
@@ -1121,16 +1118,18 @@
                                         </tr>
                                         <tr>
                                             <td></td>
-                                            <td><input type="submit" name = "response" class="btn btn-default btn-md" value="Edit" >&emsp;<input type="submit" name = "response" class="btn btn-default btn-md" value="Delete" ></td>
+                                            <td></td>
                                         </tr>
                                     </table>
+                                    <div class = "float-right pt-3">
+                                        <input type="submit" name = "response" class="btn btn-default btn-md cs-btn" value="Edit" >
+                                        <input type="submit" name = "response" class="btn btn-default btn-md cs-btn" value="Delete" >
+                                        <button type="button" class="btn btn-default cs-btn" data-dismiss="modal">Close</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -1155,7 +1154,7 @@
 <script src="../vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
 <script src="../vendor/chartjs/Chart.bundle.min.js"></script>
 <script src="../vendor/select2/select2.min.js"></script>
-<script src="../vendor/gigjo/gijgo.min.js"></script>
+<script src="../vendor/gigjo/js/gijgo.min.js"></script>
 <!-- Main JS-->
 <script src="../js/main.js"></script>
 <script name="pageScripts" type="text/javascript">
@@ -1227,10 +1226,9 @@
         });
     });
 
-    // datepicker
     $(function () {
         $(".input-modal--date").datepicker({
-            dateFormat: "yy-mm-dd",
+            format: "yyyy-mm-dd",
             uiLibrary: 'bootstrap4'
         });
     });
