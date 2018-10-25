@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="../vendor/datatables/datatables.min.css" rel="stylesheet" media="all">
     <link href="../vendor/Buttons-1.5.4/css/buttons.dataTables.css" rel="stylesheet" media="all">
+    <link href="../vendor/gigjo/css/gijgo.min.css" rel="stylesheet" media="all">
     <!-- Main CSS-->
     <link href="../css/theme.css" rel="stylesheet" media="all">
     <link href="../css/custom.css" rel="stylesheet" media="all">
@@ -309,6 +310,18 @@
                                     <div class="col-lg-12">
                                         <button type="button" class="btn btn-outline-secondary"  href="#mEAdds" data-toggle="modal">Clear</button>
                                         <div class="pt-2 table-responsive table--no-card m-b-40">
+                                            <table border="0" cellspacing="5" cellpadding="5">
+                                                <tbody>
+                                                <tr>
+                                                    <td>Minimum Date:</td>
+                                                    <td><input name="min" id="min" type="text"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Maximum Date:</td>
+                                                    <td><input name="max" id="max" type="text"></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
                                             <table class="table table-borderless table-striped table-earning" id = "nTable">
                                                 <thead>
                                                 <tr>
@@ -434,6 +447,7 @@
 <script src = "../vendor/pdfmake-0.1.36/pdfmake.js"></script>
 <script src = "../vendor/pdfmake-0.1.36/vfs_fonts.js"></script>
 <script src = "../vendor/Buttons-1.5.4/js/buttons.html5.js"></script>
+<script src="../vendor/gigjo/js/gijgo.min.js"></script>
 <!-- Main JS-->
 <script src="../js/main.js"></script>
 <script type = "text/javascript">
@@ -445,7 +459,35 @@
     });
 
     $(document).ready(function () {
-        $("#nTable").DataTable({
+
+        $("#min").datepicker({
+            onSelect: function () { table.draw(); },
+            changeMonth: true,
+            changeYear: true,
+            format : "yyyy-mm-dd"
+        });
+
+        $("#max").datepicker({
+            onSelect: function () { table.draw(); },
+            changeMonth: true,
+            changeYear: true,
+            format : "yyyy-mm-dd"
+        });
+
+        $.fn.dataTable.ext.search.push(
+            function (settings, data, dataIndex) {
+                var min = $('#min').datepicker("getDate");
+                var max = $('#max').datepicker("getDate");
+                var startDate = new Date(data[1]);
+                if (min == null && max == null) { return true; }
+                if (min == null && startDate <= max) { return true;}
+                if(max == null && startDate >= min) {return true;}
+                if (startDate <= max && startDate >= min) { return true; }
+                return false;
+            }
+        );
+
+        var table = $("#nTable").DataTable({
             dom: 'Bfrtip',
             buttons: [
                 'csvHtml5',
@@ -457,6 +499,12 @@
                 }
             ],
             "paging" : false
+        });
+
+
+
+        $('#min, #max').change(function () {
+            table.draw();
         });
     });
 </script>

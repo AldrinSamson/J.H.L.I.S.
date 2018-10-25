@@ -570,29 +570,34 @@
 
     $(document).ready(function(){
         $("#auditTable").DataTable({
-            "order":[[2 , "asc"]]
+            "order":[[2 , "asc"]],
+            "paging" : false
         });
     });
 
     $(document).ready(function(){
         $("#pTable").DataTable({
-            "order":[[4 , "desc"]]
+            "order":[[4 , "desc"]],
+            "paging" : false
         });
     });
 
     $(document).ready(function(){
         $("#cTable").DataTable({
-            "order":[[2 , "desc"]]
+            "order":[[2 , "desc"]],
+            "paging" : false
         });
     });
     $(document).ready(function(){
         $("#dTable").DataTable({
-            "order":[[2 , "desc"]]
+            "order":[[2 , "desc"]],
+            "paging" : false
         });
     });
     $(document).ready(function(){
         $("#mTable").DataTable({
-            "order":[[2 , "desc"]]
+            "order":[[2 , "desc"]],
+            "paging" : false
         });
     });
 

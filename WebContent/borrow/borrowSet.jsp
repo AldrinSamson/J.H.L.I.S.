@@ -324,7 +324,6 @@
 
                                         <div class="tab-pane fade-in active" id="tab-elist">
                                             <div class="pt-2 col-lg-12">
-                                                <button type="button" class="btn new-item-btn"  href="#mPAdd" data-toggle="modal">NEW ITEM</button>
                                                 <table class="table table-borderless table-striped table-earning" >
                                                     <tr>
                                                             <%
@@ -572,7 +571,9 @@
     });
 
     $(document).ready(function(){
-        var table = $('#pTable').DataTable();
+        var table = $('#pTable').DataTable({
+            "paging" : false
+        });
         $('#pTable tbody').on('click','tr',function(){
             var tableData = table.row(this).data();
             $('.sendForm #setID').val(tableData[0]);
@@ -581,7 +582,9 @@
 
     });
     $(document).ready(function(){
-        var table = $('#cTable').DataTable();
+        var table = $('#cTable').DataTable({
+            "paging" : false
+        });
         $('#cTable tbody').on('click','tr',function(){
             var tableData = table.row(this).data();
             $('.sendForm #setID').val(tableData[0]);

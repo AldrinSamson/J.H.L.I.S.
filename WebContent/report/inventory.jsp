@@ -463,12 +463,25 @@
         }
     });
     $(document).ready(function(){
+        $.fn.dataTable.ext.search.push(
+            function (settings, data,) {
+                var min = $('#min').datepicker("getDate");
+                var max = $('#max').datepicker("getDate");
+                var startDate = new Date(data[1]);
+                if (min == null && max == null) { return true; }
+                if (min == null && startDate <= max) { return true;}
+                if(max == null && startDate >= min) {return true;}
+                if (startDate <= max && startDate >= min) { return true; }
+                return false;
+            }
+        );
         $("#IElist").DataTable({
             dom: 'Bfrtip',
             buttons: [
                 'csvHtml5',
                 {
                     extend: 'pdfHtml5',
+                    orientation: 'landscape',
                     download: 'open',
                     message : 'University of Santo Tomas | Junior Highschool | Physics Laboratory '
                 }
@@ -478,12 +491,14 @@
     });
 
     $(document).ready(function(){
+
         $("#IClist").DataTable({
             dom: 'Bfrtip',
             buttons: [
                 'csvHtml5',
                 {
                     extend: 'pdfHtml5',
+                    orientation: 'landscape',
                     download: 'open',
                     message : 'University of Santo Tomas | Junior Highschool | Chemistry Laboratory '
                 }

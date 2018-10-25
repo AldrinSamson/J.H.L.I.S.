@@ -626,7 +626,7 @@
             </tr>
             <tr>
                 <td><label class="label-modal">Calibration date</label></td>
-                <td><input type="text" name="date" class="input-modal--date" placeholder="yy/mm/dd"></td>
+                <td><input type="text" name="date" class="input-modal--date" placeholder="yy/mm/dd" id = "date"></td>
             </tr>
         </table>
 		</pre>
@@ -728,7 +728,7 @@
                 </tr>
                 <tr>
                 <td><label class="label-modal">Expiration Date</label></td>
-                   <td><input type="text" name="date" class="input-modal--date" id="datepicker"></td>
+                   <td><input type="text" name="date" class="input-modal--date" id="date1"></td>
                 </tr>
             </table>
         </pre>
@@ -829,7 +829,7 @@
             </tr>
             <tr>
                 <td><label class="label-modal">Calibration date</label></td>
-                <td><input type="text" name="date" id="date1" class="input-modal--date" placeholder="yy/mm/dd"value = "<%=iDate%>"></td>
+                <td><input type="text" name="date" id="date2" class="input-modal--date" placeholder="yy/mm/dd"value = "<%=iDate%>"></td>
             </tr>
         </table>
 		</pre>
@@ -900,7 +900,7 @@
                 </tr>
                 <tr>
                 <td><label class="label-modal">Expiration Date</label></td>
-                   <td><input type="text" name="date" class="input-modal--date" value = "<%= iDate%>"></td>
+                   <td><input type="text" name="date" class="input-modal--date" value = "<%= iDate%>" id = "date3"></td>
                 </tr>
         </table>
 		</pre>
@@ -1091,7 +1091,7 @@
                                             <td><input type="text" name="form" class="input-modal" id = "CForm"readonly></td>
                                         </tr>
                                         <tr>
-                                            <td><label <!--  -->lass="label-modal">Description</label></td>
+                                            <td><label class="label-modal">Description</label></td>
                                             <td><input type="text" name="desc" class="input-modal" id = "CDesc"></td>
                                         </tr>
                                         <tr>
@@ -1172,7 +1172,9 @@
 
     //ETable
     $(document).ready(function () {
-        var eTable = $("#ETable").DataTable();
+        var eTable = $("#ETable").DataTable({
+            "paging" : false
+        });
         $('#ETable tbody').on('click', 'tr', function () {
             var eTableData = eTable.row(this).data();
             $('#mEEdit').modal('show');
@@ -1186,7 +1188,9 @@
 
     //ATable
     $(document).ready(function () {
-        var aTable = $("#ATable").DataTable();
+        var aTable = $("#ATable").DataTable({
+            "paging" : false
+        });
         $('#ATable tbody').on('click', 'tr', function () {
             var aTableData = aTable.row(this).data();
             var x = aTableData[3];
@@ -1206,7 +1210,9 @@
 
     //CTable
     $(document).ready(function () {
-        var cTable = $("#CTable").DataTable();
+        var cTable = $("#CTable").DataTable({
+            "paging" : false
+        });
         $('#CTable tbody').on('click', 'tr', function () {
             var CtableData = cTable.row(this).data();
             var x = CtableData[4];
@@ -1225,7 +1231,39 @@
 
     // datepicker
     $(function () {
-        $(".input-modal--date").datepicker({
+        $("#date").datepicker({
+            format: "yyyy-mm-dd",
+            uiLibrary: 'bootstrap4'
+        });
+    });
+
+    $(function () {
+        $("#date1").datepicker({
+            format: "yyyy-mm-dd",
+            uiLibrary: 'bootstrap4'
+        });
+    });
+
+    $(function () {
+        $("#date2").datepicker({
+            format: "yyyy-mm-dd",
+            uiLibrary: 'bootstrap4'
+        });
+    });
+    $(function () {
+        $("#date3").datepicker({
+            format: "yyyy-mm-dd",
+            uiLibrary: 'bootstrap4'
+        });
+    });
+    $(function () {
+        $("#EDate").datepicker({
+            format: "yyyy-mm-dd",
+            uiLibrary: 'bootstrap4'
+        });
+    });
+    $(function () {
+        $("#CDate").datepicker({
             format: "yyyy-mm-dd",
             uiLibrary: 'bootstrap4'
         });

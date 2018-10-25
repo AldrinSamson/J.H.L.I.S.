@@ -521,21 +521,25 @@ String set = (String)request.getSession(false).getAttribute("set");
             <div class="modal-header"><h4>New Item Set</h4></div>
             <form action="../addSet" method="post">
 
-                <div class="modal-body">
-
-                    <div class="tab input_fields_wrap2">
-                        <%--<div class = "input_fields_wrap">--%>
-                        <table class="table table-borderless table-earning" style="border-spacing:20px">
-
+                <div class="modal-body item-set-mb">
+                    <div class="tab input_fields_wrap">
+                        <table class="table item-set-mt table-borderless table-earning" style="border-spacing:20px;">
                             <tr>
-                                <td>Key</td>
-                                <td>Quantity</td>
+                                <td><label class="label-modal">Set Name</label></td>
+                                <td><input type="text" name="setName" class="input-modal"></td>
                             </tr>
                             <tr>
+                                <td><label class="label-modal">Key</label></td>
                                 <td><input type="text" name="name[]" class="input-modal" list = "nameC"></td>
-                                <td><input type="text" name="quantity[]" class="input-modal"></td>
-                                <td><input type="text" name="lab" class="input-modal" value ="Chemistry" hidden></td>
                             </tr>
+                            <tr>
+                                <td><label class="label-modal">Quantity</label></td>
+                                <td><input type="text" name="quantity[]" class="input-modal"></td>
+                            </tr>
+
+                            <td><input type="text" name="lab" class="input-modal" value ="Chemistry" hidden></td>
+
+
                             <datalist id = "nameC">
                                 <%
                                     try{
@@ -556,13 +560,14 @@ String set = (String)request.getSession(false).getAttribute("set");
 
                             %>
                             </datalist>
+
                         </table>
                     </div>
                     </pre>
                 </div>
                 <div class="modal-footer">
-                    <input type="text" name="lab" class="input-modal" value="Chemistry" hidden>
-                    <button class="btn btn-default btn-md add_field_button2">Add</button>
+                    <input type="text" name="lab" class="input-modal" value="Physics" hidden>
+                    <button type = "button" class="btn btn-default btn-md add_field_button">Add</button>
                     <input type="submit" class="btn btn-default btn-md" value="Save">
                     <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
                 </div>
@@ -570,6 +575,7 @@ String set = (String)request.getSession(false).getAttribute("set");
         </div>
     </div>
 </div>
+
 
         <!-- View Set Modal -->
         <div class="modal fade" id="viewSet" tabindex="-1" role="dialog" aria-hidden="true"  >
@@ -679,7 +685,9 @@ String set = (String)request.getSession(false).getAttribute("set");
 
 
     $(document).ready(function(){
-             var table = $('#pTable').DataTable();
+             var table = $('#pTable').DataTable({
+                 "paging" : false
+             });
              $('#pTable tbody').on('click','tr',function(){
                  var tableData = table.row(this).data();
                  $('.sendForm #setID').val(tableData[0]);
@@ -689,7 +697,9 @@ String set = (String)request.getSession(false).getAttribute("set");
          });
 
          $(document).ready(function(){
-             var table = $('#cTable').DataTable();
+             var table = $('#cTable').DataTable({
+                 "paging" : false
+             });
              $('#cTable tbody').on('click','tr',function(){
                  var tableData = table.row(this).data();
                  $('.sendForm #setID').val(tableData[0]);

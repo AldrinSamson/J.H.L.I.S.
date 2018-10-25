@@ -520,7 +520,9 @@ $(document).ready(function(){
 });
 
 $(document).ready(function () {
-    var eTable = $("#nTable").DataTable();
+    var eTable = $("#nTable").DataTable({
+        "paging" : false
+    });
     $('#nTable tbody').on('click', 'tr', function () {
         var eTableData = eTable.row(this).data();
         $('#mEEdit').modal('show');
