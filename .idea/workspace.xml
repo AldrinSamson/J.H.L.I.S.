@@ -6,22 +6,15 @@
     </artifacts-to-build>
   </component>
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/WebContent/report/audit.jsp" line="317" />
+    <bookmark url="file://$PROJECT_DIR$/WebContent/report/audit.jsp" line="318" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a8f9b66-ebec-4db9-bcd2-8796a87d45f7" name="Default Changelist" comment="--">
-      <change afterPath="$PROJECT_DIR$/src/func/manageItem/resolveItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/jhlis_war.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/func/common/clearTable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/borrow/borrowSet.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/borrow/borrowSet.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/inventory/chemistry.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/inventory/chemistry.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/inventory/itemSets.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/inventory/itemSets.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/inventory/nonBorrowable.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/inventory/nonBorrowable.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/inventory/physics.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/inventory/physics.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebContent/report/audit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/report/audit.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebContent/report/borrowTransaction.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/report/borrowTransaction.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/report/damagesMissing.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/report/damagesMissing.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/report/insights.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/report/insights.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/report/inventory.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/report/inventory.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/build/classes/" />
@@ -73,15 +66,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="nonBorrowable.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebContent/inventory/nonBorrowable.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="523" column="24" selection-start-line="523" selection-start-column="24" selection-end-line="523" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="physics.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebContent/inventory/physics.jsp">
           <provider selected="true" editor-type-id="text-editor">
@@ -94,8 +78,8 @@
       <file leaf-file-name="inventory.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebContent/report/inventory.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="469">
-              <caret line="482" column="39" lean-forward="true" selection-start-line="482" selection-start-column="39" selection-end-line="482" selection-end-column="39" />
+            <state relative-caret-position="197">
+              <caret line="292" column="30" lean-forward="true" selection-start-line="292" selection-start-column="30" selection-end-line="292" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -103,17 +87,35 @@
       <file leaf-file-name="damagesMissing.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebContent/report/damagesMissing.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1217">
-              <caret line="424" lean-forward="true" selection-start-line="424" selection-end-line="424" />
+            <state relative-caret-position="153">
+              <caret line="300" column="47" lean-forward="true" selection-start-line="300" selection-start-column="47" selection-end-line="300" selection-end-column="47" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="resolveItem.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="resolveItem.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/func/manageItem/resolveItem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="557">
-              <caret line="101" selection-start-line="101" selection-end-line="101" />
+            <state relative-caret-position="425">
+              <caret line="53" column="49" lean-forward="true" selection-start-line="44" selection-start-column="10" selection-end-line="53" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="clearTable.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/func/common/clearTable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="27" column="59" lean-forward="true" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="loginv2.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/func/account/loginv2.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="460">
+              <caret line="175" column="163" lean-forward="true" selection-start-line="175" selection-start-column="17" selection-end-line="175" selection-end-column="163" />
             </state>
           </provider>
         </entry>
@@ -121,8 +123,8 @@
       <file leaf-file-name="editNB.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/func/manageNB/editNB.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="43" column="50" lean-forward="true" selection-start-line="40" selection-start-column="10" selection-end-line="43" selection-end-column="50" />
+            <state relative-caret-position="187">
+              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
             </state>
           </provider>
         </entry>
@@ -136,20 +138,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="insights.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebContent/report/insights.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-16">
-              <caret line="546" lean-forward="true" selection-start-line="546" selection-end-line="546" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="audit.jsp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="audit.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WebContent/report/audit.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="414" column="10" lean-forward="true" selection-start-line="414" selection-start-column="10" selection-end-line="414" selection-end-column="10" />
+            <state relative-caret-position="197">
+              <caret line="378" column="44" lean-forward="true" selection-start-line="378" selection-start-column="44" selection-end-line="378" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -157,8 +150,8 @@
       <file leaf-file-name="borrowTransaction.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebContent/report/borrowTransaction.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="469" column="30" lean-forward="true" selection-start-line="469" selection-start-column="30" selection-end-line="469" selection-end-column="30" />
+            <state relative-caret-position="391">
+              <caret line="422" column="90" selection-start-line="422" selection-start-column="90" selection-end-line="422" selection-end-column="90" />
             </state>
           </provider>
         </entry>
@@ -190,6 +183,7 @@
       <find>input-sen</find>
       <find>iQuantity</find>
       <find>getDate</find>
+      <find>clear</find>
     </findStrings>
     <replaceStrings>
       <replace>avatar-02.png</replace>
@@ -250,10 +244,11 @@
         <option value="$PROJECT_DIR$/WebContent/inventory/physics.jsp" />
         <option value="$PROJECT_DIR$/WebContent/report/insights.jsp" />
         <option value="$PROJECT_DIR$/WebContent/report/inventory.jsp" />
-        <option value="$PROJECT_DIR$/WebContent/report/audit.jsp" />
-        <option value="$PROJECT_DIR$/WebContent/report/borrowTransaction.jsp" />
         <option value="$PROJECT_DIR$/WebContent/report/damagesMissing.jsp" />
         <option value="$PROJECT_DIR$/src/func/manageItem/resolveItem.java" />
+        <option value="$PROJECT_DIR$/src/func/common/clearTable.java" />
+        <option value="$PROJECT_DIR$/WebContent/report/borrowTransaction.jsp" />
+        <option value="$PROJECT_DIR$/WebContent/report/audit.jsp" />
       </list>
     </option>
   </component>
@@ -317,6 +312,13 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="func" type="462c0819:PsiDirectoryNode" />
               <item name="account" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="J.H.L.I.S" type="b2602c69:ProjectViewProjectNode" />
+              <item name="J.H.L.I.S" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="func" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="J.H.L.I.S" type="b2602c69:ProjectViewProjectNode" />
@@ -427,7 +429,6 @@
   </component>
   <component name="RunManager">
     <configuration name="Tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.31" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="1.8">
-      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="jhlis:war exploded">
@@ -607,7 +608,7 @@
       <workItem from="1540355435874" duration="3191000" />
       <workItem from="1540364886607" duration="140000" />
       <workItem from="1540365181680" duration="17342000" />
-      <workItem from="1540420151699" duration="15712000" />
+      <workItem from="1540420151699" duration="18118000" />
     </task>
     <task id="LOCAL-00001" summary="Default Changelist">
       <created>1537696657774</created>
@@ -812,11 +813,18 @@
       <option name="project" value="LOCAL" />
       <updated>1540445957543</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="--">
+      <created>1540456988314</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1540456988314</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="301759000" />
+    <option name="totallyTimeSpent" value="304165000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -842,7 +850,7 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.2130479" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.2130479" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32941177" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.498632" weight="0.18518518" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
@@ -852,7 +860,7 @@
       <window_info anchor="bottom" id="Version Control" order="13" weight="0.25382262" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.2888889" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3786885" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8549223" visible="true" weight="0.107007064" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8549223" visible="true" weight="0.107007064" />
       <window_info id="Web" order="7" sideWeight="0.14507772" side_tool="true" visible="true" weight="0.107007064" />
       <window_info id="Learn" order="8" />
       <window_info anchor="right" id="Theme Preview" order="8" />
@@ -930,26 +938,11 @@
           </properties>
           <option name="timeStamp" value="50" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/func/manageItem/resolveItem.java</url>
-          <line>32</line>
-          <properties class="func.manageItem.resolveItem" method="doPost">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="53" />
-        </line-breakpoint>
       </breakpoints>
       <option name="time" value="54" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/WebContent/css/theme.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="95" column="22" selection-start-line="95" selection-start-column="22" selection-end-line="95" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/func/itemBorrowReturn/returnDamagedSingle.java" />
     <entry file="file://$PROJECT_DIR$/WebContent/vendor/Buttons-1.5.4/css/buttons.dataTables.css">
       <provider selected="true" editor-type-id="text-editor" />
@@ -1025,13 +1018,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
           <caret line="42" column="47" selection-start-line="42" selection-start-column="47" selection-end-line="42" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/func/account/loginv2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="60" selection-start-line="60" selection-end-line="60" />
         </state>
       </provider>
     </entry>
@@ -1234,6 +1220,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/inventory/physics.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="1188" column="11" lean-forward="true" selection-start-line="1181" selection-start-column="11" selection-end-line="1188" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/func/manageItem/resolveItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="53" column="49" lean-forward="true" selection-start-line="44" selection-start-column="10" selection-end-line="53" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/func/manageNB/editNB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/report/damagesMissing.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="300" column="47" lean-forward="true" selection-start-line="300" selection-start-column="47" selection-end-line="300" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/report/inventory.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="292" column="30" lean-forward="true" selection-start-line="292" selection-start-column="30" selection-end-line="292" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/func/account/loginv2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="175" column="163" lean-forward="true" selection-start-line="175" selection-start-column="17" selection-end-line="175" selection-end-column="163" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/func/common/clearTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="27" column="59" lean-forward="true" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/func/manageItem/editItem.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-68">
@@ -1243,50 +1278,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/report/borrowTransaction.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="469" column="30" lean-forward="true" selection-start-line="469" selection-start-column="30" selection-end-line="469" selection-end-column="30" />
+        <state relative-caret-position="391">
+          <caret line="422" column="90" selection-start-line="422" selection-start-column="90" selection-end-line="422" selection-end-column="90" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/report/audit.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="414" column="10" lean-forward="true" selection-start-line="414" selection-start-column="10" selection-end-line="414" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/report/inventory.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="482" column="39" lean-forward="true" selection-start-line="482" selection-start-column="39" selection-end-line="482" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/inventory/physics.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="1188" column="11" lean-forward="true" selection-start-line="1181" selection-start-column="11" selection-end-line="1188" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/report/damagesMissing.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1217">
-          <caret line="424" lean-forward="true" selection-start-line="424" selection-end-line="424" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/func/manageNB/editNB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="43" column="50" lean-forward="true" selection-start-line="40" selection-start-column="10" selection-end-line="43" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/func/manageItem/resolveItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="557">
-          <caret line="101" selection-start-line="101" selection-end-line="101" />
+        <state relative-caret-position="197">
+          <caret line="378" column="44" lean-forward="true" selection-start-line="378" selection-start-column="44" selection-end-line="378" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -1296,7 +1296,7 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>jhlis:war exploded</last-edited>
+          <last-edited>jhlis:war</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
