@@ -1042,14 +1042,32 @@
         </div>
     </div>
 
-
     <!-- Edit Consumable Modal -->
+
     <div class = "modal fade" id = "mCEdit" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class = "modal-content">
                 <div class="modal-body">
                     <div role = "tabpanel">
                         <!-- Nav tabs -->
+                        <ul class ="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link" href = "#CAQ" aria-controls="CAQ"  data-toggle ="tab">Add Quantity</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href = "#CE" aria-controls="CE"  data-toggle ="tab">Edit Consumable</a>
+                            </li>
+                        </ul>
+                        <!-- Tabs -->
+                        <div class="tab-content">
+                            <!-- Add Quantity -->
+                            <div  class="tab-pane" id="CAQ">
+                                <form action="../editItem" method="post">
+                                    <h2 ><input type="text" name="code" id = "CID" readonly></h2>
+                                    <table class="table table-borderless table-earning" style="border-spacing:20px">
+                                        <tr>
+                                            <td><label class="label-modal">Quantity</label></td>
+                                            <td><input type="text" name="quantityT" class="input-modal" ></td>
                                         </tr>
                                         <tr>
                                             <td></td>
@@ -1066,14 +1084,14 @@
                                     <table class="table table-borderless table-earning" style="border-spacing:20px">
                                         <tr>
                                             <td><label class="label-modal">Name</label>
-                                            <td><input type="text" name="name" class="input-modal" id = "CName" Read only></td>
+                                            <td><input type="text" name="name" class="input-modal" id = "CName" readonly></td>
                                         </tr>
                                         <tr>
                                             <td><label class="label-modal">Form</label></td>
-                                            <td><input type="text" name="form" class="input-modal" id = "CForm" Read only></td>
+                                            <td><input type="text" name="form" class="input-modal" id = "CForm"readonly></td>
                                         </tr>
                                         <tr>
-                                            <td><label class="label-modal">Description</label></td>
+                                            <td><label <!--  -->lass="label-modal">Description</label></td>
                                             <td><input type="text" name="desc" class="input-modal" id = "CDesc"></td>
                                         </tr>
                                         <tr>
@@ -1086,7 +1104,7 @@
                                                 <option> Piece </option>
                                                 <option> Militter </option>
                                                 <option> Litter</option>
-                                            </select></td>
+                                            </select> </td>
                                         </tr>
                                         <tr>
                                             <td><label class="label-modal">Expiration Date</label></td>
@@ -1113,6 +1131,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- Jquery JS-->
 <script src="../vendor/jquery-3.2.1.min.js"></script>

@@ -1046,6 +1046,7 @@
     </div>
 
     <!-- Edit Consumable Modal -->
+
     <div class = "modal fade" id = "mCEdit" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class = "modal-content">
