@@ -381,7 +381,7 @@ Class.forName(MYclass);
             <tr>
                 <td><label class="label-modal">Class</label></td>
                 <td>
-                <select name = "cls">
+                <select name = "cls" class = "select-modal">
                     <option>Administrator</option>
                     <option>Professor</option>
                 </select>
@@ -392,19 +392,30 @@ Class.forName(MYclass);
                 <td><input type="text" name="id" class="input-modal"></td>
             </tr>
             <tr>
-                <td><label class="label-modal">SQ1</label></td>
-                <td><input type="text" name="rq1" class="input-modal"></td>
+                <td><label class="label-modal">Secret Question 1</label></td>
+              <td> <select name= "Secret Question 1" class= "select-modal">
+                                        <option>Who is your first love?</option>
+                                        <option>What is your favorite country?</option>
+                                        <option>Where is your hometown?</option>
+                                    </select>
+            </td>
             </tr>
             <tr>
-                <td><label class="label-modal">SQA1</label></td>
+                <td><label class="label-modal">Secret Question Answer 1</label></td>
                 <td><input type="text" name="ra1" class="input-modal"></td>
             </tr>
             <tr>
-                <td><label class="label-modal">SQ2</label></td>
-                <td><input type="text" name="rq2" class="input-modal"></td>
+                <td><label class="label-modal">Secret Question 2</label></td>
+                 <td> <Select name=" Secret Question 2" class="select-modal" >
+                                        <option>What is your favorite pet's name?</option>
+                                        <option>What is your favorite fruit?</option>
+                                        <option>What is your mother's name?</option>
+                 </Select>
+
+            </td>
             </tr>
             <tr>
-                <td><label class="label-modal">SQA2</label></td>
+                <td><label class="label-modal">Secret Question Answer 2</label></td>
                 <td><input type="text" name="ra1" class="input-modal"></td>
             </tr>
             <tr>
@@ -446,19 +457,30 @@ Class.forName(MYclass);
                 <td><input type="text" name="name" class="input-modal" id = "aName" readonly></td>
             </tr>
             <tr>
-                <td><label class="label-modal">SQ1</label></td>
-                <td><input type="text" name="rq1" class="input-modal"></td>
+                <td><label class="label-modal">Secret Question 1</label></td>
+              <td> <select name= "Secret Question 1" class= "select-modal">
+                                        <option>Who is your first love?</option>
+                                        <option>What is your favorite country?</option>
+                                        <option>Where is your hometown?</option>
+                                    </select>
+            </td>
             </tr>
             <tr>
-                <td><label class="label-modal">SQA1</label></td>
+                <td><label class="label-modal">Secret Question Answer 1</label></td>
                 <td><input type="text" name="ra1" class="input-modal"></td>
             </tr>
             <tr>
-                <td><label class="label-modal">SQ2</label></td>
-                <td><input type="text" name="rq2" class="input-modal"></td>
+               <td><label class="label-modal">Secret Question 2</label></td>
+                 <td> <Select name=" Secret Question 2" class="select-modal" >
+                                        <option>What is your favorite pet's name?</option>
+                                        <option>What is your favorite fruit?</option>
+                                        <option>What is your mother's name?</option>
+                 </Select>
+
+            </td>
             </tr>
             <tr>
-                <td><label class="label-modal">SQA2</label></td>
+                <td><label class="label-modal">Secret Question Answer 2</label></td>
                 <td><input type="text" name="ra1" class="input-modal"></td>
             </tr>
             <tr>
