@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="../vendor/datatables/datatables.min.css" rel="stylesheet" media="all">
     <link href="../vendor/Buttons-1.5.4/css/buttons.dataTables.css" rel="stylesheet" media="all">
-    <link href="../vendor/gigjo/css/gijgo.min.css" rel="stylesheet" media="all">
+
     <!-- Main CSS-->
     <link href="../css/theme.css" rel="stylesheet" media="all">
     <link href="../css/custom.css" rel="stylesheet" media="all">
@@ -451,7 +451,7 @@
 <script src = "../vendor/pdfmake-0.1.36/pdfmake.js"></script>
 <script src = "../vendor/pdfmake-0.1.36/vfs_fonts.js"></script>
 <script src = "../vendor/Buttons-1.5.4/js/buttons.html5.js"></script>
-<script src="../vendor/gigjo/js/gijgo.min.js"></script>
+
 <!-- Main JS-->
 <script src="../js/main.js"></script>
 <script type = "text/javascript">
