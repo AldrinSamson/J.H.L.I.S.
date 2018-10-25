@@ -297,7 +297,7 @@
         <!-- HEADER DESKTOP-->
         <!-- Main Body -->
         <div class="main-content">
-            <div class = "pl-5 pb-3 page-title"> !Prototype Borrow Report!</div>
+            <div class = "pl-5 pb-3 page-title"> Borrow Transaction Report</div>
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
                     <div class="row">
@@ -307,8 +307,6 @@
 
 
                                     <div class="col-lg-12">
-                                        <button type="button" class="btn btn-outline-secondary"  href="#mEAdds" data-toggle="modal">Export PDF</button>
-                                        <button type="button" class="btn btn-outline-secondary"  href="#mEAdds" data-toggle="modal">Export CSV</button>
                                         <button type="button" class="btn btn-outline-secondary"  href="#mEAdds" data-toggle="modal">Clear</button>
                                         <div class="pt-2 table-responsive table--no-card m-b-40">
                                             <table class="table table-borderless table-striped table-earning" id = "nTable">
@@ -447,40 +445,18 @@
     });
 
     $(document).ready(function () {
-        var eTable = $("#nTable").DataTable({
+        $("#nTable").DataTable({
             dom: 'Bfrtip',
             buttons: [
                 'csvHtml5',
-                {   customize: function ( doc ) {
-                        var cols = [];
-                        cols[0] = {text: 'Left part', alignment: 'left', margin:[20] };
-                        cols[1] = {text: 'Right part', alignment: 'right', margin:[0,0,20] };
-                        var objFooter = {};
-                        objFooter['columns'] = cols;
-                        doc['footer']=objFooter;
-                        doc.content.splice(1, 0,
-                            {
-                                margin: [0, 0, 0, 12],
-                                alignment: 'center',
-                                image: 'data:image/png;base64,...',
-                            }
-                        );
-                    },
+                {
                     extend: 'pdfHtml5',
-                    download: 'open',
                     orientation: 'landscape',
-                    message : 'University of Santo Tomas  Junior Highschool  Physics/Chemistry Laboratory '
+                    download: 'open',
+                    message : 'University of Santo Tomas | Junior Highschool | Physics/Chemistry Laboratory '
                 }
-            ]
-        });
-        $('#nTable tbody').on('click', 'tr', function () {
-            var eTableData = eTable.row(this).data();
-            $('#mEEdit').modal('show');
-            $(".modal-body #nID").val(eTableData[0]);
-            $(".modal-body #nName").val(eTableData[1]);
-            $(".modal-body #nDesc").val(eTableData[2]);
-            $(".modal-body #nLab").val(eTableData[3]);
-            $(".modal-body #nCondi").val(eTableData[4]);
+            ],
+            "paging" : false
         });
     });
 </script>
