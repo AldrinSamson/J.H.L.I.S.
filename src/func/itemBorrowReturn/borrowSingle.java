@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -45,12 +46,12 @@ public class borrowSingle extends HttpServlet {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
             String bDate = sdf.format(new Date());
             String bSTime = df.format(new java.util.Date());
-
-            if(request.getSession(false).getAttribute("user") == null){
+            HttpSession session = request.getSession(false);
+            if(session == null){
                 out.println ("<html><body><script type='text/javascript'>alert('Please log-in first.');location='../index.html';</script></body></html>");
             }else {
                 user = (String)request.getSession(false).getAttribute("user");
-            }
+
 
 
             try {
@@ -135,6 +136,8 @@ public class borrowSingle extends HttpServlet {
 
             } catch (Exception e) {
                 e.printStackTrace();
+            }
+
             }
         }
 

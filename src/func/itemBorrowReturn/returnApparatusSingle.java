@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -26,7 +27,7 @@ public class returnApparatusSingle extends HttpServlet {
     Statement stmt;
     ResultSet get;
     String user;
-    int inventoryCQ , inventoryTQ ,inventoryReturn, newCQ , newTQ;
+    int inventoryCQ , inventoryTQ ,inventoryReturn, newCQ , newTQ ,  quantityTotal;
     String type,iKey ,sName;
     String condition;
 
@@ -36,8 +37,8 @@ public class returnApparatusSingle extends HttpServlet {
 
         try (PrintWriter out = response.getWriter()) {
 
+
             int quantityLoss = Integer.parseInt(request.getParameter("qLoss"));
-            int quantityTotal = (Integer) request.getSession(false).getAttribute("quantityTotal");
             String mResponse = request.getParameter("response");
             String bID = (String)request.getSession(false).getAttribute("bID");
 
@@ -46,11 +47,13 @@ public class returnApparatusSingle extends HttpServlet {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
             String bEDate = sdf.format(new Date());
 
-            if(request.getSession(false).getAttribute("user") == null){
+            HttpSession session = request.getSession(false);
+            if(session == null){
                 out.println ("<html><body><script type='text/javascript'>alert('Please log-in first.');location='../index.html';</script></body></html>");
             }else {
                 user = (String)request.getSession(false).getAttribute("user");
-            }
+                quantityTotal = (Integer)request.getSession(false).getAttribute("quantityTotal");
+
 
             try {
 
@@ -105,6 +108,7 @@ public class returnApparatusSingle extends HttpServlet {
             }catch (Exception e){
                 e.printStackTrace();
 
+            }
             }
         }
 
