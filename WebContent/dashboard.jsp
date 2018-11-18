@@ -537,29 +537,6 @@
                                 </div>
                             </a>
 
-                            <a href ="request/requestAdmin.jsp" class="col-md-6 col-lg-3">
-                                <div class="statistic__item">
-                                    <div class = "counter__icon">
-                                        <span class = "icon-011"></span>
-                                    </div>
-                                    <%
-                                        try{
-                                            String queryx= "select count(rID) as count from request where rCondition = 'Approved' and rStatus = 'Unfulfilled'";
-                                            rs = stmt.executeQuery(queryx);
-
-                                            while (rs.next()){
-
-                                    %>
-                                    <h2 class="number"><%=rs.getString("count")%></h2>
-                                    <%}
-                                    }catch(Exception e){
-                                        e.printStackTrace();
-                                    }
-                                    %>
-                                    <span class="desc">Requests Unfulfilled</span>
-                                </div>
-                            </a>
-
                             <a href ="report/insights.jsp" class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
                                     <div class = "counter__icon">

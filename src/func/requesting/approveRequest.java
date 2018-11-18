@@ -68,14 +68,14 @@ public class approveRequest extends HttpServlet {
 
                     } else if (mResponse.equals("Reject")) {
 
-                        String reject = "update request set rCondition = 'Rejected',rStatus = 'Fulfilled' where rID = '" + rID + "'";
+                        String reject = "update request set rCondition = 'Rejected'where rID = '" + rID + "'";
                         stmtE.execute(reject);
                         String audit = "insert into audit values (NULL,'" + user + "' , '" + aDate + "','" + aTime + "','" + user + " rejected request of " + prof + " ','Rejected Request','" + rID + "')";
                         stmtE.execute(audit);
 
                     } else {
 
-                        String fulfill = "update request set rCondition = 'Approved' , rStatus = 'Fulfilled' where rID = '" + rID + "'";
+                        String fulfill = "update request set rCondition = 'Approved' where rID = '" + rID + "'";
                         stmtE.execute(fulfill);
                         String audit = "insert into audit values (NULL,'" + user + "' , '" + aDate + "','" + aTime + "','" + user + " fulfilled request of " + prof + "','Fulfill Request','" + rID + "')";
                         stmtE.execute(audit);

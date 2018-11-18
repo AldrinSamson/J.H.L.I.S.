@@ -27,7 +27,7 @@ public class resolveItem extends HttpServlet {
     ResultSet get , chk ;
     String MYdburl = getBean.getMyUrl();
     String MYclass = getBean.getMyClass();
-    String user , type , bCondition , resolve , condition;
+    String user , type , bCondition , resolve , condition ,status;
     int resolveQuantity , resolveInventoryQuantity , complete;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -49,48 +49,50 @@ public class resolveItem extends HttpServlet {
                 user = (String) request.getSession(false).getAttribute("user");
 
                 try {
-                    Class.forName(MYclass);
-                    con = DriverManager.getConnection(MYdburl);
-                    stmt = con.createStatement();
+                            Class.forName(MYclass);
+                            con = DriverManager.getConnection(MYdburl);
+                            stmt = con.createStatement();
 
-                    String getTransaq = "select b.bQuantityLoss , b.bCondition , i.itemCurrentQuantity , i.itemTotalQuantity , d.itemType from borrowtransaction b join inventory i right join itemdetails d on i.itemKey = d.itemKey on b.bItemKey = i.itemKey where  b.bId = '"+bID+"'";
-                    get = stmt.executeQuery(getTransaq);
-                    while (get.next()){
-                        int loss = get.getInt("bQuantityLoss");
-                        int current = get.getInt("itemCurrentQuantity");
-                        int total = get.getInt("itemTotalQuantity");
-                        type = get.getString("itemType");
-                        bCondition = get.getString("bCondition");
-                        resolveQuantity = loss - quantityReturned ; // update bT
-                        resolveInventoryQuantity = current + quantityReturned; // on update inventory
+                            String getTransaq = "select b.bQuantityLoss , b.bCondition , i.itemCurrentQuantity , i.itemTotalQuantity , d.itemType from borrowtransaction b join inventory i right join itemdetails d on i.itemKey = d.itemKey on b.bItemKey = i.itemKey where  b.bId = '"+bID+"'";
+                            get = stmt.executeQuery(getTransaq);
+                            while (get.next()){
+                                int loss = get.getInt("bQuantityLoss");
+                                int current = get.getInt("itemCurrentQuantity");
+                                int total = get.getInt("itemTotalQuantity");
+                                type = get.getString("itemType");
+                                bCondition = get.getString("bCondition");
+                                resolveQuantity = loss - quantityReturned ; // update bT
+                                resolveInventoryQuantity = current + quantityReturned; // on update inventory
 
-                        if (total == resolveInventoryQuantity){
-                            complete = 1;
-                        }else {
-                            complete = 0;
-                        }
-                    }
-                    if (complete == 1) {
-                         condition = type.equalsIgnoreCase("Equipment") ? "Available" : "Complete";
-                    } else {
-                       condition = type.equalsIgnoreCase("Equipment") ? "Available" : "Incomplete";
-                    }
+                                if (total == resolveInventoryQuantity){
+                                    complete = 1;
+                                }else {
+                                    complete = 0;
+                                }
+                            }
+                            if (complete == 1) {
+                                 condition = type.equalsIgnoreCase("Equipment") ? "Available" : "Complete";
+                            } else {
+                               condition = type.equalsIgnoreCase("Equipment") ? "Available" : "Incomplete";
+                            }
 
-                    if (resolveQuantity == 0){
-                         resolve = "Resolved";
-                    } else {
-                         resolve = bCondition;
-                    }
+                            if (resolveQuantity == 0){
+                                 resolve = "Resolved";
+                            } else {
+                                 resolve = bCondition;
+                            }
 
-                    String updateTransaq = "update borrowTransaction set bQuantityLoss = '"+resolveQuantity+"' , bCondition = '"+resolve+"' where bID = '"+bID+"' ";
-                    String updateInventory = "update inventory set itemCurrentQuantity = '"+resolveInventoryQuantity+"', itemCondition = '"+condition+"' where itemKey = '"+iKey+"'";
-                    stmt.execute(updateTransaq);
-                    stmt.execute(updateInventory);
+                            String updateTransaq = "update borrowTransaction set bQuantityLoss = '"+resolveQuantity+"' , bCondition = '"+resolve+"' where bID = '"+bID+"' ";
+                            String updateInventory = "update inventory set itemCurrentQuantity = '"+resolveInventoryQuantity+"', itemCondition = '"+condition+"' where itemKey = '"+iKey+"'";
+                            String updateDMTransaq = "update damageMissingTransaction set quantityResolve = '"+resolveQuantity+"' , status = '"+resolve+"' where bID = '"+bID+"'   " ;
+                            stmt.execute(updateTransaq);
+                            stmt.execute(updateInventory);
+                            stmt.execute(updateDMTransaq);
 
-                    String audit = "insert into audit values (NULL,'" + user + "' , '" + aDate + "','" + aTime + "','Resolved item " + iKey + "','Resolve Item','"+iKey+"')";
-                    stmt.execute(audit);
+                            String audit = "insert into audit values (NULL,'" + user + "' , '" + aDate + "','" + aTime + "','Resolved item " + iKey + "','Resolve Item','"+iKey+"')";
+                            stmt.execute(audit);
 
-                    response.sendRedirect("report/damagesMissing.jsp");
+                            response.sendRedirect("report/damagesMissing.jsp");
                 }catch(Exception e){
                     e.printStackTrace();
                 }

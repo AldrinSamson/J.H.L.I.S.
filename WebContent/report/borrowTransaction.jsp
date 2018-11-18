@@ -502,7 +502,8 @@
                     message : 'University of Santo Tomas | Junior Highschool | Physics/Chemistry Laboratory '
                 }
             ],
-            "paging" : false
+            "paging" : false,
+            //"order" : [[2, "asc"]]
         });
 
 

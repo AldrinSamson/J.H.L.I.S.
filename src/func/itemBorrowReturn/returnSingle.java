@@ -26,7 +26,7 @@ public class returnSingle extends HttpServlet {
     ResultSet get;
     int nowReturnQuantity , newReturnCurrentQuantity ,newReturnTotalQuantity , nowCurrentInventoryQuantity ,  nowTotalInventoryQuantity;
     String type,bName;
-    String condition , user;
+    String condition , user , aKey , sID;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -36,6 +36,7 @@ public class returnSingle extends HttpServlet {
             String rResponse = request.getParameter("response");
             String bID = request.getParameter("bID");
             int bQ = Integer.parseInt(request.getParameter("bQ"));
+            String remarks = request.getParameter("remarks");
 
             DateFormat df = new SimpleDateFormat("HH:mm:ss");
             String bETime = df.format(new Date());
@@ -46,7 +47,7 @@ public class returnSingle extends HttpServlet {
                 out.println ("<html><body><script type='text/javascript'>alert('Please log-in first.');location='../index.html';</script></body></html>");
             }else {
                 user = (String) request.getSession(false).getAttribute("user");
-
+                aKey = (String) request.getSession(false).getAttribute("aKey");
                 try {
 
                     Class.forName(MYclass);
@@ -70,6 +71,7 @@ public class returnSingle extends HttpServlet {
                     while (get.next()) {
                         nowReturnQuantity = get.getInt("bQuantity");
                         bName = get.getString("sName");
+                        sID = get.getString("sID");
                     }
                     get.close();
 
@@ -109,7 +111,8 @@ public class returnSingle extends HttpServlet {
                             stmt.execute(updateInventory);
                             String audit = "insert into audit values (NULL,'" + user + "' , '" + bEDate + "','" + bETime + "','" + bName + " reported item " + iKey + " as Missing','Missing Item','" + bID + "')";
                             stmt.execute(audit);
-
+                            String missing = "insert into damagemissingtransaction values (NULL ,'"+iKey +"', '"+bID+"', '"+aKey+"' , '"+sID+"' , 'Missing' , '1',NULL,'"+remarks+"' , 'Unresolved' , '"+bEDate+"' , '"+bETime+"' )";
+                            stmt.execute(missing);
                             response.sendRedirect("borrow/borrow.jsp");
 
                         } else {
@@ -134,6 +137,8 @@ public class returnSingle extends HttpServlet {
                             stmt.execute(updateInventory);
                             String audit = "insert into audit values (NULL,'" + user + "' , '" + bEDate + "','" + bETime + "','" + bName + " reported item " + iKey + " as Damaged','Damaged Item','" + bID + "')";
                             stmt.execute(audit);
+                            String damage = "insert into damagemissingtransaction values (NULL ,'"+iKey +"', '"+bID+"', '"+aKey+"' , '"+sID+"' , 'Damaged' ,'1',NULL, '"+remarks+"' , 'Unresolved' ,  '"+bEDate+"' , '"+bETime+"' )";
+                            stmt.execute(damage);
 
                             response.sendRedirect("borrow/borrow.jsp");
 

@@ -28,7 +28,7 @@ public class returnApparatusSingle extends HttpServlet {
     ResultSet get;
     String user;
     int inventoryCQ , inventoryTQ ,inventoryReturn, newCQ , newTQ ,  quantityTotal;
-    String type,iKey ,sName;
+    String type,iKey ,sName , aKey ,sID;
     String condition;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -41,6 +41,7 @@ public class returnApparatusSingle extends HttpServlet {
             int quantityLoss = Integer.parseInt(request.getParameter("qLoss"));
             String mResponse = request.getParameter("response");
             String bID = (String)request.getSession(false).getAttribute("bID");
+            String remarks = request.getParameter("remarks");
 
             DateFormat df = new SimpleDateFormat("HH:mm:ss");
             String bETime = df.format(new Date());
@@ -53,6 +54,7 @@ public class returnApparatusSingle extends HttpServlet {
             }else {
                 user = (String)request.getSession(false).getAttribute("user");
                 quantityTotal = (Integer)request.getSession(false).getAttribute("quantityTotal");
+                aKey = (String)request.getSession(false).getAttribute("aKey");
 
 
             try {
@@ -61,13 +63,14 @@ public class returnApparatusSingle extends HttpServlet {
                 con = DriverManager.getConnection(MYdburl);
                 stmt = con.createStatement();
 
-                String getTransaction = "select bItemKey , sName  from borrowtransaction where bID = '"+bID+"'";
+                String getTransaction = "select bItemKey , sName  , sID from borrowtransaction where bID = '"+bID+"'";
                 get = stmt.executeQuery(getTransaction);
 
                 while (get.next()) {
 
                     iKey = get.getString("bItemKey");
                     sName = get.getString("sName");
+                    sID = get.getString("sID");
                 }
 
                 String getDetails = "select d.itemType  , i.itemCurrentQuantity ,i.itemTotalQuantity from itemdetails d join inventory i on i.itemKey = d.itemKey  where i.itemKey = '"+iKey+"' ";
@@ -98,6 +101,8 @@ public class returnApparatusSingle extends HttpServlet {
                 stmt.execute(updateBorrow);
                 stmt.execute(updateInventory);
                 stmt.execute(audit);
+                String missing = "insert into damagemissingtransaction values (NULL ,'"+iKey +"', '"+bID+"', '"+aKey+"' , '"+sID+"' , '"+bCondition+"' ,'"+quantityLoss+"',NULL, '"+remarks+"' , 'Unresolved' , '"+bEDate+"' , '"+bETime+"' )";
+                stmt.execute(missing);
 
                 response.sendRedirect("borrow/borrow.jsp");
 

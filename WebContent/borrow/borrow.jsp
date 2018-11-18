@@ -486,12 +486,14 @@
                 <label  class = "label-modal">Item Code</label>
                 <label  class = "label-modal">Name</label>
                 <label  class = "label-modal">Quantity</label>
+                <label  class = "label-modal">Remarks</label>
             </div>
             <div  style = "display:table-cell; position:absolute; top:40px;">
                 <input type ="text" name = "iKey" class="input-modal" id = "EID" readonly>
                 <input type ="text" name = "iName" class="input-modal" id = "EName" readonly>
                 <input type ="text" name = "bQ" class="input-modal" id = "BQ" >
                 <input type ="text" name = "bID" class="input-modal" id = "BID" hidden>
+                <input type ="text" name = "remarks" class="input-modal"  >
             </div>
 
         </div>
@@ -523,10 +525,12 @@
             <div style = "display:table-cell">
                 <label  class = "label-modal">Key</label>
                 <label  class = "label-modal">Loss : </label>
+                 <label  class = "label-modal">Remarks</label>
             </div>
             <div  style = "display:table-cell; position:absolute; top:40px;">
                 <input type ="text" name = "iName" class="input-modal" id = "name" value = <%=bID%> readonly>
                 <input type ="text" name = "qLoss" class="input-modal"  >
+                 <input type ="text" name = "remarks" class="input-modal"  >
                 Report:
                         <input type ="submit" name = "response" class="btn btn-default btn-md" value = "Missing">
                         <input type ="submit" name = "response" class="btn btn-default btn-md" value = "Damaged">
@@ -591,7 +595,8 @@
 
     $(document).ready(function(){
         var ReturnETableX = $("#ReturnETable").DataTable({
-            "paging": false
+            "paging": false,
+            "order": [[8,"asc"]]
         });
         $('#ReturnETable tbody').on('click', 'tr', function(){
             var ReturnEdata = ReturnETableX.row(this).data();

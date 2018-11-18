@@ -72,10 +72,10 @@ public class borrowSingle extends HttpServlet {
                     out.println("<html><body><script type='text/javascript'>alert('item not available');location='borrow/borrow.jsp';</script></body></html>");
                 }else {
 
-                    String getQ = "select i.itemCurrentQuantity , d.itemType ,i.itemTotalQuantity from inventory i join itemdetails d on i.itemKey = d.itemKey where i.itemKey = '"+iKey+"'";
+                    String getQ = "select i.itemCurrentQuantity , d.itemType ,i.itemTotalQuantity from inventory i join itemdetails d on i.itemKey = d.itemKey where i.itemKey = '" + iKey + "'";
                     get = stmt.executeQuery(getQ);
 
-                    while (get.next()){
+                    while (get.next()) {
 
                         type = get.getString("itemType");
                         nowQ = get.getInt("itemCurrentQuantity");
@@ -87,48 +87,53 @@ public class borrowSingle extends HttpServlet {
 
                     get.close();
 
-                    String getID = "select bID  from borrowtransaction order by bID desc limit 1";
-                    get = stmt.executeQuery(getID);
-                    if (!get.next()){
-                        newid = 1;
-                    }else {
-                        while (get.next()) {
+                    if((nowQ >= nowTQ) && (!type.equals("Equipment"))) {
 
-                            int id = get.getInt("bID");
-                            newid = id + 1;
+                        String getID = "select bID  from borrowtransaction order by bID desc limit 1";
+                        get = stmt.executeQuery(getID);
+                        if (!get.next()) {
+                            newid = 1;
+                        } else {
+                            while (get.next()) {
+
+                                int id = get.getInt("bID");
+                                newid = id + 1;
+                            }
                         }
-                    }
 
-                    String status;
+                        String status;
 
-                    if(type.equalsIgnoreCase("Equipment")){
-                        newCondition = "Not Available";
-                        status = "Not Returned";
-                    }else if (type.equalsIgnoreCase("Apparatus")){
-                        newCondition = "Incomplete";
-                        status = "Not Returned";
-                    }else {
-                        newCondition = "OK";
-                        status = "N/A";
-                    }
+                        if (type.equalsIgnoreCase("Equipment")) {
+                            newCondition = "Not Available";
+                            status = "Not Returned";
+                        } else if (type.equalsIgnoreCase("Apparatus")) {
+                            newCondition = "Incomplete";
+                            status = "Not Returned";
+                        } else {
+                            newCondition = "OK";
+                            status = "N/A";
+                        }
 
-                        String newTransaq = "insert into borrowTransaction values (NULL,'" + iKey + "','" + bQuantity + "','"+status+"','" + bID + "','" + bName + "','" + bClass + "','" + bSupervisor + "','" + bDate + "',NULL,'" + bSTime + "',NULL ,NULL)";
+                        String newTransaq = "insert into borrowTransaction values (NULL,'" + iKey + "','" + bQuantity + "','" + status + "','" + bID + "','" + bName + "','" + bClass + "','" + bSupervisor + "','" + bDate + "',NULL,'" + bSTime + "',NULL ,NULL)";
                         stmt.execute(newTransaq);
 
-                        if (type.equalsIgnoreCase("Consumable")){
+                        if (type.equalsIgnoreCase("Consumable")) {
 
                             String updateItem = "update inventory set itemCondition = '" + newCondition + "' , itemCurrentQuantity = '" + newQ + "', itemTotalQuantity = '" + newTQ + "' where itemKey = '" + iKey + "'";
                             stmt.execute(updateItem);
 
-                        }else {
+                        } else {
 
                             String updateItem = "update inventory set itemCondition = '" + newCondition + "' , itemCurrentQuantity = '" + newQ + "' where itemKey = '" + iKey + "'";
                             stmt.execute(updateItem);
                         }
-                        String audit = "insert into audit values (NULL,'"+user+"' , '"+bDate+"','"+bSTime+"','Lent item "+iKey+" to "+bName+" ','Lent Item','"+newid+"')";
+                        String audit = "insert into audit values (NULL,'" + user + "' , '" + bDate + "','" + bSTime + "','Lent item " + iKey + " to " + bName + " ','Lent Item','" + newid + "')";
                         stmt.execute(audit);
 
-                    out.println("<html><body><script type='text/javascript'>location='borrow/borrow.jsp';</script></body></html>");
+                        out.println("<html><body><script type='text/javascript'>location='borrow/borrow.jsp';</script></body></html>");
+                    }else {
+                        out.println("<html><body><script type='text/javascript'>alert('item not available');location='borrow/borrow.jsp';</script></body></html>");
+                    }
                 }
                 if (con != null) {
                     con.close();

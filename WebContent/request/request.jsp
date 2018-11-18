@@ -193,8 +193,8 @@
                                                     <th>Date</th>
                                                     <th>Time</th>
                                                     <th>Condition</th>
-                                                    <th>Status</th>
                                                     <th>Date Required</th>
+                                                    <th>Time Required</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -202,7 +202,7 @@
                                                     try {
 
                                                         aKey = (String)session.getAttribute("aKey");
-                                                        query = "SELECT * from request where aKey = '"+aKey+"'";
+                                                        query = "SELECT * from request where aKey = '"+aKey+"' and isDisabled is NULL";
                                                         rs = stmt.executeQuery(query);
 
                                                         while(rs.next()){
@@ -216,9 +216,9 @@
                                                     </td>
                                                     <td><%=rs.getString("rCondition") %>
                                                     </td>
-                                                    <td><%=rs.getString("rStatus")%>
-                                                    </td>
                                                     <td><%=rs.getString("rDateRequired")%>
+                                                    </td>
+                                                    <td><%=rs.getString("rTimeRequired")%>
                                                     </td>
 
                                                 </tr>
@@ -266,6 +266,10 @@
                 <td><label class="label-modal">Date Required</label></td>
                 <td><input type="text" name="date"  class="input-modal--date" placeholder="yy/mm/dd" ></td>
             </tr>
+             <tr>
+                <td><label class="label-modal">Time Required</label></td>
+                <td><input type="text" name="time"  class="input-modal" placeholder= "" ></td>
+            </tr>
         </table>
 		</pre>
                     </div>
@@ -283,7 +287,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header"><h4>Message</h4></div>
-                <form action="" method="post">
+                <form action="../disableRequest" method="post">
 
                     <div class="modal-body">
 
@@ -294,6 +298,7 @@
 		</pre>
                     </div>
                     <div class="modal-footer">
+                        <input type = "submit" class = "btn btn-default btn-md" name = "disable" value = "Delete Message">
                         <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
                     </div>
                 </form>
@@ -440,7 +445,11 @@
     });
 
     $(document).ready(function () {
-        var eTable = $("#nTable").DataTable();
+        var eTable = $("#nTable").DataTable({
+
+            "paging" : false,
+            "order" : [[2, "desc"]]
+        });
         $('#nTable tbody').on('click', 'tr', function () {
             var eTableData = eTable.row(this).data();
            // $('#mEgdit').modal('show');

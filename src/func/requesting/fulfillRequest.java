@@ -61,7 +61,7 @@ public class fulfillRequest extends HttpServlet {
 
                 if (mResponse.equals("Reject")) {
 
-                    String reject = "update request set rCondition = 'Rejected' ,rStatus = 'Fulfilled' where rID = '" + rID + "'";
+                    String reject = "update request set rCondition = 'Rejected'where rID = '" + rID + "'";
                     stmtE.execute(reject);
                     String audit = "insert into audit values (NULL,'" + user + "' , '" + aDate + "','" + aTime + "','" + user + " rejected request of " + prof + " ','Rejected Request','" + rID + "')";
                     stmtE.execute(audit);
