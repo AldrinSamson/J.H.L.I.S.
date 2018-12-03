@@ -1,4 +1,7 @@
 package bean;
+import java.io.BufferedReader;
+import java.io.FileReader;
+
 
 public class getBean {
 
@@ -17,6 +20,7 @@ public class getBean {
 	public static String getMyClass() {
 		return myClass;
 	}
+
 
 
 	//Connection Pooling

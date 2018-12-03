@@ -339,28 +339,6 @@
                                         <div class="tab-pane fade-in active" id="tab-elist">
                                             <div class="col-lg-12">
                                                 <button type="button" class="btn new-item-btn"  href="#mEAdd" data-toggle="modal">NEW ITEM</button>
-                                                <table class="table table-borderless table-striped table-earning">
-                                                    <tr>
-                                                        <% try {
-
-                                                            String queryX = "select itemName, sum(itemTotalQuantity) from inventory i join itemdetails d on d.itemKey=i.itemKey where itemType ='Equipment'and itemLab ='Physics' group by itemName";
-                                                            counter = stmt.executeQuery(queryX);
-
-                                                            while (counter.next()) {
-
-                                                        %>
-                                                        <th><%=counter.getString("itemName")%>
-                                                        </th>
-                                                        <td><%=counter.getString("sum(itemTotalQuantity)")%>
-                                                        </td>
-                                                        <%
-                                                                }
-                                                            } catch (Exception e) {
-                                                                e.printStackTrace();
-                                                            }
-                                                        %>
-                                                    </tr>
-                                                </table>
                                                 <div class="table-responsive table--no-card m-b-40">
                                                     <table class="table table-borderless table-striped table-earning" id="ETable">
                                                         <thead>
@@ -412,32 +390,6 @@
                                         <div class="tab-pane fade-in" id="tab-alist">
                                             <div class="col-lg-12">
                                                 <button type="button" class="btn new-item-btn"  href="#mAAdd" data-toggle="modal">NEW ITEM</button>
-                                                <table class="table table-borderless table-striped table-earning">
-                                                    <tr>
-                                                            <%
-					  			try {
-					  			      String queryX = "select itemName ,sum(itemCurrentQuantity), itemUnit from itemdetails d join inventory i " +
-					  			       "on d.itemKey=i.itemKey where itemLab = 'Physics' and itemType ='Apparatus'" +
-					  			        " group by itemName ";
-                                     counter = stmt.executeQuery(queryX);
-                                     while(counter.next()){
-                                         String unitX = counter.getString("itemUnit");
-                                        int iQ = counter.getInt("sum(itemCurrentQuantity)");
-                                        if (iQ > 1){
-                                            unitX = unitX+"s";
-                                        }
-                                   %>
-                                                        <th><%=counter.getString("itemName")%>
-                                                        </th>
-                                                        <td><%=iQ%><%=unitX%>
-                                                        </td>
-                                                            <%
-                                    	 }
-                               			 } catch (Exception e){
-                                   			 e.printStackTrace();
-                               			 }
-		       					%>
-                                                </table>
                                                 <div class="table-responsive table--no-card m-b-40">
                                                     <table class="table table-borderless table-striped table-earning"
                                                            id="ATable">
@@ -503,32 +455,6 @@
                                         <div class="tab-pane fade-in" id="tab-clist">
                                             <div class="col-lg-12">
                                                 <button type="button" class="btn new-item-btn" href="#mCAdd" data-toggle="modal">NEW ITEM</button>
-                                                <table class="table table-borderless table-striped table-earning">
-                                                    <tr>
-                                                            <%
-					  			try {
-					  			      String queryX = "select itemName , itemForm ,sum(itemTotalQuantity), itemUnit from itemdetails d join inventory i " +
-					  			       "on d.itemKey=i.itemKey where itemCondition 	= 'OK' and itemLab = 'Physics' and itemType ='Consumable'" +
-					  			        " group by itemName , itemForm";
-                                     counter = stmt.executeQuery(queryX);
-                                     while(counter.next()){
-                                         String unitX = counter.getString("itemUnit");
-                                        int iQ = counter.getInt("sum(itemTotalQuantity)");
-                                        if (iQ > 1){
-                                            unitX = unitX+"s";
-                                        }
-                                   %>
-                                                        <th><%=counter.getString("itemName")%> <%=counter.getString("itemForm")%>
-                                                        </th>
-                                                        <td><%=iQ%><%=unitX%>
-                                                        </td>
-                                                            <%
-                                    	 }
-                               			 } catch (Exception e){
-                                   			 e.printStackTrace();
-                               			 }
-		       					%>
-                                                </table>
                                                 <div class="table-responsive table--no-card m-b-40">
                                                     <table class="table table-borderless table-striped table-earning"
                                                            id="CTable">
@@ -668,13 +594,6 @@
                 <td><label class="label-modal">Quantity</label></td>
                 <td><input type="text" name="quantity" class="input-modal"></td>
             </tr>
-            <tr>
-                <td><label class="label-modal">Unit</label></td>
-                <td><select name = "unit" class = "select-modal">
-                    <option valu> Piece </option>
-                    </select>
-                </td>
-            </tr>
         </table>
 
 
@@ -782,13 +701,6 @@
             <tr>
                 <td><label class="label-modal">Quantity</label></td>
                 <td><input type="text" name="quantity" class="input-modal" value = "<%=iQuantity%>"></td>
-            </tr>
-            <tr>
-                <td><label class="label-modal">Unit</label></td>
-                <td><select name = "unit" class = "select-modal" value = "<%=iUnit%>">
-                    <option> Piece </option>
-
-                     </select> </td>
             </tr>
         </table>
 		</pre>
@@ -1018,13 +930,6 @@
                                         <tr>
                                             <td><label class="label-modal">Current Quantity</label></td>
                                             <td><input type="text" name="quantityC" class="input-modal" id = "ACQ"></td>
-                                        </tr>
-                                        <tr>
-                                            <td><label class="label-modal">Unit</label></td>
-                                            <td><select name = "unit" class = "select-modal" id = "AUnit">
-                                                <option> Piece </option>
-
-                                            </select> </td>
                                         </tr>
                                         <tr>
                                             <td><label class="label-modal">Condition</label></td>

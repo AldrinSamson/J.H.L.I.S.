@@ -389,7 +389,7 @@ Class.forName(MYclass);
             </tr>
             <tr>
                 <td><label class="label-modal">ID</label></td>
-                <td><input type="text" name="id" class="input-modal"></td>
+                <td><input type="number" name="id" class="input-modal"></td>
             </tr>
             <tr>
                 <td><label class="label-modal">Secret Question 1</label></td>

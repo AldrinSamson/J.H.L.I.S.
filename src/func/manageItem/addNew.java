@@ -89,10 +89,13 @@ public class addNew extends HttpServlet {
                     fAbbv = "N/A";
                     dateType = "N/A";
                     condition = "Complete";
+                    unit = "Piece";
                 } else {
                     dateType = "Expiration";
                     condition = "OK";
                 }
+
+
 
                 try {
                     Class.forName(MYclass);

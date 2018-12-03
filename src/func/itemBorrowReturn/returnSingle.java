@@ -146,6 +146,7 @@ public class returnSingle extends HttpServlet {
 
                             HttpSession log = request.getSession(false);
                             log.setAttribute("bID", bID);
+                            log.setAttribute("quantityTotal", nowReturnQuantity);
                             response.sendRedirect("borrow/borrow.jsp#returnApparatus");
 
                         }

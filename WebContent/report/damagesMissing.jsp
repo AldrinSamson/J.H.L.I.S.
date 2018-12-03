@@ -329,19 +329,19 @@
                                                             try {
 
 
-                                                                query = "select b.bID , b.bItemKey , i.itemName , i.itemDesc , b.bQuantityLoss , i.itemUnit , b.bCondition from borrowtransaction b join itemdetails i on b.bItemKey = i.itemKey where b.bCondition = 'Damaged' ";
+                                                                query = "select * from damageMissingTransaction dm join itemDetails id on dm.itemKey = id.itemKey  where dm.type = 'Damaged'";
                                                                 rs = stmt.executeQuery(query);
 
                                                                 while(rs.next()){
                                                         %>
                                                         <tr>
                                                             <td><%=rs.getString("bID")%></td>
-                                                            <td><%=rs.getString("bItemKey")%></td>
+                                                            <td><%=rs.getString("itemKey")%></td>
                                                             <td><%=rs.getString("itemName")%></td>
                                                             <td><%=rs.getString("itemDesc")%></td>
-                                                            <td><%=rs.getString("bQuantityLoss")%></td>
+                                                            <td><%=rs.getString("quantityLoss")%></td>
                                                             <td><%=rs.getString("itemUnit")%></td>
-                                                            <td><%=rs.getString("bCondition")%></td>
+                                                            <td><%=rs.getString("status")%></td>
                                                         </tr>
                                                         <%
                                                                 }
@@ -375,19 +375,19 @@
                                                             try {
 
 
-                                                                query = "select b.bID ,b.bItemKey , i.itemName , i.itemDesc , b.bQuantityLoss , i.itemUnit , b.bCondition from borrowtransaction b join itemdetails i on b.bItemKey = i.itemKey where b.bCondition = 'Missing' ";
+                                                                query = "select * from damageMissingTransaction dm join itemDetails id on dm.itemKey = id.itemKey  where dm.type = 'Missing' ";
                                                                 rs = stmt.executeQuery(query);
 
                                                                 while(rs.next()){
                                                         %>
                                                         <tr data-toggle="modal" id="mCEDit" >
                                                             <td><%=rs.getString("bID")%></td>
-                                                            <td><%=rs.getString("bItemKey")%></td>
+                                                            <td><%=rs.getString("itemKey")%></td>
                                                             <td><%=rs.getString("itemName")%></td>
                                                             <td><%=rs.getString("itemDesc")%></td>
-                                                            <td><%=rs.getString("bQuantityLoss")%></td>
+                                                            <td><%=rs.getString("quantityLoss")%></td>
                                                             <td><%=rs.getString("itemUnit")%></td>
-                                                            <td><%=rs.getString("bCondition")%></td>
+                                                            <td><%=rs.getString("status")%></td>
                                                         </tr>
                                                         <%
                                                                 }

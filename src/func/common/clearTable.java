@@ -57,6 +57,8 @@ public class clearTable extends HttpServlet {
                         out.println("<html><body><script type='text/javascript'>alert('Invalid username or password!');location='report/"+location+".jsp';</script></body></html>");
                     }
 
+                    response.sendRedirect("report/"+location+".jsp");
+
                 } catch (Exception e){
                     e.printStackTrace();
                 }

@@ -84,6 +84,7 @@ public class checkNew extends HttpServlet {
                     itemFAbbv = "N/A";
                     dateType = "N/A";
                     condition = "Complete";
+                    unit = "Piece";
                 }
 
                 try {

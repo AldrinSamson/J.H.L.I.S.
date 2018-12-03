@@ -503,7 +503,7 @@
                                 </tr>
                                 <tr>
                                     <td>borrower ID</td>
-                                    <td><input type="text" name="bID" class="input-modal"></td>
+                                    <td><input type="number" name="bID" class="input-modal"></td>
                                 </tr>
                                 <tr>
                                     <td>Name</td>
