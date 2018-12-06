@@ -87,7 +87,7 @@ public class borrowSingle extends HttpServlet {
 
                     get.close();
 
-                    if((nowQ >= nowTQ) ) {
+                    if((nowQ <= nowTQ) ) {
 
                         String getID = "select bID  from borrowtransaction order by bID desc limit 1";
                         get = stmt.executeQuery(getID);

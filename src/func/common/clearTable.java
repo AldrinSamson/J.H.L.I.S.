@@ -49,12 +49,23 @@ public class clearTable extends HttpServlet {
                     ResultSet rs = ps.executeQuery();
                     if (rs.next()){
 
-                        String truncateTable = "truncate "+table+"";
-                        stmt.execute(truncateTable);
+                        if (table.equalsIgnoreCase("request")) {
+                            String truncateTable = "delete from " + table + " where rCondition <> 'Pending' ";
+                            stmt.execute(truncateTable);
+                        }else if (table.equalsIgnoreCase("damageMissingTransaction")){
+                            String truncateTable = "delete from " + table + " where status = 'Resolved' ";
+                            stmt.execute(truncateTable);
+                        }else{
+                            String truncateTable = "truncate " + table + "";
+                            stmt.execute(truncateTable);
+                        }
 
                     }else {
-
-                        out.println("<html><body><script type='text/javascript'>alert('Invalid username or password!');location='report/"+location+".jsp';</script></body></html>");
+                        if (location.equalsIgnoreCase("requestAdmin")){
+                            out.println("<html><body><script type='text/javascript'>alert('Invalid username or password!');location='request/" + location + ".jsp';</script></body></html>");
+                        }else {
+                            out.println("<html><body><script type='text/javascript'>alert('Invalid username or password!');location='report/" + location + ".jsp';</script></body></html>");
+                        }
                     }
 
                     response.sendRedirect("report/"+location+".jsp");

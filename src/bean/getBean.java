@@ -5,7 +5,7 @@ import java.io.FileReader;
 
 public class getBean {
 
-	private static String myUrl = "jdbc:mysql://localhost/jhlis?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&user=root&password=8888";
+	private static String myUrl;// = "jdbc:mysql://localhost/jhlis?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&user=root&password=8888";
 
 	private static String myClass = "com.mysql.cj.jdbc.Driver";
 

@@ -2,28 +2,29 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="jhlis:war" />
+      <artifact name="jhlis:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/WebContent/report/audit.jsp" line="318" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a8f9b66-ebec-4db9-bcd2-8796a87d45f7" name="Default Changelist" comment="clear">
+    <list default="true" id="3a8f9b66-ebec-4db9-bcd2-8796a87d45f7" name="Default Changelist" comment="- start date on tranasction -- ok&#10;- remove counters -- ok&#10;- segregate items betwwen lab and type in all pages -- ok&#10;-  Student ID is Number validation on all modals --ok&#10;- Make item unit on appratus automatic -- ok&#10;-others">
+      <change afterPath="$PROJECT_DIR$/src/func/common/fileReader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/func/common/listener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/func/common/validation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/account/account.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/account/account.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebContent/borrow/borrow.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/borrow/borrow.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/borrow/borrowSet.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/borrow/borrowSet.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/inventory/chemistry.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/inventory/chemistry.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/inventory/physics.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/inventory/physics.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/dashboard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/report/borrowTransaction.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/report/borrowTransaction.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebContent/report/damagesMissing.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/report/damagesMissing.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/report/inventory.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/report/inventory.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/request/requestAdmin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/request/requestAdmin.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jhlis.iml" beforeDir="false" afterPath="$PROJECT_DIR$/jhlis.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bean/getBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bean/getBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/func/common/clearTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/func/common/clearTable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/func/itemBorrowReturn/borrowSingle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/func/itemBorrowReturn/borrowSingle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/func/itemBorrowReturn/returnSingle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/func/itemBorrowReturn/returnSingle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/func/manageItem/addNew.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/func/manageItem/addNew.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/func/manageItem/checkNew.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/func/manageItem/checkNew.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/func/manageItem/resolveItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/func/manageItem/resolveItem.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/build/classes/" />
@@ -75,20 +76,83 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="borrow.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebContent/borrow/borrow.jsp">
+      <file leaf-file-name="borrowTransaction.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebContent/report/borrowTransaction.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="380" column="76" selection-start-line="380" selection-start-column="76" selection-end-line="380" selection-end-column="76" />
+            <state relative-caret-position="340">
+              <caret line="301" column="64" lean-forward="true" selection-start-line="301" selection-start-column="64" selection-end-line="301" selection-end-column="64" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="borrowSet.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebContent/borrow/borrowSet.jsp">
+      <file leaf-file-name="clearTable.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/func/common/clearTable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-398">
-              <caret line="505" column="59" selection-start-line="505" selection-start-column="59" selection-end-line="505" selection-end-column="59" />
+            <state relative-caret-position="250">
+              <caret line="57" column="30" lean-forward="true" selection-start-line="57" selection-start-column="30" selection-end-line="58" selection-end-column="76" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="borrowSingle.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/func/itemBorrowReturn/borrowSingle.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1576">
+              <caret line="134" column="126" lean-forward="true" selection-start-line="134" selection-start-column="126" selection-end-line="134" selection-end-column="126" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="insights.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebContent/report/insights.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="647">
+              <caret line="565" column="44" selection-start-line="565" selection-start-column="44" selection-end-line="565" selection-end-column="44" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="web.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebContent/WEB-INF/web.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="39" lean-forward="true" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addSet.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/func/manageSet/addSet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1037">
+              <caret line="70" column="138" lean-forward="true" selection-start-line="70" selection-start-column="138" selection-end-line="70" selection-end-column="138" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="deleteDuplicateSet.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/func/manageSet/deleteDuplicateSet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="75" column="91" lean-forward="true" selection-start-line="75" selection-start-column="91" selection-end-line="75" selection-end-column="91" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="requestAdmin.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebContent/request/requestAdmin.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="398" column="64" lean-forward="true" selection-start-line="398" selection-start-column="64" selection-end-line="398" selection-end-column="64" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="damagesMissing.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebContent/report/damagesMissing.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="396">
+              <caret line="496" column="14" lean-forward="true" selection-start-line="496" selection-start-column="14" selection-end-line="496" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -96,71 +160,8 @@
       <file leaf-file-name="chemistry.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebContent/inventory/chemistry.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2121">
-              <caret line="593" column="17" selection-start-line="593" selection-start-column="17" selection-end-line="593" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="account.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebContent/account/account.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2834">
-              <caret line="589" column="51" lean-forward="true" selection-start-line="589" selection-start-column="51" selection-end-line="589" selection-end-column="51" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="borrowTransaction.jsp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/WebContent/report/borrowTransaction.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2161">
-              <caret line="328" column="71" lean-forward="true" selection-start-line="328" selection-start-column="71" selection-end-line="328" selection-end-column="71" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="physics.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebContent/inventory/physics.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1642">
-              <caret line="932" column="45" selection-start-line="932" selection-start-column="45" selection-end-line="932" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="addNew.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/func/manageItem/addNew.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="91" column="35" lean-forward="true" selection-start-line="91" selection-start-column="17" selection-end-line="91" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="resolveItem.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/func/manageItem/resolveItem.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="checkNew.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/func/manageItem/checkNew.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="86" column="35" selection-start-line="86" selection-start-column="35" selection-end-line="86" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="editItem.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/func/manageItem/editItem.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-986">
-              <caret line="39" column="31" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
+            <state relative-caret-position="188">
+              <caret line="389" column="133" lean-forward="true" selection-start-line="389" selection-start-column="133" selection-end-line="389" selection-end-column="133" />
             </state>
           </provider>
         </entry>
@@ -171,6 +172,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -207,12 +209,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/WebContent/requestAdmin.jsp" />
-        <option value="$PROJECT_DIR$/WebContent/index.html" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/func/account/addAccount.java" />
         <option value="$PROJECT_DIR$/src/func/account/logout.java" />
-        <option value="$PROJECT_DIR$/WebContent/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/WebContent/css/theme.css" />
         <option value="$PROJECT_DIR$/src/func/manageSet/deleteSet.java" />
         <option value="$PROJECT_DIR$/src/func/itemBorrowReturn/returnMissingSingle.java" />
@@ -235,21 +232,13 @@
         <option value="$PROJECT_DIR$/WebContent/inventory/nonBorrowable.jsp" />
         <option value="$PROJECT_DIR$/WebContent/report/insights.jsp" />
         <option value="$PROJECT_DIR$/WebContent/report/audit.jsp" />
-        <option value="$PROJECT_DIR$/WebContent/report/borrowTransaction.jsp" />
         <option value="$PROJECT_DIR$/src/func/requesting/approveRequest.java" />
         <option value="$PROJECT_DIR$/src/func/requesting/fulfillRequest.java" />
-        <option value="$PROJECT_DIR$/WebContent/dashboard.jsp" />
         <option value="$PROJECT_DIR$/src/func/requesting/addRequest.java" />
         <option value="$PROJECT_DIR$/WebContent/request/request.jsp" />
         <option value="$PROJECT_DIR$/src/func/requesting/disableRequest.java" />
-        <option value="$PROJECT_DIR$/WebContent/request/requestAdmin.jsp" />
         <option value="$PROJECT_DIR$/src/func/itemBorrowReturn/returnApparatusSingle.java" />
-        <option value="$PROJECT_DIR$/src/func/manageItem/resolveItem.java" />
-        <option value="$PROJECT_DIR$/src/bean/getBean.java" />
         <option value="$PROJECT_DIR$/src/func/itemBorrowReturn/returnSingle.java" />
-        <option value="$PROJECT_DIR$/src/func/itemBorrowReturn/borrowSingle.java" />
-        <option value="$PROJECT_DIR$/WebContent/report/damagesMissing.jsp" />
-        <option value="$PROJECT_DIR$/src/func/common/clearTable.java" />
         <option value="$PROJECT_DIR$/WebContent/report/inventory.jsp" />
         <option value="$PROJECT_DIR$/WebContent/borrow/borrowSet.jsp" />
         <option value="$PROJECT_DIR$/WebContent/account/account.jsp" />
@@ -257,7 +246,20 @@
         <option value="$PROJECT_DIR$/WebContent/inventory/physics.jsp" />
         <option value="$PROJECT_DIR$/src/func/manageItem/addNew.java" />
         <option value="$PROJECT_DIR$/src/func/manageItem/checkNew.java" />
+        <option value="$PROJECT_DIR$/src/bean/getBean.java" />
+        <option value="$PROJECT_DIR$/src/func/common/dburlReader.java" />
+        <option value="$PROJECT_DIR$/src/func/common/fileReader.java" />
+        <option value="$PROJECT_DIR$/src/func/common/validation.java" />
+        <option value="$PROJECT_DIR$/WebContent/report/borrowTransaction.jsp" />
+        <option value="$PROJECT_DIR$/WebContent/dashboard.jsp" />
+        <option value="$PROJECT_DIR$/src/func/common/listener.java" />
         <option value="$PROJECT_DIR$/WebContent/borrow/borrow.jsp" />
+        <option value="$PROJECT_DIR$/src/func/itemBorrowReturn/borrowSingle.java" />
+        <option value="$PROJECT_DIR$/src/func/manageItem/resolveItem.java" />
+        <option value="$PROJECT_DIR$/WebContent/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/WebContent/request/requestAdmin.jsp" />
+        <option value="$PROJECT_DIR$/WebContent/report/damagesMissing.jsp" />
+        <option value="$PROJECT_DIR$/src/func/common/clearTable.java" />
       </list>
     </option>
   </component>
@@ -278,8 +280,8 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="354" />
-    <option name="y" value="568" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
     <option name="width" value="1170" />
     <option name="height" value="607" />
   </component>
@@ -290,7 +292,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -307,6 +308,12 @@
               <item name="J.H.L.I.S" type="b2602c69:ProjectViewProjectNode" />
               <item name="J.H.L.I.S" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="bean" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="J.H.L.I.S" type="b2602c69:ProjectViewProjectNode" />
+              <item name="J.H.L.I.S" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="func" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -314,7 +321,35 @@
               <item name="J.H.L.I.S" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="func" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="J.H.L.I.S" type="b2602c69:ProjectViewProjectNode" />
+              <item name="J.H.L.I.S" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="func" type="462c0819:PsiDirectoryNode" />
+              <item name="itemBorrowReturn" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="J.H.L.I.S" type="b2602c69:ProjectViewProjectNode" />
+              <item name="J.H.L.I.S" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="func" type="462c0819:PsiDirectoryNode" />
               <item name="manageItem" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="J.H.L.I.S" type="b2602c69:ProjectViewProjectNode" />
+              <item name="J.H.L.I.S" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="func" type="462c0819:PsiDirectoryNode" />
+              <item name="manageNB" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="J.H.L.I.S" type="b2602c69:ProjectViewProjectNode" />
+              <item name="J.H.L.I.S" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="func" type="462c0819:PsiDirectoryNode" />
+              <item name="manageSet" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="J.H.L.I.S" type="b2602c69:ProjectViewProjectNode" />
@@ -337,6 +372,12 @@
               <item name="J.H.L.I.S" type="b2602c69:ProjectViewProjectNode" />
               <item name="J.H.L.I.S" type="462c0819:PsiDirectoryNode" />
               <item name="WebContent" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="J.H.L.I.S" type="b2602c69:ProjectViewProjectNode" />
+              <item name="J.H.L.I.S" type="462c0819:PsiDirectoryNode" />
+              <item name="WebContent" type="462c0819:PsiDirectoryNode" />
               <item name="inventory" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -351,10 +392,17 @@
               <item name="WebContent" type="462c0819:PsiDirectoryNode" />
               <item name="request" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="J.H.L.I.S" type="b2602c69:ProjectViewProjectNode" />
+              <item name="J.H.L.I.S" type="462c0819:PsiDirectoryNode" />
+              <item name="WebContent" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -363,8 +411,9 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537628430539" />
     <property name="full.screen.before.presentation.mode" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src" />
+    <property name="last_opened_file_path" value="D:/API - FRAMEWORKS/commons-io-2.6/commons-io-2.6.jar!/" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -391,12 +440,12 @@
   </component>
   <component name="RunManager">
     <configuration name="Tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.31" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="1.8">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/jhlis/" />
+      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="jhlis:war">
+        <artifact name="jhlis:war exploded">
           <settings>
-            <option name="CONTEXT_PATH" value="/jhlis" />
+            <option name="CONTEXT_PATH" value="/" />
           </settings>
         </artifact>
       </deployment>
@@ -458,7 +507,7 @@
       </ConfigurationWrapper>
       <method>
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="jhlis:war" />
+          <artifact name="jhlis:war exploded" />
         </option>
       </method>
     </configuration>
@@ -582,7 +631,9 @@
       <workItem from="1543027495103" duration="4783000" />
       <workItem from="1543248870732" duration="14000" />
       <workItem from="1543550612016" duration="2581000" />
-      <workItem from="1543850299230" duration="5735000" />
+      <workItem from="1543850299230" duration="6019000" />
+      <workItem from="1543923453085" duration="11495000" />
+      <workItem from="1544094442401" duration="4102000" />
     </task>
     <task id="LOCAL-00001" summary="Default Changelist">
       <created>1537696657774</created>
@@ -815,11 +866,18 @@
       <option name="project" value="LOCAL" />
       <updated>1542534469146</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="- start date on tranasction -- ok&#10;- remove counters -- ok&#10;- segregate items betwwen lab and type in all pages -- ok&#10;-  Student ID is Number validation on all modals --ok&#10;- Make item unit on appratus automatic -- ok&#10;-others">
+      <created>1543856143448</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1543856143448</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="335441000" />
+    <option name="totallyTimeSpent" value="351322000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -847,7 +905,7 @@
       <window_info id="UI Designer" order="4" />
       <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.2803262" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32941177" />
-      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.498632" weight="0.18518518" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.498632" weight="0.18450561" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info id="Image Layers" order="3" />
       <window_info anchor="bottom" id="Java Enterprise" order="11" />
@@ -855,17 +913,17 @@
       <window_info anchor="bottom" id="Version Control" order="13" weight="0.25382262" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.28848115" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3786885" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.83711046" visible="true" weight="0.15038002" />
-      <window_info id="Web" order="7" sideWeight="0.16288953" side_tool="true" visible="true" weight="0.15038002" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.83427763" visible="true" weight="0.15038002" />
+      <window_info id="Web" order="7" sideWeight="0.16572239" side_tool="true" visible="true" weight="0.15038002" />
       <window_info id="Learn" order="8" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32893" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32893" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -914,32 +972,15 @@
     <MESSAGE value="--" />
     <MESSAGE value="clear" />
     <MESSAGE value="post final mods for JHLIS&#10;build.beta.1 &#10;- add time needed on request  --ok&#10;- remove request status -- ok&#10;- disable/delete Request servlet --ok &#10;- hide id on request -- ok&#10;- sort asc for date , request , transactionn--ok&#10;- server side quantity borrow validation -- ok&#10;- damage missing framework rework -- ok&#10;- new damageMissingTransactions Table -- ok" />
-    <option name="LAST_COMMIT_MESSAGE" value="post final mods for JHLIS&#10;build.beta.1 &#10;- add time needed on request  --ok&#10;- remove request status -- ok&#10;- disable/delete Request servlet --ok &#10;- hide id on request -- ok&#10;- sort asc for date , request , transactionn--ok&#10;- server side quantity borrow validation -- ok&#10;- damage missing framework rework -- ok&#10;- new damageMissingTransactions Table -- ok" />
+    <MESSAGE value="- start date on tranasction -- ok&#10;- remove counters -- ok&#10;- segregate items betwwen lab and type in all pages -- ok&#10;-  Student ID is Number validation on all modals --ok&#10;- Make item unit on appratus automatic -- ok&#10;-others" />
+    <option name="LAST_COMMIT_MESSAGE" value="- start date on tranasction -- ok&#10;- remove counters -- ok&#10;- segregate items betwwen lab and type in all pages -- ok&#10;-  Student ID is Number validation on all modals --ok&#10;- Make item unit on appratus automatic -- ok&#10;-others" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="61" />
+      <option name="time" value="67" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/WebContent/vendor/Buttons-1.5.4/css/buttons.dataTables.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/func/itemBorrowReturn/returnApparatusSingle.java" />
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="51" lean-forward="true" selection-start-line="19" selection-start-column="51" selection-end-line="19" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/mysql-connector-java-8.0.11.jar!/com/mysql/cj/jdbc/NonRegisteringDriver.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="68" selection-start-line="68" selection-end-line="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/mysql-connector-java-8.0.11.jar!/com/mysql/cj/conf/ConnectionUrl.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -1017,20 +1058,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/func/manageSet/addSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="60" column="23" selection-start-line="60" selection-start-column="23" selection-end-line="60" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/func/manageSet/deleteDuplicateSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="44" selection-start-line="44" selection-end-line="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/func/manageSet/showSet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1056,23 +1083,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="25" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/report/insights.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9605">
-          <caret line="565" column="44" selection-start-line="565" selection-start-column="44" selection-end-line="565" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/dashboard.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9231">
-          <caret line="544" column="38" selection-start-line="544" selection-start-column="38" selection-end-line="544" selection-end-column="38" />
-          <folding>
-            <element signature="n#page#0;n#jsp:root#0;n#!!top" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1118,72 +1128,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bean/getBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/func/itemBorrowReturn/returnSingle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="87" column="72" selection-start-line="87" selection-start-column="72" selection-end-line="87" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/func/itemBorrowReturn/returnApparatusSingle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="86" column="30" lean-forward="true" selection-start-line="86" selection-start-column="30" selection-end-line="86" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/func/itemBorrowReturn/borrowSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/func/common/clearTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="52" column="52" selection-start-line="52" selection-start-column="52" selection-end-line="52" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/request/requestAdmin.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1360">
-          <caret line="80" column="35" selection-start-line="80" selection-start-column="35" selection-end-line="80" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/report/audit.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="831">
-          <caret line="478" column="7" selection-start-line="478" selection-start-column="7" selection-end-line="478" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/func/itemBorrowReturn/borrowSingle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="45" column="32" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/report/damagesMissing.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="304" column="96" selection-start-line="304" selection-start-column="96" selection-end-line="304" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/request/request.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -1226,71 +1170,193 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/account/account.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2834">
-          <caret line="589" column="51" lean-forward="true" selection-start-line="589" selection-start-column="51" selection-end-line="589" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/inventory/chemistry.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2121">
-          <caret line="593" column="17" selection-start-line="593" selection-start-column="17" selection-end-line="593" selection-end-column="17" />
+        <state relative-caret-position="10013">
+          <caret line="589" column="51" selection-start-line="589" selection-start-column="51" selection-end-line="589" selection-end-column="51" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/inventory/physics.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1642">
+        <state relative-caret-position="15844">
           <caret line="932" column="45" selection-start-line="932" selection-start-column="45" selection-end-line="932" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/func/manageItem/addNew.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="91" column="35" lean-forward="true" selection-start-line="91" selection-start-column="17" selection-end-line="91" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/func/manageItem/checkNew.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
+        <state relative-caret-position="1462">
           <caret line="86" column="35" selection-start-line="86" selection-start-column="35" selection-end-line="86" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/func/manageItem/editItem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-986">
+        <state relative-caret-position="663">
           <caret line="39" column="31" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/func/manageItem/resolveItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/borrow/borrowSet.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-398">
+        <state relative-caret-position="8585">
           <caret line="505" column="59" selection-start-line="505" selection-start-column="59" selection-end-line="505" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bean/getBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="7" column="188" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="188" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/dashboard.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="577" column="26" lean-forward="true" selection-start-line="577" selection-start-column="26" selection-end-line="577" selection-end-column="26" />
+          <folding>
+            <element signature="n#page#0;n#jsp:root#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/func/common/listener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/func/common/fileReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="12" column="63" selection-start-line="12" selection-start-column="63" selection-end-line="12" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/func/common/validation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="36" lean-forward="true" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/func/itemBorrowReturn/borrowSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="147" column="74" lean-forward="true" selection-start-line="147" selection-start-column="74" selection-end-line="147" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/func/itemBorrowReturn/returnApparatusSingle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="98" column="58" selection-start-line="98" selection-start-column="58" selection-end-line="98" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/func/itemBorrowReturn/returnSingle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="647">
+          <caret line="87" column="72" selection-start-line="87" selection-start-column="72" selection-end-line="87" selection-end-column="72" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/borrow/borrow.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="380" column="76" selection-start-line="380" selection-start-column="76" selection-end-line="380" selection-end-column="76" />
+        <state relative-caret-position="374">
+          <caret line="22" column="25" lean-forward="true" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/func/manageItem/addNew.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-67">
+          <caret line="51" column="59" lean-forward="true" selection-start-line="51" selection-start-column="59" selection-end-line="51" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/func/manageItem/resolveItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="559">
+          <caret line="95" lean-forward="true" selection-start-line="95" selection-end-line="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/report/audit.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="539">
+          <caret line="456" column="25" lean-forward="true" selection-start-line="456" selection-start-column="25" selection-end-line="456" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/report/insights.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="647">
+          <caret line="565" column="44" selection-start-line="565" selection-start-column="44" selection-end-line="565" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="39" lean-forward="true" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/report/borrowTransaction.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2161">
-          <caret line="328" column="71" lean-forward="true" selection-start-line="328" selection-start-column="71" selection-end-line="328" selection-end-column="71" />
+        <state relative-caret-position="340">
+          <caret line="301" column="64" lean-forward="true" selection-start-line="301" selection-start-column="64" selection-end-line="301" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/inventory/chemistry.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="389" column="133" lean-forward="true" selection-start-line="389" selection-start-column="133" selection-end-line="389" selection-end-column="133" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/func/manageSet/addSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1037">
+          <caret line="70" column="138" lean-forward="true" selection-start-line="70" selection-start-column="138" selection-end-line="70" selection-end-column="138" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/func/itemBorrowReturn/borrowSingle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1576">
+          <caret line="134" column="126" lean-forward="true" selection-start-line="134" selection-start-column="126" selection-end-line="134" selection-end-column="126" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/request/requestAdmin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="398" column="64" lean-forward="true" selection-start-line="398" selection-start-column="64" selection-end-line="398" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/report/damagesMissing.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="496" column="14" lean-forward="true" selection-start-line="496" selection-start-column="14" selection-end-line="496" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/func/common/clearTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="57" column="30" lean-forward="true" selection-start-line="57" selection-start-column="30" selection-end-line="58" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/func/manageSet/deleteDuplicateSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="75" column="91" lean-forward="true" selection-start-line="75" selection-start-column="91" selection-end-line="75" selection-end-column="91" />
         </state>
       </provider>
     </entry>
@@ -1360,7 +1426,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>mysql-connector-java-8.0.11</last-edited>
+          <last-edited>commons-io-2.6</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

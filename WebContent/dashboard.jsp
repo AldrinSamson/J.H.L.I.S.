@@ -568,7 +568,11 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-xl-8">
+                                <div class = "card text-left" >
+                                    <div class = "card-body">
                             <canvas id="borrowTop" width="800" height="450"></canvas>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -579,7 +583,11 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-xl-8">
+                                    <div class = "card text-left" >
+                                        <div class = "card-body">
                                     <canvas id="damagedTop" width="800" height="450"></canvas>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -590,7 +598,11 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-xl-8">
+                                    <div class = "card text-left" >
+                                        <div class = "card-body">
                                     <canvas id="missingTop" width="800" height="450"></canvas>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

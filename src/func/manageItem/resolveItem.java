@@ -27,8 +27,8 @@ public class resolveItem extends HttpServlet {
     ResultSet get , chk ;
     String MYdburl = getBean.getMyUrl();
     String MYclass = getBean.getMyClass();
-    String user , type , bCondition , resolve , condition ,status;
-    int resolveQuantity , resolveInventoryQuantity , complete;
+    String user , type , bCondition , resolve , condition ,status , DMresolve;
+    int resolveQuantity , resolveInventoryQuantity , complete , nowReturnQuantity;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -70,6 +70,16 @@ public class resolveItem extends HttpServlet {
                                     complete = 0;
                                 }
                             }
+
+                            get.close();
+
+                            String getDM = "select quantityResolve from damageMissingTransaction where bID = '"+bID+"'";
+                            get = stmt.executeQuery(getDM);
+
+                            while(get.next()){
+                                int previousQuantityResolve = get.getInt("quantityResolve");
+                                nowReturnQuantity = previousQuantityResolve + quantityReturned;
+                            }
                             if (complete == 1) {
                                  condition = type.equalsIgnoreCase("Equipment") ? "Available" : "Complete";
                             } else {
@@ -78,13 +88,15 @@ public class resolveItem extends HttpServlet {
 
                             if (resolveQuantity == 0){
                                  resolve = "Resolved";
+                                 DMresolve = "Resolved";
                             } else {
                                  resolve = bCondition;
+                                 DMresolve = "Unresolved";
                             }
 
                             String updateTransaq = "update borrowTransaction set bQuantityLoss = '"+resolveQuantity+"' , bCondition = '"+resolve+"' where bID = '"+bID+"' ";
                             String updateInventory = "update inventory set itemCurrentQuantity = '"+resolveInventoryQuantity+"', itemCondition = '"+condition+"' where itemKey = '"+iKey+"'";
-                            String updateDMTransaq = "update damageMissingTransaction set quantityResolve = '"+resolveQuantity+"' , status = '"+resolve+"' where bID = '"+bID+"'   " ;
+                            String updateDMTransaq = "update damageMissingTransaction set quantityResolve = '"+nowReturnQuantity+"' , status = '"+DMresolve+"' where bID = '"+bID+"'" ;
                             stmt.execute(updateTransaq);
                             stmt.execute(updateInventory);
                             stmt.execute(updateDMTransaq);

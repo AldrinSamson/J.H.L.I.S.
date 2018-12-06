@@ -12,7 +12,7 @@
 
 
     <!-- Title Page-->
-    <title>Borrow Prototype</title>
+    <title>Borrow </title>
 
     <!-- Fontfaces CSS-->
     <link href="../css/font-face.css" rel="stylesheet" media="all">

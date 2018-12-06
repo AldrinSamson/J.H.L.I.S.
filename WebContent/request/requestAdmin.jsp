@@ -381,6 +381,7 @@
                                         <!--History Table-->
                                         <div class="tab-pane fade-in" id="tab-clist">
                                             <div class="col-lg-12">
+                                                <button type="button" class="btn btn-outline-secondary"  href="#mClear" data-toggle="modal">Clear</button>
                                                 <div class="table-responsive table--no-card m-b-40">
                                                     <table class="table table-borderless table-striped table-earning" id = "rHTable">
                                                         <thead>
@@ -593,6 +594,42 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Clear -->
+    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="mClear" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><h4>Clear Requests</h4></div>
+                <form action="../clearTable" method="post">
+
+                    <div class="modal-body">
+
+		<pre class="tab">
+        <table class="table table-borderless table-earning" style="border-spacing:20px">
+            <tr>
+                <td>Enter your password to continue:</td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">UserName</label></td>
+                <td><input type="text" name="nName" class="input-modal" value = "<%=(String)session.getAttribute("user")%>" disabled></td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">Password</label></td>
+                <td><input type="text" name="password" class="input-modal"></td>
+            </tr>
+        </table>
+		</pre>
+                    </div>
+                    <div class="modal-footer">
+                        <input type = "text" name = "location" value = "requestAdmin" hidden>
+                        <input type = "text" name = "table" value = "request"hidden>
+                        <input type="submit" class="btn btn-default btn-md" value="Proceed">
+                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
                     </div>
                 </form>
             </div>
