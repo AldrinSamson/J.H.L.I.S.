@@ -59,7 +59,10 @@
     Class.forName(MYclass);
     con = DriverManager.getConnection(MYdburl);
     stmt = con.createStatement();
-    String set = getBean.getSet();
+
+
+    String set = (String)request.getSession(false).getAttribute("set");
+    String setName = (String)request.getSession(false).getAttribute("setName");
 %>
 <div class="page-wrapper">
     <!-- HEADER MOBILE-->
@@ -302,7 +305,7 @@
         <!-- HEADER DESKTOP-->
         <!-- Main Body -->
         <div class="main-content">
-            <div class="pb-3 pl-5 page-title">Borrow Sets (UI ONLY)</div>
+            <div class="pb-3 pl-5 page-title">Borrow Sets</div>
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
                     <div class="row">
@@ -346,6 +349,7 @@
                                                         <thead>
                                                         <tr>
                                                             <th>ID</th>
+                                                            <th>Name</th>
                                                             <th>Condition</th>
                                                         </tr>
                                                         </thead>
@@ -360,6 +364,7 @@
                                                         %>
                                                         <tr>
                                                             <td><%=rs.getString("isKey")%></td>
+                                                            <td><%=rs.getString("isName")%></td>
                                                             <td><%=rs.getString("isCondition")%></td>
                                                         </tr>
                                                         <%
@@ -377,8 +382,6 @@
 
                                         <div class="tab-pane fade-in " id="tab-clist">
                                             <div class="pt-2 col-lg-12">
-                                                <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mISAdd" data-toggle="modal"style = "color:black;">new set</a></button>
-                                                <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mCEdit" data-toggle="modal"style = "color:black;">edit set</a></button>
                                                 <table class="table table-borderless table-striped table-earning" >
                                                     <tr>
                                                             <%
@@ -404,7 +407,8 @@
                                                         <thead>
                                                         <tr>
                                                             <th>ID</th>
-                                                            <th>condi</th>
+                                                            <th>Name</th>
+                                                            <th>Condition</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -420,6 +424,7 @@
                                                         %>
                                                         <tr>
                                                             <td><%=rs.getString("isKey")%></td>
+                                                            <td><%=rs.getString("isName")%></td>
                                                             <td><%=rs.getString("isCondition")%></td>
                                                         </tr>
                                                         <%
@@ -448,50 +453,12 @@
     <!-- Main Body End-->
     <!-- Modal -->
 
-    <!-- Add ItemSet Physics Modal -->
-    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="mPAdd" data-keyboard="false">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header"><h4>New Item Set</h4></div>
-                <form action="../addSet" method="post">
-
-                    <div class="modal-body">
-
-                        <div class="tab input_fields_wrap">
-                            <%--<div class = "input_fields_wrap">--%>
-                            <table class="table table-borderless table-earning" style="border-spacing:20px">
-
-                                <tr>
-                                    <td>Key</td>
-                                    <td>Quantity</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="text" name="name[]" class="input-modal"></td>
-                                    <td><input type="text" name="quantity[]" class="input-modal"></td>
-                                    <td><input type="text" name="lab" class="input-modal" value ="Physics" hidden></td>
-                                </tr>
-
-                            </table>
-                        </div>
-                        </pre>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="text" name="lab" class="input-modal" value="Physics" hidden>
-                        <button class="add_field_button">Add</button>
-                        <input type="submit" class="btn btn-default btn-md" value="Add">
-                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
     <!-- View Set Modal -->
     <div class="modal fade" id="viewSet" tabindex="-1" role="dialog" aria-hidden="true"  >
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header"><h4><%=set%></h4></div>
-                <form action="../showSet" method="post">
+                <div class="modal-header"><h4><%=setName%></h4></div>
+                <form action="../borrowSet" method="post">
 
                     <div class="modal-body">
 
@@ -501,8 +468,8 @@
                         <thead>
 							<tr>
 							<th>ID</th>
-                                <th> quanitity </th>
-							<th>condi</th>
+                                <th>quantity</th>
+							<th>condition</th>
 							</tr>
                         </thead>
                         <tbody>
@@ -510,7 +477,7 @@
                                 try {
 
 
-                                    query = "select g.itemKey , g.isQuantity , l.isCondition from itemsetgroup g join itemsetlist l on l.isKey = g.isKey where l.isKey = '"+set+"' ";
+                                    query = "select g.itemKey , g.isQuantity , i.itemCondition from itemsetgroup g join inventory i  on i.itemKey = g.itemKey where g.isKey = '"+set+"' ";
                                     rs = stmt.executeQuery(query);
 
                                     while(rs.next()){
@@ -519,7 +486,7 @@
 							<tr>
 							<td><%=rs.getString("itemKey")%></td>
                                 <td><%=rs.getString("isQuantity")%></td>
-							<td><%=rs.getString("isCondition")%></td>
+							<td><%=rs.getString("itemCondition")%></td>
 							</tr>
 							<%
                                     }
@@ -529,39 +496,46 @@
                             %>
                         </tbody>
                         </table>
+            <table class = "table table-borderless table-earning" style="border-spacing:20px">
+                <tr>
+                                    <td>setID</td>
+                                    <td><input type="text" name="setID" class="input-modal" value = "<%=set%>"></td>
+                                </tr>
+                                <tr>
+                                    <td>borrower ID</td>
+                                    <td><input type="number" name="bID" class="input-modal"></td>
+                                </tr>
+                                <tr>
+                                    <td>Name</td>
+                                    <td><input type="text" name="bName" class="input-modal"></td>
+                                </tr>
+                                <tr>
+                                    <td>Class</td>
+                                    <td><input type="text" name="bClass" class="input-modal"></td>
+                                </tr>
+                                <tr>
+                                    <td>Supervisor</td>
+                                    <td><input type="text" name="bSupervisor" class="input-modal"></td>
+                                </tr>
+            </table>
 
 		</pre>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Lend</button>
+                        <input type="submit" class="btn btn-default btn-md" value="Lend">
                         <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="getViewSet" tabindex="-1" role="dialog" aria-hidden="true"  >
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header"><h4><h4><%=set%></h4></div>
-                <form action="../showSet" method="post" id = "getSet">
-
-                    <div class="modal-body">
-
-		<pre class="tab">
-            <input type="text" name="ID" id = "pID" >
+    <div class = "sendForm">
+        <form action="../showSet" method="post" id = "getSet">
+            <input type="text" name="setID" id = "setID" >
             <input type="text" name="location" value = "borrow" hidden>
-
-
-		</pre>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+        </form>
     </div>
+
 
 </div>
 
@@ -596,40 +570,27 @@
 
     });
 
-
-
-    $(document).ready(function (){
-        var RTable= $('#pTable').DataTable();
-        $('#pTable tbody').on('click', 'tr', function () {
-            var RTableData = RTable.row(this).data();
-            //$('#getViewSet').modal('show');
-            $(".modal-body #pID").val(RTableData[0]);
+    $(document).ready(function(){
+        var table = $('#pTable').DataTable({
+            "paging" : false
+        });
+        $('#pTable tbody').on('click','tr',function(){
+            var tableData = table.row(this).data();
+            $('.sendForm #setID').val(tableData[0]);
             $('#getSet').submit();
         });
+
     });
-
-
-
-    $(document).ready(function() {
-        var max_fields      = 10; //maximum input boxes allowed
-        var wrapper         = $(".input_fields_wrap"); //Fields wrapper
-        var add_button      = $(".add_field_button"); //Add button ID
-
-        var x = 1; //initlal text box count
-        $(add_button).on("click",function(e){ //on add input button click
-            e.preventDefault();
-            if(x < max_fields){ //max input box allowed
-                x++; //text box increment
-                $(wrapper).append('<div><tr>\n' +
-                    '<td><input type="text" name="name[]" class="input-modal"></td>\n' +
-                    '<td><input type="text" name="quantity[]" class="input-modal"><a href="#" class="remove_field">Remove</a></td>\n' +
-                    '</tr><div>'); //add input box
-            }
+    $(document).ready(function(){
+        var table = $('#cTable').DataTable({
+            "paging" : false
+        });
+        $('#cTable tbody').on('click','tr',function(){
+            var tableData = table.row(this).data();
+            $('.sendForm #setID').val(tableData[0]);
+            $('#getSet').submit();
         });
 
-        $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-            e.preventDefault(); $(this).parent('div').remove(); x--;
-        })
     });
 </script>
 

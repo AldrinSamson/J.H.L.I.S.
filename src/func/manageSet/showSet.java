@@ -14,31 +14,35 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
 @WebServlet("/showSet")
 public class showSet extends HttpServlet {
 
-    Connection con;
+    String con;
     Statement stmtCHK, stmtE;
     ResultSet chk;
     String MYdburl = getBean.getMyUrl();
     String MYclass = getBean.getMyClass();
-    String rMessage;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         try (PrintWriter out = response.getWriter()) {
 
-            String ID = request.getParameter("ID");
+            String ID = request.getParameter("setID");
             String location = request.getParameter("location");
 
             try {
                 Class.forName(MYclass);
-                con = DriverManager.getConnection(MYdburl);
+                Connection con = DriverManager.getConnection(MYdburl);
                 stmtCHK = con.createStatement();
                 stmtE = con.createStatement();
 
-                HttpSession log = request.getSession(true);
+                String getName = "select isName from itemsetlist where isKey = '"+ID+"'";
+                chk = stmtE.executeQuery(getName);
+                chk.next();
+
+                HttpSession log = request.getSession(false);
                 log.setAttribute("set", ID);
+                log.setAttribute("setName", chk.getString("isName"));
+                chk.close();
 
                 if (location.equals("admin")) {
                     out.println("<html><body><script type='text/javascript'>;location='inventory/itemSets.jsp#viewSet';</script></body></html>");

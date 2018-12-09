@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -28,8 +29,8 @@ public class borrowSet extends HttpServlet {
     String MYclass = getBean.getMyClass();
     Statement stmt;
     ResultSet chk , get;
-    String nowCondition, nowDate, nowKey;
-    int nowNum, newNum , nowQ , newQ;
+    String nowCondition, type, status , user,newCondition;
+    int newTQ, nowTQ , nowQ , newQ ,count , newid;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
@@ -37,84 +38,142 @@ public class borrowSet extends HttpServlet {
 
         try (PrintWriter out = response.getWriter()) {
 
-            String[] iKey = request.getParameterValues("iKey");
-            String[] bQuantity = request.getParameterValues("bQuantity");
-            String[] bID = request.getParameterValues("bID");
-            String[] bName = request.getParameterValues("bName");
-            String[] bClass = request.getParameterValues("bClass");
-            String[] bSupervisor = request.getParameterValues("bSupervisor");
+            String setID = request.getParameter("setID");
+            String bID = request.getParameter("bID");
+            String bName = request.getParameter("bName");
+            String bClass = request.getParameter("bClass");
+            String bSupervisor = request.getParameter("bSupervisor");
 
-            List<String> iKeyList = new ArrayList<>();
-            iKeyList.addAll(Arrays.asList(iKey));
-            List<String> bQuantityList  = new ArrayList<>();
-            bQuantityList.addAll(Arrays.asList(bQuantity));
-            List<String> bIDList = new ArrayList<>();
-            bIDList.addAll(Arrays.asList(bID));
-            List<String> bNameList = new ArrayList<>();
-            bNameList.addAll(Arrays.asList(bName));
-            List<String> bClassList = new ArrayList<>();
-            bClassList.addAll(Arrays.asList(bClass));
-            List<String> bSupervisorList = new ArrayList<>();
-            bSupervisorList.addAll(Arrays.asList(bSupervisor));
+            List<String> iKey = new ArrayList<>();
+            List<Integer> bQuantity = new ArrayList<>();
 
             DateFormat df = new SimpleDateFormat("HH:mm:ss");
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
             String bDate = sdf.format(new Date());
             String bSTime = df.format(new Date());
 
-            try {
+            HttpSession session = request.getSession(false);
+            if(session == null){
+                out.println ("<html><body><script type='text/javascript'>alert('Please log-in first.');location='../index.html';</script></body></html>");
+            }else {
+                user = (String)request.getSession(false).getAttribute("user");
 
+
+            try {
                 Class.forName(MYclass);
-                con = DriverManager.getConnection(MYdburl);
-                stmt = con.createStatement();
+                Connection conn = DriverManager.getConnection(MYdburl);
+                stmt = conn.createStatement();
+
+                // get data
+                String doCritical = "SELECT  COUNT(*) as rowss  from itemsetgroup where isKey = '"+setID+"' ";
+                get  = stmt.executeQuery(doCritical);
+                while(get.next()) {
+                    count = get.getInt("rowss");
+                }
+                get.close();
+
+                String getItems = "select * from itemsetgroup where isKey = '"+setID+"'";
+                get = stmt.executeQuery(getItems);
 
                 int i = 0;
-                while(i< iKeyList.size()) {
+                while( i < count){
+                    get.next();
+                    String itemKey = get.getString("itemKey");
+                    iKey.add(itemKey);
+                    int quantity = get.getInt("isQuantity");
+                    bQuantity.add(quantity);
+                    i++;
+                }
+                get.close();
 
-                    int quantity = Integer.parseInt(bQuantityList.get(i));
+                //borrow per item
+                int x = 0;
+                while( x < iKey.size()){
 
-                    String chkIfAvailable = "select itemCondition from inventory where itemKey ='" + iKeyList.get(i) + "'";
+                    String chkIfAvailable = "select itemCondition from inventory where itemKey ='" + iKey.get(x) + "'";
                     chk = stmt.executeQuery(chkIfAvailable);
 
                     while (chk.next()) {
                         nowCondition = chk.getString("itemCondition");
                     }
 
-                    if (nowCondition.equals("Not Available")) {
-                        int g = i+ 1;
-                        out.println("<html><body><script type='text/javascript'>alert('"+iKeyList.get(i)+"not available , items lent is from 1 - "+g+"');location='borrow/borrow.jsp';</script></body></html>");
+                    if (nowCondition.equals("Not Available")){
+                        out.println("<html><body><script type='text/javascript'>alert('item "+iKey.get(x)+" not available');location='borrow/borrow.jsp';</script></body></html>");
+                    } else if (nowCondition.equalsIgnoreCase("Missing")) {
+                        out.println("<html><body><script type='text/javascript'>alert('item "+iKey.get(x)+" missing');location='borrow/borrow.jsp';</script></body></html>");
+                    }else if (nowCondition.equalsIgnoreCase("Damaged")){
+                        out.println("<html><body><script type='text/javascript'>alert('item "+iKey.get(x)+" damaged');location='borrow/borrow.jsp';</script></body></html>");
                     } else {
 
-                        String getID = "select bID from borrowtransaction order by bID desc limit 1";
-                        chk = stmt.executeQuery(getID);
-
-                        while (chk.next()) {
-                            nowNum = chk.getInt("bID");
-                            newNum = nowNum + 1;
-                        }
-
-                        String getQ = "select itemCurrentQuantity from inventory where itemKey = '" + iKeyList.get(i) + "'";
+                        String getQ = "select i.itemCurrentQuantity , d.itemType ,i.itemTotalQuantity from inventory i join itemdetails d on i.itemKey = d.itemKey where i.itemKey = '" + iKey.get(x) + "'";
                         get = stmt.executeQuery(getQ);
 
                         while (get.next()) {
-                            nowQ = get.getInt("itemCurrentQuantity");
-                            newQ = nowQ - quantity;
-                        }
 
-                        String newTransaq = "insert into borrowTransaction values ('" + newNum + "','" + iKeyList.get(i) + "','" + quantity + "','Not Returned','" + bIDList.get(i) + "','" + bNameList.get(i) + "','" + bClassList.get(i) + "','" + bSupervisorList.get(i) + "','" + bDate + "',NULL,'" + bSTime + "',NULL )";
-                        stmt.execute(newTransaq);
-                        String updateItem = "update inventory set itemCondition = 'Not Available' , itemCurrentQuantity = '" + newQ + "' where itemKey = '" + iKeyList.get(i) + "'";
+                            type = get.getString("itemType");
+                            nowQ = get.getInt("itemCurrentQuantity");
+                            nowTQ = get.getInt("itemTotalQuantity");
+                            newQ = nowQ - bQuantity.get(x);
+                            newTQ = nowTQ - bQuantity.get(x);
+
+                        }
+                    }
+
+                        get.close();
+
+                    String getID = "select bID  from borrowtransaction order by bID desc limit 1";
+                    get = stmt.executeQuery(getID);
+                    if (!get.next()){
+                        newid = 1;
+                    }else {
+                        while (get.next()) {
+
+                            int id = get.getInt("bID");
+                            newid = id + 1;
+                        }
+                    }
+                    get.close();
+
+                    if(type.equalsIgnoreCase("Equipment")){
+                        newCondition = "Not Available";
+                        status = "Not Returned";
+                    }else if (type.equalsIgnoreCase("Apparatus")){
+                        newCondition = "Incomplete";
+                        status = "Not Returned";
+                    }else {
+                        newCondition = "OK";
+                        status = "N/A";
+                    }
+
+                    String newTransaq = "insert into borrowTransaction values (NULL,'" + iKey.get(x) + "','" + bQuantity.get(x) + "','"+status+"','" + bID + "','" + bName + "','" + bClass + "','" + bSupervisor + "','" + bDate + "',NULL,'" + bSTime + "',NULL ,NULL)";
+                    stmt.execute(newTransaq);
+
+                    if (type.equalsIgnoreCase("Consumable")){
+
+                        String updateItem = "update inventory set itemCondition = '" + newCondition + "' , itemCurrentQuantity = '" + newQ + "', itemTotalQuantity = '" + newTQ + "' where itemKey = '" + iKey.get(x) + "'";
+                        stmt.execute(updateItem);
+
+                    }else {
+
+                        String updateItem = "update inventory set itemCondition = '" + newCondition + "' , itemCurrentQuantity = '" + newQ + "' where itemKey = '" +iKey.get(x)+ "'";
                         stmt.execute(updateItem);
                     }
-                }
-                out.println("<html><body><script type='text/javascript'>location='borrow/borrow.jsp';</script></body></html>");
-                if (con != null) {
-                    con.close();
+                    String audit = "insert into audit values (NULL,'"+user+"' , '"+bDate+"','"+bSTime+"','Lent item "+iKey.get(x)+" to "+bName+" ','Lent Item','"+newid+"')";
+                    stmt.execute(audit);
+
+                    x++;
+
                 }
 
-            } catch (Exception e) {
+                response.sendRedirect("borrow/borrowSet.jsp");
+
+            }catch (Exception e){
                 e.printStackTrace();
             }
+
+            }
+
+
         }
 
     }

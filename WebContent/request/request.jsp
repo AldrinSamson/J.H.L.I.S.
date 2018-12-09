@@ -33,6 +33,7 @@
     <link href="../vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="../vendor/datatables/datatables.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/gigjo/css/gijgo.min.css" rel="stylesheet" media="all">
     <!-- Main CSS-->
     <link href="../css/theme.css" rel="stylesheet" media="all">
     <link href="../css/custom.css" rel="stylesheet" media="all">
@@ -55,8 +56,8 @@
     con = DriverManager.getConnection(MYdburl);
     stmt = con.createStatement();
 
-    String message = getBean.getrMessage();
-    String rID = getBean.getrID();
+    String message = (String)session.getAttribute("rMessage");
+    String rID = (String)session.getAttribute("rID");
 %>
 <div class="page-wrapper">
 
@@ -182,7 +183,7 @@
 
 
                                     <div class="col-lg-12">
-                                        <button type="button" class="btn new-item-btn-nA"  href="#mEAdd" data-toggle="modal">NEW ITEM</button>
+                                        <button type="button" class="btn new-item-btn-nA"  href="#mEAdd" data-toggle="modal">Add Request</button>
                                         <div class="table-responsive table--no-card m-b-40">
                                             Your Current Requests
                                             <table class="table table-borderless table-striped table-earning" id = "nTable">
@@ -192,15 +193,16 @@
                                                     <th>Date</th>
                                                     <th>Time</th>
                                                     <th>Condition</th>
-                                                    <th>Status</th>
+                                                    <th>Date Required</th>
+                                                    <th>Time Required</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                 <%
                                                     try {
 
-                                                        aKey = (String) session.getAttribute("aKey");
-                                                        query = "SELECT * from request where aKey = '"+aKey+"'";
+                                                        aKey = (String)session.getAttribute("aKey");
+                                                        query = "SELECT * from request where aKey = '"+aKey+"' and isDisabled is NULL";
                                                         rs = stmt.executeQuery(query);
 
                                                         while(rs.next()){
@@ -214,7 +216,9 @@
                                                     </td>
                                                     <td><%=rs.getString("rCondition") %>
                                                     </td>
-                                                    <td><%=rs.getString("rStatus")%>
+                                                    <td><%=rs.getString("rDateRequired")%>
+                                                    </td>
+                                                    <td><%=rs.getString("rTimeRequired")%>
                                                     </td>
 
                                                 </tr>
@@ -255,7 +259,16 @@
         <table class="table table-borderless table-earning" style=  "border-spacing:20px">
             <tr>
                 <td><label class="label-modal">Message</label></td>
-                <td><input type="text" name="message" class ="input-modal" ></td>
+            <td><input type="text" name="message" class ="input-modal" ></td>
+
+            </tr>
+            <tr>
+                <td><label class="label-modal">Date Required</label></td>
+                <td><input type="text" name="date"  class="input-modal--date" placeholder="yy/mm/dd" ></td>
+            </tr>
+             <tr>
+                <td><label class="label-modal">Time Required</label></td>
+                <td><input type="text" name="time"  class="input-modal" placeholder= "" ></td>
             </tr>
         </table>
 		</pre>
@@ -274,7 +287,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header"><h4>Message</h4></div>
-                <form action="" method="post">
+                <form action="../disableRequest" method="post">
 
                     <div class="modal-body">
 
@@ -285,6 +298,7 @@
 		</pre>
                     </div>
                     <div class="modal-footer">
+                        <input type = "submit" class = "btn btn-default btn-md" name = "disable" value = "Delete Message">
                         <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
                     </div>
                 </form>
@@ -381,7 +395,7 @@
                     </table>
                 </div>
 
-		</pre>
+                        </pre>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
@@ -412,6 +426,7 @@
 <script src="../vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
 <script src="../vendor/chartjs/Chart.bundle.min.js"></script>
 <script src="../vendor/select2/select2.min.js"></script>
+<script src="../vendor/gigjo/js/gijgo.min.js"></script>
 <!-- Main JS-->
 <script src="../js/main.js"></script>
 <script type = "text/javascript">
@@ -430,10 +445,14 @@
     });
 
     $(document).ready(function () {
-        var eTable = $("#nTable").DataTable();
+        var eTable = $("#nTable").DataTable({
+
+            "paging" : false,
+            "order" : [[2, "desc"]]
+        });
         $('#nTable tbody').on('click', 'tr', function () {
             var eTableData = eTable.row(this).data();
-            $('#mEgdit').modal('show');
+           // $('#mEgdit').modal('show');
             $(".modal-body #rID").val(eTableData[0]);
             $('#getMessage').submit();
 
@@ -444,7 +463,7 @@
         var iTable = $("#iTable").DataTable();
         $('#iTable tbody').on('click', 'tr', function () {
             var iTableData = iTable.row(this).data();
-            $('#m3').modal('show');
+            //$('#m3').modal('show');
             $(".modal-body #iID").val(iTableData[0]);
             $('#getItem').submit();
 
@@ -456,7 +475,13 @@
 
     });
 
-
+    // datepicker
+    $(function () {
+        $(".input-modal--date").datepicker({
+            format: "yyyy-mm-dd",
+            uiLibrary: 'bootstrap4'
+        });
+    });
 
 
 </script>

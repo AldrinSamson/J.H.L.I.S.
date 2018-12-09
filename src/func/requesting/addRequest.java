@@ -32,6 +32,8 @@ public class addRequest extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try (PrintWriter out = response.getWriter()) {
 
+            String timeRequired = request.getParameter("time");
+            String dateRequired = request.getParameter("date");
             String message = request.getParameter("message");
             String user = (String)request.getSession(false).getAttribute("user");
             DateFormat df = new SimpleDateFormat("HH:mm:ss");
@@ -64,9 +66,9 @@ public class addRequest extends HttpServlet {
                         newKey = id + 1;
                     }
 
-                    String newRequest = "insert into request values ('"+newKey+"','"+aKey+"','"+message+"','"+bDate+"','"+bSTime+"','Pending','Unfulfilled')";
+                    String newRequest = "insert into request values ('"+newKey+"','"+aKey+"','"+message+"','"+bDate+"','"+bSTime+"','Pending','"+dateRequired+"' , '"+timeRequired+"' , NULL)";
                     stmtE.execute(newRequest);
-                    String audit = "insert into audit values (NULL,'"+user+"' , '"+bDate+"','"+bSTime+"',' "+user+" sent a request','Send Request','"+newKey+"')";
+                    String audit = "insert into audit values (NULL,'"+user+"' , '"+bDate+"','"+bSTime+"',' "+user+" sent a request','Send Request','"+newKey+"' )";
                     stmtE.execute(audit);
 
                 out.println("<html><body><script type='text/javascript'>location='request/request.jsp';</script></body></html>");
@@ -79,6 +81,6 @@ public class addRequest extends HttpServlet {
                 e.printStackTrace();
             }
         }
-    }
+        }
 
 }

@@ -12,7 +12,7 @@
 
 
     <!-- Title Page-->
-    <title>Borrow Prototype</title>
+    <title>Borrow </title>
 
     <!-- Fontfaces CSS-->
     <link href="../css/font-face.css" rel="stylesheet" media="all">
@@ -298,7 +298,7 @@
         <!-- HEADER DESKTOP-->
         <!-- Main Body -->
         <div class="main-content">
-            <div class = "mt-0 pb-3 pl-5 page-title"> Borrowables(Singles Only)(v1)</div>
+            <div class = "mt-0 pb-3 pl-5 page-title"> Borrowables</div>
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
                     <div class="row">
@@ -313,7 +313,16 @@
                                 <div class = "card-body">
 
                                     <div class ="tab-content">
+
                                     <div class="tab-pane fade-in active" id="tab-blist">
+                                        <div class = "card-header" >
+                                        <ul class="nav nav-pills">
+                                            <li class = "nav-item"><a href="#tab-bplist" data-toggle="tab" class = "nav-link active">Physics</a></li>
+                                            <li class = "nav-item"><a href="#tab-bclist" data-toggle="tab" class = "nav-link" >Chemistry</a></li>
+                                        </ul>
+                                        </div>
+                                        <div class ="tab-content">
+                                            <div class="tab-pane fade-in active" id="tab-bplist">
                                     <div class="col-lg-12">
                                         <div class="table-responsive table--no-card m-b-40">
                                             <table class="pt-2 table table-borderless table-striped table-earning" id = "borrowETable">
@@ -334,7 +343,7 @@
                                                     try {
 
 
-                                                        query = "select * from inventory i join itemdetails d on i.itemKey = d.itemKey ";
+                                                        query = "select * from inventory i join itemdetails d on i.itemKey = d.itemKey where i.itemLab = 'Physics' ";
                                                         rs = stmt.executeQuery(query);
 
                                                         while(rs.next()){
@@ -359,8 +368,60 @@
                                             </table>
                                         </div>
                                     </div>
+                                            </div>
+
+
+                                            <div class="tab-pane fade-in" id="tab-bclist">
+                                                <div class="col-lg-12">
+                                                    <div class="table-responsive table--no-card m-b-40">
+                                                        <table class="pt-2 table table-borderless table-striped table-earning" id = "borrowEcTable">
+                                                            <thead>
+                                                            <tr data-toggle = "modal" data-target = "mEBorrow">
+                                                                <th>ID</th>
+                                                                <th>name</th>
+                                                                <th>description</th>
+                                                                <th>item CQ</th>
+                                                                <th>item TQ</th>
+                                                                <th>item unit</th>
+                                                                <th>item Date</th>
+                                                                <th>item condition</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <%
+                                                                try {
+
+
+                                                                    query = "select * from inventory i join itemdetails d on i.itemKey = d.itemKey where i.itemLab = 'Chemistry'";
+                                                                    rs = stmt.executeQuery(query);
+
+                                                                    while(rs.next()){
+                                                            %>
+                                                            <tr>
+                                                                <td><%=rs.getString("itemKey")%></td>
+                                                                <td><%=rs.getString("itemName")%></td>
+                                                                <td><%=rs.getString("itemDesc")%></td>
+                                                                <td><%=rs.getString("itemCurrentQuantity")%></td>
+                                                                <td><%=rs.getString("itemTotalQuantity")%></td>
+                                                                <td><%=rs.getString("itemUnit")%></td>
+                                                                <td><%=rs.getString("itemDate")%></td>
+                                                                <td><%=rs.getString("itemCondition")%></td>
+                                                            </tr>
+                                                            <%
+                                                                    }
+                                                                }catch (Exception e){
+                                                                    e.printStackTrace();
+                                                                }
+                                                            %>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                 </div>
+
                                         <div class="tab-pane fade-in" id="tab-rlist">
                                             <div class="col-lg-12">
                                                 <div class="table-responsive table--no-card m-b-40">
@@ -451,8 +512,8 @@
             <div  style = "display:table-cell; position:absolute; top:40px;">
                 <input type ="text" name = "iKey" class="input-modal" id = "EID" readonly>
                 <input type ="text" name = "iName" class="input-modal" id = "EName" readonly>
-                <input type ="text" name = "bQuantity" class="input-modal">
-                <input type ="text" name = "bID" class="input-modal">
+                <input type ="number" name = "bQuantity" class="input-modal">
+                <input type ="number" name = "bID" class="input-modal">
                 <input type ="text" name = "bName" class="input-modal">
                 <input type ="text" name = "bClass" class="input-modal">
                 <input type ="text" name = "bSupervisor" class="input-modal">
@@ -473,6 +534,7 @@
     <!-- return -->
     <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id = "mEReturn"  data-keyboard="false">
         <div class="modal-dialog">
+        <form action="../returnSingle"  method = "post">
             <div class="modal-content">
                 <div class="modal-header"><h4>Return Equipment</h4></div>
 
@@ -480,31 +542,32 @@
 
 		<pre class = "tab">
         <div  style = "display:table">
+
             <div style = "display:table-cell">
-                <form action="../returnSingle"  method = "post">
                 <label  class = "label-modal">Item Code</label>
                 <label  class = "label-modal">Name</label>
+                <label  class = "label-modal">Quantity</label>
+                <label  class = "label-modal">Remarks</label>
             </div>
             <div  style = "display:table-cell; position:absolute; top:40px;">
                 <input type ="text" name = "iKey" class="input-modal" id = "EID" readonly>
                 <input type ="text" name = "iName" class="input-modal" id = "EName" readonly>
-                 <input type ="text" name = "bID" class="input-modal" id = "BID" hidden>
                 <input type ="text" name = "bQ" class="input-modal" id = "BQ" >
-                Report:
-                        <input type ="submit" name = "response" class="btn btn-default btn-md" value = "Missing">
-                        <input type ="submit" name = "response" class="btn btn-default btn-md" value = "Broken">
-                        <input type ="submit" name = "response" class="btn btn-default btn-md" value = "Return">
-                </form>
-
+                <input type ="number" name = "bID" class="input-modal" id = "BID" hidden>
+                <input type ="text" name = "remarks" class="input-modal"  >
             </div>
+
         </div>
 		</pre>
                     </div>
                     <div class="modal-footer">
-
+                        <input type ="submit" name = "response" class="btn btn-default btn-md" value = "Missing">
+                        <input type ="submit" name = "response" class="btn btn-default btn-md" value = "Broken">
+                        <input type ="submit" name = "response" class="btn btn-default btn-md" value = "Return">
                         <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
                     </div>
             </div>
+        </form>
         </div>
     </div>
 
@@ -519,21 +582,21 @@
 
 		<pre class = "tab">
         <div  style = "display:table">
+            <form action="../returnApparatusSingle"  method = "post">
             <div style = "display:table-cell">
-                <form action="../returnApparatusSingle"  method = "post">
-                    <label  class = "label-modal">Key</label>
+                <label  class = "label-modal">Key</label>
                 <label  class = "label-modal">Loss : </label>
-
+                 <label  class = "label-modal">Remarks</label>
             </div>
             <div  style = "display:table-cell; position:absolute; top:40px;">
                 <input type ="text" name = "iName" class="input-modal" id = "name" value = <%=bID%> readonly>
-                <input type ="text" name = "qLoss" class="input-modal"  >
+                <input type ="number" name = "qLoss" class="input-modal"  >
+                 <input type ="text" name = "remarks" class="input-modal"  >
                 Report:
                         <input type ="submit" name = "response" class="btn btn-default btn-md" value = "Missing">
                         <input type ="submit" name = "response" class="btn btn-default btn-md" value = "Damaged">
-                </form>
-
             </div>
+            </form>
         </div>
 		</pre>
                 </div>
@@ -579,7 +642,9 @@
     });
 
     $(document).ready(function(){
-        var borrowETableX = $("#borrowETable").DataTable();
+        var borrowETableX = $("#borrowETable").DataTable({
+            "paging": false
+        });
         $('#borrowETable tbody').on('click', 'tr', function(){
             var borrowEdata = borrowETableX.row(this).data();
             $('#mEBorrow').modal('show');
@@ -590,7 +655,23 @@
     });
 
     $(document).ready(function(){
-        var ReturnETableX = $("#ReturnETable").DataTable();
+        var borrowETableX = $("#borrowEcTable").DataTable({
+            "paging": false
+        });
+        $('#borrowETable tbody').on('click', 'tr', function(){
+            var borrowEdata = borrowETableX.row(this).data();
+            $('#mEBorrow').modal('show');
+            $(".modal-body #EID").val( borrowEdata[0] );
+            $(".modal-body #EName").val( borrowEdata[1] );
+            $(".modal-body #EType").val( borrowEdata[8] );
+        });
+    });
+
+    $(document).ready(function(){
+        var ReturnETableX = $("#ReturnETable").DataTable({
+            "paging": false,
+            "order": [[8,"asc"]]
+        });
         $('#ReturnETable tbody').on('click', 'tr', function(){
             var ReturnEdata = ReturnETableX.row(this).data();
             $('#mEReturn').modal('show');

@@ -11,6 +11,17 @@
   	
 }
 
+.input-send {
+    line-height: 30px;
+    border: 1px solid #e5e5e5;
+    font-size: 14px;
+    color: #666;
+    display:block;
+    font-family:"Arial";
+
+
+}
+
 .input-modal--date {
     line-height: 30px;
     border: 1px solid #e5e5e5;
@@ -37,11 +48,11 @@ label::after{
 }
 
 .select-modal{
+    line-height: 30px;
     border: 1px solid #e5e5e5;
-    font-size: 17px;
+    font-size: 14px;
     color: #666;
     border-radius: 3px;
-  	display:block;
   	font-family:"Arial";
     -webkit-appearance: menulist-button;
     height: 30px;
@@ -92,7 +103,7 @@ label::after{
     top: 13px;
 }
 .nav-pills .nav-link {
-    background-color: none;
+    background-color: transparent;
     color: #ffffff;
 }
 
@@ -355,6 +366,16 @@ p > .au-input {
     border: solid 1px #212529;
 }
 
+.cs-btn {
+    background: transparent;
+    border: solid 1px #212529;
+}
+
+.cs-btn:hover {
+    background: #212529;
+    color: white;
+}
+
 .btn-card {
     border: solid 1px #212529;
     color: #212529;
@@ -407,4 +428,53 @@ p > .au-input {
 }
 .account-dropdown__footer button{
     color: white;
+}
+
+.item-set-mt {
+    border-bottom: none;
+}
+
+.item-set-mb {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.item-set-mt .input-modal {
+    height: 30px;
+}
+
+.tr-divider {
+    border-top: solid 1px #212529;
+}
+
+.input_fields_wrap .remove_field {
+    position: absolute;
+    left: 15px;
+    font-size: 25px
+}
+
+option.popup {
+    height: 0;
+    color: #fff;
+    position: relative;
+    cursor: pointer;
+}
+option.popup:after {
+    content: attr(data-popuptext);
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 3px;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    position: absolute;
+    transition: 500ms ease;
+    white-space: nowrap;
+    max-height: 0;
+}
+option.popup:hover:after {
+    opacity: 1;
+    top: 1.2em;
+    max-height: 200px;
+    padding: .4em;
 }

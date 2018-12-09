@@ -59,7 +59,9 @@ String MYclass = getBean.getMyClass();
 Class.forName(MYclass);
 con = DriverManager.getConnection(MYdburl);
 stmt = con.createStatement();
-String set = getBean.getSet();
+
+String set = (String)request.getSession(false).getAttribute("set");
+    String setName = (String)request.getSession(false).getAttribute("setName");
 %>
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
@@ -322,7 +324,7 @@ String set = getBean.getSet();
 						<div class="tab-pane fade-in active" id="tab-elist">
 						<div class="pt-2 col-lg-12">
 
-                        <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mPAdd" data-toggle="modal"style = "color:black;">New Set</a></button>
+                        <a class ="btn new-item-btn" href="#mPAdd" data-toggle="modal">New Set</a>
 						<table class="table table-borderless table-striped table-earning" >
 					<tr>
 					  <%
@@ -348,6 +350,7 @@ String set = getBean.getSet();
                         <thead>
 							<tr>
 							<th>ID</th>
+                                <th>Name</th>
 							 <th>Condition</th>
 							</tr>
                         </thead>
@@ -362,6 +365,7 @@ String set = getBean.getSet();
                             %>
 							<tr>
 							<td><%=rs.getString("isKey")%></td>
+                                <td><%=rs.getString("isName")%></td>
 							<td><%=rs.getString("isCondition")%></td>
 							</tr>
 							<%
@@ -379,7 +383,7 @@ String set = getBean.getSet();
 
                 		<div class="tab-pane fade-in " id="tab-clist">
 						<div class="pt-2 col-lg-12">
-                            <button type="button" class="btn btn-outline-secondary"><a class ="btn-btn-primary" href="#mCAdd" data-toggle="modal"style = "color:black;">New Set</a></button>
+                            <a class ="btn new-item-btn" href="#mCAdd" data-toggle="modal">New Set</a>
                             <table class="table table-borderless table-striped table-earning" >
                                 <tr>
                                         <%
@@ -405,6 +409,7 @@ String set = getBean.getSet();
                                     <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>Name</th>
                                         <th>Condition</th>
                                     </tr>
                                     </thead>
@@ -419,6 +424,7 @@ String set = getBean.getSet();
                                     %>
                                     <tr>
                                         <td><%=rs.getString("isKey")%></td>
+                                        <td><%=rs.getString("isName")%></td>
                                         <td><%=rs.getString("isCondition")%></td>
                                     </tr>
                                     <%
@@ -455,31 +461,34 @@ String set = getBean.getSet();
                     <div class="modal-header"><h4>New Item Set</h4></div>
                     <form action="../addSet" method="post">
 
-                        <div class="modal-body">
-
+                        <div class="modal-body item-set-mb">
 		<div class="tab input_fields_wrap">
-            <%--<div class = "input_fields_wrap">--%>
-            <table class="table table-borderless table-earning" style="border-spacing:20px">
+            <table class="table item-set-mt table-borderless table-earning" style="border-spacing:20px;">
+                <tr>
+                    <td><label class="label-modal">Set Name</label></td>
+                    <td><input type="text" name="setName" class="input-modal"></td>
+                </tr>
+                <tr>
+                    <td><label class="label-modal">Key</label></td>
+                    <td><input type="text" name="name[]" class="input-modal" list = "name"></td>
+                </tr>
+                <tr>
+                    <td><label class="label-modal">Quantity</label></td>
+                    <td><input type="text" name="quantity[]" class="input-modal"></td>
+                </tr>
 
-            <tr>
-            <td>Key</td>
-            <td>Quantity</td>
-            </tr>
-            <tr>
-                <td><input type="text" name="name[]" class="input-modal" list = "name"></td>
-                <td><input type="text" name="quantity[]" class="input-modal"></td>
                 <td><input type="text" name="lab" class="input-modal" value ="Physics" hidden></td>
-            </tr>
+
                 <datalist id = "name">
                     <%
                     try{
 
-                        String getKeys = "select itemKey from inventory where itemLab = 'Physics'";
+                        String getKeys = "select d.itemKey  , d.itemName from itemdetails d join inventory i on d.itemKey = i.itemKey where i.itemLab = 'Physics'";
                         rs = stmt.executeQuery(getKeys);
 
                         while (rs.next()){
 
-                    %><option><%=rs.getString("itemKey")%></option><%
+                    %><option title = "<%=rs.getString("itemName")%>"><%=rs.getString("itemKey")%></option><%
 
                         }
 
@@ -496,8 +505,8 @@ String set = getBean.getSet();
                         </div>
                         <div class="modal-footer">
                             <input type="text" name="lab" class="input-modal" value="Physics" hidden>
-                            <button class="add_field_button">Add</button>
-                            <input type="submit" class="btn btn-default btn-md" value="Add">
+                            <button type = "button" class="btn btn-default btn-md add_field_button">Add</button>
+                            <input type="submit" class="btn btn-default btn-md" value="Save">
                             <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
                         </div>
                     </form>
@@ -512,21 +521,25 @@ String set = getBean.getSet();
             <div class="modal-header"><h4>New Item Set</h4></div>
             <form action="../addSet" method="post">
 
-                <div class="modal-body">
-
-                    <div class="tab input_fields_wrap2">
-                        <%--<div class = "input_fields_wrap">--%>
-                        <table class="table table-borderless table-earning" style="border-spacing:20px">
-
+                <div class="modal-body item-set-mb">
+                    <div class="tab input_fields_wrap">
+                        <table class="table item-set-mt table-borderless table-earning" style="border-spacing:20px;">
                             <tr>
-                                <td>Key</td>
-                                <td>Quantity</td>
+                                <td><label class="label-modal">Set Name</label></td>
+                                <td><input type="text" name="setName" class="input-modal"></td>
                             </tr>
                             <tr>
+                                <td><label class="label-modal">Key</label></td>
                                 <td><input type="text" name="name[]" class="input-modal" list = "nameC"></td>
-                                <td><input type="text" name="quantity[]" class="input-modal"></td>
-                                <td><input type="text" name="lab" class="input-modal" value ="Chemistry" hidden></td>
                             </tr>
+                            <tr>
+                                <td><label class="label-modal">Quantity</label></td>
+                                <td><input type="text" name="quantity[]" class="input-modal"></td>
+                            </tr>
+
+                            <td><input type="text" name="lab" class="input-modal" value ="Chemistry" hidden></td>
+
+
                             <datalist id = "nameC">
                                 <%
                                     try{
@@ -547,14 +560,15 @@ String set = getBean.getSet();
 
                             %>
                             </datalist>
+
                         </table>
                     </div>
                     </pre>
                 </div>
                 <div class="modal-footer">
-                    <input type="text" name="lab" class="input-modal" value="Chemistry" hidden>
-                    <button class="btn btn-default btn-md add_field_button2">Add</button>
-                    <input type="submit" class="btn btn-default btn-md" value="Add">
+                    <input type="text" name="lab" class="input-modal" value="Physics" hidden>
+                    <button type = "button" class="btn btn-default btn-md add_field_button">Add</button>
+                    <input type="submit" class="btn btn-default btn-md" value="Save">
                     <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
                 </div>
             </form>
@@ -562,12 +576,13 @@ String set = getBean.getSet();
     </div>
 </div>
 
+
         <!-- View Set Modal -->
         <div class="modal fade" id="viewSet" tabindex="-1" role="dialog" aria-hidden="true"  >
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header"><h4><%=set%></h4></div>
-                    <form action="../deleteSet" method="post">
+                    <div class="modal-header"><h4><%=setName%></h4></div>
+                    <form action="../deleteDuplicateSet" method="post">
 
                         <div class="modal-body">
 
@@ -586,7 +601,7 @@ String set = getBean.getSet();
                                 try {
 
 
-                                    query = "select g.itemKey , g.isQuantity , l.isCondition from itemsetgroup g join itemsetlist l on l.isKey = g.isKey where l.isKey = '"+set+"' ";
+                                    query = "select i.itemKey , g.isQuantity , i.itemCondition from inventory i join itemsetgroup g on i.itemKey = g.itemKey where g.isKey ='"+set+"' ";
                                     rs = stmt.executeQuery(query);
 
                                     while(rs.next()){
@@ -595,7 +610,7 @@ String set = getBean.getSet();
 							<tr>
 							<td><%=rs.getString("itemKey")%></td>
                                 <td><%=rs.getString("isQuantity")%></td>
-							<td><%=rs.getString("isCondition")%></td>
+							<td><%=rs.getString("itemCondition")%></td>
 							</tr>
 							<%
                                     }
@@ -609,18 +624,20 @@ String set = getBean.getSet();
 		</pre>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-default btn-md" >Delete</button>
+                            <button type="submit" class="btn btn-default btn-md" name = "response" value = "Duplicate">Duplicate</button>
+                            <button type="submit" class="btn btn-default btn-md" name = "response" value = "Delete">Delete</button>
                             <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-
+            <div class = "sendForm">
             <form action="../showSet" method="post" id = "getSet">
-                <input type="text" name="ID"  class = "input-send" id = "ID" >
+                <input type="text" name="setID" id = "setID" >
                 <input type="text" name="location" value = "admin" hidden>
             </form>
+            </div>
 
 
 </div>
@@ -646,7 +663,16 @@ String set = getBean.getSet();
     <script src="../vendor/chartjs/Chart.bundle.min.js"></script>
     <script src="../vendor/select2/select2.min.js">
     </script>
+
      <script type="text/javascript">
+
+         $(document).ready(function () {
+
+             $('#name').mouseover(function () {
+                 var tooltip = ($(this).first('span').text().trim());
+                 $(this).attr('title', tooltip);
+             });
+         });
 
          $(document).ready(function () {
 
@@ -658,29 +684,36 @@ String set = getBean.getSet();
 
 
 
-    $(document).ready(function (){
-        var RTable= $('#pTable').DataTable();
-        $('#pTable tbody').on('click', 'tr', function () {
-            var RTableData = RTable.row(this).data();
-            $(".input-send #ID").val(RTableData[0]);
-            $('#getSet').submit();
-        });
-    });
-
-         $(document).ready(function (){
-             var RTable= $('#cTable').DataTable();
-             $('#cTable tbody').on('click', 'tr', function () {
-                 var RTableData = RTable.row(this).data();
-                 $(".input-send #ID").val(RTableData[0]);
+    $(document).ready(function(){
+             var table = $('#pTable').DataTable({
+                 "paging" : false
+             });
+             $('#pTable tbody').on('click','tr',function(){
+                 var tableData = table.row(this).data();
+                 $('.sendForm #setID').val(tableData[0]);
                  $('#getSet').submit();
              });
+
          });
+
+         $(document).ready(function(){
+             var table = $('#cTable').DataTable({
+                 "paging" : false
+             });
+             $('#cTable tbody').on('click','tr',function(){
+                 var tableData = table.row(this).data();
+                 $('.sendForm #setID').val(tableData[0]);
+                 $('#getSet').submit();
+             });
+
+         });
+
 
 
 
     $(document).ready(function() {
         var max_fields      = 10; //maximum input boxes allowed
-        var wrapper         = $(".input_fields_wrap"); //Fields wrapper
+        var wrapper         = $(".item-set-mt"); //Fields wrapper
         var add_button      = $(".add_field_button"); //Add button ID
 
         var x = 1; //initlal text box count
@@ -688,15 +721,24 @@ String set = getBean.getSet();
             e.preventDefault();
             if(x < max_fields){ //max input box allowed
                 x++; //text box increment
-                $(wrapper).append('<div><tr>\n' +
-                    '<td><input type="text" name="name[]" class="input-modal" list = "name"></td>\n' +
-                    '<td><input type="text" name="quantity[]" class="input-modal"><a href="#" class="remove_field">Remove</a></td>\n' +
-                    '</tr><div>'); //add input box
+                $(wrapper).append(
+                    '<tbody>'+
+                    '<tr class = "tr-divider">' +
+                    '<td><label class="label-modal">Key</label></td>' +
+                    '<td><input type="text" name="name[]" class="input-modal" list = "name"></td>' +
+                    '<td><span class="remove_field icon-057"></span></td>' +
+                    '</tr>' +
+                    '<tr>' +
+                    '<td><label class="label-modal">Quantity</label></td>' +
+                    '<td><input type="text" name="quantity[]" class="input-modal"></td>' +
+                    '</tr>' +
+                    '</tbody>'
+                  ); //add input box
             }
         });
 
         $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-            e.preventDefault(); $(this).parent('div').remove(); x--;
+            e.preventDefault(); $(this).closest('tbody').remove(); x--;
         })
     });
 

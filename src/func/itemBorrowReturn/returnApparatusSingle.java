@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -17,8 +18,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@WebServlet("/returnMissingSingle")
-public class returnMissingSingle extends HttpServlet {
+@WebServlet("/returnApparatusSingle")
+public class returnApparatusSingle extends HttpServlet {
 
     Connection con;
     String MYdburl = getBean.getMyUrl();
@@ -26,8 +27,8 @@ public class returnMissingSingle extends HttpServlet {
     Statement stmt;
     ResultSet get;
     String user;
-    int inventoryCQ , inventoryTQ ,inventoryReturn, newCQ , newTQ;
-    String type,iKey ,sName;
+    int inventoryCQ , inventoryTQ ,inventoryReturn, newCQ , newTQ ,  quantityTotal;
+    String type,iKey ,sName , aKey ,sID;
     String condition;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,21 +37,25 @@ public class returnMissingSingle extends HttpServlet {
 
         try (PrintWriter out = response.getWriter()) {
 
+
             int quantityLoss = Integer.parseInt(request.getParameter("qLoss"));
-            int quantityTotal = (Integer) request.getSession(false).getAttribute("quantityTotal");
             String mResponse = request.getParameter("response");
             String bID = (String)request.getSession(false).getAttribute("bID");
+            String remarks = request.getParameter("remarks");
 
             DateFormat df = new SimpleDateFormat("HH:mm:ss");
             String bETime = df.format(new Date());
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
             String bEDate = sdf.format(new Date());
 
-            if(request.getSession(false).getAttribute("user") == null){
+            HttpSession session = request.getSession(false);
+            if(session == null){
                 out.println ("<html><body><script type='text/javascript'>alert('Please log-in first.');location='../index.html';</script></body></html>");
             }else {
                 user = (String)request.getSession(false).getAttribute("user");
-            }
+                quantityTotal = (Integer)request.getSession(false).getAttribute("quantityTotal");
+                aKey = (String)request.getSession(false).getAttribute("aKey");
+
 
             try {
 
@@ -58,13 +63,14 @@ public class returnMissingSingle extends HttpServlet {
                 con = DriverManager.getConnection(MYdburl);
                 stmt = con.createStatement();
 
-                String getTransaction = "select bItemKey , sName  from borrowtransaction where bID = '"+bID+"'";
+                String getTransaction = "select bItemKey , sName  , sID from borrowtransaction where bID = '"+bID+"'";
                 get = stmt.executeQuery(getTransaction);
 
                 while (get.next()) {
 
                     iKey = get.getString("bItemKey");
                     sName = get.getString("sName");
+                    sID = get.getString("sID");
                 }
 
                 String getDetails = "select d.itemType  , i.itemCurrentQuantity ,i.itemTotalQuantity from itemdetails d join inventory i on i.itemKey = d.itemKey  where i.itemKey = '"+iKey+"' ";
@@ -95,6 +101,8 @@ public class returnMissingSingle extends HttpServlet {
                 stmt.execute(updateBorrow);
                 stmt.execute(updateInventory);
                 stmt.execute(audit);
+                String missing = "insert into damagemissingtransaction values (NULL ,'"+iKey +"', '"+bID+"', '"+aKey+"' , '"+sID+"' , '"+bCondition+"' ,'"+quantityLoss+"',NULL, '"+remarks+"' , 'Unresolved' , '"+bEDate+"' , '"+bETime+"' )";
+                stmt.execute(missing);
 
                 response.sendRedirect("borrow/borrow.jsp");
 
@@ -105,6 +113,7 @@ public class returnMissingSingle extends HttpServlet {
             }catch (Exception e){
                 e.printStackTrace();
 
+            }
             }
         }
 

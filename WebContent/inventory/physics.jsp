@@ -29,6 +29,7 @@
     <link href="../vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="../vendor/datatables/datatables.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/gigjo/css/gijgo.min.css" rel="stylesheet" media="all">
     <!-- Main CSS-->
     <link href="../css/theme.css" rel="stylesheet" media="all">
     <link href="../css/custom.css" rel="stylesheet" media="all">
@@ -56,19 +57,20 @@
     con = DriverManager.getConnection(MYdburl);
     stmt = con.createStatement();
 
-    String iName = getBean.getiName();
-    String iForm = getBean.getiForm();
-    String iDesc = getBean.getiDesc();
-    String iDate = getBean.getiDate();
-    int iQuantity = getBean.getiQuantity();
-    String iUnit = getBean.getiUnit();
 
-    String abbv1 = getBean.getAbbv1();
-    String abbv2 = getBean.getAbbv2();
-    String abbv3 = getBean.getAbbv3();
-    String abbvF1 = getBean.getAbbvF1();
-    String abbvF2 = getBean.getAbbvF2();
-    String abbvF3 = getBean.getAbbvF3();
+    String iName = (String)session.getAttribute("itemName");
+    String iForm = (String)session.getAttribute("itemForm");
+    String iDesc = (String)session.getAttribute("itemDesc");
+    String iDate = (String)session.getAttribute("itemDate");
+    String  iQuantity = (String)session.getAttribute("itemQuantity");
+    String iUnit = (String)session.getAttribute("itemUnit");
+
+    String abbv1 = (String)session.getAttribute("itemAbbv1");
+    String abbv2 = (String)session.getAttribute("itemAbbv2");
+    String abbv3 = (String)session.getAttribute("itemAbbv3");
+    String abbvF1 = (String)session.getAttribute("itemFAbbv1");
+    String abbvF2 = (String)session.getAttribute("itemFAbvv2");
+    String abbvF3 = (String)session.getAttribute("itemFAbbv3");
 %>
 
 <div class="page-wrapper">
@@ -337,28 +339,6 @@
                                         <div class="tab-pane fade-in active" id="tab-elist">
                                             <div class="col-lg-12">
                                                 <button type="button" class="btn new-item-btn"  href="#mEAdd" data-toggle="modal">NEW ITEM</button>
-                                                <table class="table table-borderless table-striped table-earning">
-                                                    <tr>
-                                                        <% try {
-
-                                                            String queryX = "select itemName, sum(itemTotalQuantity) from inventory i join itemdetails d on d.itemKey=i.itemKey where itemType ='Equipment'and itemLab ='Physics' group by itemName";
-                                                            counter = stmt.executeQuery(queryX);
-
-                                                            while (counter.next()) {
-
-                                                        %>
-                                                        <th><%=counter.getString("itemName")%>
-                                                        </th>
-                                                        <td><%=counter.getString("sum(itemTotalQuantity)")%>
-                                                        </td>
-                                                        <%
-                                                                }
-                                                            } catch (Exception e) {
-                                                                e.printStackTrace();
-                                                            }
-                                                        %>
-                                                    </tr>
-                                                </table>
                                                 <div class="table-responsive table--no-card m-b-40">
                                                     <table class="table table-borderless table-striped table-earning" id="ETable">
                                                         <thead>
@@ -410,32 +390,6 @@
                                         <div class="tab-pane fade-in" id="tab-alist">
                                             <div class="col-lg-12">
                                                 <button type="button" class="btn new-item-btn"  href="#mAAdd" data-toggle="modal">NEW ITEM</button>
-                                                <table class="table table-borderless table-striped table-earning">
-                                                    <tr>
-                                                            <%
-					  			try {
-					  			      String queryX = "select itemName ,sum(itemCurrentQuantity), itemUnit from itemdetails d join inventory i " +
-					  			       "on d.itemKey=i.itemKey where itemLab = 'Physics' and itemType ='Apparatus'" +
-					  			        " group by itemName ";
-                                     counter = stmt.executeQuery(queryX);
-                                     while(counter.next()){
-                                         String unitX = counter.getString("itemUnit");
-                                        int iQ = counter.getInt("sum(itemCurrentQuantity)");
-                                        if (iQ > 1){
-                                            unitX = unitX+"s";
-                                        }
-                                   %>
-                                                        <th><%=counter.getString("itemName")%>
-                                                        </th>
-                                                        <td><%=iQ%><%=unitX%>
-                                                        </td>
-                                                            <%
-                                    	 }
-                               			 } catch (Exception e){
-                                   			 e.printStackTrace();
-                               			 }
-		       					%>
-                                                </table>
                                                 <div class="table-responsive table--no-card m-b-40">
                                                     <table class="table table-borderless table-striped table-earning"
                                                            id="ATable">
@@ -501,32 +455,6 @@
                                         <div class="tab-pane fade-in" id="tab-clist">
                                             <div class="col-lg-12">
                                                 <button type="button" class="btn new-item-btn" href="#mCAdd" data-toggle="modal">NEW ITEM</button>
-                                                <table class="table table-borderless table-striped table-earning">
-                                                    <tr>
-                                                            <%
-					  			try {
-					  			      String queryX = "select itemName , itemForm ,sum(itemTotalQuantity), itemUnit from itemdetails d join inventory i " +
-					  			       "on d.itemKey=i.itemKey where itemCondition 	= 'OK' and itemLab = 'Physics' and itemType ='Consumable'" +
-					  			        " group by itemName , itemForm";
-                                     counter = stmt.executeQuery(queryX);
-                                     while(counter.next()){
-                                         String unitX = counter.getString("itemUnit");
-                                        int iQ = counter.getInt("sum(itemTotalQuantity)");
-                                        if (iQ > 1){
-                                            unitX = unitX+"s";
-                                        }
-                                   %>
-                                                        <th><%=counter.getString("itemName")%> <%=counter.getString("itemForm")%>
-                                                        </th>
-                                                        <td><%=iQ%><%=unitX%>
-                                                        </td>
-                                                            <%
-                                    	 }
-                               			 } catch (Exception e){
-                                   			 e.printStackTrace();
-                               			 }
-		       					%>
-                                                </table>
                                                 <div class="table-responsive table--no-card m-b-40">
                                                     <table class="table table-borderless table-striped table-earning"
                                                            id="CTable">
@@ -626,7 +554,7 @@
             </tr>
             <tr>
                 <td><label class="label-modal">Calibration date</label></td>
-                <td><input type="text" name="date" class="input-modal--date" placeholder="yy/mm/dd"></td>
+                <td><input type="text" name="date" class="input-modal--date" placeholder="yy/mm/dd" id = "date"></td>
             </tr>
         </table>
 		</pre>
@@ -665,10 +593,6 @@
             <tr>
                 <td><label class="label-modal">Quantity</label></td>
                 <td><input type="text" name="quantity" class="input-modal"></td>
-            </tr>
-            <tr>
-                <td><label class="label-modal">Unit</label></td>
-                <td><input type="text" name="unit" class="input-modal"></td>
             </tr>
         </table>
 
@@ -718,11 +642,16 @@
                 </tr>
                 <tr>
                 <td><label class="label-modal">Unit</label></td>
-                 <td><input type="text" name="unit" class="input-modal"></td>
+                 <td><select name = "unit" class = "select-modal">
+                    <option> Piece </option>
+                     <option> Militter </option>
+                    <option> Litter</option>
+                     </select>
+                 </td>
                 </tr>
                 <tr>
                 <td><label class="label-modal">Expiration Date</label></td>
-                   <td><input type="text" name="date" class="input-modal--date" id="datepicker"></td>
+                   <td><input type="text" name="date" class="input-modal--date" id="date1"></td>
                 </tr>
             </table>
         </pre>
@@ -773,10 +702,6 @@
                 <td><label class="label-modal">Quantity</label></td>
                 <td><input type="text" name="quantity" class="input-modal" value = "<%=iQuantity%>"></td>
             </tr>
-            <tr>
-                <td><label class="label-modal">Unit</label></td>
-                <td><input type="text" name="unit" class="input-modal" value = "<%=iUnit%>"></td>
-            </tr>
         </table>
 		</pre>
                     </div>
@@ -821,7 +746,7 @@
             </tr>
             <tr>
                 <td><label class="label-modal">Calibration date</label></td>
-                <td><input type="text" name="date" id="date1" class="input-modal--date" placeholder="yy/mm/dd"value = "<%=iDate%>"></td>
+                <td><input type="text" name="date" id="date2" class="input-modal--date" placeholder="yy/mm/dd"value = "<%=iDate%>"></td>
             </tr>
         </table>
 		</pre>
@@ -884,11 +809,15 @@
                 </tr>
                 <tr>
                 <td><label class="label-modal">Unit</label></td>
-                 <td><input type="text" name="unit" class="input-modal" value = "<%= iUnit%>"></td>
+                 <td><select name = "unit" class = "select-modal" value = "<%=iUnit%>">
+                    <option> Piece </option>
+                    <option> Litter</option>
+                     <option> Militter </option>
+                     </select></td>
                 </tr>
                 <tr>
                 <td><label class="label-modal">Expiration Date</label></td>
-                   <td><input type="text" name="date" class="input-modal--date" value = "<%= iDate%>"></td>
+                   <td><input type="text" name="date" class="input-modal--date" value = "<%= iDate%>" id = "date3"></td>
                 </tr>
         </table>
 		</pre>
@@ -907,10 +836,9 @@
     <!-- Edit Equipment Modal -->
     <div class="modal fade" id="mEEdit" tabindex="-1" role="dialog" aria-hidden="true"  >
         <div class="modal-dialog">
+        <form action="../editItem" method="post">
             <div class="modal-content">
                 <div class="modal-header"><h4>Edit Equipment</h4></div>
-                <form action="../editItem" method="post">
-
                     <div class="modal-body">
 
 		<pre class="tab">
@@ -930,20 +858,18 @@
             </tr>
             <tr>
                 <td><label class="label-modal">Condition</label></td>
-                <td><input type="text" name="condi" class="input-modal" id = "ECondi"></td>
+                <td><input type="text" name="condi" class="input-modal" id = "ECondi" ></td>
             </tr>
-            <tr>
-                                            <td></td>
-                                            <td><input type="submit" name = "response" class="btn btn-default btn-md" value="Edit" >&emsp;<input type="submit" name = "response" class="btn btn-default btn-md" value="Delete" ></td>
-                                        </tr>
         </table>
 		</pre>
                     </div>
                     <div class="modal-footer">
+                        <input type="submit" name = "response" class="btn btn-default btn-md" value="Edit" >&emsp;
+                        <input type="submit" name = "response" class="btn btn-default btn-md" value="Delete" >
                         <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
                     </div>
-                </form>
             </div>
+        </form>
         </div>
     </div>
 
@@ -975,10 +901,13 @@
                                         </tr>
                                         <tr>
                                             <td></td>
-                                            <td><input type="submit" name = "response" class="btn btn-default btn-md" value="Add" ></td>
+                                            <td></td>
                                         </tr>
                                     </table>
-
+                                    <div class = "float-right pt-3">
+                                        <input type="submit" name = "response" class="btn btn-default btn-md cs-btn" value="Add" >
+                                        <button type="button" class="btn btn-default cs-btn" data-dismiss="modal">Close</button>
+                                    </div>
                                 </form>
                             </div>
                             <!-- Edit -->
@@ -1003,31 +932,26 @@
                                             <td><input type="text" name="quantityC" class="input-modal" id = "ACQ"></td>
                                         </tr>
                                         <tr>
-                                            <td><label class="label-modal">Unit</label></td>
-                                            <td><input type="text" name="unit" class="input-modal" id = "AUnit"></td>
-                                        </tr>
-                                        <tr>
                                             <td><label class="label-modal">Condition</label></td>
                                             <td><input type="text" name="condi" class="input-modal" id = "ACondi"></td>
                                         </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td><input type="submit" name = "response" class="btn btn-default btn-md" value="Edit" >&emsp;<input type="submit" name = "response" class="btn btn-default btn-md" value="Delete" ></td>
-                                        </tr>
                                     </table>
+                                    <div class = "float-right pt-3">
+                                        <input type="submit" name = "response" class="btn btn-default btn-md cs-btn" value="Edit" >&emsp;
+                                        <input type="submit" name = "response" class="btn btn-default btn-md cs-btn" value="Delete" >
+                                        <button type="button" class="btn btn-default cs-btn" data-dismiss="modal">Close</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Edit Consumable Modal -->
+
     <div class = "modal fade" id = "mCEdit" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class = "modal-content">
@@ -1053,12 +977,11 @@
                                             <td><label class="label-modal">Quantity</label></td>
                                             <td><input type="text" name="quantityT" class="input-modal" ></td>
                                         </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td><input type="submit" name = "response" class="btn btn-default btn-md" value="Add" ></td>
-                                        </tr>
                                     </table>
-
+                                <div class = "pt-3 float-right">
+                                    <input type="submit" name = "response" class="btn btn-default btn-md cs-btn" value="Add" >
+                                    <button type="button" class="btn btn-default cs-btn" data-dismiss="modal">Close</button>
+                                </div>
                                 </form>
                             </div>
                             <!-- Edit -->
@@ -1084,7 +1007,11 @@
                                         </tr>
                                         <tr>
                                             <td><label class="label-modal">Unit</label></td>
-                                            <td><input type="text" name="unit" class="input-modal" id = "CUnit"></td>
+                                            <td><select name = "unit" class = "select-modal" id = "CUnit">
+                                                <option> Piece </option>
+                                                <option> Militter </option>
+                                                <option> Litter</option>
+                                            </select> </td>
                                         </tr>
                                         <tr>
                                             <td><label class="label-modal">Expiration Date</label></td>
@@ -1096,16 +1023,18 @@
                                         </tr>
                                         <tr>
                                             <td></td>
-                                            <td><input type="submit" name = "response" class="btn btn-default btn-md" value="Edit" >&emsp;<input type="submit" name = "response" class="btn btn-default btn-md" value="Delete" ></td>
+                                            <td></td>
                                         </tr>
                                     </table>
+                                    <div class = "float-right pt-3">
+                                        <input type="submit" name = "response" class="btn btn-default btn-md cs-btn" value="Edit" >
+                                        <input type="submit" name = "response" class="btn btn-default btn-md cs-btn" value="Delete" >
+                                        <button type="button" class="btn btn-default cs-btn" data-dismiss="modal">Close</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -1130,6 +1059,7 @@
 <script src="../vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
 <script src="../vendor/chartjs/Chart.bundle.min.js"></script>
 <script src="../vendor/select2/select2.min.js"></script>
+<script src="../vendor/gigjo/js/gijgo.min.js"></script>
 <!-- Main JS-->
 <script src="../js/main.js"></script>
 <script name="pageScripts" type="text/javascript">
@@ -1150,7 +1080,9 @@
 
     //ETable
     $(document).ready(function () {
-        var eTable = $("#ETable").DataTable();
+        var eTable = $("#ETable").DataTable({
+            "paging" : false
+        });
         $('#ETable tbody').on('click', 'tr', function () {
             var eTableData = eTable.row(this).data();
             $('#mEEdit').modal('show');
@@ -1164,7 +1096,9 @@
 
     //ATable
     $(document).ready(function () {
-        var aTable = $("#ATable").DataTable();
+        var aTable = $("#ATable").DataTable({
+            "paging" : false
+        });
         $('#ATable tbody').on('click', 'tr', function () {
             var aTableData = aTable.row(this).data();
             var x = aTableData[3];
@@ -1184,7 +1118,9 @@
 
     //CTable
     $(document).ready(function () {
-        var cTable = $("#CTable").DataTable();
+        var cTable = $("#CTable").DataTable({
+            "paging" : false
+        });
         $('#CTable tbody').on('click', 'tr', function () {
             var CtableData = cTable.row(this).data();
             var x = CtableData[4];
@@ -1201,10 +1137,42 @@
         });
     });
 
-    // datepicker
     $(function () {
-        $(".input-modal--date").datepicker({
-            dateFormat: "yy-mm-dd"
+        $("#date").datepicker({
+            format: "yyyy-mm-dd",
+            uiLibrary: 'bootstrap4'
+        });
+    });
+
+    $(function () {
+        $("#date1").datepicker({
+            format: "yyyy-mm-dd",
+            uiLibrary: 'bootstrap4'
+        });
+    });
+
+    $(function () {
+        $("#date2").datepicker({
+            format: "yyyy-mm-dd",
+            uiLibrary: 'bootstrap4'
+        });
+    });
+    $(function () {
+        $("#date3").datepicker({
+            format: "yyyy-mm-dd",
+            uiLibrary: 'bootstrap4'
+        });
+    });
+    $(function () {
+        $("#EDate").datepicker({
+            format: "yyyy-mm-dd",
+            uiLibrary: 'bootstrap4'
+        });
+    });
+    $(function () {
+        $("#CDate").datepicker({
+            format: "yyyy-mm-dd",
+            uiLibrary: 'bootstrap4'
         });
     });
 </script>

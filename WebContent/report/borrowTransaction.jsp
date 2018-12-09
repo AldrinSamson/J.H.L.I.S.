@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="../vendor/datatables/datatables.min.css" rel="stylesheet" media="all">
     <link href="../vendor/Buttons-1.5.4/css/buttons.dataTables.css" rel="stylesheet" media="all">
+
     <!-- Main CSS-->
     <link href="../css/theme.css" rel="stylesheet" media="all">
     <link href="../css/custom.css" rel="stylesheet" media="all">
@@ -297,20 +298,30 @@
         <!-- HEADER DESKTOP-->
         <!-- Main Body -->
         <div class="main-content">
-            <div class = "pl-5 pb-3 page-title"> !Prototype Borrow Report!</div>
+            <div class = "pl-5 pb-3 page-title"> Borrow Transaction Report</div>
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class = "card text-left" id = "ptab-marg">
+                            <div class = "card text-left" >
                                 <div class = "card-body">
 
 
                                     <div class="col-lg-12">
-                                        <button type="button" class="btn btn-outline-secondary"  href="#mEAdds" data-toggle="modal">Export PDF</button>
-                                        <button type="button" class="btn btn-outline-secondary"  href="#mEAdds" data-toggle="modal">Export CSV</button>
-                                        <button type="button" class="btn btn-outline-secondary"  href="#mEAdds" data-toggle="modal">Clear</button>
+                                        <button type="button" class="btn btn-outline-secondary"  href="#mClear" data-toggle="modal">Clear</button>
                                         <div class="pt-2 table-responsive table--no-card m-b-40">
+                                            <table border="0" cellspacing="5" cellpadding="5">
+                                                <tbody>
+                                                <tr>
+                                                    <td>Minimum Date:</td>
+                                                    <td><input name="min" id="min" type="text"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Maximum Date:</td>
+                                                    <td><input name="max" id="max" type="text"></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
                                             <table class="table table-borderless table-striped table-earning" id = "nTable">
                                                 <thead>
                                                 <tr>
@@ -378,34 +389,38 @@
     <!-- Main Body End-->
     <!-- Modal -->
 
-    <!-- Add Equipment Modal -->
-    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="mEAdd" data-keyboard="false">
+    <!-- Clear -->
+    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="mClear" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header"><h4>New Equipment</h4></div>
-                <form action="../checkNew" method="post">
+                <div class="modal-header"><h4>Clear Transactions</h4></div>
+                <form action="../clearTable" method="post">
 
                     <div class="modal-body">
 
 		<pre class="tab">
         <table class="table table-borderless table-earning" style="border-spacing:20px">
-            <tr>
-                <td><label class="label-modal">Name</label></td>
-                <td><input type="text" name="nName" class="input-modal" ></td>
+             <tr>
+                <td>Are you sure ? Clearing this data would affect Insights and Damage/Missing Reports</td>
             </tr>
             <tr>
-                <td><label class="label-modal">Description</label></td>
-                <td><input type="text" name="nDesc" class="input-modal"></td>
+                <td>Enter your password to continue:</td>
             </tr>
             <tr>
-                <td><label class="label-modal">Laboratory</label></td>
-                <td><input type="text" name="nLab" class="input-modal"></td>
+                <td><label class="label-modal">UserName</label></td>
+                <td><input type="text" name="nName" class="input-modal" value = "<%=(String)session.getAttribute("user")%>" disabled></td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">Password</label></td>
+                <td><input type="text" name="password" class="input-modal"></td>
             </tr>
         </table>
 		</pre>
                     </div>
                     <div class="modal-footer">
-                        <input type="submit" class="btn btn-default btn-md" value="Add">
+                        <input type = "text" name = "location" value = "borrowTransaction" hidden>
+                        <input type = "text" name = "table" value = "borrowtransaction"hidden>
+                        <input type="submit" class="btn btn-default btn-md" value="Proceed">
                         <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
                     </div>
                 </form>
@@ -436,6 +451,7 @@
 <script src = "../vendor/pdfmake-0.1.36/pdfmake.js"></script>
 <script src = "../vendor/pdfmake-0.1.36/vfs_fonts.js"></script>
 <script src = "../vendor/Buttons-1.5.4/js/buttons.html5.js"></script>
+
 <!-- Main JS-->
 <script src="../js/main.js"></script>
 <script type = "text/javascript">
@@ -447,40 +463,53 @@
     });
 
     $(document).ready(function () {
-        var eTable = $("#nTable").DataTable({
+
+        $("#min").datepicker({
+            onSelect: function () { table.draw(); },
+            changeMonth: true,
+            changeYear: true,
+            format : "yyyy-mm-dd"
+        });
+
+        $("#max").datepicker({
+            onSelect: function () { table.draw(); },
+            changeMonth: true,
+            changeYear: true,
+            format : "yyyy-mm-dd"
+        });
+
+        $.fn.dataTable.ext.search.push(
+            function (settings, data, dataIndex) {
+                var min = $('#min').datepicker("getDate");
+                var max = $('#max').datepicker("getDate");
+                var startDate = new Date(data[1]);
+                if (min == null && max == null) { return true; }
+                if (min == null && startDate <= max) { return true;}
+                if(max == null && startDate >= min) {return true;}
+                if (startDate <= max && startDate >= min) { return true; }
+                return false;
+            }
+        );
+
+        var table = $("#nTable").DataTable({
             dom: 'Bfrtip',
             buttons: [
                 'csvHtml5',
-                {   customize: function ( doc ) {
-                        var cols = [];
-                        cols[0] = {text: 'Left part', alignment: 'left', margin:[20] };
-                        cols[1] = {text: 'Right part', alignment: 'right', margin:[0,0,20] };
-                        var objFooter = {};
-                        objFooter['columns'] = cols;
-                        doc['footer']=objFooter;
-                        doc.content.splice(1, 0,
-                            {
-                                margin: [0, 0, 0, 12],
-                                alignment: 'center',
-                                image: 'data:image/png;base64,...',
-                            }
-                        );
-                    },
+                {
                     extend: 'pdfHtml5',
-                    download: 'open',
                     orientation: 'landscape',
-                    message : 'University of Santo Tomas  Junior Highschool  Physics/Chemistry Laboratory '
+                    download: 'open',
+                    message : 'University of Santo Tomas | Junior Highschool | Physics/Chemistry Laboratory '
                 }
-            ]
+            ],
+            "paging" : false,
+            //"order" : [[2, "asc"]]
         });
-        $('#nTable tbody').on('click', 'tr', function () {
-            var eTableData = eTable.row(this).data();
-            $('#mEEdit').modal('show');
-            $(".modal-body #nID").val(eTableData[0]);
-            $(".modal-body #nName").val(eTableData[1]);
-            $(".modal-body #nDesc").val(eTableData[2]);
-            $(".modal-body #nLab").val(eTableData[3]);
-            $(".modal-body #nCondi").val(eTableData[4]);
+
+
+
+        $('#min, #max').change(function () {
+            table.draw();
         });
     });
 </script>

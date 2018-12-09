@@ -56,7 +56,8 @@
     con = DriverManager.getConnection(MYdburl);
     stmt = con.createStatement();
 
-    String message = getBean.getrMessage();
+    String message = (String)session.getAttribute("rMessage");
+    String rID = (String)session.getAttribute("rID");
 %>
 
 <div class="page-wrapper">
@@ -314,8 +315,6 @@
                                         <li class="nav-item"><a href="#tab-elist"
                                                                 data-toggle="tab" class="nav-link active">Pending</a>
                                         </li>
-                                        <li class="nav-item"><a href="#tab-alist"
-                                                                data-toggle="tab" class="nav-link">Unfulfilled</a></li>
                                         <li class="nav-item"><a href="#tab-clist"
                                                                 data-toggle="tab" class="nav-link">History</a></li>
                                     </ul>
@@ -334,6 +333,7 @@
                                                             <th>Name</th>
                                                             <th>Date</th>
                                                             <th>Time</th>
+                                                            <th>Date Required</th>
                                                             <th>Message</th>
                                                         </tr>
                                                         </thead>
@@ -342,19 +342,26 @@
                                                             try {
 
 
-                                                                    query = "SELECT LEFT(rMessage, 20) as message, r.*, a.aName,a.aClass from request r join account a on r.aKey = a.aKey where rCondition = 'Pending' and rStatus ='Unfulfilled'";
+                                                                    query = "SELECT LEFT(rMessage, 20) as message, r.*, a.aName,a.aClass from request r join account a on r.aKey = a.aKey where rCondition = 'Pending' and isDisabled is NULL ";
                                                                 rs = stmt.executeQuery(query);
 
                                                                 while(rs.next()){
+                                                                    String aClass = rs.getString("aClass");
+                                                                    if(aClass.equals("Professor")){
+                                                                        aClass = "Prof.";
+                                                                    }
+
                                                         %>
                                                         <tr data-toggle="modal" id="mRView">
                                                             <td><%=rs.getString("rID")%>
                                                             </td>
-                                                            <td><%=rs.getString("aClass")%> <%=rs.getString("aName")%>
+                                                            <td><%= aClass%> <%=rs.getString("aName")%>
                                                             </td>
                                                             <td><%=rs.getString("rDate")%>
                                                             </td>
-                                                            <td><%=rs.getString("rTime")%>
+                                                            <td><%=rs.getString("rTime")%></td>
+                                                            <td><%=rs.getString("rDateRequired")%>
+                                                            </td>
                                                             <td><%=rs.getString("message")%>
                                                             </td>
 
@@ -371,57 +378,10 @@
                                             </div>
                                         </div>
 
-                                        <!--Unfulfilled Table-->
-                                        <div class="tab-pane fade-in" id="tab-alist">
-                                            <div class="col-lg-12">
-                                                <div class="table-responsive table--no-card m-b-40">
-                                                    <table class="table table-borderless table-striped table-earning" id = "rOKTable">
-                                                        <thead>
-                                                        <tr>
-                                                            <th>ID</th>
-                                                            <th>Name</th>
-                                                            <th>Date</th>
-                                                            <th>Time</th>
-                                                            <th>Message</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <%
-                                                            try {
-
-
-                                                                query = "SELECT LEFT(rMessage, 20) as message, r.*, a.aName,a.aClass from request r join account a on r.aKey = a.aKey where rCondition = 'Approved' and rStatus ='Unfulfilled'";
-                                                                rs = stmt.executeQuery(query);
-
-                                                                while(rs.next()){
-                                                        %>
-                                                        <tr data-toggle="modal" id="mRView">
-                                                            <td><%=rs.getString("rID")%>
-                                                            </td>
-                                                            <td><%=rs.getString("aClass")%> <%=rs.getString("aName")%>
-                                                            </td>
-                                                            <td><%=rs.getString("rDate")%>
-                                                            </td>
-                                                            <td><%=rs.getString("rTime")%>
-                                                            <td><%=rs.getString("message")%>
-                                                            </td>
-
-                                                        </tr>
-                                                        <%
-                                                                }
-                                                            }catch (Exception e){
-                                                                e.printStackTrace();
-                                                            }
-                                                        %>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!--Consumable Table-->
+                                        <!--History Table-->
                                         <div class="tab-pane fade-in" id="tab-clist">
                                             <div class="col-lg-12">
+                                                <button type="button" class="btn btn-outline-secondary"  href="#mClear" data-toggle="modal">Clear</button>
                                                 <div class="table-responsive table--no-card m-b-40">
                                                     <table class="table table-borderless table-striped table-earning" id = "rHTable">
                                                         <thead>
@@ -430,8 +390,11 @@
                                                             <th>Name</th>
                                                             <th>Date</th>
                                                             <th>Time</th>
-                                                            <th>Message</th>
+                                                            <th>Date Required</th>
                                                             <th>Condition</th>
+                                                            <th>isDisabled</th>
+                                                            <th>Message</th>
+
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -439,22 +402,37 @@
                                                             try {
 
 
-                                                                query = "SELECT LEFT(rMessage, 20) as message, r.*, a.aName,a.aClass from request r join account a on r.aKey = a.aKey where rStatus = 'Fulfilled' ";
+                                                                query = "SELECT LEFT(rMessage, 20) as message, r.*, a.aName,a.aClass from request r join account a on r.aKey = a.aKey where rCondition <> 'Pending' ";
                                                                 rs = stmt.executeQuery(query);
 
                                                                 while(rs.next()){
+
+                                                                    String isDisabled = rs.getString("isDisabled");
+                                                                    if(isDisabled == null){
+                                                                        isDisabled = "NO";
+                                                                    }
+                                                                    String aClass = rs.getString("aClass");
+                                                                    if(aClass.equals("Professor")){
+                                                                        aClass = "Prof.";
+                                                                    }
+
                                                         %>
                                                         <tr data-toggle="modal" id="mRView">
                                                             <td><%=rs.getString("rID")%>
                                                             </td>
-                                                            <td><%=rs.getString("aClass")%> <%=rs.getString("aName")%>
+                                                            <td><%=aClass%> <%=rs.getString("aName")%>
                                                             </td>
                                                             <td><%=rs.getString("rDate")%>
                                                             </td>
                                                             <td><%=rs.getString("rTime")%>
-                                                            <td><%=rs.getString("message")%>
+                                                            </td>
+                                                            <td><%=rs.getString("rDateRequired")%>
                                                             </td>
                                                             <td><%=rs.getString("rCondition")%>
+                                                            </td>
+                                                            <td><%=isDisabled%>
+                                                            </td>
+                                                            <td><%=rs.getString("message")%>
                                                             </td>
 
                                                         </tr>
@@ -497,9 +475,6 @@
             <tr>
                 <td><input type="submit" name = "response" class="btn btn-default btn-md" value="Approve" > <input type="submit" name = "response" class="btn btn-default btn-md" value="Reject" ></td>
             </tr>
-                 <tr>
-                     <td><input type="submit" name = "response" class="btn btn-default btn-md" value="Approve and Fulfill" ></td>
-                 </tr>
             </table>
         </pre></div>
                     <div class="modal-footer">
@@ -596,7 +571,7 @@
 		</pre>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal" >Close</button>
                     </div>
                 </form>
             </div>
@@ -619,6 +594,42 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Clear -->
+    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="mClear" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><h4>Clear Requests</h4></div>
+                <form action="../clearTable" method="post">
+
+                    <div class="modal-body">
+
+		<pre class="tab">
+        <table class="table table-borderless table-earning" style="border-spacing:20px">
+            <tr>
+                <td>Enter your password to continue:</td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">UserName</label></td>
+                <td><input type="text" name="nName" class="input-modal" value = "<%=(String)session.getAttribute("user")%>" disabled></td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">Password</label></td>
+                <td><input type="text" name="password" class="input-modal"></td>
+            </tr>
+        </table>
+		</pre>
+                    </div>
+                    <div class="modal-footer">
+                        <input type = "text" name = "location" value = "requestAdmin" hidden>
+                        <input type = "text" name = "table" value = "request"hidden>
+                        <input type="submit" class="btn btn-default btn-md" value="Proceed">
+                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
                     </div>
                 </form>
             </div>

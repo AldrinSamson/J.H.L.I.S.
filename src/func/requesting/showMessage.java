@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -43,8 +44,9 @@ public class showMessage extends HttpServlet {
                     rMessage = chk.getString("rMessage");
                 }
 
-                getBean.setrMessage(rMessage);
-                getBean.setrID(rID);
+                HttpSession log = request.getSession(false);
+                log.setAttribute("rID" , rID);
+                log.setAttribute("rMessage" , rMessage);
 
                 if (location.equals("prof")) {
                     out.println("<html><body><script type='text/javascript'>;location='request/request.jsp#message';</script></body></html>");

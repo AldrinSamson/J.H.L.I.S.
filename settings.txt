@@ -1,0 +1,5 @@
+URL = jdbc:mysql://localhost/jhlis
+USER = root
+PASS = 8888
+
+

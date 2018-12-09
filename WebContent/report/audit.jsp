@@ -27,12 +27,12 @@
     <link href="../vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
     <link href="../vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
     <link href="../vendor/wow/animate.css" rel="stylesheet" media="all">
-    <link href="../vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="../vendor/css-hamburgers/ham   burgers.min.css" rel="stylesheet" media="all">
     <link href="../vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="../vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="../vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <link href="../vendor/datatables/datatables.min.css" rel="stylesheet" media="all">
     <link href="../vendor/Buttons-1.5.4/css/buttons.dataTables.css" rel="stylesheet" media="all">
-
 
     <!-- Main CSS-->
     <link href ="../css/custom.css" rel = "stylesheet" media = "all">
@@ -302,7 +302,20 @@
                             <div class = "card text-left" id = "ptab-marg">
                                 <div class = "p-1 card-body">
                                             <div class="pt-2 col-lg-12">
+                                                <button type="button" class="btn btn-outline-secondary"  href="#mClear" data-toggle="modal">Clear</button>
                                                 <div class="table-responsive table--no-card m-b-40">
+                                                    <table border="0" cellspacing="5" cellpadding="5">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td>Minimum Date:</td>
+                                                            <td><input name="min" id="min" type="text"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Maximum Date:</td>
+                                                            <td><input name="max" id="max" type="text"></td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
                                                     <table class="table table-borderless table-striped table-earning" id = "auditTable">
                                                         <thead>
                                                         <tr>
@@ -356,12 +369,47 @@
     </div>
     <!-- Main Body End-->
     <!-- Modal -->
+    <!-- Clear -->
+    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="mClear" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><h4>Clear Audit</h4></div>
+                <form action="../clearTable" method="post">
 
+                    <div class="modal-body">
+
+		<pre class="tab">
+        <table class="table table-borderless table-earning" style="border-spacing:20px">
+            <tr>
+                <td>Enter your password to continue:</td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">UserName</label></td>
+                <td><input type="text" name="nName" class="input-modal" value = "<%=(String)session.getAttribute("user")%>" disabled></td>
+            </tr>
+            <tr>
+                <td><label class="label-modal">Password</label></td>
+                <td><input type="text" name="password" class="input-modal"></td>
+            </tr>
+        </table>
+		</pre>
+                    </div>
+                    <div class="modal-footer">
+                        <input type = "text" name = "location" value = "audit" hidden>
+                        <input type = "text" name = "table" value = "audit"hidden>
+                        <input type="submit" class="btn btn-default btn-md" value="Proceed">
+                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 </div>
 
 <!-- Jquery JS-->
 <script src="../vendor/jquery-3.2.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- Bootstrap JS-->
 <script src="../vendor/bootstrap-4.1/popper.min.js"></script>
 <script src="../vendor/bootstrap-4.1/bootstrap.min.js"></script>
@@ -387,17 +435,41 @@
 <script type = "text/javascript">
 
     $(document).ready(function(){
-       $("#auditTable").DataTable({
+
+        $.fn.dataTable.ext.search.push(
+            function (settings, data, dataIndex) {
+                var min = $('#min').datepicker("getDate");
+                var max = $('#max').datepicker("getDate");
+                var startDate = new Date(data[3]);
+                if (min == null && max == null) { return true; }
+                if (min == null && startDate <= max) { return true;}
+                if(max == null && startDate >= min) {return true;}
+                if (startDate <= max && startDate >= min) { return true; }
+                return false;
+            }
+        );
+
+        $("#min").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+        $("#max").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+        var table  = $("#auditTable").DataTable({
+
+
            dom: 'Bfrtip',
            buttons: [
                'csvHtml5',
                {
                    extend: 'pdfHtml5',
+                   orientation: 'landscape',
                    download: 'open',
                    message : 'University of Santo Tomas | Junior Highschool | Physics/Chemistry Laboratory '
                }
-           ]
+           ],
+           "paging" : false
        });
+
+        $('#min, #max').change(function () {
+            table.draw();
+        });
     });
 
 </script>

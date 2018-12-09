@@ -49,23 +49,21 @@ public class addSet extends HttpServlet {
                 stmt = con.createStatement();
                 stmtE = con.createStatement();
 
-                String genKey = "select isNum from itemsetlist where isLab = '"+lab+"' order by isNum desc limit 1 ";
+                String genKey = "select isNum as num from itemsetlist where isLab = '"+lab+"' order by isNum desc limit 1 ";
                 get = stmt.executeQuery(genKey);
 
-                if (!get.next()){
+                if (get.next()){
 
-                    newKey = abbv+"-"+1;
+                    int num = get.getInt("num");
+                    newNum = ++num;
+                    newKey = abbv + "-" + newNum;
 
                 }else {
 
-                    while (get.next()) {
-                        int num = get.getInt("isNum");
-                        newNum = ++num;
-                        newKey = abbv + "-" + newNum;
-                    }
+                    newKey = abbv+"-"+1;
+
                 }
-
-
+                get.close();
 
                 int i = 0;
                 while(i< nameList.size()){

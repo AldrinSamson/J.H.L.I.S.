@@ -20,8 +20,7 @@ public class answerCHK extends HttpServlet {
     private static final long serialVersionUID = 1L;
     Connection con;
     Statement stmt;
-    ResultSet chkUN, chkQ;
-    String getUser;
+    ResultSet chkUN;
     String MYdburl = getBean.getMyUrl();
     String MYclass = getBean.getMyClass();
     String ra1, ra2;
@@ -46,7 +45,6 @@ public class answerCHK extends HttpServlet {
                     ra1 = chkUN.getString("ra1");
                     ra2 = chkUN.getString("ra2");
                 }
-
 
                 if (a1.equalsIgnoreCase(ra1)) {
 
